@@ -4,12 +4,15 @@
  */
 package Controllers;
 
+import DAL.UserDAO;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,7 +34,19 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = "";
         try{
-            url = "home.jsp";
+            String accountName = request.getParameter("accountName");
+            String password = request.getParameter("password");
+            UserDAO dao = new UserDAO();
+            User user = dao.checkLogin(accountName, password);
+            if(user!=null){
+                HttpSession session = request.getSession();
+                session.setAttribute("User", user.getRoleID());
+                request.setAttribute("SIGNUP_SUCCESSFULLY", "Login Successfully");
+            }
+            else{
+                request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
+            }
+            url = "login.jsp";
         }catch(Exception e){
             
         }finally{

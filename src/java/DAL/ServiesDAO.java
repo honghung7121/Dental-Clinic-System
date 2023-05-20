@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAL;
-import Models.Servies;
+import Models.Service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,8 +15,8 @@ import Util.Util;
  * @author Admin
  */
 public class ServiesDAO {
-    public List<Servies> getAllServies() throws SQLException{
-        List<Servies> list = null;
+    public List<Service> getAllServies() throws SQLException{
+        List<Service> list = null;
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
