@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
     private final String LOGIN = "LoginController"; 
     private final String SIGNUP = "SignUpController";
+    private final String GETEMPLOYEES = "GetEmployeesController";
+    private final String SEARCHEMPLOYEEBYROLE = "SearchEmployeeByRoleController";
+    private final String SEARCHEMPLOYEEBYNAME = "SearchEmployeeByNameController";
     private final String DENTIST = "DentistController";
     private final String DENTISTPROFILE = "DentistProfileController";  
     private final String DENTISTEDIT = "EditDentistController"; 
@@ -52,7 +55,15 @@ public class MainController extends HttpServlet {
             else if(action.equals(request)){
                 url = SIGNUP;
             }
-            
+            else if(action.equals("GetEmployees")){
+                url = GETEMPLOYEES;
+            }
+            else if(action.equals("Search Employee By Role")){
+                url = SEARCHEMPLOYEEBYROLE;
+            }
+            else if(action.equals("Search Employee By Name")){
+                url = SEARCHEMPLOYEEBYNAME;
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
