@@ -8,6 +8,22 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>Controllers.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetEmployeesController</servlet-name>
+        <servlet-class>Controllers.GetEmployeesController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchEmployeeByRoleController</servlet-name>
+        <servlet-class>Controllers.SearchEmployeeByRoleController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchEmployeeByNameController</servlet-name>
+        <servlet-class>Controllers.SearchEmployeeByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetEmployeeByIDController</servlet-name>
+        <servlet-class>Controllers.GetEmployeeByIDController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -16,12 +32,29 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetEmployeesController</servlet-name>
+        <url-pattern>/GetEmployeesController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchEmployeeByRoleController</servlet-name>
+        <url-pattern>/SearchEmployeeByRoleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchEmployeeByNameController</servlet-name>
+        <url-pattern>/SearchEmployeeByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetEmployeeByIDController</servlet-name>
+        <url-pattern>/GetEmployeeByIDController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
+        <welcome-file>admin.jsp</welcome-file>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
