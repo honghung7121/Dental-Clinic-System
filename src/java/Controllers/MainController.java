@@ -21,6 +21,9 @@ public class MainController extends HttpServlet {
     private final String GETEMPLOYEES = "GetEmployeesController";
     private final String SEARCHEMPLOYEEBYROLE = "SearchEmployeeByRoleController";
     private final String SEARCHEMPLOYEEBYNAME = "SearchEmployeeByNameController";
+    private final String DENTIST = "DentistController";
+    private final String DENTISTPROFILE = "DentistProfileController";  
+    private final String DENTISTEDIT = "EditDentistController"; 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,6 +42,16 @@ public class MainController extends HttpServlet {
             if(action.equals("Login")){
                 url = LOGIN;
             }
+            else if(action.equals("dentist")){
+                url = DENTIST;
+            }
+            else if(action.equals("dentistProfile")){
+                url = DENTISTPROFILE;
+            }
+            else if(action.equals("saveDentist")){
+                url = DENTISTEDIT;
+            }       
+
             else if(action.equals(request)){
                 url = SIGNUP;
             }

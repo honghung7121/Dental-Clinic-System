@@ -24,6 +24,18 @@
         <servlet-name>GetEmployeeByIDController</servlet-name>
         <servlet-class>Controllers.GetEmployeeByIDController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DentistController</servlet-name>
+        <servlet-class>Controllers.DentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DentistProfileController</servlet-name>
+        <servlet-class>Controllers.DentistProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditDentistController</servlet-name>
+        <servlet-class>Controllers.EditDentistController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>GetEmployeeByIDController</servlet-name>
         <url-pattern>/GetEmployeeByIDController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DentistController</servlet-name>
+        <url-pattern>/DentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DentistProfileController</servlet-name>
+        <url-pattern>/DentistProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDentistController</servlet-name>
+        <url-pattern>/EditDentistController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

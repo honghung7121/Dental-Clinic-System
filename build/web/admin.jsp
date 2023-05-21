@@ -1,7 +1,12 @@
 <%-- 
     Document   : admin
+<<<<<<< HEAD
     Created on : May 20, 2023, 5:46:32 PM
     Author     : Admin
+=======
+    Created on : May 20, 2023, 6:00:42 PM
+    Author     : ADMIN
+>>>>>>> b229d65813e2e060ee628d3f15ac7bba52a8298a
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -776,9 +781,5 @@
         <script src="assets/js/Chart.bundle.js"></script>
         <script src="assets/js/chart.js"></script>
         <script src="assets/js/app.js"></script>
-
     </body>
-
-
-    <!-- index22:59-->
 </html>
