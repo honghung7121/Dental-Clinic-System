@@ -8,6 +8,22 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>Controllers.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Patient</servlet-name>
+        <servlet-class>Controllers.Patient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchServlet</servlet-name>
+        <servlet-class>Controllers.searchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editServlet</servlet-name>
+        <servlet-class>Controllers.editServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteServlet</servlet-name>
+        <servlet-class>Controllers.deleteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -15,6 +31,22 @@
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Patient</servlet-name>
+        <url-pattern>/Patient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchServlet</servlet-name>
+        <url-pattern>/searchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editServlet</servlet-name>
+        <url-pattern>/editServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteServlet</servlet-name>
+        <url-pattern>/deleteServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -46,7 +46,7 @@ public class LoginController extends HttpServlet {
             else{
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
             }
-            url = "login.jsp";
+            url = "patient.jsp";
         }catch(Exception e){
             
         }finally{

@@ -39,6 +39,12 @@ public class MainController extends HttpServlet {
             else if(action.equals(request)){
                 url = SIGNUP;
             }
+              else if(action.equals("patient")){
+                url = "Patient";
+              }
+            else if(action.equals("searchPatient")){
+                url = "searchServlet";
+            }
         }catch(Exception e){
             e.printStackTrace();
         }

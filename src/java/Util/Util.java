@@ -15,9 +15,17 @@ import java.sql.SQLException;
 public class Util {
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection conn = null;
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=DentalClinicSystem;encrypt=false";
-        conn = DriverManager.getConnection(url, "sa", "12345");
+        String IP="localhost";
+        String instanceName="DESKTOP-I86L24K\\SQLEXPRESS";
+        String port="1433";
+        String uid="sa";
+        String pwd="12345";
+        String db="DentalClinicSystem";
+        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        String url="jdbc:sqlserver://" +IP+"\\"+ instanceName+":"+port
+                 +";databasename="+db+";user="+uid+";password="+pwd;
+        Class.forName(driver);
+        conn=DriverManager.getConnection(url);
         return conn;
     }
 }

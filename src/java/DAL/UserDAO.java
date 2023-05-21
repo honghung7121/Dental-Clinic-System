@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Util.Util;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -59,4 +61,78 @@ public class UserDAO {
         }
         return user;
     }
-}
+
+        public static ArrayList<User> getAllPatient() {
+        ArrayList<User> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select *\n"
+                        + "from tblUser \n"
+                        + "where idRole = 5";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String fullName = rs.getString("fullName");
+                        String password = rs.getString("password");
+                        int phoneNumber = rs.getInt("phoneNumber");
+                        int idRole = rs.getInt("idRole");
+                        boolean status = rs.getBoolean("status");
+                        String email = rs.getString("email");  
+                        String roll = rs.getString("Roll");
+                        User patient = new User(id, fullName, password, phoneNumber, idRole, status, email, roll);
+                        list.add(patient);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+        
+            }
+         public static ArrayList<User> searchPatient(String search) {
+             
+        ArrayList<User> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql ="select *\n" +
+"                         from tblUser \n" +
+"                        where fullName like '?%'";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, search);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String fullName = rs.getString("fullName");
+                        String password = rs.getString("password");
+                        int phoneNumber = rs.getInt("phoneNumber");
+                        int idRole = rs.getInt("idRole");
+                        boolean status = rs.getBoolean("status");
+                        String email = rs.getString("email");             
+                        User patient = new User(id, fullName, password, phoneNumber, idRole, status, email, sql);
+                        list.add(patient);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+        
+            }
+        
+        public static void main(String[] args) {
+            UserDAO DAO = new UserDAO();
+            List<User> list = DAO.getAllPatient();
+            for (User p : list) {
+                System.out.println(p);
+            }
+    }
+    }
