@@ -4,10 +4,13 @@
  */
 package Controllers;
 
+import DAL.RoleDAO;
 import DAL.UserDAO;
+import Models.Role;
 import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,9 +37,12 @@ public class GetEmployeeByIDController extends HttpServlet {
         String url = "";
         try{
             int id = Integer.parseInt(request.getParameter("id"));
-            UserDAO dao = new UserDAO();
-            User user = dao.getEmployeeById(id);
+            UserDAO userDAO = new UserDAO();
+            RoleDAO roleDAO = new RoleDAO();
+            User user = userDAO.getEmployeeById(id);
+            List<Role> list = roleDAO.getEmployeeRole();
             request.setAttribute("EMPLOYEE", user);
+            request.setAttribute("LIST_ROLE", list);
             url = "editemployee.jsp";
         }catch(Exception e){
             e.printStackTrace();

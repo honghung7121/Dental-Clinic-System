@@ -7,7 +7,6 @@ package Controllers;
 import DAL.UserDAO;
 import Models.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,43 +31,18 @@ public class SearchEmployeeByNameController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = "";
         try {
             String name = request.getParameter("name");
             UserDAO dao = new UserDAO();
             List<User> list = dao.searchEmployeesByName(name);
-            PrintWriter out = response.getWriter();
-            for (User user : list) {
-                String role = "";
-                if (user.getRoleID() == 1) {
-                    role = "<span class=\"custom-badge status-green\">Admin</span>";
-                } else if (user.getRoleID() == 2) {
-                    role = "<span class=\"custom-badge status-red\">Nha Sĩ</span>";
-                } else if (user.getRoleID() == 3) {
-                    role = "<span class=\"custom-badge status-purple\">Marketing</span>";
-                } else {
-                    role = "<span class=\"custom-badge status-pink\">Chăm Sóc Khách Hàng</span>";
-                }
-                out.println("<tr>\n"
-                        + "                                                <td>\n"
-                        + "                                                    <img width=\"28\" height=\"28\" src=\"assets/img/user.jpg\" class=\"rounded-circle\" alt=\"\"> <h2>" + user.getFullName() + "</h2>\n"
-                        + "                                                </td>\n"
-                        + "                                                <td>" + user.getId() + "</td>\n"
-                        + "                                                <td>" + user.getEmail() + "</td>\n"
-                        + "                                                <td>" + user.getPhoneNumber() + "</td>\n"
-                        + "                                                <td>" + role + "</td>\n"
-                        + "                                                <td class=\"text-right\">\n"
-                        + "                                                    <div class=\"dropdown dropdown-action\">\n"
-                        + "                                                        <a href=\"#\" class=\"action-icon dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fa fa-ellipsis-v\"></i></a>\n"
-                        + "                                                        <div class=\"dropdown-menu dropdown-menu-right\">\n"
-                        + "                                                            <a class=\"dropdown-item\" href=\"editemployee.jsp\"><i class=\"fa fa-pencil m-r-5\"></i>Chỉnh Sửa</a>\n"
-                        + "                                                            <a class=\"dropdown-item\" href=\"#\" data-toggle=\"modal\" data-target=\"#delete_employee\"><i class=\"fa fa-trash-o m-r-5\"></i>Delete</a>\n"
-                        + "                                                        </div>\n"
-                        + "                                                    </div>\n"
-                        + "                                                </td>\n"
-                        + "                                            </tr>");
-            }
+            request.setAttribute("LIST_EMPLOYEE", list);
+            url = "ReturnEmployeeController";
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

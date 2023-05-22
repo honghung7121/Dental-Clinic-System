@@ -139,11 +139,4 @@ public class DentistDAO {
         }
         return kq;
     }
-
-    public static void main(String[] args) {
-        ArrayList<Dentist> list = DentistDAO.getAllDentist();
-        System.out.println(list);
-        Dentist d = geDentistByID("1");
-        System.out.println(d);
-    }
 }
