@@ -5,10 +5,8 @@
 package Controllers;
 
 import DAL.UserDAO;
-import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class SearchEmployeeByRoleController extends HttpServlet {
+public class EditEmployeeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,19 +30,17 @@ public class SearchEmployeeByRoleController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        try {
-            int idRole = Integer.parseInt(request.getParameter("id"));
+        try{
+            int id = Integer.parseInt(request.getParameter("id"));
+            String fullName = request.getParameter("name");
+            String email = request.getParameter("email");
+            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+            int roleID = Integer.parseInt(request.getParameter("role"));
+            boolean status = Boolean.parseBoolean(request.getParameter("status"));
             UserDAO dao = new UserDAO();
-            List<User> list = dao.searchEmployeesByRole(idRole);
-            PrintWriter out = response.getWriter();
-            request.setAttribute("LIST_EMPLOYEE", list);
-            url = "ReturnEmployeeController";
-        } catch (Exception e) {
+            dao.editEmployee(id, fullName, email, phoneNumber, roleID, status);
+        }catch(Exception e){
             e.printStackTrace();
-        }
-        finally{
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

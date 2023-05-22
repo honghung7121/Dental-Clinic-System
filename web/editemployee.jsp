@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +21,14 @@
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/select2.min.js"></script>
+        <script src="assets/js/moment.min.js"></script>
+        <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="assets/js/app.js"></script>
         <!--[if lt IE 9]>
                     <script src="assets/js/html5shiv.min.js"></script>
                     <script src="assets/js/respond.min.js"></script>
@@ -199,117 +208,108 @@
                 <div class="content">
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
-                            <h4 class="page-title">Edit Employee</h4>
+                            <h4 class="page-title">Chi Tiết Nhân Viên</h4>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
-                            <form>
-                                <div class="row">
+                            <div class="row">
+                                <c:set var="e" value="${EMPLOYEE}"></c:set>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>First Name <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Last Name</label>
-                                            <input class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Username <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Email <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input class="form-control" type="password">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Confirm Password</label>
-                                            <input class="form-control" type="password">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Employee ID <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Joining Date <span class="text-danger">*</span></label>
-                                            <div class="cal-icon">
-                                                <input class="form-control datetimepicker" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Phone </label>
-                                            <input class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label>Role</label>
-                                            <select class="select">
-                                                <option>Admin</option>
-                                                <option>Doctor</option>
-                                                <option>Nurse</option>
-                                                <option>Laboratorist</option>
-                                                <option>Pharmacist</option>
-                                                <option>Accountant</option>
-                                                <option>Receptionist</option>
-                                            </select>
-                                        </div>
+                                            <label>Họ Tên <span class="text-danger">*</span></label>
+                                            <input value="${e.getFullName()}" id="fullName" class="form-control" type="text">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="display-block">Status</label>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="status" id="employee_active" value="option1" checked>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email <span class="text-danger">*</span></label>
+                                        <input value="${e.getEmail()}" id="email" class="form-control" type="email">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Mật Khẩu</label>
+                                        <input disabled="" value="${e.getPassword()}" class="form-control" type="password">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Mã Nhân Viên <span class="text-danger">*</span></label>
+                                        <input disabled="" value="${e.getId()}" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Số Điện Thoại </label>
+                                        <input value="0${e.getPhoneNumber()}" id="phoneNumber" class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Vị Trí</label>
+                                        <select id="role" class="select">
+                                            <c:forEach var="r" items="${LIST_ROLE}">
+                                                <option <c:if test="${e.getRoleID() == r.getId()}">selected=""</c:if> value="${r.getId()}">${r.getName()}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="display-block">Trạng Thái</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="status" id="employee_active" <c:if test="${e.isStatus() == true}">checked=""</c:if> value="${e.isStatus()}"/>
                                         <label class="form-check-label" for="employee_active">
-                                            Active
+                                            Đang Hoạt Động
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="status" id="employee_inactive" value="option2">
+                                        <input class="form-check-input" type="radio" id="status" id="employee_inactive" <c:if test="${e.isStatus() == false}">checked=""</c:if> value="${e.isStatus()}"/>
                                         <label class="form-check-label" for="employee_inactive">
-                                            Inactive
+                                            Ngừng Hoạt Động
                                         </label>
                                     </div>
                                 </div>
                                 <div class="m-t-20 text-center">
-                                    <button class="btn btn-primary submit-btn">Save</button>
-                                </div>
-                            </form>
+                                    <button onclick="editEmployee(this, ${e.getId()})" class="btn btn-primary submit-btn">LƯU</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="sidebar-overlay" data-reff=""></div>
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/select2.min.js"></script>
-        <script src="assets/js/moment.min.js"></script>
-        <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="assets/js/app.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+                                        function editEmployee(btn, id) {
+                                            console.log(btn);
+                                            let name = document.getElementById('fullName').value;
+                                            let email = document.getElementById('email').value;
+                                            let phoneNumber = document.getElementById('phoneNumber').value;
+                                            let role = document.getElementById('role').value;
+                                            let status = document.getElementById('status').value;
+                                            console.log(name);
+                                            $.ajax({
+                                                url: '/SWP391-SE1743/EditEmployeeController',
+                                                data: {
+                                                    action: 'Edit Employee',
+                                                    id: id,
+                                                    name: name,
+                                                    email: email,
+                                                    phoneNumber: phoneNumber,
+                                                    role: role,
+                                                    status: status
+                                                },
+                                                success: function (data) {
+                                                    alert("Update Successfully");
+                                                },
+                                                error: function (error) {
+                                                    console("Fail");
+                                                },
+                                                type: 'GET'
+                                            });
+                                        }
+        </script>
     </body>
 
 

@@ -5,7 +5,6 @@
 package DAL;
 
 import Models.Role;
-import Models.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

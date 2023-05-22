@@ -52,7 +52,7 @@ public class UserDAO {
                 rs.close();
             }
             if (stm != null) {
-                rs.close();
+                stm.close();
             }
             if (con != null) {
                 con.close();
@@ -82,7 +82,7 @@ public class UserDAO {
                 rs.close();
             }
             if (stm != null) {
-                rs.close();
+                stm.close();
             }
             if (con != null) {
                 con.close();
@@ -115,7 +115,7 @@ public class UserDAO {
                 rs.close();
             }
             if (stm != null) {
-                rs.close();
+                stm.close();
             }
             if (con != null) {
                 con.close();
@@ -147,7 +147,7 @@ public class UserDAO {
                 rs.close();
             }
             if (stm != null) {
-                rs.close();
+                stm.close();
             }
             if (con != null) {
                 con.close();
@@ -163,7 +163,7 @@ public class UserDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql = "select * from tblUser where fullName like ?";
+                String sql = "select * from tblUser where fullName like ? and idRole!=5";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, "%"+name+"%");
                 rs = stm.executeQuery();
@@ -179,7 +179,7 @@ public class UserDAO {
                 rs.close();
             }
             if (stm != null) {
-                rs.close();
+                stm.close();
             }
             if (con != null) {
                 con.close();
@@ -211,12 +211,44 @@ public class UserDAO {
                 rs.close();
             }
             if (stm != null) {
-                rs.close();
+                stm.close();
             }
             if (con != null) {
                 con.close();
             }
         }
         return user;
+    }
+    public void editEmployee(int id, String name, String email, int phoneNumber, int roleID, boolean status) throws SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "update tblUser set fullName = ?, phoneNumber = ?, idRole = ?, status =?, email = ? where id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, name);
+                stm.setInt(2, phoneNumber);
+                stm.setInt(3, roleID);
+                stm.setBoolean(4, status);
+                stm.setString(5, email);
+                stm.setInt(6, id);
+                stm.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                rs.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }
