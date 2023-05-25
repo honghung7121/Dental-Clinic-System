@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Models;
 
@@ -11,6 +12,17 @@ package Models;
 public class Service {
     private int id;
     private String name;
+    private String mota;
+    private float price;
+    private boolean status;
+
+    public Service(int id, String name, String mota, float price, boolean status) {
+        this.id = id;
+        this.name = name;
+        this.mota = mota;
+        this.price = price;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
@@ -28,12 +40,35 @@ public class Service {
         this.name = name;
     }
 
-    public Service() {
+    public String getMota() {
+        return mota;
     }
 
-    public Service(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public void setMota(String mota) {
+        this.mota = mota;
     }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" + "id=" + id + ", name=" + name + ", mota=" + mota + ", price=" + price + ", status=" + status + '}';
+    }
+
+    
     
 }

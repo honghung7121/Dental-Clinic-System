@@ -40,13 +40,12 @@ public class LoginController extends HttpServlet {
             User user = dao.checkLogin(accountName, password);
             if(user!=null){
                 HttpSession session = request.getSession();
-                session.setAttribute("User", user.getRoleID());
-                request.setAttribute("SIGNUP_SUCCESSFULLY", "Login Successfully");
+                session.setAttribute("User", user);
+                url = "DashBoardController";
             }
             else{
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
             }
-            url = "admin.jsp";
         }catch(Exception e){
             
         }finally{
