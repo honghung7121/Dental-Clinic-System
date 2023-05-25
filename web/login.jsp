@@ -40,6 +40,7 @@
     </head>
 
     <body>
+         <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>DentCare</h1>

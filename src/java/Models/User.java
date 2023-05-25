@@ -18,6 +18,30 @@ public class User {
     private boolean status;
     private String email;
     private String Roll;
+    private String gender;
+
+    public User(int id, String fullName, String password, int phoneNumber, int roleID, boolean status, String email, String Roll) {
+        this.id = id;
+        this.fullName = fullName;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.roleID = roleID;
+        this.status = status;
+        this.email = email;
+        this.Roll = Roll;
+    }
+
+
+    
+    
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
 
     public int getId() {
         return id;
@@ -86,7 +110,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String fullName, String password, int phoneNumber, int roleID, boolean status, String email, String Roll) {
+    public User(int id, String fullName, String password, int phoneNumber, int roleID, boolean status, String email, String Roll, String gender) {
         this.id = id;
         this.fullName = fullName;
         this.password = password;
@@ -94,6 +118,7 @@ public class User {
         this.roleID = roleID;
         this.status = status;
         this.email = email;
+        this.gender = gender;
         if (Roll == null) {
             this.Roll = "";
         } else {

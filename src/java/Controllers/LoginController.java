@@ -33,20 +33,21 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = "";
+        HttpSession session = request.getSession();
+        session.setAttribute("activeLink", "dashboardLink");
         try{
             String accountName = request.getParameter("accountName");
             String password = request.getParameter("password");
             UserDAO dao = new UserDAO();
             User user = dao.checkLogin(accountName, password);
             if(user!=null){
-                HttpSession session = request.getSession();
-                session.setAttribute("User", user.getRoleID());
-                request.setAttribute("SIGNUP_SUCCESSFULLY", "Login Successfully");
+                
+                session.setAttribute("User", user);
+                url = "DashBoardController";
             }
             else{
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
             }
-            url = "admin.jsp";
         }catch(Exception e){
             
         }finally{

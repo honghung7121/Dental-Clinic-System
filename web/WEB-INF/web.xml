@@ -9,40 +9,140 @@
         <servlet-class>Controllers.LoginController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DashBoardController</servlet-name>
+        <servlet-class>Controllers.DashBoardController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GetEmployeesController</servlet-name>
-        <servlet-class>Controllers.GetEmployeesController</servlet-class>
+        <servlet-class>Controllers.Employee.GetEmployeesController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchEmployeeByRoleController</servlet-name>
-        <servlet-class>Controllers.SearchEmployeeByRoleController</servlet-class>
+        <servlet-class>Controllers.Employee.SearchEmployeeByRoleController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchEmployeeByNameController</servlet-name>
-        <servlet-class>Controllers.SearchEmployeeByNameController</servlet-class>
+        <servlet-class>Controllers.Employee.SearchEmployeeByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddEmployeeController</servlet-name>
+        <servlet-class>Controllers.Employee.AddEmployeeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GetEmployeeByIDController</servlet-name>
-        <servlet-class>Controllers.GetEmployeeByIDController</servlet-class>
+        <servlet-class>Controllers.Employee.GetEmployeeByIDController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DentistController</servlet-name>
-        <servlet-class>Controllers.DentistController</servlet-class>
+        <servlet-class>Controllers.Dentist.DentistController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DentistProfileController</servlet-name>
-        <servlet-class>Controllers.DentistProfileController</servlet-class>
+        <servlet-class>Controllers.Dentist.DentistProfileController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditDentistController</servlet-name>
-        <servlet-class>Controllers.EditDentistController</servlet-class>
+        <servlet-class>Controllers.Dentist.EditDentistController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditEmployeeController</servlet-name>
-        <servlet-class>Controllers.EditEmployeeController</servlet-class>
+        <servlet-class>Controllers.Employee.EditEmployeeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ReturnEmployeeController</servlet-name>
-        <servlet-class>Controllers.ReturnEmployeeController</servlet-class>
+        <servlet-class>Controllers.Employee.ReturnEmployeeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loadService</servlet-name>
+        <servlet-class>Controllers.loadService</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loadServiceController</servlet-name>
+        <servlet-class>Controllers.Service.loadServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addServiceController</servlet-name>
+        <servlet-class>Controllers.Service.addServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editServiceController</servlet-name>
+        <servlet-class>Controllers.Service.editServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateServiceController</servlet-name>
+        <servlet-class>Controllers.Service.updateServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteServiceController</servlet-name>
+        <servlet-class>Controllers.Service.deleteServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateDentistController</servlet-name>
+        <servlet-class>Controllers.Dentist.CreateDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteDentistController</servlet-name>
+        <servlet-class>Controllers.Dentist.DeleteDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadMoreDentistController</servlet-name>
+        <servlet-class>Controllers.Dentist.LoadMoreDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFeedbackDentistController</servlet-name>
+        <servlet-class>Controllers.Feedback.ViewFeedbackDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFeedbackServiceController</servlet-name>
+        <servlet-class>Controllers.Feedback.ViewFeedbackServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchFeedbackDentistController</servlet-name>
+        <servlet-class>Controllers.Feedback.SearchFeedbackDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchFeedbackServiceController</servlet-name>
+        <servlet-class>Controllers.Feedback.SearchFeedbackServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteFeedbackDentistController</servlet-name>
+        <servlet-class>Controllers.Feedback.DeleteFeedbackDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteFeedbackServiceController</servlet-name>
+        <servlet-class>Controllers.Feedback.DeleteFeedbackServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnServiceController</servlet-name>
+        <servlet-class>Controllers.Service.ReturnServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServiceByNameController</servlet-name>
+        <servlet-class>Controllers.Service.SearchServiceByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortServiceController</servlet-name>
+        <servlet-class>Controllers.Service.SortServiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddPatient</servlet-name>
+        <servlet-class>Controllers.Patient.AddPatient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePatient</servlet-name>
+        <servlet-class>Controllers.Patient.DeletePatient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Patient</servlet-name>
+        <servlet-class>Controllers.Patient.Patient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchPatient</servlet-name>
+        <servlet-class>Controllers.Patient.SearchPatient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>Controllers.LogoutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -88,13 +188,112 @@
         <servlet-name>ReturnEmployeeController</servlet-name>
         <url-pattern>/ReturnEmployeeController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadService</servlet-name>
+        <url-pattern>/loadService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadServiceController</servlet-name>
+        <url-pattern>/loadServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addServiceController</servlet-name>
+        <url-pattern>/addServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editServiceController</servlet-name>
+        <url-pattern>/editServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateServiceController</servlet-name>
+        <url-pattern>/updateServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteServiceController</servlet-name>
+        <url-pattern>/deleteServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateDentistController</servlet-name>
+        <url-pattern>/CreateDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDentistController</servlet-name>
+        <url-pattern>/DeleteDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreDentistController</servlet-name>
+        <url-pattern>/LoadMoreDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFeedbackDentistController</servlet-name>
+        <url-pattern>/ViewFeedbackDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFeedbackServiceController</servlet-name>
+        <url-pattern>/ViewFeedbackServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFeedbackDentistController</servlet-name>
+        <url-pattern>/SearchFeedbackDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFeedbackServiceController</servlet-name>
+        <url-pattern>/SearchFeedbackServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteFeedbackDentistController</servlet-name>
+        <url-pattern>/DeleteFeedbackDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteFeedbackServiceController</servlet-name>
+        <url-pattern>/DeleteFeedbackServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddEmployeeController</servlet-name>
+        <url-pattern>/AddEmployeeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashBoardController</servlet-name>
+        <url-pattern>/DashBoardController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnServiceController</servlet-name>
+        <url-pattern>/ReturnServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServiceByNameController</servlet-name>
+        <url-pattern>/SearchServiceByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortServiceController</servlet-name>
+        <url-pattern>/SortServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPatient</servlet-name>
+        <url-pattern>/AddPatient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePatient</servlet-name>
+        <url-pattern>/DeletePatient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Patient</servlet-name>
+        <url-pattern>/Patient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPatient</servlet-name>
+        <url-pattern>/SearchPatient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>admin.jsp</welcome-file>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -9,60 +9,29 @@ package Models;
  *
  * @author ADMIN
  */
-public class Dentist {
-    private int id;
-    private String fullname;
-    private int phone;
-    private String email;
+
+
+public class Dentist extends User{
+    
     private String degree;
-    private int experience;
+    private String experience;
     private String img;
-    private int status;
+
 
     public Dentist() {
     }
 
-    public Dentist(int id, String fullname, int phone, String email, String degree, int experience, String img, int status) {
-        this.id = id;
-        this.fullname = fullname;
-        this.phone = phone;
-        this.email = email;
+    public Dentist(String degree, String experience, String img) {
         this.degree = degree;
         this.experience = experience;
         this.img = img;
-        this.status = status;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    
+    public Dentist(String degree, String experience, String img, int id, String fullName, String password, int phoneNumber, int roleID, boolean status, String email, String Roll, String gender) {
+        super(id, fullName, password, phoneNumber, roleID, status, email, Roll, gender);
+        this.degree = degree;
+        this.experience = experience;
+        this.img = img;
     }
 
     public String getDegree() {
@@ -73,11 +42,11 @@ public class Dentist {
         this.degree = degree;
     }
 
-    public int getExperience() {
+    public String getExperience() {
         return experience;
     }
 
-    public void setExperience(int experience) {
+    public void setExperience(String experience) {
         this.experience = experience;
     }
 
@@ -89,13 +58,7 @@ public class Dentist {
         this.img = img;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
     
+
     
 }
