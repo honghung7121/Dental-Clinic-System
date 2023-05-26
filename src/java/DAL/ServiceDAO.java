@@ -44,13 +44,13 @@ public class ServiceDAO {
         return list;
     }
 
-    public ArrayList<Service> sortService(int from) {
+    public ArrayList<Service> sortService(int from, String option) {
         ArrayList<Service> list = new ArrayList<>();
         Util dbu = new Util();
 
         String sql = " SELECT * FROM tblService\n"
                 + "WHERE id BETWEEN ? AND ?\n"
-                + "ORDER BY price ASC;";
+                + "ORDER BY price " + option + ";";
         try {
             Connection connection = dbu.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -205,7 +205,7 @@ public class ServiceDAO {
 
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        List<Service> list = dao.sortService(1);
+        List<Service> list = dao.sortService(1,"DESC");
         for (Service o : list) {
             System.out.println(o);
         }

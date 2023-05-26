@@ -37,22 +37,13 @@ public class DeleteFeedbackDentistController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             try {
-                boolean result = false;
-                int id = Integer.parseInt(request.getParameter("feedbackid"));
-                result = FeedbackDentistDAO.deleteFeedback(id);
-                ArrayList<FeedbackDentist> list = FeedbackDentistDAO.getFeedbackDentist();
-                HttpSession session = request.getSession();
-                session.setAttribute("list", list);
-                if (result) {
-                    request.setAttribute("RESPONE", "Delete successfully!");
-                } else {
-                    request.setAttribute("RESPONE", "Delete fail!");
-                }
+                int id = Integer.parseInt(request.getParameter("id"));
+                FeedbackDentistDAO.deleteFeedbackDentist(id);
             } catch (Exception e) {
 
             } finally {
-                request.getRequestDispatcher("FeedbackDentist.jsp").forward(request, response);
-            }
+                request.getRequestDispatcher("MainController?action=View Feedback Dentist").forward(request, response);
+                }
         }
     }
 

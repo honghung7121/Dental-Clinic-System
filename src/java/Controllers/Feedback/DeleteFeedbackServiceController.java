@@ -38,20 +38,12 @@ public class DeleteFeedbackServiceController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             try {
                 boolean result = false;
-                int id = Integer.parseInt(request.getParameter("feedbackid"));
-                result = FeedbackServiceDAO.deleteFeedback(id);
-                ArrayList<FeedbackService> list = FeedbackServiceDAO.getFeedbackService();
-                HttpSession session = request.getSession();
-                session.setAttribute("list", list);
-                if (result) {
-                    request.setAttribute("RESPONE", "Delete successfully!");
-                } else {
-                    request.setAttribute("RESPONE", "delete fail!");
-                }
+                int id = Integer.parseInt(request.getParameter("id"));
+                result = FeedbackServiceDAO.deleteFeedbackService(id);
             } catch (Exception e) {
 
             } finally {
-                request.getRequestDispatcher("FeedbackService.jsp").forward(request, response);
+                request.getRequestDispatcher("MainController?action=View Feedback Service").forward(request, response);
             }
         }
     }
