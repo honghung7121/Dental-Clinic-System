@@ -69,7 +69,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Số Điện Thoại (10 số) </label>
-                                            <input class="form-control" type="text" name="editPhoneDentist" pattern="[0-9]{10}" value="<%= dentist.getPhoneNumber() %>">
+                                            <input class="form-control" type="text" name="editPhoneDentist" pattern="[0-9]{10}" value="0<%= dentist.getPhoneNumber() %>">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">

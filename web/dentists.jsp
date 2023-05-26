@@ -29,22 +29,22 @@
     </head>
 
     <body>
-         <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
-        <div class="main-wrapper">
+        <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
+            <div class="main-wrapper">
             <jsp:include page="header.jsp"></jsp:include>
-                
-            
-            <div class="page-wrapper">
-                <div class="content">
-                    <div class="row">
-                        <div class="col-sm-4 col-3">
-                            <h4 class="page-title">Quản Lý Bác Sĩ</h4>
+
+
+                <div class="page-wrapper">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4 col-3">
+                                <h4 class="page-title">Quản Lý Bác Sĩ</h4>
+                            </div>
+                            <div class="col-sm-8 col-9 text-right m-b-20">
+                                <a href="addDentist.jsp" class="btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm Bác Sĩ</a>
+                            </div>
                         </div>
-                        <div class="col-sm-8 col-9 text-right m-b-20">
-                            <a href="addDentist.jsp" class="btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm Bác Sĩ</a>
-                        </div>
-                    </div>
-                    <div id="showDentist" class="row doctor-grid">
+                        <div id="showDentist" class="row doctor-grid">
 
 
                         <c:set var="listDentist" value="${requestScope.listDentist}"></c:set>     
@@ -58,7 +58,7 @@
                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="editDentist.jsp?dentistID=${dentist.id}"><i class="fa fa-pencil m-r-5"></i> Chỉnh sửa</a>
-                                            <a class="dropdown-item" href="MainController?action=deleteDentist&dentistID=${dentist.id}"><i class="fa fa-trash-o m-r-5"></i> Xóa Nhân Viên</a>
+                                            <a class="dropdown-item delete-schedule" href="MainController?action=deleteDentist&dentistID=${dentist.id}"><i class="fa fa-trash-o m-r-5"></i> Xóa Nhân Viên</a>
                                         </div>
                                     </div>
                                     <h4 class="doctor-name text-ellipsis"><a href="MainController?action=dentistProfile&dentistID=${dentist.id}">${dentist.fullName}</a></h4>
@@ -82,30 +82,59 @@
                     </div>
                 </div>
             </div>
-                        
+
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>          
             <script>
-                function loadMoreDentist(){
-                     var amount = document.getElementsByClassName("dentistProduct").length;
-                    $.ajax({
-                        url: "/SWP391-SE1743/LoadMoreDentistController",
-                        type: "get", //send it through get method
-                        data: {
-                            exits: amount
-                        },
-                        success: function (data) {
-                            var row = document.getElementById("showDentist");
-                            row.innerHTML += data;
-                        },
-                        error: function (xhr) {
-                            //Do Something to handle error
+                                function loadMoreDentist() {
+                                    var amount = document.getElementsByClassName("dentistProduct").length;
+                                    $.ajax({
+                                        url: "/SWP391-SE1743/LoadMoreDentistController",
+                                        type: "get", //send it through get method
+                                        data: {
+                                            exits: amount
+                                        },
+                                        success: function (data) {
+                                            var row = document.getElementById("showDentist");
+                                            row.innerHTML += data;
+                                        },
+                                        error: function (xhr) {
+                                            //Do Something to handle error
+                                        }
+                                    });
+                                }
+            </script>
+            <script>
+                // Lắng nghe sự kiện click của nút "Delete" cho từng mục
+                document.querySelectorAll('.delete-schedule').forEach(function (item) {
+                    item.addEventListener('click', function (event) {
+                        event.preventDefault();
+
+                        // Lưu trữ thẻ <tr> chứa thông tin phản hồi
+                        var feedbackRow = this.closest('tr');
+
+                        // Lấy giá trị ID từ phần tử <td> trong thẻ <tr>
+                        var feedbackId = feedbackRow.querySelector('td:first-child').textContent;
+
+                        // Hiển thị bảng thông báo xác nhận xóa
+                        var confirmation = confirm("Bạn có chắc chắn muốn xóa?");
+
+                        // Kiểm tra sự chấp nhận của người dùng
+                        if (confirmation) {
+                            // Tạo một đường dẫn (URL) mới với action "Delete Feedback Dentist" và ID của phản hồi
+                            var url = 'MainController?action=deleteDentist&dentistID=' + feedbackId;
+
+                            // Chuyển hướng đến đường dẫn mới
+                            window.location.href = url;
+                        } else {
+                            // Xử lý khi người dùng không đồng ý xóa
+                            console.log('Hủy xóa');
+                            // Có thể thực hiện các hành động khác tại đây (ví dụ: tắt form)
                         }
                     });
-                }
+                });
             </script>
+    </body>
 
-</body>
 
-
-<!-- doctors23:17-->
+    <!-- doctors23:17-->
 </html>

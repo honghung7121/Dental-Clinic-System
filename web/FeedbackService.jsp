@@ -30,7 +30,6 @@
     </head>
 
     <body>
-         <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
         <div class="main-wrapper">
 
             <jsp:include page="header.jsp"></jsp:include>
@@ -47,7 +46,7 @@
                                     <option value="bycustomername">Theo Tên Khách Hàng</option>
                                     <option value="byservicename">Theo Tên Dịch Vụ</option>
                                 </select>
-                                    <button type="submit" name="action" value="Search Feedback Service">Tìm Kiếm</button>
+                                <button type="submit" name="action" value="Search Feedback Service">Tìm Kiếm</button>
                             </form>
                         </div>
                     </div>
@@ -78,7 +77,7 @@
                                                         <span class="star">
                                                             <c:choose>
                                                                 <c:when test="${star <= rating}">
-                                                                    &#9733; <!-- Hiển thị ngôi sao đã chọn -->
+                                                                     <span style='color: gold;'>★</span>  <!-- Hiển thị ngôi sao đã chọn -->
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     &#9734; <!-- Hiển thị ngôi sao chưa chọn -->
@@ -92,8 +91,7 @@
                                                         <div class="dropdown dropdown-action">
                                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" href="edit-schedule.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_schedule"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                <a class="dropdown-item delete-schedule" href="#" data-toggle="modal" data-target="#delete_schedule"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -107,11 +105,28 @@
                     </div>
                 </div>
             </div>
+<!--            <div id="delete_schedule" class="modal fade delete-modal" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <img src="assets/img/sent.png" alt="" width="50" height="46">
+                            <h3>Are you sure want to delete this Schedule?</h3>
+                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                                <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
         </div>
+
         <script src="assets/js/title_sort.js"></script>                        
 
         <script src="assets/js/jquery.dataTables.min.js"></script>
         <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/popper.min.js"></script>
 
         <script src="assets/js/select2.min.js"></script>
         <script src="assets/js/moment.min.js"></script>
@@ -135,6 +150,36 @@
                     }
                 });
             }
+        </script>
+        <script>
+            // Lắng nghe sự kiện click của nút "Delete" cho từng mục
+            document.querySelectorAll('.delete-schedule').forEach(function (item) {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    // Lưu trữ thẻ <tr> chứa thông tin phản hồi
+                    var feedbackRow = this.closest('tr');
+
+                    // Lấy giá trị ID từ phần tử <td> trong thẻ <tr>
+                    var feedbackId = feedbackRow.querySelector('td:first-child').textContent;
+
+                    // Hiển thị bảng thông báo xác nhận xóa
+                    var confirmation = confirm("Bạn có chắc chắn muốn xóa?");
+
+                    // Kiểm tra sự chấp nhận của người dùng
+                    if (confirmation) {
+                        // Tạo một đường dẫn (URL) mới với action "Delete Feedback Dentist" và ID của phản hồi
+                        var url = 'MainController?action=Delete%20Feedback%20Service&id=' + feedbackId;
+
+                        // Chuyển hướng đến đường dẫn mới
+                        window.location.href = url;
+                    } else {
+                        // Xử lý khi người dùng không đồng ý xóa
+                        console.log('Hủy xóa');
+                        // Có thể thực hiện các hành động khác tại đây (ví dụ: tắt form)
+                    }
+                });
+            });
         </script>
     </body>
 </html>

@@ -63,7 +63,7 @@
                                                 <th><a href="#">ID </th>
                                                 <th><a href="#">Tên dịch vụ</th>
                                                 <!--                                                <th>Mô Tả</th>-->
-                                                <th><a href="SortServiceController?page=${requestScope.current}">Giá Tiền</th>
+                                                <th><a href="SortServiceController?page=${requestScope.current}&count=${requestScope.count}">Giá Tiền</th>
                                                 <th><a href="#">Status</th>
                                                 <th class="text-right">Action</th>
                                             </tr>

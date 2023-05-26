@@ -108,7 +108,7 @@ public class FeedbackDentistDAO {
         return list;
     }
 
-    public static boolean deleteFeedback(int feedbackid) throws SQLException {
+    public static boolean deleteFeedbackDentist(int feedbackid) throws SQLException {
         Connection cn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;

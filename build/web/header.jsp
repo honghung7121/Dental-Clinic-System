@@ -74,6 +74,7 @@
                 <c:set var="activeLink" value="${sessionScope.activeLink}"></c:set>
                 <c:set var="option" value="${sessionScope.option}"></c:set>
                 
+                <c:set var="dashboardLink" value="dashboardLink"></c:set>
                 <c:set var="dentistLink" value="dentistLink"></c:set>
                 <c:set var="patientLink" value="patientLink"></c:set>
                 <c:set var="serviceLink" value="serviceLink"></c:set>
@@ -82,7 +83,10 @@
                 <c:set var="feedbackLink" value="feedbackLink"></c:set>
                 <c:set var="feedbackDentistLink" value="feedbackDentistLink"></c:set>
                 <c:set var="feedbackServiceLink" value="feedbackServiceLink"></c:set>
-
+                
+                <c:if test="${activeLink eq dashboardLink}">
+                    <c:set var="dashboardLink" value="active"></c:set>
+                </c:if>
                 <c:if test="${activeLink eq dentistLink}">
                     <c:set var="dentistLink" value="active"></c:set>
                 </c:if>
@@ -111,9 +115,9 @@
                     </c:if>
                 </c:if>
                 
-                <ul>
+                <ul>        
                     <li class="menu-title">Main</li>
-                    <li class="active">
+                    <li class="${dashboardLink}">
                         <a href="DashBoardController"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                     </li>
                     <li class="${dentistLink}">

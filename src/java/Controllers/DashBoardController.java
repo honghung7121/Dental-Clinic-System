@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,6 +34,8 @@ public class DashBoardController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = "";
+        HttpSession session = request.getSession();
+        session.setAttribute("activeLink", "dashboardLink");
         try{
             TreatmentCourseDAO treatmentcourseDAO = new TreatmentCourseDAO();
             UserDAO userDAO = new UserDAO();

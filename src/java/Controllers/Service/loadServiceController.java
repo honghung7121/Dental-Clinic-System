@@ -45,10 +45,12 @@ public class loadServiceController extends HttpServlet {
                 session.setAttribute("ServiceList", slist);
                 request.setAttribute("current", 1);
                 request.setAttribute("click", 1);
+                request.setAttribute("count", "true");
             } else {
                 request.setAttribute("click", request.getParameter("page"));
                 int page = Integer.parseInt(request.getParameter("page"));
                 request.setAttribute("current", page);
+                request.setAttribute("count", "true");
                 int offset = (page - 1) * 10;
                 ArrayList<Service> slist = sdao.getService(offset);
                 session.setAttribute("ServiceList", slist);
