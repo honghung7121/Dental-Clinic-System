@@ -116,8 +116,8 @@
         </style>
     </head>
     <body>
-         <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
-        <div class="main-wrapper">
+        <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
+            <div class="main-wrapper">
 
             <jsp:include page="header.jsp"></jsp:include>
             <div class="page-wrapper">
@@ -132,21 +132,21 @@
                             <form>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="form-group">
+                                        <div class="form-group" id="formFullName">
                                             <label>Tên dịch vụ <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="name">
+                                            <input class="form-control" type="text" id="name" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
-                                        <div class="form-group">
+                                        <div class="form-group" id="formEmail">
                                             <label>Mô tả <span class="text-danger">*</span></label>
-                                            <textarea rows="7" class="form-control" type="text"  name="mota" id="mota"></textarea>
+                                            <textarea rows="7" class="form-control" type="text"  name="mota" id="mota" required=""></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
-                                        <div class="form-group">
+                                        <div class="form-group" id="formPhoneNumber">
                                             <label>Giá tiền <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" id="price">
+                                            <input class="form-control" type="text" id="price" required="">
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +190,20 @@
                                 let mota = document.getElementById('mota').value;
                                 let price = document.getElementById('price').value;
                                 let status = document.querySelector('input[name=status]:checked').value;
-                                 
+                                let labels = Array.from(document.getElementsByClassName('errorMessage'));
+                                labels.forEach(element => {
+                                    element.remove();
+                                });
+                                if (name === '' || name.length < 5) {
+                                    let fullNameForm = document.getElementById('formFullName');
+                                    fullNameForm.innerHTML += '<label class="errorMessage" style="color: red;">Tên không được để trống</label>';
+                                } else if (mota === '' || mota.length < 5) {
+                                    let fullMoTaForm = document.getElementById('formEmail');
+                                    fullMoTaForm.innerHTML += '<label class="errorMessage" style="color: red;">Mô tả không được để trống</label>';
+                                } else if (price === '') {
+                                    let phoneNumberForm = document.getElementById('formPhoneNumber');
+                                    phoneNumberForm.innerHTML += '<label class="errorMessage" style="color: red;">Giá tiền không được để trống</label>';
+                                } else {
                                     $.ajax({
                                         url: '/SWP391-SE1743/MainController',
                                         data: {
@@ -209,7 +222,7 @@
                                         },
                                         type: 'GET'
                                     });
-                                
+                                }
                             }
                             function closePopUp() {
                                 const div = document.querySelector('.overlay');

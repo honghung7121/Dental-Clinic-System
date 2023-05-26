@@ -37,15 +37,26 @@ public class SortServiceController extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             ServiceDAO sdao = new ServiceDAO();
+            String count = request.getParameter("count");
+            if (count.equals("true")) {
+                request.setAttribute("click", request.getParameter("page"));
+                int page = Integer.parseInt(request.getParameter("page"));
+                request.setAttribute("current", page);
+                int offset = (page - 1) * 10;
+                ArrayList<Service> slist = sdao.sortService(offset, "ASC");
+                session.setAttribute("ServiceList", slist);
+                request.setAttribute("count", "false");
+            } else {
+                request.setAttribute("click", request.getParameter("page"));
+                int page = Integer.parseInt(request.getParameter("page"));
+                request.setAttribute("current", page);
+                int offset = (page - 1) * 10;
+                ArrayList<Service> slist = sdao.sortService(offset, "DESC");
+                session.setAttribute("ServiceList", slist);
+                request.setAttribute("count", "true");
+            }
 
 //            int totalPages = (int) Math.ceil((double) 10000 / 10);
-            request.setAttribute("click", request.getParameter("page"));
-            int page = Integer.parseInt(request.getParameter("page"));
-            request.setAttribute("current", page);
-            int offset = (page - 1) * 10;
-            ArrayList<Service> slist = sdao.sortService(offset);
-            session.setAttribute("ServiceList", slist);
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

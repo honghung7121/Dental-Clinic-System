@@ -77,7 +77,7 @@
                                                         <span class="star">
                                                             <c:choose>
                                                                 <c:when test="${star <= rating}">
-                                                                    &#9733; <!-- Hiển thị ngôi sao đã chọn -->
+                                                                    <span style='color: gold;'>★</span> <!-- Hiển thị ngôi sao đã chọn -->
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     &#9734; <!-- Hiển thị ngôi sao chưa chọn -->
