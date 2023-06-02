@@ -119,7 +119,7 @@
                     <li class="menu-title">Main</li>
                     
                     <li class="${dentistLink}">
-                        <a href="MainController?action=dentist"><i class="fa fa-user-md"></i> <span>Bác Sĩ</span></a>
+                        <a href="MainController?action=marketingdentist"><i class="fa fa-user-md"></i> <span>Bác Sĩ</span></a>
                     </li>
                     
                     <li>
