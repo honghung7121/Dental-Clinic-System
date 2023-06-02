@@ -34,10 +34,10 @@ public class AddEmployeeController extends HttpServlet {
         String password = request.getParameter("password");
         int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
         int idRole = Integer.parseInt(request.getParameter("role"));
-        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        String gender = request.getParameter("gender");
         String email = request.getParameter("email");
         UserDAO dao = new UserDAO();
-        dao.insertEmployee(name, password, phoneNumber, idRole, email);
+        dao.insertEmployee(name, password, phoneNumber, idRole, gender, email);
         }catch(Exception e){
             e.printStackTrace();
         }

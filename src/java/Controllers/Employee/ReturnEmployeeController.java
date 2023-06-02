@@ -36,18 +36,14 @@ public class ReturnEmployeeController extends HttpServlet {
             PrintWriter out = response.getWriter();
             for (User user : list) {
                 String role = "";
-                String status = "";
                 if (user.getRoleID() == 1) {
-                    role = "<span class=\"custom-badge status-orange\">Admin</span>";
-                } else if (user.getRoleID() == 2) {
-                    role = "<span class=\"custom-badge status-red\">Nha Sĩ</span>";
+                    role = "<span style=\"border: none; background: none; font-size: 13px; text-align: left;font-weight: 500 \" class=\"custom-badge status-green\">Admin</span>";
                 } else if (user.getRoleID() == 3) {
-                    role = "<span class=\"custom-badge status-purple\">Marketing</span>";
+                    role = "<span style=\"border: none; background: none; font-size: 13px; text-align: left;font-weight: 500\" class=\"custom-badge status-orange\">Marketing</span>";
                 } else {
-                    role = "<span class=\"custom-badge status-pink\">Chăm Sóc Khách Hàng</span>";
+                    role = "<span style=\"border: none; background: none; font-size: 13px; text-align: left;font-weight: 500\" class=\"custom-badge status-purple\">Chăm sóc Khách Hàng</span>";
                 }
-                if(user.isStatus()==true) status = "<span class=\"custom-badge status-green\">Đang Hoạt Động</span>";
-                else status = "<span class=\"custom-badge status-grey\">Ngường Hoạt Động</span>";
+                String gender = user.getGender()!=null? user.getGender():"";
                 out.println("<tr>\n"
                         + "                                                <td>\n"
                         + "                                                    <img width=\"28\" height=\"28\" src=\"assets/img/user.jpg\" class=\"rounded-circle\" alt=\"\"> <h2>" + user.getFullName() + "</h2>\n"
@@ -56,7 +52,7 @@ public class ReturnEmployeeController extends HttpServlet {
                         + "                                                <td>" + user.getEmail() + "</td>\n"
                         + "                                                <td>" + user.getPhoneNumber() + "</td>\n"
                         + "                                                <td>" + role + "</td>\n"
-                        +"                                                <td>"+status+"</td>\n"
+                        + "                                                <td>" + gender +"</td>\n"
                         + "                                                <td class=\"text-right\">\n"
                         + "                                                    <div class=\"dropdown dropdown-action\">\n"
                         + "                                                        <a href=\"#\" class=\"action-icon dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fa fa-ellipsis-v\"></i></a>\n"

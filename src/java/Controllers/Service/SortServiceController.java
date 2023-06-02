@@ -43,7 +43,8 @@ public class SortServiceController extends HttpServlet {
                 int page = Integer.parseInt(request.getParameter("page"));
                 request.setAttribute("current", page);
                 int offset = (page - 1) * 10;
-                ArrayList<Service> slist = sdao.sortService(offset, "ASC");
+                int from = offset +9 ;
+                ArrayList<Service> slist = sdao.sortService(from, "ASC");
                 session.setAttribute("ServiceList", slist);
                 request.setAttribute("count", "false");
             } else {
@@ -51,7 +52,8 @@ public class SortServiceController extends HttpServlet {
                 int page = Integer.parseInt(request.getParameter("page"));
                 request.setAttribute("current", page);
                 int offset = (page - 1) * 10;
-                ArrayList<Service> slist = sdao.sortService(offset, "DESC");
+                int from = offset +9 ;
+                ArrayList<Service> slist = sdao.sortService(from, "DESC");
                 session.setAttribute("ServiceList", slist);
                 request.setAttribute("count", "true");
             }
@@ -61,7 +63,12 @@ public class SortServiceController extends HttpServlet {
             e.printStackTrace();
         } finally {
             session.setAttribute("activeLink", "serviceLink");
-            request.getRequestDispatcher("service-2.jsp").forward(request, response);
+
+            if (request.getParameter("flag").equals("ad")) {
+                request.getRequestDispatcher("service-2.jsp").forward(request, response);
+            }else{
+                request.getRequestDispatcher("serviceMarketing.jsp").forward(request, response);
+            }
         }
     }
 

@@ -35,22 +35,27 @@ public class LoginController extends HttpServlet {
         String url = "";
         HttpSession session = request.getSession();
         session.setAttribute("activeLink", "dashboardLink");
-        try{
+        try {
             String accountName = request.getParameter("accountName");
             String password = request.getParameter("password");
             UserDAO dao = new UserDAO();
             User user = dao.checkLogin(accountName, password);
-            if(user!=null){
-                
+            if (user != null) {
                 session.setAttribute("User", user);
-                url = "DashBoardController";
-            }
-            else{
+                if (user.getRoleID() == 1) {
+                    url = "DashBoardController";
+                } else if (user.getRoleID() == 4) {
+                    url = "GetAdvisoryController";
+                }else if (user.getRoleID() == 3) {
+                    url = "loadServiceMarketingController";
+                }
+            } else {
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
+                url = "login.jsp";
             }
-        }catch(Exception e){
-            
-        }finally{
+        } catch (Exception e) {
+
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
