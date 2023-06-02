@@ -21,6 +21,8 @@ public class MainController extends HttpServlet {
     private final String SIGNUP = "SignUpController";
     private final String LOGOUT = "LogoutController";
 
+    private final String ERROR = "error.jsp";
+    
     private final String DENTIST = "DentistController";
     private final String DENTISTPROFILE = "DentistProfileController";
     private final String DENTISTEDIT = "EditDentistController";
