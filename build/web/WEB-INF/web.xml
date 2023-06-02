@@ -144,6 +144,18 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>Controllers.LogoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.CreateAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.EditAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.SearchAppointmentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -288,12 +300,25 @@
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/LogoutController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAppointmentController</servlet-name>
+        <url-pattern>/CreateAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAppointmentController</servlet-name>
+        <url-pattern>/EditAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchAppointmentController</servlet-name>
+        <url-pattern>/SearchAppointmentController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>appointments.jsp</welcome-file>
+        
     </welcome-file-list>
 </web-app>

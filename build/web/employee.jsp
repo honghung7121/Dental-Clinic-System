@@ -94,10 +94,10 @@
                                                 <td>0${e.getPhoneNumber()}</td>
                                                 <td>
                                                     <c:choose>
-                                                        <c:when test = "${e.getRoleID() ==  1}" ><span class="custom-badge status-orange">Admin</span></c:when>
-                                                        <c:when test = "${e.getRoleID() ==  2}" ><span class="custom-badge status-red">Nha Sĩ</span></c:when>
-                                                        <c:when test = "${e.getRoleID() ==  3}" ><span class="custom-badge status-pink">Marketing</span></c:when>
-                                                        <c:otherwise><span class="custom-badge status-purple">Chăm sóc Khách Hàng</span></c:otherwise>
+                                                        <c:when test = "${e.getRoleID() ==  1}" ><span style="border: 0; background: none " class="custom-badge status-orange">Admin</span></c:when>
+                                                        <c:when test = "${e.getRoleID() ==  2}" ><span style="border: 0; background: none" class="custom-badge status-red">Nha Sĩ</span></c:when>
+                                                        <c:when test = "${e.getRoleID() ==  3}" ><span style="border: 0; background: none" class="custom-badge status-pink">Marketing</span></c:when>
+                                                        <c:otherwise><span style="border: 0; background: none"" class="custom-badge status-purple">Chăm sóc Khách Hàng</span></c:otherwise>
                                                     </c:choose>
                                                 </td>
                                                 <td>
