@@ -61,6 +61,7 @@ public class UserDAO {
         return user;
     }
 
+
     public int getAllEmployees() throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -319,7 +320,9 @@ public class UserDAO {
             }
         }
     }
-    public static ArrayList<User> getAllPatient() {
+
+        public static ArrayList<User> getAllPatient() {
+
         ArrayList<User> list = new ArrayList<>();
         Connection cn = null;
         try {
@@ -338,7 +341,7 @@ public class UserDAO {
                         int phoneNumber = rs.getInt("phoneNumber");
                         int idRole = rs.getInt("idRole");
                         boolean status = rs.getBoolean("status");
-                        String email = rs.getString("email");
+                        String email = rs.getString("email");  
                         String roll = rs.getString("Roll");
                         User patient = new User(id, fullName, password, phoneNumber, idRole, status, email, roll);
                         list.add(patient);
@@ -350,18 +353,25 @@ public class UserDAO {
         }
         return list;
 
+
     }
 
-    public static ArrayList<User> searchPatient(String searchname) {
+
+         public static ArrayList<User> searchPatient(String search) {
+             
+
         ArrayList<User> list = new ArrayList<>();
         Connection cn = null;
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select * from tblUser\n"
-                        + "where [fullName] like ? and idRole = 5 ";
+
+                String sql ="select *\n" +
+"                         from tblUser \n" +
+"                        where fullName like '?%'";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, "%" + searchname + "%");
+                pst.setString(1, search);
+
                 ResultSet rs = pst.executeQuery();
                 if (rs != null) {
                     while (rs.next()) {
@@ -371,9 +381,10 @@ public class UserDAO {
                         int phoneNumber = rs.getInt("phoneNumber");
                         int idRole = rs.getInt("idRole");
                         boolean status = rs.getBoolean("status");
-                        String email = rs.getString("email");
-                        String roll = rs.getString("Roll");
-                        User patient = new User(id, fullName, password, phoneNumber, idRole, status, email, roll);
+
+                        String email = rs.getString("email");             
+                        User patient = new User(id, fullName, password, phoneNumber, idRole, status, email, sql);
+
                         list.add(patient);
                     }
                 }
@@ -529,5 +540,9 @@ public class UserDAO {
         return list;
     }
 }
+
+
+
+       
 
 
