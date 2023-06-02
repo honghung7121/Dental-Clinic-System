@@ -30,7 +30,7 @@
     </head>
 
     <body>
-        <c:if test="${sessionScope.User.getRoleID() != 3}"><c:redirect url="login.jsp"/></c:if>
+        
         <div class="main-wrapper">
 
             <jsp:include page="headerMarketing.jsp"></jsp:include>

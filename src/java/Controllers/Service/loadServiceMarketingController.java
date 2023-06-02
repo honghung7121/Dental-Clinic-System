@@ -59,7 +59,7 @@ public class loadServiceMarketingController extends HttpServlet {
             e.printStackTrace();
         } finally {
             session.setAttribute("activeLink", "serviceLink");
-            request.getRequestDispatcher("service-marketing.jsp").forward(request, response);
+            request.getRequestDispatcher("serviceMarketing.jsp").forward(request, response);
         }
     }
 
