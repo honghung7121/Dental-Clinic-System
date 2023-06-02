@@ -26,7 +26,7 @@ public class RoleDAO {
         try{
             con = Util.getConnection();
             if(con!=null){
-                String sql = "select * from tblRole where id != 5";
+                String sql = "select * from tblRole where id!=5 and id!=2";
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {                    
