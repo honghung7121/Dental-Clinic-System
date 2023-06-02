@@ -359,7 +359,7 @@ public class UserDAO {
             cn = Util.getConnection();
             if (cn != null) {
                 String sql = "select * from tblUser\n"
-                        + "where [fullName] like ? and idRole = 5";
+                        + "where [fullName] like ? and idRole = 5 ";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, "%" + searchname + "%");
                 ResultSet rs = pst.executeQuery();

@@ -52,6 +52,13 @@ public class MainController extends HttpServlet {
     private final String PATIENT = "Patient";
     private final String SEARCHPATIENT = "SearchPatient";
     private final String CREATEPATIENT = "AddPatient";
+    
+    private final String SEARCHAPPOINTMENTBYDATE = "SearchAppointmentController";
+    private final String APPOINTMENTPAGE = "appointments.jsp";
+    private final String CREATEAPPOINTMENTPAGE = "addAppointment.jsp";
+    private final String APPOINTMENTEDIT = "EditAppointmentController";
+    private final String APPOINTMENTCREATE = "CreateAppointmentController";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -126,16 +133,32 @@ public class MainController extends HttpServlet {
             }
             else if(action.equals("patient")){
                 url = PATIENT;
-              }
+            }
             else if(action.equals("Tìm kiếm")){
                 url = SEARCHPATIENT;
             }
                else if(action.equals("Create")){
                 url = CREATEPATIENT;
-             }
+            }
             else if(action.equals("Logout")){
                 url = LOGOUT;
-             }
+            }
+            
+            else if (action.equals("searchAppointmentByDate")) {
+                url = SEARCHAPPOINTMENTBYDATE;
+            }
+            else if (action.equals("appointment")) {
+                url = APPOINTMENTPAGE;
+            }
+            else if (action.equals("CreateAppointmentPage")) {
+                url = CREATEAPPOINTMENTPAGE;
+            }
+            else if (action.equals("createAppoint")) {
+                url = APPOINTMENTCREATE;
+            }
+            else if (action.equals("editAppoint")) {
+                url = APPOINTMENTEDIT;
+            }
             
         } catch (Exception e) {
             e.printStackTrace();

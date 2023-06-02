@@ -35,13 +35,13 @@
                                 <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
                             </div>
                             <div class="col-sm-8 col-9 text-right m-b-20">
-                                <form action="MainController" method="get">
-                                    <input placeholder="Tìm Kiếm" type="text" name="txt" value="">
-                                    <select name="searchby">
-                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                        <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                    </select>
-                                    <button type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
+                                <form action="MainController" method="post">                                     
+                                    <input type="text" name="txt" placeholder="Tìm Kiếm" accept-charset="UTF-8">                                     
+                                    <select name="searchby">                                         
+                                        <option value="bycustomername">Theo Tên Khách Hàng</option>                                         
+                                        <option value="bydentistname">Theo Tên Nha Sĩ</option>                                     
+                                    </select>                                     
+                                    <button type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>                                 
                                 </form>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                                         <span class="star">
                                                             <c:choose>
                                                                 <c:when test="${star <= rating}">
-                                                                     <span style='color: gold;'>★</span>  <!-- Hiển thị ngôi sao đã chọn -->
+                                                                    <span style='color: gold;'>★</span>  <!-- Hiển thị ngôi sao đã chọn -->
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     &#9734; <!-- Hiển thị ngôi sao chưa chọn -->
@@ -98,19 +98,19 @@
                     </div>
                 </div>
             </div>
-<!--            <div id="delete_schedule" class="modal fade delete-modal" role="dialog">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body text-center">
-                            <img src="assets/img/sent.png" alt="" width="50" height="46">
-                            <h3>Are you sure want to delete this Schedule?</h3>
-                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
+            <!--            <div id="delete_schedule" class="modal fade delete-modal" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center">
+                                        <img src="assets/img/sent.png" alt="" width="50" height="46">
+                                        <h3>Are you sure want to delete this Schedule?</h3>
+                                        <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                                            <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
+                        </div>-->
         </div>
         <script src="assets/js/title_sort.js"></script>                        
 
