@@ -56,7 +56,7 @@ public class LoginController extends HttpServlet {
         } catch (Exception e) {
 
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("GetAdvisoryController").forward(request, response);
         }
     }
 
