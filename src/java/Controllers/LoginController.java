@@ -6,6 +6,7 @@ package Controllers;
 
 import DAL.UserDAO;
 import Models.User;
+import Util.PasswordEncoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -38,10 +39,12 @@ public class LoginController extends HttpServlet {
         try {
             String accountName = request.getParameter("accountName");
             String password = request.getParameter("password");
+            String encryptedpassword = PasswordEncoder.toSHA1(password);
             UserDAO dao = new UserDAO();
-            User user = dao.checkLogin(accountName, password);
+            User user = dao.checkLogin(accountName, encryptedpassword);
             if (user != null) {
                 session.setAttribute("User", user);
+                session.setAttribute("role", user.getRoleID());
                 if (user.getRoleID() == 1) {
                     url = "DashBoardController";
                 } else if (user.getRoleID() == 4) {
