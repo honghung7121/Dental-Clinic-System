@@ -51,10 +51,11 @@ public class AdvisoryDAO {
         }
         return list;
     }
-    public void CompletedAdvisory(int id) throws SQLException{
+
+    public void CompletedAdvisory(int id) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
-        try{
+        try {
             con = Util.getConnection();
             if (con != null) {
                 String sql = "update tblAdvisory set status = 1 where id = ?";
@@ -62,10 +63,9 @@ public class AdvisoryDAO {
                 stm.setInt(1, id);
                 stm.executeUpdate();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             if (stm != null) {
                 stm.close();
             }
@@ -73,5 +73,41 @@ public class AdvisoryDAO {
                 con.close();
             }
         }
+    }
+
+    public List<Advisory> sortByDateAdvisory(String orderBy) throws SQLException {
+        List<Advisory> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "";
+                if (orderBy.equals("ASC")) {
+                    sql = "select * from tblAdvisory where status = 0 order by advisoryDate ASC";
+                } else if (orderBy.equals("DESC")) {
+                    sql = "select * from tblAdvisory where status = 0 order by advisoryDate DESC";
+                }
+                stm = con.prepareStatement(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    list.add(new Advisory(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getBoolean(6)));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
     }
 }
