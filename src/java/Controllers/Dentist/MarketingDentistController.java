@@ -3,21 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers.Patient;
+package Controllers.Dentist;
 
-import DAL.UserDAO;
+import DAL.DentistDAO;
+import Models.Dentist;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class DeletePatient extends HttpServlet {
+public class MarketingDentistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +34,19 @@ public class DeletePatient extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-           String id = request.getParameter("sid");
-            boolean check = UserDAO.deletePatient(id, 0);
-          if (check) {
-              request.getRequestDispatcher("MainController?action=patient").forward(request, response);
-          }
-          else   request.getRequestDispatcher("MainController?action=patient").forward(request, response);
+         try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+            ArrayList<Dentist> list = DentistDAO.getTop8Dentist();
+            String url = "";
+            if (list!=null) {
+                url = "marketing-dentists.jsp";
+                session.setAttribute("activeLink", "dentistLink");
+                request.setAttribute("listDentist", list);
+                request.getRequestDispatcher(url).forward(request, response);
+            }else{
+                url = "headerMarketing.jsp";
+                request.getRequestDispatcher(url).forward(request, response);
+            }
         }
     }
 
