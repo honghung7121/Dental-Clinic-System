@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/addEmployee.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/addDentist.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/src/java/DAL/SendDAO.java</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/src/java/Controllers/Dentist/CreateDentistController.java</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/confirmEmail.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/add-service.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/forgotPassword.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/src/java/Controllers/javaMailController.java</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/src/java/Controllers/confirmMailController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
