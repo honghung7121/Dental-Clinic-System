@@ -21,8 +21,6 @@ public class MainController extends HttpServlet {
     private final String SIGNUP = "SignUpController";
     private final String LOGOUT = "LogoutController";
 
-    private final String ERROR = "error.jsp";
-
     private final String DENTIST = "DentistController";
     private final String DENTISTPROFILE = "DentistProfileController";
     private final String DENTISTEDIT = "EditDentistController";
@@ -56,6 +54,19 @@ public class MainController extends HttpServlet {
     private final String PATIENT = "Patient";
     private final String SEARCHPATIENT = "SearchPatient";
     private final String CREATEPATIENT = "AddPatient";
+
+    
+    private final String SEARCHAPPOINTMENTBYDATE = "SearchAppointmentController";
+    private final String APPOINTMENTPAGE = "appointments.jsp";
+    private final String CREATEAPPOINTMENTPAGE = "addAppointment.jsp";
+    private final String APPOINTMENTEDIT = "EditAppointmentController";
+    private final String APPOINTMENTCREATE = "CreateAppointmentController";
+    
+    private final String CHANGEPASSWORDPAGE = "changePassword.jsp";
+    private final String CHANGEPASSWORD = "ChangePasswordController";
+    
+            
+
     private final String DELETEPATIENT = "DeletePatient";
 
     /**
@@ -141,6 +152,31 @@ public class MainController extends HttpServlet {
             } else if (action.equals("DeleteEmployee")) {
                 url = DELETEEMPLOYEEBYID;
             }
+            
+            else if (action.equals("searchAppointmentByDate")) {
+                url = SEARCHAPPOINTMENTBYDATE;
+            }
+            else if (action.equals("appointment")) {
+                url = APPOINTMENTPAGE;
+            }
+            else if (action.equals("CreateAppointmentPage")) {
+                url = CREATEAPPOINTMENTPAGE;
+            }
+            else if (action.equals("createAppoint")) {
+                url = APPOINTMENTCREATE;
+            }
+            else if (action.equals("editAppoint")) {
+                url = APPOINTMENTEDIT;
+            }
+            
+            else if (action.equals("changePassPage")) {
+                url = CHANGEPASSWORDPAGE;
+            }
+            else if (action.equals("saveChangePass")) {
+                url = CHANGEPASSWORD;
+            }
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
