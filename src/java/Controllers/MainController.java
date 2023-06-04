@@ -22,14 +22,14 @@ public class MainController extends HttpServlet {
     private final String LOGOUT = "LogoutController";
 
     private final String ERROR = "error.jsp";
-    //Thao update
-    private final String ERRORS = "error2.jsp";
-    
+
     private final String DENTIST = "DentistController";
     private final String DENTISTPROFILE = "DentistProfileController";
     private final String DENTISTEDIT = "EditDentistController";
     private final String DENTISTCREATE = "CreateDentistController";
     private final String DENTISTDELETE = "DeleteDentistController";
+    private final String MARKETINGDENTIST = "MarketingDentistController";
+    private final String MARKETINGDENTISTFROFILE = "MarketingDentistProfileController";
 
     private final String GETEMPLOYEEBYID = "GetEmployeeByIDController";
     private final String EDITEMPLOYEECONTROLLER = "EditEmployeeController";
@@ -56,6 +56,7 @@ public class MainController extends HttpServlet {
     private final String PATIENT = "Patient";
     private final String SEARCHPATIENT = "SearchPatient";
     private final String CREATEPATIENT = "AddPatient";
+    private final String DELETEPATIENT = "DeletePatient";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -84,6 +85,10 @@ public class MainController extends HttpServlet {
                 url = DENTISTCREATE;
             } else if (action.equals("deleteDentist")) {
                 url = DENTISTDELETE;
+            } else if (action.equals("marketingdentist")) {
+                url = MARKETINGDENTIST;
+            } else if (action.equals("MarketingdentistProfile")) {
+                url = MARKETINGDENTISTFROFILE;
             } else if (action.equals(request)) {
                 url = SIGNUP;
             } else if (action.equals("GetEmployees")) {
@@ -130,6 +135,9 @@ public class MainController extends HttpServlet {
                 url = CREATEPATIENT;
             } else if (action.equals("Logout")) {
                 url = LOGOUT;
+            } else if (action.equals("deletePatient")) {
+                url = DELETEPATIENT;
+
             } else if (action.equals("DeleteEmployee")) {
                 url = DELETEEMPLOYEEBYID;
             }

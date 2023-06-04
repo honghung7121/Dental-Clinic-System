@@ -164,6 +164,18 @@
         <servlet-name>loadServiceMarketingController</servlet-name>
         <servlet-class>Controllers.Service.loadServiceMarketingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MarketingDentistController</servlet-name>
+        <servlet-class>Controllers.Dentist.MarketingDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MarketingDentistProfileController</servlet-name>
+        <servlet-class>Controllers.Dentist.MarketingDentistProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MarketingLoadMoreDentistController</servlet-name>
+        <servlet-class>Controllers.Dentist.MarketingLoadMoreDentistController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -327,6 +339,18 @@
     <servlet-mapping>
         <servlet-name>loadServiceMarketingController</servlet-name>
         <url-pattern>/loadServiceMarketingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarketingDentistController</servlet-name>
+        <url-pattern>/MarketingDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarketingDentistProfileController</servlet-name>
+        <url-pattern>/MarketingDentistProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarketingLoadMoreDentistController</servlet-name>
+        <url-pattern>/MarketingLoadMoreDentistController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

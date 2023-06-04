@@ -33,11 +33,12 @@ public class DeletePatient extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            UserDAO dao = new UserDAO();
-            String id = request.getParameter("sid");
-            
-            dao.deletePatient(id);
-            request.getRequestDispatcher("Patient").forward(request, response);
+           String id = request.getParameter("sid");
+            boolean check = UserDAO.deletePatient(id, 0);
+          if (check) {
+              request.getRequestDispatcher("MainController?action=patient").forward(request, response);
+          }
+          else   request.getRequestDispatcher("MainController?action=patient").forward(request, response);
         }
     }
 
