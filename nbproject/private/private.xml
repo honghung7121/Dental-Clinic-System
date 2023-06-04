@@ -2,20 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/src/java/Controllers/Service/loadServiceController.java</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/src/java/DAL/ServiceDAO.java</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/web/service-2.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/web/add-service.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/src/java/Controllers/Service/SortServiceController.java</file>
-
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/src/java/Controllers/Employee/ReturnEmployeeController.java</file>
-
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/addEmployee.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/addDentist.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/src/java/DAL/SendDAO.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/src/java/Controllers/Dentist/CreateDentistController.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/confirmEmail.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/add-service.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/web/forgotPassword.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/src/java/Controllers/javaMailController.java</file>
+            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743-Thao/src/java/Controllers/confirmMailController.java</file>
         </group>
->>>>>>> c0fc282ebefee49dbb883f97e0d048112a554ea2
     </open-files>
 </project-private>

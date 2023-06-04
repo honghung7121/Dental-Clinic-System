@@ -26,7 +26,7 @@ public class ServiceDAO {
 
         String sql = " SELECT *\n"
                 + "FROM tblService\n"
-                + "ORDER BY id\n"
+                + "ORDER BY id DESC\n"
                 + "OFFSET ? ROWS\n"
                 + "FETCH NEXT 10 ROWS ONLY;";
         try {
@@ -48,14 +48,14 @@ public class ServiceDAO {
         ArrayList<Service> list = new ArrayList<>();
         Util dbu = new Util();
 
-        String sql = " SELECT * FROM tblService\n"
-                + "WHERE id BETWEEN ? AND ?\n"
+        String sql = "SELECT * FROM tblService\n"
+                + "WHERE id BETWEEN (SELECT MAX(id) -? FROM tblService) AND (SELECT MAX(id) -? FROM tblService)"
                 + "ORDER BY price " + option + ";";
         try {
             Connection connection = dbu.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, from + 1);
-            ps.setInt(2, from + 10);
+            ps.setInt(1, from);
+            ps.setInt(2, from - 9);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Service c = new Service(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getBoolean(5));
@@ -168,7 +168,8 @@ public class ServiceDAO {
 
     public void deleteService(int id) {
         Connection cn = null;
-        String sql = "delete from  tblService\n"
+        String sql = "update dbo.tblService\n"
+                + "set status=0\n"
                 + "where id = ?";
 
         try {
@@ -201,13 +202,5 @@ public class ServiceDAO {
             e.printStackTrace();
         }
         return list;
-    }
-
-    public static void main(String[] args) {
-        ServiceDAO dao = new ServiceDAO();
-        List<Service> list = dao.sortService(1,"DESC");
-        for (Service o : list) {
-            System.out.println(o);
-        }
     }
 }

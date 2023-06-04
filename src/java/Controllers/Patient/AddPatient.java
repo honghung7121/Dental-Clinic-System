@@ -31,19 +31,71 @@ public class AddPatient extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             UserDAO dao = new UserDAO();
+
             String name = request.getParameter("txtname");
             String email = request.getParameter("txtemail");
-            int phone = Integer.parseInt(request.getParameter("txtphone"));
-            boolean sta = Boolean.parseBoolean(request.getParameter("status")) ;
+
+            String phoneStr = request.getParameter("txtphone");
+            phoneStr = phoneStr.replaceAll("[^0-9]", "");
+            int phone = Integer.parseInt(phoneStr);
+
+            int sta = Integer.parseInt(request.getParameter("status"));
             String roll = request.getParameter("txtroll");
             String pass = request.getParameter("txtpass");
-         
-            dao.insertPatient(name, email, phone, sta,5,roll,pass);
+            String passAgain = request.getParameter("txtpass2");
+            String gender = request.getParameter("txtgender");
+            boolean check = false;
+
+            if (dao.checkEmailExists(email)) {
+                request.setAttribute("report2", "Email đã tồn tại!");
+                request.getRequestDispatcher("add-patient.jsp").forward(request, response);
+                return;
+            }
+            if (!email.endsWith("@gmail.com")) {
+                request.setAttribute("report2", "Email phải có đuôi là @gmail.com!");
+                request.getRequestDispatcher("add-patient.jsp").forward(request, response);
+                return;
+            }
+             if (pass.length() < 8 || !pass.matches(".*[A-Z].*")) {
+                request.setAttribute("report4", "Mật khẩu phải có ít nhất 8 ký tự và có 1 chữ cái viết hoa");
+                request.getRequestDispatcher("add-patient.jsp").forward(request, response);
+                return;
+            }
+            if (phoneStr.length() != 10) {
+                request.setAttribute("report1", "Số điện thoại phải có 10 chữ số!");
+                request.getRequestDispatcher("add-patient.jsp").forward(request, response);
+                return;
+            }
+
+            if (!roll.matches("P\\d+")) {
+                request.setAttribute("report", "Mã roll phải bắt đầu bằng chữ P và theo sau là các chữ số!");
+                request.getRequestDispatcher("add-patient.jsp").forward(request, response);
+                return;
+            }
+
+            if (dao.checkRollExists(roll)) {
+                request.setAttribute("report", "Mã roll đã tồn tại!");
+                request.getRequestDispatcher("add-patient.jsp").forward(request, response);
+                return;
+            }
             
-            request.getRequestDispatcher("Patient").forward(request, response);
+            if (pass.equals(passAgain)) {
+                check = UserDAO.insertPatient(name, email, phone, sta, 5, roll, pass, gender);
+                if (check) {
+                    request.getRequestDispatcher("MainController?action=patient").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("MainController?action=patient").forward(request, response);
+                }
+            } else {
+                request.setAttribute("report3", "Mật khẩu không trùng khớp!");
+                request.getRequestDispatcher("add-patient.jsp").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

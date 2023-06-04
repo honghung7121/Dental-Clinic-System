@@ -68,7 +68,7 @@ public class UserDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql = "select count(*) from tblUser where idRole !=5";
+                String sql = "select count(*) from tblUser where idRole !=5 and idRole!=2";
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
@@ -90,6 +90,7 @@ public class UserDAO {
         }
         return 0;
     }
+
     public int getAllNumberPatient() throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -120,7 +121,6 @@ public class UserDAO {
         return 0;
     }
 
-
     public List<User> pagingEmployees(int index) throws SQLException {
         List<User> list = new ArrayList<>();
         Connection con = null;
@@ -129,7 +129,7 @@ public class UserDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql = "select * from tblUser where idRole !=5 order by id offset ? rows fetch next 8 rows only";
+                String sql = "select * from tblUser where idRole !=5 and idRole !=2 and status = 1  order by id desc offset ? rows fetch next 8 rows only";
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, (index - 1) * 8);
                 rs = stm.executeQuery();
@@ -162,9 +162,13 @@ public class UserDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql = "select * from tblUser where idRole = ?";
-                stm = con.prepareStatement(sql);
-                stm.setInt(1, id);
+                if (id != 0) {
+                    String sql = "select * from tblUser where idRole = ?";
+                    stm = con.prepareStatement(sql);
+                    stm.setInt(1, id);
+                } else {
+                    list = pagingEmployees(1);
+                }
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)));
@@ -195,7 +199,7 @@ public class UserDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql = "select * from tblUser where fullName like ? and idRole!=5";
+                String sql = "select * from tblUser where fullName like ? and idRole!=5 and idRole!=2 and status = 1";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, "%" + name + "%");
                 rs = stm.executeQuery();
@@ -287,14 +291,14 @@ public class UserDAO {
         }
     }
 
-    public void insertEmployee(String name, String password, int phoneNumber, int idRole, String email) throws SQLException {
+    public void insertEmployee(String name, String password, int phoneNumber, int idRole, String gender, String email) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql = "insert into tblUser(fullName, password, phoneNumber, idRole,status, email) values(?,?,?,?,?,?)";
+                String sql = "insert into tblUser(fullName, password, phoneNumber, idRole,status, email, gender) values(?,?,?,?,?,?,?)";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, name);
                 stm.setString(2, password);
@@ -302,6 +306,7 @@ public class UserDAO {
                 stm.setInt(4, idRole);
                 stm.setBoolean(5, true);
                 stm.setString(6, email);
+                stm.setString(7, gender);
                 stm.executeUpdate();
             }
 
@@ -319,6 +324,7 @@ public class UserDAO {
             }
         }
     }
+
     public static ArrayList<User> getAllPatient() {
         ArrayList<User> list = new ArrayList<>();
         Connection cn = null;
@@ -326,7 +332,7 @@ public class UserDAO {
             cn = Util.getConnection();
             if (cn != null) {
                 String sql = "select *\n"
-                        + "from tblUser \n"
+                        + "from tblUser\n"
                         + "where idRole = 5";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
@@ -340,7 +346,8 @@ public class UserDAO {
                         boolean status = rs.getBoolean("status");
                         String email = rs.getString("email");
                         String roll = rs.getString("Roll");
-                        User patient = new User(id, fullName, password, phoneNumber, idRole, status, email, roll);
+                        String gender = rs.getString("gender");
+                        User patient = new User(id, fullName, password, phoneNumber, idRole, status, email, roll, gender);
                         list.add(patient);
                     }
                 }
@@ -351,6 +358,33 @@ public class UserDAO {
         return list;
 
     }
+        public void deleteEmployeeByID(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "update tblUser set status = 0 where id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, id);
+                stm.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 
     public static ArrayList<User> searchPatient(String searchname) {
         ArrayList<User> list = new ArrayList<>();
@@ -359,7 +393,7 @@ public class UserDAO {
             cn = Util.getConnection();
             if (cn != null) {
                 String sql = "select * from tblUser\n"
-                        + "where [fullName] like ? and idRole = 5 ";
+                        + "where [fullName] like ? and idRole = 5";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, "%" + searchname + "%");
                 ResultSet rs = pst.executeQuery();
@@ -385,21 +419,22 @@ public class UserDAO {
 
     }
 
-    public static boolean insertPatient(String fullName, String email, int phoneNumber, boolean status, int idRole, String Roll, String password) {
+    public static boolean insertPatient(String fullName, String email, int phoneNumber, int status, int idRole, String Roll, String password, String gender) {
         Connection cn = null;
         int kq = 0;
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String s = "insert into dbo.tblUser(fullName, email,phoneNumber,status,idRole,Roll,password)\n"
-                        + "                        values (?,?,?,?,5,?,?)";
+                String s = "insert into dbo.tblUser(fullName, email,phoneNumber,status,idRole,Roll,password,gender)\n"
+                        + "                        values (?,?,?,?,5,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(s);
                 pst.setString(1, fullName);
                 pst.setString(2, email);
                 pst.setInt(3, phoneNumber);
-                pst.setBoolean(4, status);
+                pst.setInt(4, status);
                 pst.setString(5, Roll);
                 pst.setString(6, password);
+                pst.setString(7, gender);
                 kq = pst.executeUpdate();
                 if (kq != 0) {
                     return true;
@@ -490,28 +525,13 @@ public class UserDAO {
         return false;
     }
 
-    public void deletePatient(String id) {
-        Connection cn = null;
-        String sql = "delete from  tblUser "
-                + "where id = ?";
-
-        try {
-            cn = Util.getConnection();//mo ket noi voi sql
-            PreparedStatement pst = cn.prepareStatement(sql);
-            pst.setString(1, id);
-            pst.executeUpdate();
-        } catch (Exception e) {
-        }
-    }
-
-
-    public ArrayList<User> getCountPatient(int from) {
+       public ArrayList<User> getCountPatient(int from) {
         ArrayList<User> list = new ArrayList<>();
         Util dbu = new Util();
 
         String sql = " select *\n"
-                + "from tblUser where idRole =5\n"
-                + "order by id\n"
+                + "from tblUser where idRole =5 and status =1\n"
+                + "order by id DESC\n"
                 + "offset ? row\n"
                 + "fetch next 7 row only";
         try {
@@ -528,6 +548,111 @@ public class UserDAO {
         }
         return list;
     }
+       public static boolean deletePatient(String id, int status) {
+        boolean kq = false;
+        User den = null;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE tblUser\n"
+                        + "SET status = ?\n"
+                        + "WHERE id = ?;\n";
+
+                PreparedStatement pst = cn.prepareStatement(sql);
+
+                pst.setInt(1, status);
+
+                pst.setString(2, id);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+
+    public boolean checkEmailExists(String email) {
+        Connection cn = null;
+        int kq = 0;
+        boolean emailExists = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select * from  tblUser where email = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, email);
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    emailExists = (count > 0);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return emailExists;
+    }
+
+    public boolean checkRollExists(String roll) {
+        Connection cn = null;
+        int kq = 0;
+        boolean rollExists = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select * from  tblUser where Roll = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, roll);
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    rollExists = (count > 0);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rollExists;
+    }
+    public void editMyProfile(int id, String name, int phoneNumer, String gender) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "update tblUser set fullName = ?, phoneNumber = ?, gender = ? where id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, name);
+                stm.setInt(2, phoneNumer);
+                stm.setString(3, gender);
+                stm.setInt(4, id);
+                stm.executeUpdate();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    } 
 }
-
-

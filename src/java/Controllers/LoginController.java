@@ -6,6 +6,7 @@ package Controllers;
 
 import DAL.UserDAO;
 import Models.User;
+import Util.PasswordEncoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,22 +36,29 @@ public class LoginController extends HttpServlet {
         String url = "";
         HttpSession session = request.getSession();
         session.setAttribute("activeLink", "dashboardLink");
-        try{
+        try {
             String accountName = request.getParameter("accountName");
             String password = request.getParameter("password");
+            String encryptedpassword = PasswordEncoder.toSHA1(password);
             UserDAO dao = new UserDAO();
-            User user = dao.checkLogin(accountName, password);
-            if(user!=null){
-                
+            User user = dao.checkLogin(accountName, encryptedpassword);
+            if (user != null) {
                 session.setAttribute("User", user);
-                url = "DashBoardController";
-            }
-            else{
+                session.setAttribute("role", user.getRoleID());
+                if (user.getRoleID() == 1) {
+                    url = "DashBoardController";
+                } else if (user.getRoleID() == 4) {
+                    url = "GetAdvisoryController";
+                }else if (user.getRoleID() == 3) {
+                    url = "loadServiceMarketingController";
+                }
+            } else {
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
+                url = "login.jsp";
             }
-        }catch(Exception e){
-            
-        }finally{
+        } catch (Exception e) {
+
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
