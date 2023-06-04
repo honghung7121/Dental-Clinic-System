@@ -1,25 +1,26 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package Controllers;
+package Controllers.Appointment;
 
-import DAL.UserDAO;
-import Models.User;
-import Util.PasswordEncoder;
+import DAL.AppointmentDAO;
+import Models.Appointment;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author ADMIN
  */
-public class LoginController extends HttpServlet {
+public class CreateAppointmentController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,35 +34,26 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        HttpSession session = request.getSession();
-        session.setAttribute("activeLink", "dashboardLink");
-        try {
-            String accountName = request.getParameter("accountName");
-            String password = request.getParameter("password");
-
-            String encryptedpassword = PasswordEncoder.toSHA1(password.trim());
-
-            UserDAO dao = new UserDAO();
-            User user = dao.checkLogin(accountName, encryptedpassword);
-            if (user != null) {
-                session.setAttribute("User", user);
-                session.setAttribute("role", user.getRoleID());
-                if (user.getRoleID() == 1) {
-                    url = "DashBoardController";
-                } else if (user.getRoleID() == 4) {
-                    url = "GetAdvisoryController";
-                }else if (user.getRoleID() == 3) {
-                    url = "loadServiceMarketingController";
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            String namePatient = request.getParameter("patient");   
+            String nameDentist = request.getParameter("dentist");
+            String date = request.getParameter("createDateAppoint");
+            String description = request.getParameter("createDescriptionAppoint");
+            AppointmentDAO appointDAO = new AppointmentDAO();
+            ArrayList<Appointment> listAppoint = appointDAO.getAllAppointment();
+            /*
+            for (Appointment appoint : listAppoint) {
+                if (appoint.getDate().equals(date)) {
+                    
                 }
-            } else {
-                request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
-                url = "login.jsp";
             }
-        } catch (Exception e) {
-
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            */            
+            boolean check = appointDAO.insertAppointment(namePatient, nameDentist, Date.valueOf(date), description, "0");
+            if (check) {
+                request.getRequestDispatcher("MainController?action=searchAppointmentByDate").forward(request, response);
+            }
+            else request.getRequestDispatcher("MainController?action=searchAppointmentByDate").forward(request, response);
         }
     }
 

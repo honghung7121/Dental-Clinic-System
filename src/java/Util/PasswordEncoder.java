@@ -28,6 +28,8 @@ public class PasswordEncoder {
         return result;
     }
     public static void main(String[] args) {
-        System.out.println(toSHA1("marknhi"));
+
+        System.out.println(toSHA1("12345"));
+
     }
 }
