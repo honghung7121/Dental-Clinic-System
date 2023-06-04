@@ -41,7 +41,7 @@
                                                 <div class="profile-info-left">
                                                     <h3 class="user-name m-t-0 mb-0">${u.getFullName()}</h3>
                                                 <div class="staff-id">ID Nhân Sự: ${u.getId()}</div>
-                                                <div class="staff-msg"><a href="MainController?action=changePassPage&iduser=${u.getId()}&emailuser=${u.getEmail()}" class="btn btn-primary">Thay đổi mật khẩu</a></div>
+                                                <div class="staff-msg"><a href="MainController?action=changePassPage" class="btn btn-primary">Thay đổi mật khẩu</a></div>
 
                                             </div>
                                         </div>
