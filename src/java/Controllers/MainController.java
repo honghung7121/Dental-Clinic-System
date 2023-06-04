@@ -22,6 +22,8 @@ public class MainController extends HttpServlet {
     private final String LOGOUT = "LogoutController";
 
     private final String ERROR = "error.jsp";
+    //Thao update
+    private final String ERRORS = "error2.jsp";
     
     private final String DENTIST = "DentistController";
     private final String DENTISTPROFILE = "DentistProfileController";
