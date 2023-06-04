@@ -6,6 +6,7 @@ package Controllers;
 
 import DAL.UserDAO;
 import Models.User;
+import Util.PasswordEncoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,10 +34,11 @@ public class ChangePasswordController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
             String email = request.getParameter("EmailNow");
-            String passnow = request.getParameter("PassNow");
-            String passnew = request.getParameter("PassNew");
-            String passnewagain = request.getParameter("PassNewAgain");
+            String passnow = PasswordEncoder.toSHA1(request.getParameter("PassNow"));
+            String passnew = PasswordEncoder.toSHA1(request.getParameter("PassNew"));
+            String passnewagain = PasswordEncoder.toSHA1(request.getParameter("PassNewAgain"));
             
             UserDAO userDAO = new UserDAO();
             User user = userDAO.getUserByEmail(email);
