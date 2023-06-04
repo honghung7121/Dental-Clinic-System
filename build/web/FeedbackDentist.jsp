@@ -137,14 +137,14 @@
                                     <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="post" accept-charset="UTF-8">
+                                                                        <form action="MainController" method="post" accept-charset="UTF-8">
                                         <input placeholder="Tìm Kiếm" type="text" name="txt" value="<c:out value="${empty param.txt ? '' : param.txt}" escapeXml="false" />">
                                     <select name="searchby">
                                         <option value="bycustomername">Theo Tên Khách Hàng</option>
                                         <option value="bydentistname">Theo Tên Nha Sĩ</option>
                                     </select>
                                     <button type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
-                                </form>                                    
+                                </form>
                                 </div>
                             </div>
 <!--                            <div class="row filter-row">

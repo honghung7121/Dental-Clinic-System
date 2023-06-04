@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers.Patient;
+package Controllers.Dentist;
 
-import DAL.UserDAO;
+import DAL.DentistDAO;
+import Models.Dentist;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class DeletePatient extends HttpServlet {
+public class MarketingDentistProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,13 +33,11 @@ public class DeletePatient extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-           String id = request.getParameter("sid");
-            boolean check = UserDAO.deletePatient(id, 0);
-          if (check) {
-              request.getRequestDispatcher("MainController?action=patient").forward(request, response);
-          }
-          else   request.getRequestDispatcher("MainController?action=patient").forward(request, response);
+            String dentistID = request.getParameter("dentistID");
+            Dentist den = new Dentist();
+            den = DentistDAO.getDentistByID(dentistID);
+            request.setAttribute("dentistByID", den);
+            request.getRequestDispatcher("MarketingProfileDentist.jsp").forward(request, response);
         }
     }
 

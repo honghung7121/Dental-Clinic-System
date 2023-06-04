@@ -36,14 +36,6 @@
                             <h4 class="page-title" >Quản Lý Bệnh Nhân</h4>
                         </div>
                         <div>
-
-                            <!--                            <form action="MainController" method="get">
-                            
-                                                            <input class="form-control floating" type="text" name="txtSearch">
-                                                            <input class="btn btn-success btn-block float-lg-left" type="submit" value="Tìm kiếm" name="action" >
-                                                            
-                                                            
-                                                        </form>-->
                             <form action="MainController" method="get">
                                 <div class="row filter-row">
                                     <div class="form-group form-focus">
@@ -71,7 +63,8 @@
                                             <th>Số điện thoại</th>
                                             <th>Email</th>
                                             <th>Roll</th>
-                                            <th class="text-right">Action</th>
+                                            <th>Trạng thái</th>
+                                            <th class="text-right">Hành động</th>
                                         </tr> 
                                     </thead>
                                     <tbody>
@@ -89,6 +82,12 @@
                                                     <td><c:out value="${acc.getPhoneNumber() }"></c:out></td>
                                                 <td><c:out value="${acc.getEmail() }"></c:out></td>
                                                 <td><c:out value="${acc.getRoll() }"></c:out></td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test = "${acc.isStatus() ==  true}" ><span class="custom-badge status-green">Đang Hoạt Động</span></c:when>
+                                                        <c:otherwise><span class="custom-badge status-grey">Ngừng Hoạt Động</span></c:otherwise>
+                                                    </c:choose>
+                                                </td>
 
 
                                                     <td class="text-right">
@@ -96,14 +95,12 @@
                                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                             <div class="dropdown-menu dropdown-menu-right">
         <!--                                                        <a class="dropdown-item" href="editPatientServlet?id=${p.getId()}"><i class="fa fa-pencil m-r-5"></i> Edit</a>-->
-                                                            <a class="dropdown-item" href="DeletePatient?sid=${acc.getId()}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                            <a class="dropdown-item" href="MainController?action=deletePatient&sid=${acc.getId()}"><i class="fa fa-trash-o m-r-5"></i> Xóa bệnh nhân</a>
 
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-
-
                                         </c:forEach>
 
                                         <c:set var="currentPage" value="${requestScope.current}" ></c:set>
@@ -142,14 +139,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
-
-                           
-                        
-
+                                    </div>                  
                             </tbody>
-
-
-                            
                             </body>
                             </html>
