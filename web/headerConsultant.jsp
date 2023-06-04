@@ -93,14 +93,6 @@
         .button-4:-webkit-details-marker {
             display: none;
         }
-        .btnLink{
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #009ce7;
-            text-decoration: underline;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -203,12 +195,7 @@
                                     <tr>
                                         <th>Họ Và Tên</th>
                                         <th >Số điện thoại</th>
-                                        <th>
-                                            <form action="SortDateAdvisoryController" method="POST">
-                                                <button class="btnLink" style="">Ngày Đăng Kí</button>
-                                                <input type="hidden" name="sortBy" value="${requestScope.SORT_BY}">
-                                            </form>
-                                        </th>
+                                        <th>Ngày Đăng Kí</th>
                                         <th>Mô Tả</th>
                                         <th class="text-right">Chỉnh Sửa</th>
                                     </tr>

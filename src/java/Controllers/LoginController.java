@@ -39,7 +39,9 @@ public class LoginController extends HttpServlet {
         try {
             String accountName = request.getParameter("accountName");
             String password = request.getParameter("password");
+
             String encryptedpassword = PasswordEncoder.toSHA1(password.trim());
+
             UserDAO dao = new UserDAO();
             User user = dao.checkLogin(accountName, encryptedpassword);
             if (user != null) {

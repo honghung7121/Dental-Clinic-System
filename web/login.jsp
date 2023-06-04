@@ -97,7 +97,7 @@
                         </form>
                         <div class="hr"></div>
                         <div class="foot-lnk">
-                            <a href="forgotPassword.html">Forgot Password?</a>
+                            <a href="forgotPassword.jsp">Forgot Password?</a>
                         </div>
                     </div>
                     <div class="sign-up-htm">
