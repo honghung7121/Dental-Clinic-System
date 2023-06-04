@@ -223,6 +223,39 @@ public class UserDAO {
         }
         return list;
     }
+    
+    public User getUserByEmail(String email) throws SQLException {
+        User user = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select * from tblUser where email = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, email);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return user;
+    }
 
     public User getEmployeeById(int id) throws SQLException {
         User user = null;
@@ -255,6 +288,37 @@ public class UserDAO {
             }
         }
         return user;
+    }
+    
+    public boolean editPasswordUser(String email, String passnew) {
+        boolean kq = false;
+        User u = null;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE tblUser\n"
+                        + "SET password = ?\n"
+                        + "WHERE email = ?;\n";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, passnew);
+                pst.setString(2, email);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
     }
 
     public void editEmployee(int id, String name, String email, int phoneNumber, int roleID, boolean status, String gender) throws SQLException {

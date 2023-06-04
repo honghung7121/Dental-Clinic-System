@@ -164,6 +164,22 @@
         <servlet-name>loadServiceMarketingController</servlet-name>
         <servlet-class>Controllers.Service.loadServiceMarketingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.CreateAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.EditAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.SearchAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <servlet-class>Controllers.ChangePasswordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -327,6 +343,22 @@
     <servlet-mapping>
         <servlet-name>loadServiceMarketingController</servlet-name>
         <url-pattern>/loadServiceMarketingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAppointmentController</servlet-name>
+        <url-pattern>/CreateAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAppointmentController</servlet-name>
+        <url-pattern>/EditAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchAppointmentController</servlet-name>
+        <url-pattern>/SearchAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <url-pattern>/ChangePasswordController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
