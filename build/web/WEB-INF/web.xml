@@ -165,6 +165,7 @@
         <servlet-class>Controllers.Service.loadServiceMarketingController</servlet-class>
     </servlet>
     <servlet>
+
         <servlet-name>CreateAppointmentController</servlet-name>
         <servlet-class>Controllers.Appointment.CreateAppointmentController</servlet-class>
     </servlet>
@@ -181,6 +182,7 @@
         <servlet-class>Controllers.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
+
         <servlet-name>MarketingDentistController</servlet-name>
         <servlet-class>Controllers.Dentist.MarketingDentistController</servlet-class>
     </servlet>
@@ -192,6 +194,16 @@
         <servlet-name>MarketingLoadMoreDentistController</servlet-name>
         <servlet-class>Controllers.Dentist.MarketingLoadMoreDentistController</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>javaMailController</servlet-name>
+        <servlet-class>Controllers.javaMailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>confirmMailController</servlet-name>
+        <servlet-class>Controllers.confirmMailController</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -357,6 +369,7 @@
         <url-pattern>/loadServiceMarketingController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
         <servlet-name>CreateAppointmentController</servlet-name>
         <url-pattern>/CreateAppointmentController</url-pattern>
     </servlet-mapping>
@@ -373,6 +386,7 @@
         <url-pattern>/ChangePasswordController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
         <servlet-name>MarketingDentistController</servlet-name>
         <url-pattern>/MarketingDentistController</url-pattern>
     </servlet-mapping>
@@ -384,6 +398,16 @@
         <servlet-name>MarketingLoadMoreDentistController</servlet-name>
         <url-pattern>/MarketingLoadMoreDentistController</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>javaMailController</servlet-name>
+        <url-pattern>/javaMailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirmMailController</servlet-name>
+        <url-pattern>/confirmMailController</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30

@@ -1,12 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Controllers;
 
-import DAL.UserDAO;
+import DAL.SendDAO;
 import Models.User;
-import Util.PasswordEncoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class LoginController extends HttpServlet {
+public class javaMailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,33 +35,27 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = "";
         HttpSession session = request.getSession();
-        session.setAttribute("activeLink", "dashboardLink");
         try {
-            String accountName = request.getParameter("accountName");
-            String password = request.getParameter("password");
+            /* TODO output your page here. You may use following sample code. */
 
-            String encryptedpassword = PasswordEncoder.toSHA1(password.trim());
-
-            UserDAO dao = new UserDAO();
-            User user = dao.checkLogin(accountName, encryptedpassword);
+            String name = request.getParameter("gmail");
+            SendDAO dao = new SendDAO();
+            User user = dao.checkMail(name);
             if (user != null) {
-                session.setAttribute("User", user);
-                session.setAttribute("role", user.getRoleID());
-                if (user.getRoleID() == 1) {
-                    url = "DashBoardController";
-                } else if (user.getRoleID() == 4) {
-                    url = "GetAdvisoryController";
-                }else if (user.getRoleID() == 3) {
-                    url = "loadServiceMarketingController";
-                }
+                session.setAttribute("gmail", name);
+                String random = dao.getSoNgauNhien();
+                session.setAttribute("code", random);
+                dao.sendEmail(name, "Mail from Dental Clinic System", "Your verification code is: " + random);
+                url = "confirmEmail.jsp";
             } else {
-                request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
-                url = "login.jsp";
+                request.setAttribute("SIGNUP_FAIL", "Email Không Tồn Tại");
+                url = "forgotPassword.jsp";
             }
-        } catch (Exception e) {
 
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        } catch (Exception e) {
+           
+        }finally{
+             request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

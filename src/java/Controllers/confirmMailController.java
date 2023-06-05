@@ -1,24 +1,25 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package Controllers.Advisory;
+package Controllers;
 
-import DAL.AdvisoryDAO;
-import Models.Advisory;
+import DAL.SendDAO;
+import DAL.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class SortDateAdvisoryController extends HttpServlet {
+public class confirmMailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,28 +33,23 @@ public class SortDateAdvisoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        try {
-            String sortBy = request.getParameter("sortBy");
-            AdvisoryDAO dao = new AdvisoryDAO();
-            if (sortBy.equals("")) {
-                List<Advisory> list = dao.sortByDateAdvisory("DESC");
-                request.setAttribute("ADVISORY_LIST", list);
-                request.setAttribute("SORT_BY", "ASC");
-            } else if (sortBy.equals("ASC")) {
-                List<Advisory> list = dao.sortByDateAdvisory("ASC");
-                request.setAttribute("ADVISORY_LIST", list);
-                request.setAttribute("SORT_BY", "DESC");
-            } else if (sortBy.equals("DESC")) {
-                List<Advisory> list = dao.sortByDateAdvisory("DESC");
-                request.setAttribute("ADVISORY_LIST", list);
-                request.setAttribute("SORT_BY", "ASC");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
+            String code1 = String.valueOf(session.getAttribute("code"));
+            String code2 = request.getParameter("maxacnhan");
+            String pass1 = request.getParameter("pass1");
+            String pass2 = request.getParameter("pass2");
+            if (pass1.equals(pass2) && code1.equals(code2)) {
+                String gmail = String.valueOf(session.getAttribute("gmail"));
+                SendDAO dao = new SendDAO();
+                dao.forgotPass(pass1, gmail);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            } else {
+                request.setAttribute("report", "Mật khẩu không trùng khớp. Xin mời nhập lại");
+                request.getRequestDispatcher("confirmEmail.jsp").forward(request, response);
             }
-            url = "headerConsultant.jsp";
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+
         }
     }
 

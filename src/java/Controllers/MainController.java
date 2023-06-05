@@ -20,6 +20,9 @@ public class MainController extends HttpServlet {
     private final String LOGIN = "LoginController";
     private final String SIGNUP = "SignUpController";
     private final String LOGOUT = "LogoutController";
+    private final String SEND = "javaMailController";
+    private final String MAIL = "confirmMailController";
+
 
     private final String DENTIST = "DentistController";
     private final String DENTISTPROFILE = "DentistProfileController";
@@ -54,6 +57,7 @@ public class MainController extends HttpServlet {
     private final String PATIENT = "Patient";
     private final String SEARCHPATIENT = "SearchPatient";
     private final String CREATEPATIENT = "AddPatient";
+    private final String DELETEPATIENT = "DeletePatient";
 
     
     private final String SEARCHAPPOINTMENTBYDATE = "SearchAppointmentController";
@@ -67,7 +71,7 @@ public class MainController extends HttpServlet {
     
             
 
-    private final String DELETEPATIENT = "DeletePatient";
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -86,7 +90,12 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action.equals("Login")) {
                 url = LOGIN;
-            } else if (action.equals("dentist")) {
+            }else if (action.equals("sendMail")) {
+                url = SEND;
+            }else if (action.equals("codeMail")) {
+                url = MAIL;
+            }
+            else if (action.equals("dentist")) {
                 url = DENTIST;
             } else if (action.equals("dentistProfile")) {
                 url = DENTISTPROFILE;
