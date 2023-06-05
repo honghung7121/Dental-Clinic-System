@@ -74,4 +74,39 @@ public class AdvisoryDAO {
             }
         }
     }
+    public List<Advisory> sortByDateAdvisory(String orderBy) throws SQLException {
+        List<Advisory> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "";
+                if (orderBy.equals("ASC")) {
+                    sql = "select * from tblAdvisory where status = 0 order by advisoryDate ASC";
+                } else if (orderBy.equals("DESC")) {
+                    sql = "select * from tblAdvisory where status = 0 order by advisoryDate DESC";
+                }
+                stm = con.prepareStatement(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    list.add(new Advisory(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getBoolean(6)));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
 }

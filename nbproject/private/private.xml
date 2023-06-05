@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/src/java/Controllers/javaMailController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/src/java/DAL/SendDAO.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/web/service-2.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/src/java/Util/PasswordEncoder.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/src/java/Controllers/confirmMailController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/src/java/DAL/UserDAO.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/web/login.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/src/java/Controllers/SignUpController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-Thao-Branch/SWP391-SE1743/src/java/Util/SendMail.java</file>
+        </group>
     </open-files>
 </project-private>

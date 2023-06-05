@@ -125,6 +125,10 @@
         <servlet-class>Controllers.Service.SortServiceController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SortDateAdvisoryController</servlet-name>
+        <servlet-class>Controllers.Advisory.SortDateAdvisoryController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddPatient</servlet-name>
         <servlet-class>Controllers.Patient.AddPatient</servlet-class>
     </servlet>
@@ -165,6 +169,22 @@
         <servlet-class>Controllers.Service.loadServiceMarketingController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CreateAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.CreateAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.EditAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.SearchAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <servlet-class>Controllers.ChangePasswordController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>MarketingDentistController</servlet-name>
         <servlet-class>Controllers.Dentist.MarketingDentistController</servlet-class>
     </servlet>
@@ -175,6 +195,18 @@
     <servlet>
         <servlet-name>MarketingLoadMoreDentistController</servlet-name>
         <servlet-class>Controllers.Dentist.MarketingLoadMoreDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>javaMailController</servlet-name>
+        <servlet-class>Controllers.javaMailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>confirmMailController</servlet-name>
+        <servlet-class>Controllers.confirmMailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignUpController</servlet-name>
+        <servlet-class>Controllers.SignUpController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -341,6 +373,22 @@
         <url-pattern>/loadServiceMarketingController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CreateAppointmentController</servlet-name>
+        <url-pattern>/CreateAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAppointmentController</servlet-name>
+        <url-pattern>/EditAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchAppointmentController</servlet-name>
+        <url-pattern>/SearchAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordController</servlet-name>
+        <url-pattern>/ChangePasswordController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MarketingDentistController</servlet-name>
         <url-pattern>/MarketingDentistController</url-pattern>
     </servlet-mapping>
@@ -351,6 +399,22 @@
     <servlet-mapping>
         <servlet-name>MarketingLoadMoreDentistController</servlet-name>
         <url-pattern>/MarketingLoadMoreDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortDateAdvisoryController</servlet-name>
+        <url-pattern>/SortDateAdvisoryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>javaMailController</servlet-name>
+        <url-pattern>/javaMailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirmMailController</servlet-name>
+        <url-pattern>/confirmMailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpController</servlet-name>
+        <url-pattern>/SignUpController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
