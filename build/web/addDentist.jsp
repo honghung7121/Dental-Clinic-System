@@ -42,7 +42,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
-                            <form action="MainController" method="get"> 
+                            <form action="MainController" method="post"> 
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
@@ -56,19 +56,20 @@
                                             <label>Email <span class="text-danger">*</span></label>
                                             <input class="form-control" type="email" name="createEmailDentist" required="">
                                         </div>
+                                        <h6 style="color: red">${requestScope.reportEmail}</h6>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Mật Khẩu</label>
+                                            <label>Mật Khẩu <span class="text-danger">*</span></label>
                                             <input class="form-control" type="password" name="createPassDentist" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Nhập Lại Mật Khẩu</label>
+                                            <label>Nhập Lại Mật Khẩu <span class="text-danger">*</span></label>
                                             <input class="form-control" type="password" name="createPassAgainDentist" required="">
                                         </div>
-                                        <h6 style="color: red">${requestScope.report}</h6>
+                                        <h6 style="color: red">${requestScope.reportPass}</h6>
                                     </div>
 
                                     <div class="col-sm-6">
