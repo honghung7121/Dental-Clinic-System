@@ -38,7 +38,6 @@ public class javaMailController extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
-
             final String name = request.getParameter("gmail");
             SendDAO dao = new SendDAO();
             
@@ -56,7 +55,6 @@ public class javaMailController extends HttpServlet {
                 Thread thread = new Thread(myRunnable);
                 thread.start();
                 url = "confirmEmail.jsp";
-                
             } else {
                 request.setAttribute("SIGNUP_FAIL", "Email Không Tồn Tại");
                 url = "forgotPassword.jsp";

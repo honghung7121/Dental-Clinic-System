@@ -77,7 +77,6 @@
                                                 <th><a href="#">Tên Nha Sĩ</a></th>
                                                 <th><a href="#">Đánh Giá</a></th>
                                                 <th><a href="#">Nội dung</a></th>
-                                                <th class="text-right">Chỉnh sửa</th>
                                             </tr>                                        
                                         </thead>
                                         <tbody id="content">
@@ -102,14 +101,6 @@
                                                         </c:forEach>
                                                     </td>
                                                     <td><c:out value="${feedback.getComment()}"></c:out></td>
-                                                        <td class="text-right">
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                                <div class="dropdown-menu dropdown-menu-right">
-                                                                    <a class="dropdown-item delete-schedule" href="#" data-toggle="modal" data-target="#delete_schedule"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
                                                     </tr>
                                             </c:forEach>   
                                         </tbody>
