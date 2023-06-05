@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/search-bar.css">
 
 
         <!--[if lt IE 9]>
@@ -29,6 +30,9 @@
         <c:set var="isAdmin" value="${role eq 1}" />
         <c:set var="isMarketing" value="${role eq 3}" />
         <div class="main-wrapper">
+
+
+
             <c:if test="${isAdmin}">
                 <jsp:include page="header.jsp"></jsp:include>
                     <div class="page-wrapper">
@@ -39,27 +43,29 @@
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
                                     <form action="MainController" method="post" accept-charset="UTF-8">
-                                        <input placeholder="Tìm Kiếm" type="text" name="txt" value="<c:out value="${empty param.txt ? '' : param.txt}" escapeXml="false" />">
-                                    <select name="searchby">
-                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                        <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                    </select>
-                                    <button type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
+                                        <div class="form-row">
+                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
+                                        <select class="form-select" name="searchby">
+                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                            <option value="bydentistname">Theo Tên Nha Sĩ</option>
+                                        </select>
+                                        <button class="form-button" type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
-<!--                        <div class="row filter-row">
-                            <div class="col-sm-6 col-md-3">
-                                <div class="form-group form-focus">
-                                    <label class="focus-label">Tìm Phản Hồi</label>
-                                    <input oninput="searchByName(this)" type="text" name="txt" class="form-control floating">
-                                    <select name="searchby">
-                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                        <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>-->
+                        <!--                        <div class="row filter-row">
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group form-focus">
+                                                            <label class="focus-label">Tìm Phản Hồi</label>
+                                                            <input oninput="searchByName(this)" type="text" name="txt" class="form-control floating">
+                                                            <select name="searchby">
+                                                                <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                                                <option value="bydentistname">Theo Tên Nha Sĩ</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -105,10 +111,12 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                            </c:forEach>                                        
+                                            </c:forEach>   
                                         </tbody>
                                     </table>
-
+                                    <span style="color: red;">
+                                        <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -128,6 +136,9 @@
                                 </div>
                             </div>-->
             </c:if>
+
+
+
             <c:if test="${isMarketing}">
                 <jsp:include page="headerMarketing.jsp"></jsp:include>
                     <div class="page-wrapper">
@@ -137,42 +148,32 @@
                                     <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
-                                                                        <form action="MainController" method="post" accept-charset="UTF-8">
-                                        <input placeholder="Tìm Kiếm" type="text" name="txt" value="<c:out value="${empty param.txt ? '' : param.txt}" escapeXml="false" />">
-                                    <select name="searchby">
-                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                        <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                    </select>
-                                    <button type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
-                                </form>
-                                </div>
-                            </div>
-<!--                            <div class="row filter-row">
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="form-group form-focus">
-                                        <label class="focus-label">Tìm Phản Hồi</label>
-                                        <input oninput="searchByName(this)" type="text" name="txt" class="form-control floating">
-                                        <select name="searchby">
+                                    <form action="MainController" method="post" accept-charset="UTF-8">
+                                        <div class="form-row">
+                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
+                                        <select class="form-select" name="searchby">
                                             <option value="bycustomername">Theo Tên Khách Hàng</option>
                                             <option value="bydentistname">Theo Tên Nha Sĩ</option>
                                         </select>
+                                        <button class="form-button" type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
                                     </div>
-                                </div>
-                            </div>-->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table id="myTable" class="table table-border table-striped custom-table mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th><a href="#">Feedback ID</a></th>
-                                                    <th><a href="#">Tên Khách Hàng</a></th>
-                                                    <th><a href="#">Tên Nha Sĩ</a></th>
-                                                    <th><a href="#">Đánh Giá</a></th>
-                                                    <th><a href="#">Nội dung</a></th>
-                                                </tr>                                        
-                                            </thead>
-                                            <tbody id="content">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table id="myTable" class="table table-border table-striped custom-table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th><a href="#">Feedback ID</a></th>
+                                                <th><a href="#">Tên Khách Hàng</a></th>
+                                                <th><a href="#">Tên Nha Sĩ</a></th>
+                                                <th><a href="#">Đánh Giá</a></th>
+                                                <th><a href="#">Nội dung</a></th>
+                                            </tr>                                        
+                                        </thead>
+                                        <tbody id="content">
                                             <c:forEach var="feedback" items="${sessionScope.list}">
                                                 <tr>
                                                     <td><c:out value="${feedback.getId()}"></c:out></td>
@@ -195,10 +196,15 @@
                                                     </td>
                                                     <td><c:out value="${feedback.getComment()}"></c:out></td>
                                                     </tr>
-                                            </c:forEach>                                        
+                                            </c:forEach> 
+                                        <span style="color: red; text-align: center">
+                                            <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
+                                        </span>
                                         </tbody>
                                     </table>
-
+                                    <span style="color: red;">
+                                        <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -278,7 +284,5 @@
             }
 
         </script>
-
-
     </body>
 </html>

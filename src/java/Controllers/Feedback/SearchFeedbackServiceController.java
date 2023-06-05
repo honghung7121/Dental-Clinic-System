@@ -39,13 +39,13 @@ public class SearchFeedbackServiceController extends HttpServlet {
             try {
                 String txtSearch = request.getParameter("txt");
                 String searchby = request.getParameter("searchby");
+                HttpSession session = request.getSession();
                 ArrayList<FeedbackService> list = FeedbackServiceDAO.getFeedbackService(txtSearch, searchby);
-                if (list != null) {
-                    HttpSession session = request.getSession();
+                if (list != null && !list.isEmpty()) {
                     session.setAttribute("list", list);
-                    request.setAttribute("RESPONE", "Load successfully!");
                 } else {
-                    request.setAttribute("RESPONE", "Load fail!");
+                    session.setAttribute("list", null);
+                    request.setAttribute("RESPONSE", "Không Tìm Thấy!");
                 }
             } catch (Exception e) {
 

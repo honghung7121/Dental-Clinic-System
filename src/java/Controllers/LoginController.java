@@ -39,7 +39,9 @@ public class LoginController extends HttpServlet {
         try {
             String accountName = request.getParameter("accountName");
             String password = request.getParameter("password");
-            String encryptedpassword = PasswordEncoder.toSHA1(password);
+
+            String encryptedpassword = PasswordEncoder.toSHA1(password.trim());
+
             UserDAO dao = new UserDAO();
             User user = dao.checkLogin(accountName, encryptedpassword);
             if (user != null) {
@@ -50,7 +52,9 @@ public class LoginController extends HttpServlet {
                 } else if (user.getRoleID() == 4) {
                     url = "GetAdvisoryController";
                 }else if (user.getRoleID() == 3) {
-                    url = "loadServiceMarketingController";
+                    url = "MarketingDentistController";
+                }else if (user.getRoleID() == 5) {
+                    url = "index.html";
                 }
             } else {
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
@@ -59,7 +63,7 @@ public class LoginController extends HttpServlet {
         } catch (Exception e) {
 
         } finally {
-            request.getRequestDispatcher("GetAdvisoryController").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

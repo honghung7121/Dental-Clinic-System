@@ -6,6 +6,8 @@
 package Controllers.Dentist;
 
 import DAL.DentistDAO;
+import DAL.UserDAO;
+import Util.PasswordEncoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,17 +35,29 @@ public class CreateDentistController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            UserDAO dao = new UserDAO();
             
             String fullname = request.getParameter("createNameDentist");   
             String email = request.getParameter("createEmailDentist");
-            String pass = request.getParameter("createPassDentist");
-            String passAgain = request.getParameter("createPassAgainDentist");
+            String pass = PasswordEncoder.toSHA1(request.getParameter("createPassDentist"));
+            String passAgain = PasswordEncoder.toSHA1(request.getParameter("createPassAgainDentist"));
             int phone = Integer.parseInt(request.getParameter("createPhoneDentist"));
             String img = "image/" + request.getParameter("createImageDentist");
             String experience = request.getParameter("createExperienceDentist");
             String degree = request.getParameter("createDegreeDentist");
             int status = Integer.parseInt(request.getParameter("createStatusDentist"));
             String gender = request.getParameter("gender");
+            
+            boolean checkemail = dao.checkEmailExists(email);
+            if (checkemail) {
+                request.setAttribute("reportEmail", "Email đã tồn tại!");
+                request.getRequestDispatcher("addDentist.jsp").forward(request, response);
+            }
+            if (pass.length() < 8 || !pass.matches(".*[A-Z].*")) {
+                request.setAttribute("reportPass", "Mật khẩu phải có ít nhất 8 ký tự và có 1 chữ cái viết hoa");
+                request.getRequestDispatcher("addDentist.jsp").forward(request, response);
+                return;
+            }
             
             boolean check = false;
             if (pass.equals(passAgain)) {
@@ -54,11 +68,13 @@ public class CreateDentistController extends HttpServlet {
                 else request.getRequestDispatcher("MainController?action=dentist").forward(request, response);
             }
             else{
-                request.setAttribute("report", "Mật khẩu không trùng khớp. Xin mời nhập lại");
+                request.setAttribute("reportPassAgain", "Mật khẩu không trùng khớp. Xin mời nhập lại");
                 request.getRequestDispatcher("addDentist.jsp").forward(request, response);
             }
             
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

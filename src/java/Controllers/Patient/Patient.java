@@ -45,7 +45,7 @@ public class Patient extends HttpServlet {
                 request.setAttribute("patient", slist);
                 request.setAttribute("current", 1);
                 request.setAttribute("click", 1);
-                request.getRequestDispatcher("patient.jsp").forward(request, response);
+                
             } else {
                 request.setAttribute("click", request.getParameter("page"));
                 int page = Integer.parseInt(request.getParameter("page"));
@@ -53,7 +53,7 @@ public class Patient extends HttpServlet {
                 int offset = (page - 1) * 7;
                 ArrayList<User> slist = sdao.getCountPatient(offset);
                 request.setAttribute("patient", slist);
-                request.getRequestDispatcher("patient.jsp").forward(request, response);
+                
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -224,6 +224,39 @@ public class UserDAO {
         return list;
     }
 
+    public User getUserByEmail(String email) throws SQLException {
+        User user = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select * from tblUser where email = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, email);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return user;
+    }
+
     public User getEmployeeById(int id) throws SQLException {
         User user = null;
         Connection con = null;
@@ -255,6 +288,37 @@ public class UserDAO {
             }
         }
         return user;
+    }
+
+    public boolean editPasswordUser(String email, String passnew) {
+        boolean kq = false;
+        User u = null;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE tblUser\n"
+                        + "SET password = ?\n"
+                        + "WHERE email = ?;\n";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, passnew);
+                pst.setString(2, email);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
     }
 
     public void editEmployee(int id, String name, String email, int phoneNumber, int roleID, boolean status, String gender) throws SQLException {
@@ -358,7 +422,8 @@ public class UserDAO {
         return list;
 
     }
-        public void deleteEmployeeByID(int id) throws SQLException {
+
+    public void deleteEmployeeByID(int id) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -525,7 +590,7 @@ public class UserDAO {
         return false;
     }
 
-       public ArrayList<User> getCountPatient(int from) {
+    public ArrayList<User> getCountPatient(int from) {
         ArrayList<User> list = new ArrayList<>();
         Util dbu = new Util();
 
@@ -548,7 +613,8 @@ public class UserDAO {
         }
         return list;
     }
-       public static boolean deletePatient(String id, int status) {
+
+    public static boolean deletePatient(String id, int status) {
         boolean kq = false;
         User den = null;
         Connection cn = null;
@@ -584,7 +650,6 @@ public class UserDAO {
 
     public boolean checkEmailExists(String email) {
         Connection cn = null;
-        int kq = 0;
         boolean emailExists = false;
         try {
             cn = Util.getConnection();
@@ -625,6 +690,7 @@ public class UserDAO {
         }
         return rollExists;
     }
+
     public void editMyProfile(int id, String name, int phoneNumer, String gender) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -654,5 +720,53 @@ public class UserDAO {
                 con.close();
             }
         }
-    } 
+    }
+
+    public String signup(String name, String email, String password, int phoneNumber) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        String success = "";
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                boolean emailExist = checkEmailExists(email);
+                if (!emailExist) {
+                    String sql1 = "select top(1) Roll from tblUser where idRole = 5 order by id desc";
+                    stm = con.prepareStatement(sql1);
+                    rs = stm.executeQuery();
+                    String rawRoll1 = "";
+                    if(rs.next()){
+                         rawRoll1 = rs.getString("Roll");
+                    }
+                  int rawRoll2 = Integer.parseInt(rawRoll1.substring(1)) + 1;
+                    String Roll = "P" +  rawRoll2;
+                    String sql2 = "insert into tblUser values(?,?,?,5,1,?,?,null)";
+                    stm = con.prepareStatement(sql2);
+                    stm.setString(1, name);
+                    stm.setString(2, password);
+                    stm.setInt(3, phoneNumber);
+                    stm.setString(4, email);
+                    stm.setString(5, Roll);
+                    int row = stm.executeUpdate();
+                    if (row > 0) {
+                        success = Roll;
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return success;
+    }
+    
 }

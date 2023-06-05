@@ -30,16 +30,17 @@
             <div class="account-page">
                 <div class="account-center">
                     <div class="account-box">
-                        <form class="form-signin" action="#">
+                        <form class="form-signin" action="MainController" method="POST">
                             <div class="account-logo">
                                 <a href="index-2.html"><img src="assets/img/logo.png" alt=""></a>
                             </div>
                             <div class="form-group">
-                                <label>Nhập Email của bạn</label>
-                                <input type="text" class="form-control" autofocus>
+                                <label>Nhập Email Của Bạn</label>
+                                <input type="text" class="form-control" name="gmail" autofocus>
+                                <small style="color: red; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_FAIL}</small>
                             </div>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary account-btn" type="submit">Cài lại mật khẩu</button>
+                                <button class="btn btn-primary account-btn" type="submit" name="action" value="sendMail">Xác nhận Email</button>
                             </div>
                             <div class="text-center register-link">
                                 <a href="login.jsp">Quay về đăng nhập</a>

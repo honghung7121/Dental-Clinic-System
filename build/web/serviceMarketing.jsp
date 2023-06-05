@@ -30,7 +30,7 @@
     </head>
 
     <body>
-        
+
         <div class="main-wrapper">
 
             <jsp:include page="headerMarketing.jsp"></jsp:include>
@@ -40,9 +40,9 @@
                             <div class="col-sm-4 col-3">
                                 <h4 class="page-title">Quản Lý Dịch Vụ</h4>
                             </div>
-<!--                            <div class="col-sm-8 col-9 text-right m-b-20">
-                                <a href="add-service.jsp" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm Dịch Vụ</a>
-                            </div>-->
+                            <!--                            <div class="col-sm-8 col-9 text-right m-b-20">
+                                                            <a href="add-service.jsp" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm Dịch Vụ</a>
+                                                        </div>-->
                         </div>
                         <div class="row filter-row">
                             <div class="col-sm-6 col-md-3">
@@ -64,11 +64,11 @@
                                                 <th><a href="#">Tên dịch vụ</th>
                                                 <!--                                                <th>Mô Tả</th>-->
                                                 <th><a href="SortServiceController?page=${requestScope.current}&count=${requestScope.count}&flag=marketing">Giá Tiền</th>
-                                                <th><a href="#">Status</th>
-<!--                                                <th class="text-right">Action</th>-->
-                                            </tr>
-                                        </thead>
-                                        <tbody id="content">
+                                            <th><a href="#">Trạng Thái</th>
+                                            <!--                                                <th class="text-right">Action</th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody id="content">
 
                                         <fmt:setLocale value = "vi_VN"/>
                                         <c:forEach var="s" items="${sessionScope.ServiceList}" varStatus="count">
@@ -85,16 +85,16 @@
                                                 <c:if test="${s.isStatus()==false}">
                                                     <td><span class="custom-badge status-orange">Ngừng Hoạt Động</span></td>
                                                 </c:if>
-<!--                                                <td class="text-right">
-                                                    <div class="dropdown dropdown-action">
-                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="MainController?action=EditService&id=${s.getId()}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                            <a class="dropdown-item" href="deleteServiceController?id=${s.getId()}"><i class="fa fa-pencil m-r-5"></i> Delete</a>
-                                                                    <a class="dropdown-item" data-toggle="modal" data-target="#delete_schedule" href="?id=${s.getId()}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>-->
+                                                <!--                                                <td class="text-right">
+                                                                                                    <div class="dropdown dropdown-action">
+                                                                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                                                            <a class="dropdown-item" href="MainController?action=EditService&id=${s.getId()}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                                                                            <a class="dropdown-item" href="deleteServiceController?id=${s.getId()}"><i class="fa fa-pencil m-r-5"></i> Delete</a>
+                                                                                                                    <a class="dropdown-item" data-toggle="modal" data-target="#delete_schedule" href="?id=${s.getId()}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </td>-->
                                             </tr>
 
                                         </c:forEach>
@@ -117,21 +117,28 @@
 
                                     <c:choose>
                                         <c:when test="${currentPage <= 3}">
-                                            <c:forEach var="i" begin="1" end="3">
+                                            <c:forEach var="i" begin="${begin1}" end="${end1}">
                                                 <li class="page-item ${click == i ? "active":""}">
                                                     <a class="page-link" href="loadServiceMarketingController?page=${i}&click=true">${i}</a>
                                                 </li>
                                             </c:forEach>
                                         </c:when>
                                         <c:when test="${currentPage > 3}">
-                                            <c:forEach var="i" begin="4" end="6">
+                                            <c:forEach var="i" begin="${begin2}" end="${end2}">
                                                 <li class="page-item ${click == i ? "active":""}">
                                                     <a class="page-link" href="loadServiceMarketingController?page=${i}&click=true">${i}</a>
                                                 </li>
                                             </c:forEach>
                                         </c:when>
+                                        <c:when test="${currentPage > 6}">
+                                            <c:forEach var="i" begin="${begin3}" end="${end3}">
+                                                <li class="page-item ${click == i ? "active":""}">
+                                                    <a class="page-link" href="loadServiceController?page=${i}&click=true">${i}</a>
+                                                </li>
+                                            </c:forEach>
+                                        </c:when>
                                     </c:choose>
-                                    <c:if test="${currentPage < 6}">
+                                    <c:if test="${currentPage < totalPages}">
                                         <li class="page-item">
                                             <a class="page-link" href="loadServiceMarketingController?page=${currentPage + 1}&click=true">Next</a>
                                         </li>

@@ -51,11 +51,10 @@ public class AdvisoryDAO {
         }
         return list;
     }
-
-    public void CompletedAdvisory(int id) throws SQLException {
+    public void CompletedAdvisory(int id) throws SQLException{
         Connection con = null;
         PreparedStatement stm = null;
-        try {
+        try{
             con = Util.getConnection();
             if (con != null) {
                 String sql = "update tblAdvisory set status = 1 where id = ?";
@@ -63,9 +62,10 @@ public class AdvisoryDAO {
                 stm.setInt(1, id);
                 stm.executeUpdate();
             }
-        } catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
-        } finally {
+        }
+        finally{
             if (stm != null) {
                 stm.close();
             }
@@ -74,7 +74,6 @@ public class AdvisoryDAO {
             }
         }
     }
-
     public List<Advisory> sortByDateAdvisory(String orderBy) throws SQLException {
         List<Advisory> list = new ArrayList<>();
         Connection con = null;

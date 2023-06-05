@@ -38,8 +38,21 @@ public class loadServiceController extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             ServiceDAO sdao = new ServiceDAO();
-
-//            int totalPages = (int) Math.ceil((double) 10000 / 10);
+            int count = sdao.countService();
+            int totalPages = (int) Math.ceil((double) count / 10);
+            if (totalPages >= 1) {
+                request.setAttribute("begin1", 1);
+                request.setAttribute("end1", totalPages);
+            } if (totalPages >= 4 ) {
+                request.setAttribute("end1", 3);
+                request.setAttribute("begin2", 4);
+                request.setAttribute("end2", totalPages);
+            } if (totalPages >= 7) {
+                request.setAttribute("end2", 6);
+                request.setAttribute("begin3", 7);
+                request.setAttribute("end3", totalPages);
+            }
+            request.setAttribute("totalPages", totalPages);
             if (request.getParameter("click") == null) {
                 ArrayList<Service> slist = sdao.getService(0);
                 session.setAttribute("ServiceList", slist);
@@ -57,7 +70,7 @@ public class loadServiceController extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally { 
+        } finally {
             session.setAttribute("activeLink", "serviceLink");
             request.getRequestDispatcher("service-2.jsp").forward(request, response);
         }

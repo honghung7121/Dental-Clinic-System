@@ -42,39 +42,41 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
-                            <form action="MainController" method="get"> 
+                            <form action="MainController" method="post"> 
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Họ và Tên <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" name="createNameDentist" required="">
+                                            <input class="form-control" type="text" name="createNameDentist" required="" value="<%= (request.getParameter("createNameDentist")==null)?"": request.getParameter("createNameDentist") %>">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Email <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="email" name="createEmailDentist" required="">
+                                            <input class="form-control" type="email" name="createEmailDentist" required="" value="<%= (request.getParameter("createEmailDentist")==null)?"": request.getParameter("createEmailDentist") %>">
                                         </div>
+                                        <h6 style="color: red">${requestScope.reportEmail}</h6>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Mật Khẩu</label>
+                                            <label>Mật Khẩu <span class="text-danger">*</span></label>
                                             <input class="form-control" type="password" name="createPassDentist" required="">
                                         </div>
+                                        <h6 style="color: red">${requestScope.reportPass}</h6>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Nhập Lại Mật Khẩu</label>
+                                            <label>Nhập Lại Mật Khẩu <span class="text-danger">*</span></label>
                                             <input class="form-control" type="password" name="createPassAgainDentist" required="">
                                         </div>
-                                        <h6 style="color: red">${requestScope.report}</h6>
+                                        <h6 style="color: red">${requestScope.reportPassAgain}</h6>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Số điện thoại (10 số)</label>
-                                            <input class="form-control" type="number" name="createPhoneDentist" pattern="[0-9]{10}" required="">
+                                            <input class="form-control" type="number" name="createPhoneDentist" pattern="[0-9]{10}" required="" value="<%= (request.getParameter("createPhoneDentist")==null)?"": request.getParameter("createPhoneDentist") %>">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -82,7 +84,7 @@
                                             <label>Ảnh Đại Diện</label>
                                             <div class="profile-upload">
                                                 <div class="upload-img">
-                                                    <img alt="" src="assets/img/user.jpg"  name="createImgDentist" required="">
+                                                    <img alt="" src="assets/img/user.jpg"  name="createImgDentist" required="" value="<%= (request.getParameter("createImgDentist")==null)?"": request.getParameter("createImgDentist") %>">
                                                 </div>
                                                 <div class="upload-input">
                                                     <input type="file" class="form-control" required="">
@@ -93,7 +95,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="gender">Giới tính:</label>
-                                        <select id="gender" name="gender">
+                                        <select id="gender" name="gender" value="<%= (request.getParameter("txtname")==null)?"": request.getParameter("txtname") %>">
                                           <option value="Nam">Nam</option>
                                           <option value="Nữ">Nữ</option>
                                           <option value="Khác">Khác</option>
@@ -101,11 +103,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kinh nghiệm</label>
-                                    <textarea class="form-control" rows="3" cols="30" name="createExperienceDentist" required=""></textarea>
+                                    <textarea class="form-control" rows="3" cols="30" name="createExperienceDentist" required=""><%= (request.getParameter("createExperienceDentist")==null)?"": request.getParameter("createExperienceDentist") %></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Bằng cấp</label>
-                                    <textarea class="form-control" rows="3" cols="30" name="createDegreeDentist" required=""></textarea>
+                                    <textarea class="form-control" rows="3" cols="30" name="createDegreeDentist" required=""><%= (request.getParameter("createDegreeDentist")==null)?"": request.getParameter("createDegreeDentist") %></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label class="display-block">Trạng thái</label>
