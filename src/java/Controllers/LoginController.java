@@ -52,7 +52,9 @@ public class LoginController extends HttpServlet {
                 } else if (user.getRoleID() == 4) {
                     url = "GetAdvisoryController";
                 }else if (user.getRoleID() == 3) {
-                    url = "loadServiceMarketingController";
+                    url = "MarketingDentistController";
+                }else if (user.getRoleID() == 5) {
+                    url = "index.html";
                 }
             } else {
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");

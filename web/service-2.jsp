@@ -23,10 +23,16 @@
         <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <!--[if lt IE 9]>
-                    <script src="assets/js/html5shiv.min.js"></script>
-                    <script src="assets/js/respond.min.js"></script>
-            <![endif]-->
+        <style>      
+        .btnLink{
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #009ce7;
+            
+            font-weight: bold;
+        }
+    </style>
     </head>
 
     <body>
@@ -61,11 +67,18 @@
                                         <thead>
                                             <tr>
                                                 <th><a href="#">ID </th>
-                                                <th><a href="#">Tên dịch vụ</th>
+                                                <th><a href="#">Tên Dịch Vụ</th>
                                                 <!--                                                <th>Mô Tả</th>-->
-                                                <th><a href="SortServiceController?page=${requestScope.current}&count=${requestScope.count}&flag=ad">Giá Tiền</th>
+                                            <th>
+                                                <form action="SortServiceController" method="POST">
+                                                    <button class="btnLink" style="">Giá Tiền</button>
+                                                    <input type="hidden" name="page" value="${requestScope.current}">
+                                                    <input type="hidden" name="count" value="${requestScope.count}">
+                                                    <input type="hidden" name="flag" value="ad">
+                                                </form>
+                                            </th>
                                             <th><a href="#">Trạng Thái</th>
-                                            <th class="text-right">Tùy chọn</th>
+                                            <th class="text-right">Tùy Chọn</th>
                                         </tr>
                                     </thead>
                                     <tbody id="content">
@@ -78,7 +91,6 @@
                                                 <td><c:out value="${s.getName()}"></c:out></td>
 <!--                                                        <td><c:out value="${s.getMota()}"></c:out></td>-->
                                                 <td><fmt:formatNumber value="${s.getPrice()}" type = "currency"/></td>
-
                                                 <c:if test="${s.isStatus()==true}">
                                                     <td><span class="custom-badge status-green">Đang Hoạt Động</span></td>
                                                 </c:if>
