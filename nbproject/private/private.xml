@@ -2,19 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-
         <group>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/header.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/MainController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/LoginController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/ChangePasswordController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/DAL/UserDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Service/loadServiceController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/FeedbackDentist.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Patient/Patient.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/service-2.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Util/PasswordEncoder.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/forgotPassword.jsp</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Patient/Patient.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/confirmMailController.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/MainController.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/javaMailController.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/changePassword.jsp</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/private/private.xml</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Patient/AddPatient.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/editDentist.jsp</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/private/private.properties</file>
         </group>
     </open-files>
 </project-private>
