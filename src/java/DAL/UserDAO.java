@@ -650,7 +650,6 @@ public class UserDAO {
 
     public boolean checkEmailExists(String email) {
         Connection cn = null;
-        int kq = 0;
         boolean emailExists = false;
         try {
             cn = Util.getConnection();
