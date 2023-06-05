@@ -1,26 +1,23 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package Controllers;
 
-import DAL.SendDAO;
-import Models.User;
+import DAL.UserDAO;
+import Util.PasswordEncoder;
 import Util.SendMail;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class javaMailController extends HttpServlet {
+public class SignUpController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,28 +31,34 @@ public class javaMailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        HttpSession session = request.getSession();
         try {
-            /* TODO output your page here. You may use following sample code. */
-
-            String name = request.getParameter("gmail");
-            SendDAO dao = new SendDAO();
-            User user = dao.checkMail(name);
-            if (user != null) {
-                session.setAttribute("gmail", name);
-                String random = dao.getSoNgauNhien();
-                session.setAttribute("code", random);
-                SendMail.sendEmail(name, "Mail from Dental Clinic System", "Your verification code is: " + random, "forgot password");
-                url = "confirmEmail.jsp";
+            String fullName = request.getParameter("fullName");
+            String email = request.getParameter("email");
+            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+            String password = PasswordEncoder.toSHA1(request.getParameter(email));
+            UserDAO dao = new UserDAO();
+            String success = dao.signup(fullName, email, password, phoneNumber);
+            //request.setAttribute("SIGNUP_SUCCESS", success);
+            if (!success.equals("")) {
+                response.getWriter().write("success");
+                String content = "<!DOCTYPE html>\n"
+                        + "<html lang=\"en\">\n"
+                        + "<head>\n"
+                        + "</head>\n"
+                        + "<body>\n"
+                        + "    <h3 style=\"color: blue;\">CẢM ƠN BẠN ĐÃ ĐĂNG KÍ </h3>\n"
+                        + "    <div>Họ Và Tên:" + fullName + "</div>\n"
+                        + "    <div>Số Điện Thoại:" + phoneNumber + "</div>\n"
+                        + "    <div>Mã Bệnh Nhân:" + success + "</div>\n"
+                        + "    <h3 style=\"color: red;\">Hãy ghi nhớ mã bệnh nhân để thuận tiện trong quá trình trị liệu nhé!</h3>\n"
+                        + "</body>\n"
+                        + "</html>";
+                SendMail.sendEmail(email, "Đăng Kí Thành Công", content, "SignUp");
             } else {
-                request.setAttribute("SIGNUP_FAIL", "Email Không Tồn Tại");
-                url = "forgotPassword.jsp";
+                response.getWriter().write("fail");
             }
         } catch (Exception e) {
-           
-        }finally{
-             request.getRequestDispatcher(url).forward(request, response);
+            e.printStackTrace();
         }
     }
 

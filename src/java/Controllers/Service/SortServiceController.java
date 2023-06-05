@@ -38,6 +38,21 @@ public class SortServiceController extends HttpServlet {
         try {
             ServiceDAO sdao = new ServiceDAO();
             String count = request.getParameter("count");
+            int countSort = sdao.countService();
+            int totalPages = (int) Math.ceil((double) countSort / 10);
+            if (totalPages >= 1) {
+                request.setAttribute("begin1", 1);
+                request.setAttribute("end1", totalPages);
+            } if (totalPages >= 4 ) {
+                request.setAttribute("end1", 3);
+                request.setAttribute("begin2", 4);
+                request.setAttribute("end2", totalPages);
+            } if (totalPages >= 7) {
+                request.setAttribute("end2", 6);
+                request.setAttribute("begin3", 7);
+                request.setAttribute("end3", totalPages);
+            }
+            request.setAttribute("totalPages", totalPages);
             if (count.equals("true")) {
                 request.setAttribute("click", request.getParameter("page"));
                 int page = Integer.parseInt(request.getParameter("page"));

@@ -39,17 +39,17 @@
                                 <label>Nhập Mã Xác Nhận Của Bạn</label>
                                 <input type="text" class="form-control" name="maxacnhan"  required="" >
                             </div>
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label>Nhập Mã Xác Nhận Của Bạn</label>
                                 <input type="text" class="form-control" id="code2"  value="${sessionScope.code}" readonly="" required="" >
-                            </div>
+                            </div>-->
                             <div class="form-group" id="formPassword">
                                 <label>Nhập Mật Khẩu Mới</label>
-                                <input type="text" class="form-control" id="password1" name="pass1" required="" >
+                                <input type="password" class="form-control" id="password1" name="pass1" required="" >
                             </div>
                             <div class="form-group" >
                                 <label>Nhập Lại Mật Khẩu</label>
-                                <input type="text" class="form-control" id="password2" name="pass2" required="" >
+                                <input type="password" class="form-control" id="password2" name="pass2" required="" >
                             </div>
                             <h6 style="color: red">${requestScope.report}</h6>
                             <div class="form-group text-center">

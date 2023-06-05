@@ -31,7 +31,7 @@
 
     <body>
         <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
-        <div class="main-wrapper">
+            <div class="main-wrapper">
 
             <jsp:include page="header.jsp"></jsp:include>
                 <div class="page-wrapper">
@@ -64,11 +64,11 @@
                                                 <th><a href="#">Tên dịch vụ</th>
                                                 <!--                                                <th>Mô Tả</th>-->
                                                 <th><a href="SortServiceController?page=${requestScope.current}&count=${requestScope.count}&flag=ad">Giá Tiền</th>
-                                                <th><a href="#">Trạng Thái</th>
-                                                <th class="text-right">Tùy chọn</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="content">
+                                            <th><a href="#">Trạng Thái</th>
+                                            <th class="text-right">Tùy chọn</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="content">
 
                                         <fmt:setLocale value = "vi_VN"/>
                                         <c:forEach var="s" items="${sessionScope.ServiceList}">
@@ -117,21 +117,28 @@
 
                                     <c:choose>
                                         <c:when test="${currentPage <= 3}">
-                                            <c:forEach var="i" begin="1" end="3">
+                                            <c:forEach var="i" begin="${begin1}" end="${end1}">
                                                 <li class="page-item ${click == i ? "active":""}">
                                                     <a class="page-link" href="loadServiceController?page=${i}&click=true">${i}</a>
                                                 </li>
                                             </c:forEach>
                                         </c:when>
                                         <c:when test="${currentPage > 3}">
-                                            <c:forEach var="i" begin="4" end="6">
+                                            <c:forEach var="i" begin="${begin2}" end="${end2}">
+                                                <li class="page-item ${click == i ? "active":""}">
+                                                    <a class="page-link" href="loadServiceController?page=${i}&click=true">${i}</a>
+                                                </li>
+                                            </c:forEach>
+                                        </c:when>
+                                        <c:when test="${currentPage > 6}">
+                                            <c:forEach var="i" begin="${begin3}" end="${end3}">
                                                 <li class="page-item ${click == i ? "active":""}">
                                                     <a class="page-link" href="loadServiceController?page=${i}&click=true">${i}</a>
                                                 </li>
                                             </c:forEach>
                                         </c:when>
                                     </c:choose>
-                                    <c:if test="${currentPage < 6}">
+                                    <c:if test="${currentPage < totalPages}">
                                         <li class="page-item">
                                             <a class="page-link" href="loadServiceController?page=${currentPage + 1}&click=true">Next</a>
                                         </li>

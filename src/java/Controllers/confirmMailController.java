@@ -7,6 +7,7 @@ package Controllers;
 
 import DAL.SendDAO;
 import DAL.UserDAO;
+import Util.PasswordEncoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -42,8 +43,9 @@ public class confirmMailController extends HttpServlet {
             String pass2 = request.getParameter("pass2");
             if (pass1.equals(pass2) && code1.equals(code2)) {
                 String gmail = String.valueOf(session.getAttribute("gmail"));
+                String passnewagain = PasswordEncoder.toSHA1(request.getParameter("pass1"));
                 SendDAO dao = new SendDAO();
-                dao.forgotPass(pass1, gmail);
+                dao.forgotPass(passnewagain, gmail);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
                 request.setAttribute("report", "Mật khẩu không trùng khớp. Xin mời nhập lại");
