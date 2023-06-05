@@ -49,11 +49,11 @@
                         <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
                         <span class="status online"></span>
                     </span>
-                    <span>Marketing</span>
+                    <span>${sessionScope.User.getFullName()}</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="myprofile.jsp">My Profile</a>
-                    <a class="dropdown-item" href="MainController?action=Logout">Logout</a>
+                    <a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a>
+                    <a class="dropdown-item" href="MainController?action=Logout">Đăng Xuất</a>
                 </div>
             </li>
         </ul>
@@ -123,21 +123,21 @@
                     </li>
                     
                     <li>
-                        <a href="appointments.jsp"><i class="fa fa-calendar"></i> <span>Lịch Hẹn</span></a>
+                        <a href="MainController?action=searchAppointmentByDate"><i class="fa fa-calendar"></i> <span>Lịch Hẹn</span></a>
                     </li>
                     <li class="${serviceLink}">
                         <a href="MainController?action=ServiceMarketing"><i class="fa fa-cube"></i> <span>Dịch Vụ</span></a>
                     </li>
                     
 
-                    <li class="submenu ${employeeLink}">
+<!--                    <li class="submenu ${employeeLink}">
                         <a href="#"><i class="fa fa-user"></i> <span> Nhân Viên </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
                             <li><a href="MainController?action=GetEmployees&index=1&click=1" style="color: ${employeeLink1}">Danh Sách Nhân Viên</a></li>
                             <li><a href="holidays.html" style="color: ${employeeLink2}">Ngày Nghỉ</a></li>
                             <li><a href="attendance.html" style="color: ${employeeLink3}">Điểm Danh</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                     
                     <li class="submenu ${feedbackLink}">
                         <a href="#"><i class="fa fa-comment"></i> <span> Phản hồi </span> <span class="menu-arrow"></span></a>

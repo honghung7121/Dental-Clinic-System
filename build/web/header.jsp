@@ -49,7 +49,7 @@
                         <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
                         <span class="status online"></span>
                     </span>
-                    <span>Admin</span>
+                    <span>${sessionScope.User.getFullName()}</span>
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="myprofile.jsp">Tài Khoản Của Tôi</a>

@@ -64,7 +64,7 @@
                                                 <th><a href="#">Tên dịch vụ</th>
                                                 <!--                                                <th>Mô Tả</th>-->
                                                 <th><a href="SortServiceController?page=${requestScope.current}&count=${requestScope.count}&flag=marketing">Giá Tiền</th>
-                                            <th><a href="#">Status</th>
+                                            <th><a href="#">Trạng Thái</th>
                                             <!--                                                <th class="text-right">Action</th>-->
                                         </tr>
                                     </thead>

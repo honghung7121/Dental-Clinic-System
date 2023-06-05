@@ -35,7 +35,9 @@ public class SignUpController extends HttpServlet {
             String fullName = request.getParameter("fullName");
             String email = request.getParameter("email");
             int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
-            String password = PasswordEncoder.toSHA1(request.getParameter(email));
+            
+            String password = PasswordEncoder.toSHA1(request.getParameter("password"));
+            
             UserDAO dao = new UserDAO();
             String success = dao.signup(fullName, email, password, phoneNumber);
             //request.setAttribute("SIGNUP_SUCCESS", success);
