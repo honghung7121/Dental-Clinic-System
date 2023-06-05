@@ -1,26 +1,24 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers;
+package Controllers.Advisory;
 
-import DAL.SendDAO;
-import Models.User;
-import Util.SendMail;
+import DAL.AdvisoryDAO;
+import Models.Advisory;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class javaMailController extends HttpServlet {
+public class SortDateAdvisoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,27 +33,27 @@ public class javaMailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = "";
-        HttpSession session = request.getSession();
         try {
-            /* TODO output your page here. You may use following sample code. */
-
-            String name = request.getParameter("gmail");
-            SendDAO dao = new SendDAO();
-            User user = dao.checkMail(name);
-            if (user != null) {
-                session.setAttribute("gmail", name);
-                String random = dao.getSoNgauNhien();
-                session.setAttribute("code", random);
-                SendMail.sendEmail(name, "Mail from Dental Clinic System", "Your verification code is: " + random, "forgot password");
-                url = "confirmEmail.jsp";
-            } else {
-                request.setAttribute("SIGNUP_FAIL", "Email Không Tồn Tại");
-                url = "forgotPassword.jsp";
+            String sortBy = request.getParameter("sortBy");
+            AdvisoryDAO dao = new AdvisoryDAO();
+            if (sortBy.equals("")) {
+                List<Advisory> list = dao.sortByDateAdvisory("DESC");
+                request.setAttribute("ADVISORY_LIST", list);
+                request.setAttribute("SORT_BY", "ASC");
+            } else if (sortBy.equals("ASC")) {
+                List<Advisory> list = dao.sortByDateAdvisory("ASC");
+                request.setAttribute("ADVISORY_LIST", list);
+                request.setAttribute("SORT_BY", "DESC");
+            } else if (sortBy.equals("DESC")) {
+                List<Advisory> list = dao.sortByDateAdvisory("DESC");
+                request.setAttribute("ADVISORY_LIST", list);
+                request.setAttribute("SORT_BY", "ASC");
             }
+            url = "headerConsultant.jsp";
         } catch (Exception e) {
-           
-        }finally{
-             request.getRequestDispatcher(url).forward(request, response);
+            e.printStackTrace();
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

@@ -180,6 +180,38 @@ public class ServiceDAO {
         } catch (Exception e) {
         }
     }
+    
+    public int countService() {
+        Connection cn = null;
+        String sql = "SELECT COUNT(*) AS total_rows FROM tblService;";
+        int totalRows = 0;
+
+        try {
+            cn = Util.getConnection();
+            PreparedStatement pst = cn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                totalRows = rs.getInt("total_rows");
+            }
+
+            rs.close();
+            pst.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng kết nối sau khi sử dụng
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return totalRows;
+    }
 
     public List<Service> searchServiceByName(String name) {
         List<Service> list = new ArrayList<>();
