@@ -38,7 +38,6 @@ public class javaMailController extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
-
             final String name = request.getParameter("gmail");
             SendDAO dao = new SendDAO();
             
