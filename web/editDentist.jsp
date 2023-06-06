@@ -30,8 +30,8 @@
     </head>
 
     <body>
-         <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
-        <div class="main-wrapper">
+        <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
+            <div class="main-wrapper">
 
             <jsp:include page="header.jsp"></jsp:include>
                 <div class="page-wrapper">
@@ -49,27 +49,26 @@
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
                             <form action="MainController" method="get">
-                                <input type="hidden" name="editIDDentist" value="<%= dentist.getId() %>">
+                                <input type="hidden" name="editIDDentist" value="<%= dentist.getId()%>">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Họ và Tên <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="text" value="<%= dentist.getFullName() %>" name="editNameDentist">
+                                            <input class="form-control" type="text" value="<%= dentist.getFullName()%>" name="editNameDentist">
                                         </div>
                                     </div>
-
-
+                                        
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Email <span class="text-danger">*</span></label>
-                                            <input class="form-control" type="email" name="editEmailDentist" value="<%= dentist.getEmail() %>">
+                                            <input class="form-control" type="email" name="editEmailDentist" value="<%= dentist.getEmail()%>">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Số Điện Thoại (10 số) </label>
-                                            <input class="form-control" type="text" name="editPhoneDentist" pattern="[0-9]{10}" value="0<%= dentist.getPhoneNumber() %>">
+                                            <input class="form-control" type="text" name="editPhoneDentist" pattern="[0-9]{10}" value="0<%= dentist.getPhoneNumber()%>">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -85,41 +84,41 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gender">Giới tính:</label>
+                                    <div class="form-group">
+                                        <label for="gender">Giới tính:</label>
                                         <select id="gender" name="gender">
-                                          <option value="Nam">Nam</option>
-                                          <option value="Nữ">Nữ</option>
-                                          <option value="Khác">Khác</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                            <option value="Khác">Khác</option>
                                         </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Kinh nghiệm</label>
-                                    <textarea class="form-control" name="editExperienceDentist" placeholder="<%= dentist.getExperience()%>" rows="3" cols="30"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Bằng cấp</label>
-                                    <textarea class="form-control" name="editDegreeDentist" placeholder="<%= dentist.getDegree()%>" rows="3" cols="30"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="display-block">Trạng thái</label>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="editStatusDentist" id="doctor_active" value="1" checked>
-                                        <label class="form-check-label" for="doctor_active">
-                                            Đã kích hoạt
-                                        </label>
                                     </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="editStatusDentist" id="doctor_inactive" value="0">
-                                        <label class="form-check-label" for="doctor_inactive">
-                                            Chưa kích hoạt
-                                        </label>
+                                    <div class="form-group">
+                                        <label>Kinh nghiệm</label>
+                                        <textarea class="form-control" name="editExperienceDentist" placeholder="<%= dentist.getExperience()%>" rows="3" cols="30"></textarea>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label>Bằng cấp</label>
+                                        <textarea class="form-control" name="editDegreeDentist" placeholder="<%= dentist.getDegree()%>" rows="3" cols="30"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="display-block">Trạng thái</label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="editStatusDentist" id="doctor_active" value="1" checked>
+                                            <label class="form-check-label" for="doctor_active">
+                                                Đã kích hoạt
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="editStatusDentist" id="doctor_inactive" value="0">
+                                            <label class="form-check-label" for="doctor_inactive">
+                                                Chưa kích hoạt
+                                            </label>
+                                        </div>
+                                    </div>
 
-                                <div class="m-t-20 text-center">
-                                    <button class="btn btn-primary submit-btn" name="action" value="saveDentist">Lưu</button>
+                                    <div class="m-t-20 text-center">
+                                        <button class="btn btn-primary submit-btn" name="action" value="saveDentist">Lưu</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

@@ -7,7 +7,7 @@
     <!-- employees23:21-->
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
         <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -25,18 +25,21 @@
     </head>
 
     <body>
+        <c:set var="role" value="${sessionScope.role}" />
+        <c:set var="isAdmin" value="${role eq 1}" />
+        <c:set var="isMarketing" value="${role eq 3}" />
         <div class="main-wrapper">
-
-            <jsp:include page="header.jsp"></jsp:include>
-                <div class="page-wrapper">
-                    <div class="content">
-                        <div class="row">
-                            <div class="col-sm-4 col-3">
-                                <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
-                            </div>
-                            <div class="col-sm-8 col-9 text-right m-b-20">
-                                <form action="MainController" method="get">
-                                    <input placeholder="Tìm Kiếm" type="text" name="txt" value="">
+            <c:if test="${isMarketing}">
+                <jsp:include page="headerMarketing.jsp"></jsp:include>
+                    <div class="page-wrapper">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-4 col-3">
+                                    <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
+                                </div>
+                                <div class="col-sm-8 col-9 text-right m-b-20">
+                                    <form action="MainController" method="post" accept-charset="UTF-8">
+                                        <input placeholder="Tìm Kiếm" type="text" name="txt" value="<c:out value="${empty param.txt ? '' : param.txt}" escapeXml="false" />">
                                     <select name="searchby">
                                         <option value="bycustomername">Theo Tên Khách Hàng</option>
                                         <option value="bydentistname">Theo Tên Nha Sĩ</option>
@@ -45,6 +48,18 @@
                                 </form>
                             </div>
                         </div>
+                        <!--                            <div class="row filter-row">
+                                                        <div class="col-sm-6 col-md-3">
+                                                            <div class="form-group form-focus">
+                                                                <label class="focus-label">Tìm Phản Hồi</label>
+                                                                <input oninput="searchByName(this)" type="text" name="txt" class="form-control floating">
+                                                                <select name="searchby">
+                                                                    <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                                                    <option value="bydentistname">Theo Tên Nha Sĩ</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>-->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -56,62 +71,42 @@
                                                 <th><a href="#">Tên Nha Sĩ</a></th>
                                                 <th><a href="#">Đánh Giá</a></th>
                                                 <th><a href="#">Nội dung</a></th>
-                                                <th><a href="#">Tùy chọn</a></th>
                                             </tr>                                        
                                         </thead>
-                                        <tbody>
-                                        <c:forEach var="feedback" items="${sessionScope.list}">
-                                            <tr>
-                                                <td><c:out value="${feedback.getId()}"></c:out></td>
-                                                <td><c:out value="${feedback.getNamecustomer()}"></c:out></td>
-                                                <td><c:out value="${feedback.getNamedentist()}"></c:out></td>
-                                                    <td class="rating">
-                                                    <c:set var="rating" value="${feedback.getRate()}" /> <!-- Số điểm rating -->
-                                                    <c:forEach begin="1" end="5" var="star">
-                                                        <span class="star">
-                                                            <c:choose>
-                                                                <c:when test="${star <= rating}">
-                                                                    <span style='color: gold;'>★</span> <!-- Hiển thị ngôi sao đã chọn -->
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    &#9734; <!-- Hiển thị ngôi sao chưa chọn -->
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </span>
-                                                    </c:forEach>
-                                                </td>
-                                                <td><c:out value="${feedback.getComment()}"></c:out></td>
-                                                    <td class="text-right">
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item delete-schedule" href="#" data-toggle="modal" data-target="#delete_schedule"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                            </div>
-                                                        </div>
+                                        <tbody id="content">
+                                            <c:forEach var="feedback" items="${sessionScope.list}">
+                                                <tr>
+                                                    <td><c:out value="${feedback.getId()}"></c:out></td>
+                                                    <td><c:out value="${feedback.getNamecustomer()}"></c:out></td>
+                                                    <td><c:out value="${feedback.getNamedentist()}"></c:out></td>
+                                                        <td class="rating">
+                                                        <c:set var="rating" value="${feedback.getRate()}" /> <!-- Số điểm rating -->
+                                                        <c:forEach begin="1" end="5" var="star">
+                                                            <span class="star">
+                                                                <c:choose>
+                                                                    <c:when test="${star <= rating}">
+                                                                        <span style='color: gold;'>★</span>  <!-- Hiển thị ngôi sao đã chọn -->
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        &#9734; <!-- Hiển thị ngôi sao chưa chọn -->
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </span>
+                                                        </c:forEach>
                                                     </td>
-                                                </tr>
-                                        </c:forEach>                                        
-                                    </tbody>
-                                </table>
+                                                    <td><c:out value="${feedback.getComment()}"></c:out></td>
+                                                    </tr>
+                                            </c:forEach>                                        
+                                        </tbody>
+                                    </table>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-<!--            <div id="delete_schedule" class="modal fade delete-modal" role="dialog">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body text-center">
-                            <img src="assets/img/sent.png" alt="" width="50" height="46">
-                            <h3>Are you sure want to delete this Schedule?</h3>
-                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
+
+            </c:if>
         </div>
         <script src="assets/js/title_sort.js"></script>                        
 
@@ -124,28 +119,10 @@
         <script src="assets/js/select2.min.js"></script>
         <script src="assets/js/moment.min.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
-            function searchByName(param) {
-                var txtSearch = param.value;
-                $.ajax({
-                    url: "/SWP391-SE1743/SearchFeedbackDentistController",
-                    type: "get", //send it through get method
-                    data: {
-                        txt: txtSearch
-                    },
-                    success: function (data) {
-                        var row = document.getElementById("content");
-                        row.innerHTML = data;
-                    },
-                    error: function (xhr) {
-                        //Do Something to handle error
-                    }
-                });
-            }
-        </script>
-        <script>
-            // Lắng nghe sự kiện click của nút "Delete" cho từng mục
+// Lắng nghe sự kiện click của nút "Delete" cho từng mục
             document.querySelectorAll('.delete-schedule').forEach(function (item) {
                 item.addEventListener('click', function (event) {
                     event.preventDefault();
@@ -161,11 +138,18 @@
 
                     // Kiểm tra sự chấp nhận của người dùng
                     if (confirmation) {
-                        // Tạo một đường dẫn (URL) mới với action "Delete Feedback Dentist" và ID của phản hồi
-                        var url = 'MainController?action=Delete%20Feedback%20Dentist&id=' + feedbackId;
-
-                        // Chuyển hướng đến đường dẫn mới
-                        window.location.href = url;
+                        // Gửi yêu cầu AJAX để xóa phần tử
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', 'MainController?action=Delete%20Feedback%20Dentist&id=' + feedbackId);
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                // Xóa phần tử khỏi giao diện
+                                feedbackRow.remove();
+                            } else {
+                                console.error('Đã xảy ra lỗi khi xóa phản hồi.');
+                            }
+                        };
+                        xhr.send();
                     } else {
                         // Xử lý khi người dùng không đồng ý xóa
                         console.log('Hủy xóa');
@@ -173,6 +157,30 @@
                     }
                 });
             });
+        </script>  
+        <script>
+            function searchByName(param) {
+                var txtSearch = param.value;
+                var searchBy = document.getElementsByName("searchby")[0].value;
+                $.ajax({
+                    url: "MainController?action=Search Feedback Dentist",
+                    type: "get",
+                    data: {
+                        txt: txtSearch,
+                        searchby: searchBy
+                    },
+                    success: function (data) {
+                        let row = document.getElementById("content");
+                        row.innerHTML = data;
+                    },
+                    error: function (xhr) {
+                        console.error(xhr);
+                    }
+                });
+            }
+
         </script>
+
+
     </body>
 </html>
