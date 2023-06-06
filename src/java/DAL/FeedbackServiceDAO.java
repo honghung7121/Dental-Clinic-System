@@ -73,9 +73,9 @@ public class FeedbackServiceDAO {
                         + "from tblFeedBackService, tblUser, tblService\n"
                         + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and ";
                 if (searchby.equalsIgnoreCase("bycustomername")) {
-                    sql = sql + " tblUser.fullName like ?";
+                    sql = sql + " tblUser.fullName like ? COLLATE SQL_Latin1_General_CP1_CI_AI";
                 } else {
-                    sql = sql + " tblService.serviceName like ?";
+                    sql = sql + " tblService.serviceName like ? COLLATE SQL_Latin1_General_CP1_CI_AI";
                 }
                 pst = cn.prepareStatement(sql);
                 pst.setString(1, "%" + keyword + "%");

@@ -33,29 +33,40 @@ public class SignUpController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String fullName = request.getParameter("fullName");
-            String email = request.getParameter("email");
+            final String email = request.getParameter("email");
             int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
-            
+
             String password = PasswordEncoder.toSHA1(request.getParameter("password"));
-            
+
             UserDAO dao = new UserDAO();
             String success = dao.signup(fullName, email, password, phoneNumber);
             //request.setAttribute("SIGNUP_SUCCESS", success);
             if (!success.equals("")) {
                 response.getWriter().write("success");
-                String content = "<!DOCTYPE html>\n"
+                final String content = "<!DOCTYPE html>\n"
                         + "<html lang=\"en\">\n"
                         + "<head>\n"
                         + "</head>\n"
                         + "<body>\n"
                         + "    <h3 style=\"color: blue;\">CẢM ƠN BẠN ĐÃ ĐĂNG KÍ </h3>\n"
                         + "    <div>Họ Và Tên:" + fullName + "</div>\n"
-                        + "    <div>Số Điện Thoại:" + phoneNumber + "</div>\n"
+                        + "    <div>Số Điện Thoại: 0" + phoneNumber + "</div>\n"
                         + "    <div>Mã Bệnh Nhân:" + success + "</div>\n"
                         + "    <h3 style=\"color: red;\">Hãy ghi nhớ mã bệnh nhân để thuận tiện trong quá trình trị liệu nhé!</h3>\n"
                         + "</body>\n"
                         + "</html>";
-                SendMail.sendEmail(email, "Đăng Kí Thành Công", content, "SignUp");
+                Runnable myRunnable = new Runnable() {
+                    public void run() {
+                        // Các công việc được thực thi trong luồng này
+                        SendMail.sendEmail(email, "Đăng Kí Thành Công", content, "SignUp");
+                    }
+                };
+                Thread thread = new Thread(myRunnable);
+
+                // Khởi chạy luồng
+                thread.start();
+//                SendMail.sendEmail(email, "Đăng Kí Thành Công", content, "SignUp");
+
             } else {
                 response.getWriter().write("fail");
             }

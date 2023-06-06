@@ -50,9 +50,15 @@ public class CreateDentistController extends HttpServlet {
             
             boolean checkemail = dao.checkEmailExists(email);
             if (checkemail) {
-                request.setAttribute("reportEmail", "Email này đã được sử dụng!!!");
+                request.setAttribute("reportEmail", "Email đã tồn tại!");
                 request.getRequestDispatcher("addDentist.jsp").forward(request, response);
             }
+            if (pass.length() < 8 || !pass.matches(".*[A-Z].*")) {
+                request.setAttribute("reportPass", "Mật khẩu phải có ít nhất 8 ký tự và có 1 chữ cái viết hoa");
+                request.getRequestDispatcher("addDentist.jsp").forward(request, response);
+                return;
+            }
+            
             boolean check = false;
             if (pass.equals(passAgain)) {
                 check = DentistDAO.insertDentist(fullname, phone, email, pass, degree, experience, img, status, gender);
@@ -62,7 +68,7 @@ public class CreateDentistController extends HttpServlet {
                 else request.getRequestDispatcher("MainController?action=dentist").forward(request, response);
             }
             else{
-                request.setAttribute("reportPass", "Mật khẩu không trùng khớp. Xin mời nhập lại");
+                request.setAttribute("reportPassAgain", "Mật khẩu không trùng khớp. Xin mời nhập lại");
                 request.getRequestDispatcher("addDentist.jsp").forward(request, response);
             }
             
