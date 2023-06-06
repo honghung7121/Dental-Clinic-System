@@ -94,13 +94,13 @@
                         </div>
                     </div>
                     <div class="profile-tabs">
-                        <ul class="nav nav-tabs nav-tabs-bottom">
+<!--                        <ul class="nav nav-tabs nav-tabs-bottom">
                             <li class="nav-item"><a class="nav-link active" href="#about-cont" data-toggle="tab">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="#bottom-tab2" data-toggle="tab">Profile</a></li>
                             <li class="nav-item"><a class="nav-link" href="#bottom-tab3" data-toggle="tab">Messages</a></li>
-                        </ul>
+                        </ul>-->
 
-                        <div class="tab-content">
+<!--                        <div class="tab-content">
                             <div class="tab-pane show active" id="about-cont">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -184,7 +184,7 @@
                             <div class="tab-pane" id="bottom-tab3">
                                 Tab content 3
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="notification-box">
