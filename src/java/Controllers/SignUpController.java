@@ -35,7 +35,9 @@ public class SignUpController extends HttpServlet {
             String fullName = request.getParameter("fullName");
             final String email = request.getParameter("email");
             int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+
             String password = PasswordEncoder.toSHA1(request.getParameter("password"));
+
             UserDAO dao = new UserDAO();
             String success = dao.signup(fullName, email, password, phoneNumber);
             //request.setAttribute("SIGNUP_SUCCESS", success);
@@ -64,6 +66,7 @@ public class SignUpController extends HttpServlet {
                 // Khởi chạy luồng
                 thread.start();
 //                SendMail.sendEmail(email, "Đăng Kí Thành Công", content, "SignUp");
+
             } else {
                 response.getWriter().write("fail");
             }

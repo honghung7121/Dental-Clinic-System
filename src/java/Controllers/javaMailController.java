@@ -55,6 +55,7 @@ public class javaMailController extends HttpServlet {
                 Thread thread = new Thread(myRunnable);
                 thread.start();
                 url = "confirmEmail.jsp";
+                
             } else {
                 request.setAttribute("SIGNUP_FAIL", "Email Không Tồn Tại");
                 url = "forgotPassword.jsp";

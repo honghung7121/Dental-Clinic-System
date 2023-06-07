@@ -43,7 +43,7 @@
                             <h4 class="page-title">Lịch Hẹn</h4>
                         </div>
                         <div class="col-sm-4 col-4">
-                            <form action="MainController" method="get">
+                            <form action="MainController" method="post">
                                 Từ <input type="date" name="from" placeholder="dd/mm/yyyy"> 
                                 Đến <input type="date" name="to" placeholder="dd/mm/yyyy">
                                 <button type="submit" value="searchAppointmentByDate" name="action">Tìm Kiếm</button>

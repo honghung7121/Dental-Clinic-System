@@ -132,11 +132,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="about.html" class="nav-item nav-link active">About</a>
-                    <a href="service.html" class="nav-item nav-link">Service</a>
+                    <a href="index.html" class="nav-item nav-link">Trang Chủ</a>
+                    <a href="about.html" class="nav-item nav-link active">Về Chúng Tôi</a>
+                    <a href="service.html" class="nav-item nav-link">Dịch Vụ</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Khác</a>
                         <div class="dropdown-menu m-0">
                             <a href="price.html" class="dropdown-item">Pricing Plan</a>
                             <a href="team.html" class="dropdown-item">Our Dentist</a>
@@ -144,11 +144,11 @@
                             <a href="appointment.html" class="dropdown-item">Appointment</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="contact.html" class="nav-item nav-link">Liên Hệ</a>
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>
-                <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Appointment</a>
+                <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Đăng Ký Cuộc Hẹn</a>
             </div>
         </nav>
         <div class="login-wrap">
