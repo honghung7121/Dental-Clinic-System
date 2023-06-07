@@ -160,14 +160,14 @@
                         <form action="MainController" method="POST">
                             <div class="group">
                                 <label for="user" class="label">Email</label>
-                                <input id="user" name="accountName" type="text" class="input">
+                                <input id="user" name="accountName" type="text" class="input" value="${cookie.emailCookie.value}">
                             </div>
                             <div class="group">
                                 <label for="pass" class="label">Mật Khẩu</label>
-                                <input id="pass" name="password" type="password" class="input" data-type="password">
+                                <input id="pass" name="password" type="password" class="input" data-type="password" value="${cookie.passwordCookie.value}">
                             </div>
                             <div class="group">
-                                <input id="check" type="checkbox" class="check" checked>
+                                <input name="remember" id="check" type="checkbox" class="check" value="checked">
                                 <label for="check"><span class="icon"></span> Nhớ Mật Khẩu</label></br>
                                 <small style="color: #00E77F; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_SUCCESSFULLY}</small>
                                 <small style="color: red; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_FAIL}</small>
