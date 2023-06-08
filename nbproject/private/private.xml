@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/header.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/MainController.java</file>
@@ -13,5 +14,8 @@
             <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/forgotPassword.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/serviceUser.jsp</file>
         </group>
+=======
+        <group/>
+>>>>>>> af8ad6c8df3befd22e8c7bb48b5e43e3b36be5ff
     </open-files>
 </project-private>

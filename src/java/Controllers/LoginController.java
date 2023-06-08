@@ -10,6 +10,7 @@ import Util.PasswordEncoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +40,15 @@ public class LoginController extends HttpServlet {
         try {
             String accountName = request.getParameter("accountName");
             String password = request.getParameter("password");
-
+            String remember = request.getParameter("remember");
+            if (remember != null) {
+                Cookie emailCookie = new Cookie("emailCookie", accountName);
+                Cookie passwordCookie = new Cookie("passwordCookie", password);
+                emailCookie.setMaxAge(86400);
+                passwordCookie.setMaxAge(86400);
+                response.addCookie(emailCookie);
+                response.addCookie(passwordCookie);
+            }
             String encryptedpassword = PasswordEncoder.toSHA1(password.trim());
 
             UserDAO dao = new UserDAO();
@@ -51,9 +60,9 @@ public class LoginController extends HttpServlet {
                     url = "DashBoardController";
                 } else if (user.getRoleID() == 4) {
                     url = "GetAdvisoryController";
-                }else if (user.getRoleID() == 3) {
+                } else if (user.getRoleID() == 3) {
                     url = "MarketingDentistController";
-                }else if (user.getRoleID() == 5) {
+                } else if (user.getRoleID() == 5) {
                     url = "index.html";
                 }
             } else {

@@ -123,26 +123,53 @@
     </head>
 
     <body>
-        <jsp:include page="headerUser.jsp"></jsp:include>
-            <div class="login-wrap">
-                <div class="login-html">
-                    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Đăng Nhập</label>
-                    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Đăng Kí</label>
-                    <div class="login-form">
-                        <div class="sign-in-htm">
-                            <form action="MainController" method="POST">
-                                <div class="group">
-                                    <label for="user" class="label">Email</label>
-                                    <input style="border-radius: 0" id="user" name="accountName" type="text" class="input">
-                                </div>
-                                <div class="group">
-                                    <label for="pass" class="label">Mật Khẩu</label>
-                                    <input style="border-radius: 0" id="pass" name="password" type="password" class="input" data-type="password">
-                                </div>
-                                <div class="group">
-                                    <input style="border-radius: 0" id="check" type="checkbox" class="check" checked>
-                                    <label for="check"><span class="icon"></span> Nhớ Mật Khẩu</label></br>
-                                    <small style="color: #00E77F; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_SUCCESSFULLY}</small>
+        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0">
+                <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>DentCare</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="index.html" class="nav-item nav-link">Trang Chủ</a>
+                    <a href="about.html" class="nav-item nav-link active">Về Chúng Tôi</a>
+                    <a href="service.html" class="nav-item nav-link">Dịch Vụ</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Khác</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="price.html" class="dropdown-item">Pricing Plan</a>
+                            <a href="team.html" class="dropdown-item">Our Dentist</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="appointment.html" class="dropdown-item">Appointment</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Liên Hệ</a>
+                </div>
+                <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                        class="fa fa-search"></i></button>
+                <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Đăng Ký Cuộc Hẹn</a>
+            </div>
+        </nav>
+        <div class="login-wrap">
+            <div class="login-html">
+                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Đăng Nhập</label>
+                <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Đăng Kí</label>
+                <div class="login-form">
+                    <div class="sign-in-htm">
+                        <form action="MainController" method="POST">
+                            <div class="group">
+                                <label for="user" class="label">Email</label>
+                                <input style="border-radius: 0" id="user" name="accountName" type="text" class="input" value="${cookie.emailCookie.value}">
+                            </div>
+                            <div class="group">
+                                <label for="pass" class="label">Mật Khẩu</label>
+                                <input style="border-radius: 0" id="pass" name="password" type="password" class="input" data-type="password" value="${cookie.passwordCookie.value}">
+                            </div>
+                            <div class="group">
+                                <input name="remember" id="check" type="checkbox" class="check" value="checked">
+                                <label for="check"><span class="icon"></span> Nhớ Mật Khẩu</label></br>
+                                <small style="color: #00E77F; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_SUCCESSFULLY}</small>
                                 <small style="color: red; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_FAIL}</small>
                             </div>
                             <div class="group">
@@ -173,10 +200,10 @@
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Nhập Lại Mật Khẩu</label>
-                            <input style="border-radius: 0" id="password2" type="password" class="input" data-type="password">
+                            <input style="border-radius: 0"  id="password2" type="password" class="input" data-type="password">
                         </div>
                         <div class="group" id="formSignUp">
-                            <input style="background-color: #06A3DA; border-radius: 0;" onclick="signup(this)"  type="submit" class="button" value="Đăng Kí">
+                            <input onclick="signup(this)" style="background-color: #06A3DA; border-radius: 0;" type="submit" class="button" value="Đăng Kí">
                         </div>
                         <div class="foot-lnk">
                             <label style="cursor: pointer;" for="tab-1">Bạn Đã Là Thành Viên?</a>
@@ -237,7 +264,7 @@
                                         div.classList.add('active');
                                     } else {
                                         let formSignUp = document.getElementById('formSignUp');
-                                        formSignUp.innerHTML += '<label class="errorMessage" style="color: red; margin-top:5px">Email Đã Được Đăng Kí</label>';
+                                        formSignUp.innerHTML+='<label class="errorMessage" style="color: red; margin-top:5px">Email Đã Được Đăng Kí</label>';
                                     }
                                 },
                                 error: function (error) {
