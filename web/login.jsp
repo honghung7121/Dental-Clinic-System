@@ -160,11 +160,11 @@
                         <form action="MainController" method="POST">
                             <div class="group">
                                 <label for="user" class="label">Email</label>
-                                <input id="user" name="accountName" type="text" class="input" value="${cookie.emailCookie.value}">
+                                <input style="border-radius: 0" id="user" name="accountName" type="text" class="input" value="${cookie.emailCookie.value}">
                             </div>
                             <div class="group">
                                 <label for="pass" class="label">Mật Khẩu</label>
-                                <input id="pass" name="password" type="password" class="input" data-type="password" value="${cookie.passwordCookie.value}">
+                                <input style="border-radius: 0" id="pass" name="password" type="password" class="input" data-type="password" value="${cookie.passwordCookie.value}">
                             </div>
                             <div class="group">
                                 <input name="remember" id="check" type="checkbox" class="check" value="checked">
@@ -173,7 +173,7 @@
                                 <small style="color: red; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_FAIL}</small>
                             </div>
                             <div class="group">
-                                <input style="background-color: #06A3DA;" type="submit" class="button" name="action" value="Login">
+                                <button style="background-color: #06A3DA; border-radius: 0;" type="submit" class="button" name="action" value="Login">Đăng Nhập</button>
                             </div>
                         </form>
                         <div class="hr"></div>
@@ -184,26 +184,26 @@
                     <div class="sign-up-htm" >
                         <div class="group" id="formFullName">
                             <label for="user" class="label">Họ Và Tên</label>
-                            <input id="fullName" name="fullName" type="text" class="input">
+                            <input style="border-radius: 0" id="fullName" name="fullName" type="text" class="input">
                         </div>
                         <div class="group" id="formEmail">
                             <label for="pass" class="label">Địa Chỉ Email</label>
-                            <input id="email" name="email" type="text" class="input">
+                            <input style="border-radius: 0" id="email" name="email" type="text" class="input">
                         </div>
                         <div class="group" id="formPhoneNumber">
                             <label for="pass" class="label">Số Điện Thoại</label>
-                            <input id="phoneNumber" name="phoneNumber" type="text" class="input">
+                            <input style="border-radius: 0" id="phoneNumber" name="phoneNumber" type="text" class="input">
                         </div>
                         <div class="group" id="formPassword">
                             <label for="pass" class="label">Mật Khẩu</label>
-                            <input id="password1" name="password" type="password" class="input" data-type="password">
+                            <input style="border-radius: 0" id="password1" name="password" type="password" class="input" data-type="password">
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Nhập Lại Mật Khẩu</label>
-                            <input id="password2" type="password" class="input" data-type="password">
+                            <input style="border-radius: 0"  id="password2" type="password" class="input" data-type="password">
                         </div>
                         <div class="group" id="formSignUp">
-                            <input onclick="signup(this)" style="background-color: #06A3DA;" type="submit" class="button" value="Đăng Kí">
+                            <input onclick="signup(this)" style="background-color: #06A3DA; border-radius: 0;" type="submit" class="button" value="Đăng Kí">
                         </div>
                         <div class="foot-lnk">
                             <label style="cursor: pointer;" for="tab-1">Bạn Đã Là Thành Viên?</a>
