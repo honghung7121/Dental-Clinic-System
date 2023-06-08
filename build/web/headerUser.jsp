@@ -73,16 +73,16 @@
             <div class="row gx-0">
                 <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Giờ mở cửa: Thứ hai - Thứ bảy : 6.00 am - 10.00 pm, chủ nhật đóng cửa </small>
+                        <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Giờ mở cửa: Thứ hai - Thứ bảy : 6.00 am - 10.00 pm</small>
                     </div>
                 </div>
                 <div class="col-md-6 text-center text-lg-end">
                     <div class="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
                         <div class="me-3 pe-3 border-end py-2">
-                            <p class="m-0"><i class="fa fa-envelope-open me-2"></i>DentCare@gmail.com</p>
+                            <p class="m-0"><i class="fa fa-envelope-open me-2"></i>DentalClinic@gmail.com</p>
                         </div>
                         <div class="me-3 pe-3 border-end py-2">
-                            <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+084 345 6789</p>
+                            <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+84 374 312 384</p>
                         </div>
                         <div class="py-2">
                             <a style="color:white;" href="login.jsp" class="m-0"><i class="fa fa-user"></i> Đăng Nhập </a>
@@ -105,7 +105,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="index.jsp" class="nav-item nav-link active">Trang Chủ</a>
-                    <a href="about.html" class="nav-item nav-link ">Về Chúng Tôi</a>
+                    <a href="aboutus.jsp" class="nav-item nav-link ">Về Chúng Tôi</a>
                     <a href="serviceUser.jsp" class="nav-item nav-link ">Dịch Vụ</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>

@@ -171,7 +171,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </button>\r\n");
       out.write("            <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">\r\n");
       out.write("                <div class=\"navbar-nav ms-auto py-0\">\r\n");
-      out.write("                    <a href=\"index.html\" class=\"nav-item nav-link\">Trang Chủ</a>\r\n");
+      out.write("                    <a href=\"index.jsp\" class=\"nav-item nav-link\">Trang Chủ</a>\r\n");
       out.write("                    <a href=\"about.html\" class=\"nav-item nav-link active\">Về Chúng Tôi</a>\r\n");
       out.write("                    <a href=\"service.html\" class=\"nav-item nav-link\">Dịch Vụ</a>\r\n");
       out.write("                    <div class=\"nav-item dropdown\">\r\n");
