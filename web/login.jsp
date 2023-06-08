@@ -31,6 +31,17 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        <script src="lib/twentytwenty/jquery.event.move.js"></script>
+        <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
 
         <!-- Customized Login Stylesheet -->
         <link rel="stylesheet" href="css/login.css">
@@ -124,7 +135,7 @@
 
     <body>
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
-            <a href="index.html" class="navbar-brand p-0">
+            <a href="index.jsp" class="navbar-brand p-0">
                 <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>DentCare</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -132,16 +143,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link">Trang Chủ</a>
-                    <a href="about.html" class="nav-item nav-link active">Về Chúng Tôi</a>
-                    <a href="service.html" class="nav-item nav-link">Dịch Vụ</a>
+                    <a href="index.jsp" class="nav-item nav-link">Trang Chủ</a>
+                    <a href="aboutus.jsp" class="nav-item nav-link active">Về Chúng Tôi</a>
+                    <a href="serviceUser.jsp" class="nav-item nav-link">Dịch Vụ</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Khác</a>
                         <div class="dropdown-menu m-0">
-                            <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                            <a href="team.html" class="dropdown-item">Our Dentist</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="appointment.html" class="dropdown-item">Appointment</a>
+                            <a href="price.html" class="dropdown-item">Bảng giá</a>
+                            <a href="team.html" class="dropdown-item">Nha sĩ của chúng tôi</a>
+                            <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
+                            <a href="appointment.html" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Liên Hệ</a>
