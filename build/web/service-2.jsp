@@ -29,7 +29,6 @@
             border: none;
             cursor: pointer;
             color: #009ce7;
-            
             font-weight: bold;
         }
     </style>
