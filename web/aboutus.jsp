@@ -15,10 +15,7 @@
         rel="stylesheet">
     </head>
     <body>
-<<<<<<< HEAD
-=======
         <jsp:include page="headerUser.jsp"></jsp:include>
->>>>>>> 05ff77d729094f7b99f116c4379931c254e1072b
         <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="background: rgba(9, 30, 62, .7);">

@@ -48,11 +48,7 @@
                 <div class="col-lg-3 col-md-6">
                     <h3 class="text-white mb-4">Liên lạc</h3>
                     <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>Quận 9, Thành phố Hồ Chí Minh</p>
-<<<<<<< HEAD
-                    <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>dentalclinic@gmail.com</p>
-=======
                     <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>DentalClinic@gmail.com</p>
->>>>>>> 05ff77d729094f7b99f116c4379931c254e1072b
                     <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i>+84 374 312 384</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
