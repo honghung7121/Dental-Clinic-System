@@ -155,7 +155,7 @@
                             <a href="appointment.html" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Liên Hệ</a>
+                    <a href="contact.jsp" class="nav-item nav-link">Liên Hệ</a>
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>
