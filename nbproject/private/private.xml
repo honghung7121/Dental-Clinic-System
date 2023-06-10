@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/MainController.java</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/customer-dentists.jsp</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Customer/LoadMoreDentistByCustomerController.java</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/footer.jsp</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/aboutus.jsp</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/dentists.jsp</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/serviceUser.jsp</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/ChangePasswordController.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/project.xml</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Util/PasswordEncoder.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/project.properties</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/LoginController.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/build-impl.xml</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/private/private.xml</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/private/private.properties</file>
         </group>
     </open-files>
 </project-private>

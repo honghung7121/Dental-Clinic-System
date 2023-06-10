@@ -216,6 +216,10 @@
         <servlet-name>LoadMoreDentistByCustomerController</servlet-name>
         <servlet-class>Controllers.Customer.LoadMoreDentistByCustomerController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateAdvisoryController</servlet-name>
+        <servlet-class>Controllers.Advisory.CreateAdvisoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -432,12 +436,16 @@
         <servlet-name>LoadMoreDentistByCustomerController</servlet-name>
         <url-pattern>/LoadMoreDentistByCustomerController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAdvisoryController</servlet-name>
+        <url-pattern>/CreateAdvisoryController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

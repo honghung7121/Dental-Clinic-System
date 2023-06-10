@@ -52,8 +52,10 @@
                     <span>${sessionScope.User.getFullName()}</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="myprofile.jsp">Tài Khoản Của Tôi</a>
-                    <a class="dropdown-item" href="MainController?action=Logout">Đăng Xuất</a>
+                    <a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a>
+                    <form action="MainController">
+                        <button class="dropdown-item" name="action" value="Logout">Đăng Xuất</button>
+                    </form>
                 </div>
             </li>
         </ul>
