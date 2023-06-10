@@ -69,7 +69,8 @@ public class MainController extends HttpServlet {
     private final String CHANGEPASSWORDPAGE = "changePassword.jsp";
     private final String CHANGEPASSWORD = "ChangePasswordController";
     
-            
+    private final String CUSTOMER_DENTIST_PAGE = "customer-dentists.jsp";
+    private final String CUSTOMER_SHOW_DENTIST = "ShowDentistController";        
 
 
 
@@ -183,6 +184,13 @@ public class MainController extends HttpServlet {
             }
             else if (action.equals("saveChangePass")) {
                 url = CHANGEPASSWORD;
+            }
+            
+            else if (action.equals("customer_dentists_page")) {
+                url = CUSTOMER_DENTIST_PAGE;
+            }
+            else if (action.equals("showDentist")) {
+                url = CUSTOMER_SHOW_DENTIST;
             }
             
             

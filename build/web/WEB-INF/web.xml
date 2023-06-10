@@ -208,6 +208,14 @@
         <servlet-name>SignUpController</servlet-name>
         <servlet-class>Controllers.SignUpController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowDentistController</servlet-name>
+        <servlet-class>Controllers.Customer.ShowDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadMoreDentistByCustomerController</servlet-name>
+        <servlet-class>Controllers.Customer.LoadMoreDentistByCustomerController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -415,6 +423,14 @@
     <servlet-mapping>
         <servlet-name>SignUpController</servlet-name>
         <url-pattern>/SignUpController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowDentistController</servlet-name>
+        <url-pattern>/ShowDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreDentistByCustomerController</servlet-name>
+        <url-pattern>/LoadMoreDentistByCustomerController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

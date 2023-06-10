@@ -34,7 +34,7 @@
 
     <div class="header">
         <div class="header-left">
-            <a href="index-2.html" class="logo">
+            <a href="admin.jsp" class="logo">
                 <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>DentCare</span>
             </a>
         </div>
@@ -49,7 +49,7 @@
                         <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
                         <span class="status online"></span>
                     </span>
-                    <span>Admin</span>
+                    <span>${sessionScope.User.getFullName()}</span>
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="myprofile.jsp">Tài Khoản Của Tôi</a>

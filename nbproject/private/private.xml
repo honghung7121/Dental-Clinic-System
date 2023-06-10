@@ -3,23 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Patient/Patient.java</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/confirmMailController.java</file>
             <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/MainController.java</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/javaMailController.java</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/changePassword.jsp</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/private/private.xml</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Patient/AddPatient.java</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/editDentist.jsp</file>
-            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/private/private.properties</file>
-=======
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/web/confirmEmail.jsp</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/src/java/Controllers/ChangePasswordController.java</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/src/java/DAL/SendDAO.java</file>
-            <file>file:/C:/Users/Admin/Downloads/SWP391-SE1743/src/java/Controllers/confirmMailController.java</file>
->>>>>>> 34444eb3c559d4bf5d6bdca71aa6733a166acb6c
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/customer-dentists.jsp</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Customer/LoadMoreDentistByCustomerController.java</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/footer.jsp</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/aboutus.jsp</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/dentists.jsp</file>
+            <file>file:/D:/Chuyên%20ngành%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/serviceUser.jsp</file>
         </group>
     </open-files>
 </project-private>

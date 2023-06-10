@@ -23,10 +23,16 @@
         <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <!--[if lt IE 9]>
-                    <script src="assets/js/html5shiv.min.js"></script>
-                    <script src="assets/js/respond.min.js"></script>
-            <![endif]-->
+        <style>      
+        .btnLink{
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #009ce7;
+            
+            font-weight: bold;
+        }
+    </style>
     </head>
 
     <body>
@@ -63,8 +69,15 @@
                                                 <th><a href="#">ID </th>
                                                 <th><a href="#">Tên dịch vụ</th>
                                                 <!--                                                <th>Mô Tả</th>-->
-                                                <th><a href="SortServiceController?page=${requestScope.current}&count=${requestScope.count}&flag=marketing">Giá Tiền</th>
-                                            <th><a href="#">Status</th>
+                                                <th>
+                                                    <form action="SortServiceController" method="POST">
+                                                        <button class="btnLink" style="">Giá Tiền</button>
+                                                        <input type="hidden" name="page" value="${requestScope.current}">
+                                                    <input type="hidden" name="count" value="${requestScope.count}">
+                                                    <input type="hidden" name="flag" value="marketing">
+                                                </form>
+                                            </th>
+                                            <th><a href="#">Trạng Thái</th>
                                             <!--                                                <th class="text-right">Action</th>-->
                                         </tr>
                                     </thead>

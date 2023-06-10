@@ -73,9 +73,9 @@ public class FeedbackDentistDAO {
                         + "from tblFeedBackDentist, (select id, fullName from tblUser where tblUser.idRole = 5) as customertable, (select id, fullName from tblUser where tblUser.idRole = 2) as dentisttable\n"
                         + "where tblFeedBackDentist.userID = customertable.id and tblFeedBackDentist.dentistID = dentisttable.id and ";
                 if (searchby.equalsIgnoreCase("bycustomername")) {
-                    sql = sql + " customertable.fullName like ?";
+                    sql = sql + " customertable.fullName like ? COLLATE SQL_Latin1_General_CP1_CI_AI";
                 } else {
-                    sql = sql + " dentisttable.fullName like ?";
+                    sql = sql + " dentisttable.fullName like ? COLLATE SQL_Latin1_General_CP1_CI_AI";
                 }
                 pst = cn.prepareStatement(sql);
                 pst.setString(1, "%" + keyword + "%");

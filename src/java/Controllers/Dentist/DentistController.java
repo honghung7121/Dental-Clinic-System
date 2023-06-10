@@ -38,7 +38,8 @@ public class DentistController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            ArrayList<Dentist> list = DentistDAO.getTop8Dentist();
+            DentistDAO dentDAO = new DentistDAO();
+            ArrayList<Dentist> list = dentDAO.getTop8Dentist();
             String url = "";
             if (list!=null) {
                 url = "dentists.jsp";
