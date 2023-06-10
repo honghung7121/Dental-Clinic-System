@@ -4,7 +4,9 @@
     Author     : Admin
 --%>
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -86,12 +88,14 @@
                             <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+84 374 312 384</p>
                         </div>
                         <div class="py-2">
+
                             <c:if test="${sessionScope.User != null}">
                                 <a href="appointment.html" class="m-0" style="color: white">Đặt lịch hẹn</a>
                             </c:if>
                             <c:if test="${sessionScope.User == null}">
                                 <a style="color:white;" href="login.jsp" class="m-0"><i class="fa fa-user"></i> Đăng Nhập </a>
                             </c:if>
+
                         </div>
                     </div>
                 </div>
@@ -117,11 +121,12 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
                         <div class="dropdown-menu m-0">
                             <a href="price.html" class="dropdown-item">Bảng giá</a>
-                            <a href="team.html" class="dropdown-item">Nha sĩ của chúng tôi</a>
+                            <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
                             <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
                             <a href="appointment.html" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
+
                     <a href="contact.jsp" class="nav-item nav-link">Liên hệ</a>
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
@@ -151,5 +156,6 @@
         <script src="lib/wow/wow.min.js"></script>
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+
     </body>
 </html>

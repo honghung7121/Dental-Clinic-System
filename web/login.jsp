@@ -150,12 +150,14 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Khác</a>
                         <div class="dropdown-menu m-0">
                             <a href="price.html" class="dropdown-item">Bảng giá</a>
-                            <a href="team.html" class="dropdown-item">Nha sĩ của chúng tôi</a>
+                            <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
                             <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
                             <a href="appointment.html" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
+
                     <a href="contact.jsp" class="nav-item nav-link">Liên Hệ</a>
+
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>

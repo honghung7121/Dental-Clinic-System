@@ -1,9 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Dentist;
+package Controllers.Customer;
 
 import DAL.DentistDAO;
 import Models.Dentist;
@@ -18,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author ADMIN
  */
-public class MarketingDentistController extends HttpServlet {
+public class LoadMoreDentistByCustomerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,20 +33,30 @@ public class MarketingDentistController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            DentistDAO dentDAO = new DentistDAO();
-            ArrayList<Dentist> list = dentDAO.getTop8Dentist();
-            String url = "";
-            if (list!=null) {
-                url = "marketing-dentists.jsp";
-                session.setAttribute("activeLink", "dentistLink");
-                request.setAttribute("listDentist", list);
-                request.getRequestDispatcher(url).forward(request, response);
-            }else{
-                url = "headerMarketing.jsp";
-                request.getRequestDispatcher(url).forward(request, response);
-            }
+        /* TODO output your page here. You may use following sample code. */
+        PrintWriter out = response.getWriter();
+        int amount = Integer.parseInt(request.getParameter("exits"));
+        HttpSession session = request.getSession();
+        
+        DentistDAO dentDAO = new DentistDAO();
+        
+        ArrayList<Dentist> list = dentDAO.getNext3Dentist(amount);
+        for (Dentist dentist : list) {
+            out.println("<div class=\"col-lg-4 wow slideInUp\" data-wow-delay=\"0.3s\"  style=\"\">\n"
++ "                        <div class=\"team-item\">\n"
++ "                            <div class=\"position-relative rounded-top\" style=\"z-index: 1;\">\n"
++ "                                <img class=\"img-fluid rounded-top w-100 fixed-image\" src=\"" + dentist.getImg() + "\" alt=\"\">\n"
++ "                                <div class=\"position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex\">\n"
++ "                                    <a href=\"profileDentistByCustomer.jsp\" class=\"btn btn-primary px-1\">Xem chi tiết</a>\n"
++ "                                </div> \n"
++ "                            </div>\n"
++ "                            <div class=\"team-text position-relative bg-light text-center rounded-bottom p-4 pt-5\">\n"
++ "                                <h4 class=\"mb-2\">" + dentist.getFullName() + "</h4>\n"
++ "                                <p class=\"text-primary mb-0\">Nha sĩ</p>\n"
++ "                            </div>\n"
++ "                        </div>\n"
++ "                    </div> ");
+            
         }
     }
 

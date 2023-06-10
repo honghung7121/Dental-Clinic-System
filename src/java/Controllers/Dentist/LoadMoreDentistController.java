@@ -38,26 +38,27 @@ public class LoadMoreDentistController extends HttpServlet {
         PrintWriter out = response.getWriter();
         int amount = Integer.parseInt(request.getParameter("exits"));
         HttpSession session = request.getSession();
-        ArrayList<Dentist> list = DentistDAO.getNext4Dentist(amount);
+        DentistDAO dentDAO = new DentistDAO();
+        ArrayList<Dentist> list = dentDAO.getNext4Dentist(amount);
         for (Dentist dentist : list) {
-            out.println("<div class=\"dentistProduct col-md-4 col-sm-4  col-lg-3\">\n"
-                    + "                                <div class=\"profile-widget\">\n"
-                    + "                                    <div class=\"doctor-img\">\n"
-                    + "                                        <a class=\"avatar\" href=\"MainController?action=dentistProfile&dentistID="+ dentist.getId()+"\"><img alt=\"\" src=\"" +dentist.getImg() +"\"></a>\n"
-                    + "                                    </div>\n"
-                    + "                                    <div class=\"dropdown profile-action\">\n"
-                    + "                                        <a href=\"#\" class=\"action-icon dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fa fa-ellipsis-v\"></i></a>\n"
-                    + "                                        <div class=\"dropdown-menu dropdown-menu-right\">\n"
-                    + "                                            <a class=\"dropdown-item\" href=\"editDentist.jsp?dentistID="+ dentist.getId()+"\"><i class=\"fa fa-pencil m-r-5\"></i> Chỉnh sửa</a>\n"
-                    + "                                            <a class=\"dropdown-item\" href=\"MainController?action=deleteDentist&dentistID="+ dentist.getId()+"\"><i class=\"fa fa-trash-o m-r-5\"></i> Xóa</a>\n"
-                    + "                                        </div>\n"
-                    + "                                    </div>\n"
-                    + "                                    <h4 class=\"doctor-name text-ellipsis\"><a href=\"MainController?action=dentistProfile&dentistID="+ dentist.getId()+"\">"+ dentist.getFullName()+"</a></h4>\n"
-                    + "                                    <div class=\"user-country\">\n"
-                    + "                                        <i class=\"fa fa-map-marker\"></i> "+ dentist.getDegree()+"\n"
-                    + "                                    </div>\n"
-                    + "                                </div>\n"
-                    + "                            </div>");
+                out.println("<div class=\"dentistProduct col-md-4 col-sm-4  col-lg-3\">\n"
++ "                                <div class=\"profile-widget\">\n"
++ "                                    <div class=\"doctor-img\">\n"
++ "                                        <a class=\"avatar\" href=\"MainController?action=dentistProfile&dentistID="+ dentist.getId()+"\"><img alt=\"\" src=\"" +dentist.getImg() +"\"></a>\n"
++ "                                    </div>\n"
++ "                                    <div class=\"dropdown profile-action\">\n"
++ "                                        <a href=\"#\" class=\"action-icon dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fa fa-ellipsis-v\"></i></a>\n"
++ "                                        <div class=\"dropdown-menu dropdown-menu-right\">\n"
++ "                                            <a class=\"dropdown-item\" href=\"editDentist.jsp?dentistID="+ dentist.getId()+"\"><i class=\"fa fa-pencil m-r-5\"></i> Chỉnh sửa</a>\n"
++ "                                            <a class=\"dropdown-item\" href=\"MainController?action=deleteDentist&dentistID="+ dentist.getId()+"\"><i class=\"fa fa-trash-o m-r-5\"></i> Xóa</a>\n"
++ "                                        </div>\n"
++ "                                    </div>\n"
++ "                                    <h4 class=\"doctor-name text-ellipsis\"><a href=\"MainController?action=dentistProfile&dentistID=" + dentist.getId() + "\">" + dentist.getFullName() + "</a></h4>\n"
++ "                                    <div class=\"user-country\">\n"
++ "                                        <i class=\"fa fa-map-marker\"></i> "+ dentist.getDegree()+"\n"
++ "                                    </div>\n"
++ "                                </div>\n"
++ "                            </div>");
         }
     }
 

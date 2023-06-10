@@ -1,9 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Dentist;
+package Controllers.Customer;
 
 import DAL.DentistDAO;
 import Models.Dentist;
@@ -18,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author ADMIN
  */
-public class MarketingDentistController extends HttpServlet {
+public class ShowDentistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,19 +33,18 @@ public class MarketingDentistController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             DentistDAO dentDAO = new DentistDAO();
             ArrayList<Dentist> list = dentDAO.getTop8Dentist();
             String url = "";
             if (list!=null) {
-                url = "marketing-dentists.jsp";
                 session.setAttribute("activeLink", "dentistLink");
                 request.setAttribute("listDentist", list);
-                request.getRequestDispatcher(url).forward(request, response);
+                request.getRequestDispatcher("MainController?action=customer_dentists_page").forward(request, response);
             }else{
-                url = "headerMarketing.jsp";
-                request.getRequestDispatcher(url).forward(request, response);
+                request.getRequestDispatcher("error.html").forward(request, response);
             }
         }
     }
