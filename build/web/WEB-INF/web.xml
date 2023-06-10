@@ -430,6 +430,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>bill.jsp</welcome-file>
+        <welcome-file>dentistappointment.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -87,7 +87,7 @@
                         </div>
                         <div class="py-2">
                             <c:if test="${sessionScope.User != null}">
-                                <a style="color:white;" href="login.jsp" class="m-0"><i class="fa fa-user"></i> Đăng Xuất </a>
+                                <a href="appointment.html" class="m-0" style="color: white">Đặt lịch hẹn</a>
                             </c:if>
                             <c:if test="${sessionScope.User == null}">
                                 <a style="color:white;" href="login.jsp" class="m-0"><i class="fa fa-user"></i> Đăng Nhập </a>
@@ -126,7 +126,7 @@
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>
-                <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Đặt lịch hẹn</a>
+                
                 <c:if test="${sessionScope.User != null}">
                     <div class=" nav-item dropdown has-arrow">
                         <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
@@ -144,6 +144,7 @@
                         </div>
                     </div>
                 </c:if>
+                
             </div>
         </nav>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
