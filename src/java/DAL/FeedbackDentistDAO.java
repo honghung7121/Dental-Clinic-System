@@ -7,7 +7,6 @@ package DAL;
 
 import java.util.ArrayList;
 import Models.FeedbackDentist;
-import Models.FeedbackDentist;
 import Util.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -68,7 +67,7 @@ public class FeedbackDentistDAO {
         ResultSet rs = null;
         try {
             cn = Util.getConnection();
-            if (cn != null && searchby !=null) {
+            if (cn != null && searchby != null) {
                 String sql = "select tblFeedBackDentist.id as id, dentisttable.fullName as dentistname, customertable.fullName as customername, rate, cmt\n"
                         + "from tblFeedBackDentist, (select id, fullName from tblUser where tblUser.idRole = 5) as customertable, (select id, fullName from tblUser where tblUser.idRole = 2) as dentisttable\n"
                         + "where tblFeedBackDentist.userID = customertable.id and tblFeedBackDentist.dentistID = dentisttable.id and ";
@@ -138,4 +137,48 @@ public class FeedbackDentistDAO {
         }
         return result;
     }
+
+    public ArrayList<FeedbackDentist> getTop2FeedbackDentistOfDentistRate45(String iddentist) throws SQLException{
+        ArrayList<FeedbackDentist> list = new ArrayList<>();
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select TOP 2 tblFeedBackDentist.id as id, dentisttable.fullName as dentistname, customertable.fullName as customername, rate, cmt\n"
+                        + "from tblFeedBackDentist, (select id, fullName from tblUser where tblUser.idRole = 5) as customertable, (select id, fullName from tblUser where tblUser.idRole = 2) as dentisttable\n"
+                        + "where tblFeedBackDentist.userID = customertable.id and tblFeedBackDentist.dentistID = dentisttable.id\n"
+                        + "and (rate = 5 or rate = 4) and dentistID = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, iddentist);
+                rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String denname = rs.getString("dentistname");
+                        String cusname = rs.getString("customername");
+                        int rate = rs.getInt("rate");
+                        String cmt = rs.getString("cmt");
+                        FeedbackDentist fbd = new FeedbackDentist(id, denname, cusname, rate, cmt);
+                        list.add(fbd);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                rs.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return list;
+    }
+
 }

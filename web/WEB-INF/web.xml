@@ -220,6 +220,10 @@
         <servlet-name>CreateAdvisoryController</servlet-name>
         <servlet-class>Controllers.Advisory.CreateAdvisoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>profileDentistByCustomerController</servlet-name>
+        <servlet-class>Controllers.Customer.profileDentistByCustomerController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -439,6 +443,10 @@
     <servlet-mapping>
         <servlet-name>CreateAdvisoryController</servlet-name>
         <url-pattern>/CreateAdvisoryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>profileDentistByCustomerController</servlet-name>
+        <url-pattern>/profileDentistByCustomerController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

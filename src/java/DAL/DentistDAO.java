@@ -205,7 +205,7 @@ public class DentistDAO {
         return list;
     }
 
-    public static Dentist getDentistByID(String id) {
+    public Dentist getDentistByID(String id) {
         Connection cn = null;
         Dentist den = null;
         try {

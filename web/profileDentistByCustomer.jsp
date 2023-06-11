@@ -35,7 +35,9 @@
     </div>
     <!-- Full Screen Search End -->
 
-
+    <c:set var="dentistProfile" value="${requestScope.dentistProfile}"></c:set>
+    <c:set var="dentistFeedback" value="${requestScope.dentistFeedback}"></c:set>
+    
     <!-- Hero Start -->
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
@@ -43,7 +45,7 @@
                 <h1 class="display-3 text-white animated zoomIn">Thông tin chi tiết</h1>
                 <a href="" class="h4 text-white">Nha sĩ</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">Nguyễn Văn Tèo</a>
+                <a href="" class="h4 text-white">${dentistProfile.fullName}</a>
             </div>
         </div>
     </div>
@@ -57,25 +59,37 @@
                 <div class="col-lg-7">
                     <div class="section-title mb-4">
                         <h5 class="position-relative d-inline-block text-primary text-uppercase">Về Nha Sĩ</h5>
-                        <h1 class="display-5 mb-0">Nguyễn Văn Tèo   </h1>
+                        <h1 class="display-5 mb-0">${dentistProfile.fullName}</h1>
                     </div>
                     <h4 class="text-body fst-italic mb-4">Nha sĩ luôn rất thân thiện, chu đáo và tận tình giải đáp mọi thắc mắc của khách hàng.</h4>
-                    <p class="mb-4">Khách hàng sẽ cảm thấy rất yên tâm và tin tưởng khi được điều trị tại phòng khám của chúng tôi. Các thiết bị và trang thiết bị y tế tại đây cũng được cập nhật và tiên tiến, giúp cho quá trình điều trị của khách hàng diễn ra thuận lợi và hiệu quả hơn.</p>
                     <div class="row g-3">
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.3s">
-                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Giành nhiều giải thưởng</h5>
-                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Đội ngũ nhân viên chuyên nghiệp</h5>
+                        <div class="col-sm-12 wow zoomIn" data-wow-delay="0.3s">
+                            <h4 class="mb-3" style="">  Bằng cấp và Kinh nghiệm</h4>
+                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-6"></i>  ${dentistProfile.degree}</h5>
+                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-6"></i>  Kinh nghiệm: ${dentistProfile.experience}</h5>
                         </div>
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.6s">
-                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Mở cửa 24/7</h5>
-                            <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Giá cả hợp lý</h5>
+                        
+                        <div class="col-sm-12 wow zoomIn" data-wow-delay="0.3s">
+                            <h4 class="mb-3" style="">  Đánh giá của khách hàng</h4>
+                            <c:if test="${not empty dentistFeedback}">
+                                <c:forEach var="fb" items="${dentistFeedback}">
+                                    <h5 class="mb-3" style="text-align: justify; text-justify: inter-word;">
+                                        <i class="fa fa-check-circle text-primary me-6"></i><strong> ${fb.namecustomer}:</strong> ${fb.comment}
+                                    </h5>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${empty dentistFeedback}">
+                                <h5 class="mb-3" style="text-align: justify; text-justify: inter-word;">
+                                    <i class="fa fa-check-circle text-primary me-6"></i> Chưa có đánh giá nào từ khách hàng
+                                </h5>
+                            </c:if>
                         </div>
                     </div>
                     <a href="appointment.html" class="btn btn-primary py-3 px-5 mt-4 wow zoomIn" data-wow-delay="0.6s">Đặt lịch hẹn</a>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="image/bacsi1.jpeg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="${dentistProfile.img}" style="object-fit: cover;">
                     </div>
                 </div>
             </div>

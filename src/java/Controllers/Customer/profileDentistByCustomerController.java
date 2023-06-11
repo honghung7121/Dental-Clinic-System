@@ -1,14 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Dentist;
+package Controllers.Customer;
 
 import DAL.DentistDAO;
+import DAL.FeedbackDentistDAO;
 import Models.Dentist;
+import Models.FeedbackDentist;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-public class DentistProfileController extends HttpServlet {
+public class profileDentistByCustomerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,12 +36,17 @@ public class DentistProfileController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String dentistID = request.getParameter("dentistID");
-            Dentist den = new Dentist();
+            String iddentist = request.getParameter("iddentist");
             DentistDAO dentistDAO = new DentistDAO();
-            den = dentistDAO.getDentistByID(dentistID);
-            request.setAttribute("dentistByID", den);
-            request.getRequestDispatcher("profileDentist.jsp").forward(request, response);
+            FeedbackDentistDAO feedbackdentistDAO = new FeedbackDentistDAO();
+            
+            Dentist dentist = dentistDAO.getDentistByID(iddentist);
+            ArrayList<FeedbackDentist> fbdentist = feedbackdentistDAO.getTop2FeedbackDentistOfDentistRate45(iddentist);
+            request.setAttribute("dentistProfile", dentist);
+            request.setAttribute("dentistFeedback", fbdentist);
+            request.getRequestDispatcher("MainController?action=showProfileDentist").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

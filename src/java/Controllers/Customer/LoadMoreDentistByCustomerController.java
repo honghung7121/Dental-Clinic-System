@@ -47,7 +47,7 @@ public class LoadMoreDentistByCustomerController extends HttpServlet {
 + "                            <div class=\"position-relative rounded-top\" style=\"z-index: 1;\">\n"
 + "                                <img class=\"img-fluid rounded-top w-100 fixed-image\" src=\"" + dentist.getImg() + "\" alt=\"\">\n"
 + "                                <div class=\"position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex\">\n"
-+ "                                    <a href=\"profileDentistByCustomer.jsp\" class=\"btn btn-primary px-1\">Xem chi tiết</a>\n"
++ "                                    <a href=\"MainController?action=showProfileDentistController&iddentist="+ dentist.getId() +"\" class=\"btn btn-primary px-1\">Xem chi tiết</a>\n"
 + "                                </div> \n"
 + "                            </div>\n"
 + "                            <div class=\"team-text position-relative bg-light text-center rounded-bottom p-4 pt-5\">\n"
