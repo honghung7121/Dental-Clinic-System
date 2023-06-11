@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers.Patient;
+package Controllers.Bill;
 
 import DAL.UserDAO;
+import Models.Bill;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class SearchPatient extends HttpServlet {
+public class BillController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,13 +35,9 @@ public class SearchPatient extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           String searchname = request.getParameter("txtSearch");
-            ArrayList list = null;
-           
-                list = UserDAO.searchPatient(searchname);
-          
-            request.setAttribute("patient", list);
-            request.getRequestDispatcher("patient.jsp").forward(request, response);
+           ArrayList<Bill> list = UserDAO.getBill();
+               request.setAttribute("loadbill", list);
+            request.getRequestDispatcher("bill.jsp").forward(request, response);
         }
     }
 

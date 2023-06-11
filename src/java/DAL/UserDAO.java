@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import Models.Bill;
 import Models.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -737,11 +738,11 @@ public class UserDAO {
                     stm = con.prepareStatement(sql1);
                     rs = stm.executeQuery();
                     String rawRoll1 = "";
-                    if(rs.next()){
-                         rawRoll1 = rs.getString("Roll");
+                    if (rs.next()) {
+                        rawRoll1 = rs.getString("Roll");
                     }
-                  int rawRoll2 = Integer.parseInt(rawRoll1.substring(1)) + 1;
-                    String Roll = "P" +  rawRoll2;
+                    int rawRoll2 = Integer.parseInt(rawRoll1.substring(1)) + 1;
+                    String Roll = "P" + rawRoll2;
                     String sql2 = "insert into tblUser values(?,?,?,5,1,?,?,null)";
                     stm = con.prepareStatement(sql2);
                     stm.setString(1, name);
@@ -769,5 +770,119 @@ public class UserDAO {
         }
         return success;
     }
-    
+
+    public static ArrayList<Bill> getBill() {
+        ArrayList<Bill> list = new ArrayList<>();
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select tblTreatmentCourse.id as id, usertable.fullName as username,datetable.treatmentDate as treatmentDate,servicetable.price as price, tblTreatmentCourse.PaidStatus\n"
+                        + "from tblTreatmentCourse, (select id, fullName from tblUser where idRole = 5) as usertable, (select id, price from tblService) as servicetable, (select id, treatmentDate from tblTreatmentCourseDetail) as datetable\n"
+                        + "where tblTreatmentCourse.userID = usertable.id and tblTreatmentCourse.serviceID = servicetable.id and tblTreatmentCourse.id = datetable.id  ";
+                pst = cn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String username = rs.getString("username");
+                        String treatmentDate = rs.getString("treatmentDate");
+                        float price = rs.getFloat("price");
+                        boolean status = rs.getBoolean("PaidStatus");
+                        Bill bill = new Bill(id, username, treatmentDate, price, status);
+                        list.add(bill);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static ArrayList<Bill> getUnpaidBills() {
+        ArrayList<Bill> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select tblTreatmentCourse.id as id, usertable.fullName as username,datetable.treatmentDate as treatmentDate,servicetable.price as price, tblTreatmentCourse.PaidStatus\n"
+                        + "from tblTreatmentCourse, (select id, fullName from tblUser where idRole = 5) as usertable, (select id, price from tblService) as servicetable, (select id, treatmentDate from tblTreatmentCourseDetail) as datetable\n"
+                        + "where tblTreatmentCourse.userID = usertable.id and tblTreatmentCourse.serviceID = servicetable.id and  tblTreatmentCourse.id = datetable.id and tblTreatmentCourse.PaidStatus = 0";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String username = rs.getString("username");
+                        String treatmentDate = rs.getString("treatmentDate");
+                        float price = rs.getFloat("price");
+                        boolean status = rs.getBoolean("PaidStatus");
+                        Bill bill = new Bill(id, username, treatmentDate, price, status);
+                        list.add(bill);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+
+    }
+
+    public static ArrayList<Bill> getpaidBills() {
+        ArrayList<Bill> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select tblTreatmentCourse.id as id, usertable.fullName as username,datetable.treatmentDate as treatmentDate,servicetable.price as price, tblTreatmentCourse.PaidStatus\n"
+                        + "from tblTreatmentCourse, (select id, fullName from tblUser where idRole = 5) as usertable, (select id, price from tblService) as servicetable, (select id, treatmentDate from tblTreatmentCourseDetail) as datetable\n"
+                        + "where tblTreatmentCourse.userID = usertable.id and tblTreatmentCourse.serviceID = servicetable.id and  tblTreatmentCourse.id = datetable.id and tblTreatmentCourse.PaidStatus = 1";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String username = rs.getString("username");
+                        String treatmentDate = rs.getString("treatmentDate");
+                        float price = rs.getFloat("price");
+                        boolean status = rs.getBoolean("PaidStatus");
+                        Bill bill = new Bill(id, username, treatmentDate, price, status);
+                        list.add(bill);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+//    public ArrayList<Bill> getCountBill(int from) {
+//        ArrayList<Bill> list = new ArrayList<>();
+//        Util dbu = new Util();
+//
+//        String sql = " select tblTreatmentCourse.id as id, usertable.fullName as username,datetable.treatmentDate as treatmentDate,servicetable.price as price, tblTreatmentCourse.PaidStatus\n"
+//                + "from tblTreatmentCourse, (select id, fullName from tblUser where idRole = 5) as usertable, (select id, price from tblService) as servicetable, (select id, treatmentDate from tblTreatmentCourseDetail) as datetable\n"
+//                + "where tblTreatmentCourse.userID = usertable.id and tblTreatmentCourse.serviceID = servicetable.id and  tblTreatmentCourse.id = datetable.id\n"
+//                + "order by id DESC\n"
+//                + "offset ? row\n"
+//                + "fetch next 4 row only";
+//        try {
+//            Connection connection = dbu.getConnection();
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.setInt(1, from);
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                Bill c = new Bill(from, sql, sql, from, true);
+//                list.add(c);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        return list;
+//    }
 }

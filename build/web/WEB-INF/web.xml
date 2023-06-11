@@ -208,6 +208,14 @@
         <servlet-name>SignUpController</servlet-name>
         <servlet-class>Controllers.SignUpController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BillController</servlet-name>
+        <servlet-class>Controllers.Bill.BillController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchUserStatus</servlet-name>
+        <servlet-class>Controllers.Bill.SearchUserStatus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -415,6 +423,14 @@
     <servlet-mapping>
         <servlet-name>SignUpController</servlet-name>
         <url-pattern>/SignUpController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillController</servlet-name>
+        <url-pattern>/BillController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUserStatus</servlet-name>
+        <url-pattern>/SearchUserStatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

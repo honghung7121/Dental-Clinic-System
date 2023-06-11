@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers.Patient;
+package Controllers.Bill;
 
 import DAL.UserDAO;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class SearchPatient extends HttpServlet {
+public class SearchUserStatus extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,13 +34,17 @@ public class SearchPatient extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           String searchname = request.getParameter("txtSearch");
+             String searchstatus = request.getParameter("status");
             ArrayList list = null;
-           
-                list = UserDAO.searchPatient(searchname);
-          
-            request.setAttribute("patient", list);
-            request.getRequestDispatcher("patient.jsp").forward(request, response);
+            if(searchstatus.equals("bynot")) {
+                list = UserDAO.getUnpaidBills();
+            } else if(searchstatus.equals("bydone")) {
+                list = UserDAO.getpaidBills();
+            } else if(searchstatus.equals("byall")) {
+                list = UserDAO.getBill();
+            } 
+            request.setAttribute("loadbill", list);
+            request.getRequestDispatcher("bill.jsp").forward(request, response);
         }
     }
 

@@ -173,7 +173,7 @@
                                 <small style="color: red; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_FAIL}</small>
                             </div>
                             <div class="group">
-                                <input style="border-radius: 0" style="background-color: #06A3DA;" type="submit" class="button" name="action" value="Login">
+                                <input style="background-color: #06A3DA; border-radius: 0" type="submit" class="button" name="action" value="Login">
                             </div>
                         </form>
                         <div class="hr"></div>
@@ -203,7 +203,7 @@
                             <input style="border-radius: 0" id="password2" type="password" class="input" data-type="password">
                         </div>
                         <div class="group" id="formSignUp">
-                            <input style="border-radius: 0" onclick="signup(this)" style="background-color: #06A3DA;" type="submit" class="button" value="Đăng Kí">
+                            <input onclick="signup(this)" style="background-color: #06A3DA;border-radius: 0" type="submit" class="button" value="Đăng Kí">
                         </div>
                         <div class="foot-lnk">
                             <label style="cursor: pointer;" for="tab-1">Bạn Đã Là Thành Viên?</a>
