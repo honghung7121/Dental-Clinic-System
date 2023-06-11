@@ -50,8 +50,10 @@ public class EditDentistController extends HttpServlet {
             if (img != null && !img.isEmpty()) {
                 img = "image/" + img;
             }
-
-            Dentist den = DentistDAO.getDentistByID(id);
+            
+            DentistDAO dentistDAO = new DentistDAO();
+            Dentist den = dentistDAO.getDentistByID(id);
+            
             String[] denOld = {den.getImg(), den.getExperience(), den.getDegree()};
             String[] denNew = {img, experience, degree};
             for (int i = 0; i < denNew.length; i++) {

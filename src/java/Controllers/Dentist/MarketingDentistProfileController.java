@@ -35,7 +35,8 @@ public class MarketingDentistProfileController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String dentistID = request.getParameter("dentistID");
             Dentist den = new Dentist();
-            den = DentistDAO.getDentistByID(dentistID);
+            DentistDAO dentistDAO = new DentistDAO();
+            den = dentistDAO.getDentistByID(dentistID);
             request.setAttribute("dentistByID", den);
             request.getRequestDispatcher("MarketingProfileDentist.jsp").forward(request, response);
         }

@@ -109,14 +109,14 @@
                     <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s"  style="">
                         <div class="team-item">
                             <div class="position-relative rounded-top" style="z-index: 1;">
-                                <img class="img-fluid rounded-top w-100 fixed-image" src="${dentist.img}" alt="" >
+                                <img class="img-fluid rounded-top w-100 fixed-image" src="${dentist.img}" alt="">
                                 <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                    <a href="profileDentistByCustomer.jsp" class="btn btn-primary px-1">Xem chi tiết</a>
+                                    <a href="MainController?action=showProfileDentistController&iddentist=${dentist.id}" class="btn btn-primary px-1">Xem chi tiết</a>
                                 </div> 
                             </div>
                             <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
                                 <h4 class="mb-2">${dentist.fullName}</h4>
-                                <p class="text-primary mb-0">Nha sĩ</p>
+                                <p class="text-primary mb-0">${dentist.email}</p>
                             </div>
                         </div>
                     </div>    
