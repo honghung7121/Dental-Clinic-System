@@ -13,7 +13,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.jsp.jstl.fmt.*;
+import java.text.NumberFormat;
+import java.util.Locale;
 /**
  *
  * @author Admin
@@ -33,6 +35,7 @@ public class ReturnServiceController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            NumberFormat fmt = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
             List<Service> list = (List<Service>) request.getAttribute("LIST_EMPLOYEE");
             PrintWriter out = response.getWriter();
             for (Service s : list) {
@@ -46,7 +49,7 @@ public class ReturnServiceController extends HttpServlet {
                         + "                                                        <td>" + s.getId() + "</td>\n"
                         + "                                                        <td>" + s.getName() + "</td>\n"
                         + "<!--                                                        <td>" + s.getMota() + "</td>-->\n"
-                        + "                                                        <td>" + s.getPrice() + "</td>\n"
+                        + "                                                        <td>" + fmt.format(s.getPrice()) + "</td>\n"
                         + "                                                        <td>" + status + "</td>\n"
                         + "                                                        <td class=\"text-right\">\n"
                         + "                                                            <div class=\"dropdown dropdown-action\">\n"

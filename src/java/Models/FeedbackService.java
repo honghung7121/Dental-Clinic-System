@@ -69,4 +69,9 @@ public class FeedbackService implements Serializable{
         this.comment = comment;
     }
 
+    @Override
+    public String toString() {
+        return "FeedbackService{" + "id=" + id + ", nameCustomer=" + nameCustomer + ", nameService=" + nameService + ", rate=" + rate + ", comment=" + comment + '}';
+    }
+
 }

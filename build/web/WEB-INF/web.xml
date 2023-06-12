@@ -208,6 +208,18 @@
         <servlet-name>SignUpController</servlet-name>
         <servlet-class>Controllers.SignUpController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServiceUserController</servlet-name>
+        <servlet-class>Controllers.Service.ServiceUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServiceUserByNameController</servlet-name>
+        <servlet-class>Controllers.Service.SearchServiceUserByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnServiceUserController</servlet-name>
+        <servlet-class>Controllers.Service.ReturnServiceUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -415,6 +427,18 @@
     <servlet-mapping>
         <servlet-name>SignUpController</servlet-name>
         <url-pattern>/SignUpController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServiceUserController</servlet-name>
+        <url-pattern>/ServiceUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServiceUserByNameController</servlet-name>
+        <url-pattern>/SearchServiceUserByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnServiceUserController</servlet-name>
+        <url-pattern>/ReturnServiceUserController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
