@@ -209,6 +209,18 @@
         <servlet-class>Controllers.SignUpController</servlet-class>
     </servlet>
     <servlet>
+
+        <servlet-name>ServiceUserController</servlet-name>
+        <servlet-class>Controllers.Service.ServiceUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServiceUserByNameController</servlet-name>
+        <servlet-class>Controllers.Service.SearchServiceUserByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnServiceUserController</servlet-name>
+        <servlet-class>Controllers.Service.ReturnServiceUserController</servlet-class>
+
         <servlet-name>ShowDentistController</servlet-name>
         <servlet-class>Controllers.Customer.ShowDentistController</servlet-class>
     </servlet>
@@ -223,6 +235,7 @@
     <servlet>
         <servlet-name>profileDentistByCustomerController</servlet-name>
         <servlet-class>Controllers.Customer.profileDentistByCustomerController</servlet-class>
+
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -433,6 +446,18 @@
         <url-pattern>/SignUpController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
+        <servlet-name>ServiceUserController</servlet-name>
+        <url-pattern>/ServiceUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServiceUserByNameController</servlet-name>
+        <url-pattern>/SearchServiceUserByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnServiceUserController</servlet-name>
+        <url-pattern>/ReturnServiceUserController</url-pattern>
+
         <servlet-name>ShowDentistController</servlet-name>
         <url-pattern>/ShowDentistController</url-pattern>
     </servlet-mapping>
@@ -447,6 +472,7 @@
     <servlet-mapping>
         <servlet-name>profileDentistByCustomerController</servlet-name>
         <url-pattern>/profileDentistByCustomerController</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>
