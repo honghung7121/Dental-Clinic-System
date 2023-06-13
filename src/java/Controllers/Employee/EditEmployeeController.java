@@ -34,7 +34,7 @@ public class EditEmployeeController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             String fullName = request.getParameter("name");
             String email = request.getParameter("email");
-            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+            String phoneNumber = request.getParameter("phoneNumber");
             int roleID = Integer.parseInt(request.getParameter("role"));
             String gender = request.getParameter("gender");
             boolean status = Boolean.parseBoolean(request.getParameter("status"));

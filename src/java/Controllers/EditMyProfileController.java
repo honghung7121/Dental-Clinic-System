@@ -34,7 +34,7 @@ public class EditMyProfileController extends HttpServlet {
         try{
             int id = Integer.parseInt(request.getParameter("id"));
             String name = request.getParameter("name");
-            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+            String phoneNumber = request.getParameter("phoneNumber");
             String gender = request.getParameter("gender");
             UserDAO dao = new UserDAO();
             dao.editMyProfile(id, name, phoneNumber, gender);

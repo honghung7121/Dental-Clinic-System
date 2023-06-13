@@ -33,7 +33,7 @@ public class UserDAO {
                 stm.setString(2, password);
                 rs = stm.executeQuery();
                 if (rs.next()) {
-                    user = new User(rs.getInt(1), rs.getString(2), "*********", rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                    user = new User(rs.getInt(1), rs.getString(2), "*********", rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
                 } else {
                     String sql2 = "select * from tblUser where phoneNumber = ? and password = ?";
                     stm = con.prepareStatement(sql2);
@@ -41,7 +41,7 @@ public class UserDAO {
                     stm.setString(2, password);
                     rs = stm.executeQuery();
                     if (rs.next()) {
-                        user = new User(rs.getInt(1), rs.getString(2), "*********", rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                        user = new User(rs.getInt(1), rs.getString(2), "*********", rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
                     }
                 }
             }
@@ -134,7 +134,7 @@ public class UserDAO {
                 stm.setInt(1, (index - 1) * 8);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+                    list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)));
                 }
             }
 
@@ -171,7 +171,7 @@ public class UserDAO {
                 }
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+                    list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)));
                 }
             }
 
@@ -204,7 +204,7 @@ public class UserDAO {
                 stm.setString(1, "%" + name + "%");
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+                    list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9)));
                 }
             }
 
@@ -237,7 +237,7 @@ public class UserDAO {
                 stm.setString(1, email);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                    user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
                 }
             }
 
@@ -270,7 +270,7 @@ public class UserDAO {
                 stm.setInt(1, id);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                    user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
                 }
             }
 
@@ -321,7 +321,7 @@ public class UserDAO {
         return kq;
     }
 
-    public void editEmployee(int id, String name, String email, int phoneNumber, int roleID, boolean status, String gender) throws SQLException {
+    public void editEmployee(int id, String name, String email, String phoneNumber, int roleID, boolean status, String gender) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -331,7 +331,7 @@ public class UserDAO {
                 String sql = "update tblUser set fullName = ?, phoneNumber = ?, idRole = ?, status =?, gender = ?, email = ? where id = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, name);
-                stm.setInt(2, phoneNumber);
+                stm.setString(2, phoneNumber);
                 stm.setInt(3, roleID);
                 stm.setBoolean(4, status);
                 stm.setString(5, gender);
@@ -355,7 +355,7 @@ public class UserDAO {
         }
     }
 
-    public void insertEmployee(String name, String password, int phoneNumber, int idRole, String gender, String email) throws SQLException {
+    public void insertEmployee(String name, String password, String phoneNumber, int idRole, String gender, String email) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -366,7 +366,7 @@ public class UserDAO {
                 stm = con.prepareStatement(sql);
                 stm.setString(1, name);
                 stm.setString(2, password);
-                stm.setInt(3, phoneNumber);
+                stm.setString(3, phoneNumber);
                 stm.setInt(4, idRole);
                 stm.setBoolean(5, true);
                 stm.setString(6, email);
@@ -405,7 +405,7 @@ public class UserDAO {
                         int id = rs.getInt("id");
                         String fullName = rs.getString("fullName");
                         String password = rs.getString("password");
-                        int phoneNumber = rs.getInt("phoneNumber");
+                        String phoneNumber = rs.getString("phoneNumber");
                         int idRole = rs.getInt("idRole");
                         boolean status = rs.getBoolean("status");
                         String email = rs.getString("email");
@@ -467,7 +467,7 @@ public class UserDAO {
                         int id = rs.getInt("id");
                         String fullName = rs.getString("fullName");
                         String password = rs.getString("password");
-                        int phoneNumber = rs.getInt("phoneNumber");
+                        String phoneNumber = rs.getString("phoneNumber");
                         int idRole = rs.getInt("idRole");
                         boolean status = rs.getBoolean("status");
                         String email = rs.getString("email");
@@ -484,7 +484,7 @@ public class UserDAO {
 
     }
 
-    public static boolean insertPatient(String fullName, String email, int phoneNumber, int status, int idRole, String Roll, String password, String gender) {
+    public static boolean insertPatient(String fullName, String email, String phoneNumber, int status, int idRole, String Roll, String password, String gender) {
         Connection cn = null;
         int kq = 0;
         try {
@@ -495,7 +495,7 @@ public class UserDAO {
                 PreparedStatement pst = cn.prepareStatement(s);
                 pst.setString(1, fullName);
                 pst.setString(2, email);
-                pst.setInt(3, phoneNumber);
+                pst.setString(3, phoneNumber);
                 pst.setInt(4, status);
                 pst.setString(5, Roll);
                 pst.setString(6, password);
@@ -532,7 +532,7 @@ public class UserDAO {
                 if (rs != null && rs.next()) {
                     String name = rs.getString("fullName");
                     String password = rs.getString("password");
-                    int phoneNumber = rs.getInt("phoneNumber");
+                    String phoneNumber = rs.getString("phoneNumber");
                     int idRole = rs.getInt("idRole");
 
                     boolean status = rs.getBoolean("status");
@@ -555,7 +555,7 @@ public class UserDAO {
         return p;
     }
 
-    public static boolean editPatient(String fullName, String email, String password, int phoneNumber, String Roll, boolean status) {
+    public static boolean editPatient(String fullName, String email, String password, String phoneNumber, String Roll, boolean status) {
         Connection cn = null;
         int kq = 0;
         try {
@@ -568,7 +568,7 @@ public class UserDAO {
                 pst.setString(1, fullName);
                 pst.setString(2, email);
                 pst.setString(3, password);
-                pst.setInt(4, phoneNumber);
+                pst.setString(4, phoneNumber);
                 pst.setString(5, Roll);
                 pst.setBoolean(6, status);
                 kq = pst.executeUpdate();
@@ -605,7 +605,7 @@ public class UserDAO {
             ps.setInt(1, from);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                User c = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8));
+                User c = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8));
                 list.add(c);
             }
         } catch (Exception e) {
@@ -691,7 +691,7 @@ public class UserDAO {
         return rollExists;
     }
 
-    public void editMyProfile(int id, String name, int phoneNumer, String gender) throws SQLException {
+    public void editMyProfile(int id, String name, String phoneNumer, String gender) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -701,7 +701,7 @@ public class UserDAO {
                 String sql = "update tblUser set fullName = ?, phoneNumber = ?, gender = ? where id = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, name);
-                stm.setInt(2, phoneNumer);
+                stm.setString(2, phoneNumer);
                 stm.setString(3, gender);
                 stm.setInt(4, id);
                 stm.executeUpdate();
@@ -722,7 +722,7 @@ public class UserDAO {
         }
     }
 
-    public String signup(String name, String email, String password, int phoneNumber) throws SQLException {
+    public String signup(String name, String email, String password, String phoneNumber) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -745,7 +745,7 @@ public class UserDAO {
                     stm = con.prepareStatement(sql2);
                     stm.setString(1, name);
                     stm.setString(2, password);
-                    stm.setInt(3, phoneNumber);
+                    stm.setString(3, phoneNumber);
                     stm.setString(4, email);
                     stm.setString(5, Roll);
                     int row = stm.executeUpdate();

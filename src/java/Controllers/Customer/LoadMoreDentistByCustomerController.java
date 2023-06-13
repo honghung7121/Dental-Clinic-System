@@ -52,7 +52,7 @@ public class LoadMoreDentistByCustomerController extends HttpServlet {
 + "                            </div>\n"
 + "                            <div class=\"team-text position-relative bg-light text-center rounded-bottom p-4 pt-5\">\n"
 + "                                <h4 class=\"mb-2\">" + dentist.getFullName() + "</h4>\n"
-+ "                                <p class=\"text-primary mb-0\">Nha sĩ</p>\n"
++ "                                <p class=\"text-primary mb-0\">"+ dentist.getRoleDentist() +"</p>\n"
 + "                            </div>\n"
 + "                        </div>\n"
 + "                    </div> ");

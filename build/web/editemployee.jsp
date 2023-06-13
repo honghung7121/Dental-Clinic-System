@@ -152,7 +152,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Số Điện Thoại </label>
-                                        <input value="0${e.getPhoneNumber()}" id="phoneNumber" class="form-control" type="text">
+                                        <input value="${e.getPhoneNumber()}" id="phoneNumber" class="form-control" type="text" pattern="[0-9]{10}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
