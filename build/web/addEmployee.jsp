@@ -154,7 +154,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group" id="formPhoneNumber">
                                     <label>Số Điện Thoại(10 số) </label>
-                                    <input id="phoneNumber" class="form-control" type="text" required="">
+                                    <input id="phoneNumber" class="form-control" type="text" required="" pattern="[0-9]{10}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -219,12 +219,12 @@
                         if (password1.value !== password2.value) {
                             let passwordForm = document.getElementById('formPassword');
                             passwordForm.innerHTML += '<label class="errorMessage" style="color: red;">Mật Khẩu Không Trùng Nhau</label>';
-                        } else if (!password1.value.match('[a-z]') || !password1.value.match('[A-Z]') || !password1.value.match('[0-9]') || password1.value.length < 7) {
+                        } else if ( !password1.value.match(/[A-Z]/) || !password1.value.match(/[0-9]/) || password1.value.length < 7) {
                             let passwordForm = document.getElementById('formPassword');
-                            passwordForm.innerHTML += '<label class="errorMessage" style="color: red;">Mật khẩu phải dài hơn 7 kí tự phải chứ 1 ít nhất 1 kí tự HOA 1 số</label>';
+                            passwordForm.innerHTML += '<label class="errorMessage" style="color: red;">Mật khẩu phải dài hơn 7 kí tự phải chứa ít nhất 1 kí tự IN HOA và 1 Số</label>';
                         } else if (name.value === '' || name.value.length < 5) {
                             let fullNameForm = document.getElementById('formFullName');
-                            fullNameForm.innerHTML += '<label class="errorMessage" style="color: red;">Họ và Tên không được để trống</label>';
+                            fullNameForm.innerHTML += '<label class="errorMessage" style="color: red;">Họ và Tên không được để trống và dài hơn 5 kí tự</label>';
                         } else if (email.value === '' || !email.value.includes('@gmail.com')) {
                             let emailForm = document.getElementById('formEmail');
                             emailForm.innerHTML += '<label class="errorMessage" style="color: red;">Email không phù hợp</label>';

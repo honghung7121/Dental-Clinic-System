@@ -16,7 +16,18 @@ public class Dentist extends User{
     private String degree;
     private String experience;
     private String img;
+    private String roleDentist;
 
+    public Dentist(String degree, String experience, String img, String roleDentist, int id, String fullName, String password, String phoneNumber, int roleID, boolean status, String email, String Roll, String gender) {
+        super(id, fullName, password, phoneNumber, roleID, status, email, Roll, gender);
+        this.degree = degree;
+        this.experience = experience;
+        this.img = img;
+        this.roleDentist = roleDentist;
+    }
+
+    
+    
 
     public Dentist() {
     }
@@ -27,7 +38,7 @@ public class Dentist extends User{
         this.img = img;
     }
     
-    public Dentist(String degree, String experience, String img, int id, String fullName, String password, int phoneNumber, int roleID, boolean status, String email, String Roll, String gender) {
+    public Dentist(String degree, String experience, String img, int id, String fullName, String password, String phoneNumber, int roleID, boolean status, String email, String Roll, String gender) {
         super(id, fullName, password, phoneNumber, roleID, status, email, Roll, gender);
         this.degree = degree;
         this.experience = experience;
@@ -58,7 +69,13 @@ public class Dentist extends User{
         this.img = img;
     }
 
-    
+    public String getRoleDentist() {
+        return roleDentist;
+    }
+
+    public void setRoleDentist(String roleDentist) {
+        this.roleDentist = roleDentist;
+    }
 
     
 }

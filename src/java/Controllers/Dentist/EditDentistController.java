@@ -39,7 +39,7 @@ public class EditDentistController extends HttpServlet {
             // img, experience, degree null thì lấy giá trị củ
             String id = request.getParameter("editIDDentist");
             String fullname = request.getParameter("editNameDentist");
-            int phone = Integer.parseInt(request.getParameter("editPhoneDentist"));
+            String phone = request.getParameter("editPhoneDentist");
             String email = request.getParameter("editEmailDentist");
             String degree = request.getParameter("editDegreeDentist");
             String experience = request.getParameter("editExperienceDentist");

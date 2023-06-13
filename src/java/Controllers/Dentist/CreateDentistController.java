@@ -41,7 +41,7 @@ public class CreateDentistController extends HttpServlet {
             String email = request.getParameter("createEmailDentist");
             String pass = PasswordEncoder.toSHA1(request.getParameter("createPassDentist"));
             String passAgain = PasswordEncoder.toSHA1(request.getParameter("createPassAgainDentist"));
-            int phone = Integer.parseInt(request.getParameter("createPhoneDentist"));
+            String phone = request.getParameter("createPhoneDentist");
             String img = "image/" + request.getParameter("createImageDentist");
             String experience = request.getParameter("createExperienceDentist");
             String degree = request.getParameter("createDegreeDentist");

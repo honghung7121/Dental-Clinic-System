@@ -32,7 +32,7 @@ public class AddEmployeeController extends HttpServlet {
         try{
         String name = request.getParameter("name");
         String password = request.getParameter("password");
-        int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+        String phoneNumber = request.getParameter("phoneNumber");
         int idRole = Integer.parseInt(request.getParameter("role"));
         String gender = request.getParameter("gender");
         String email = request.getParameter("email");

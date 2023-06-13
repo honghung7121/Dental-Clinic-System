@@ -38,7 +38,7 @@ public class ShowDentistController extends HttpServlet {
             HttpSession session = request.getSession();
             DentistDAO dentDAO = new DentistDAO();
             ArrayList<Dentist> list = dentDAO.getTop8Dentist();
-            String url = "";
+
             if (list!=null) {
                 session.setAttribute("activeLink", "dentistLink");
                 request.setAttribute("listDentist", list);

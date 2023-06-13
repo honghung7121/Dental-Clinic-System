@@ -87,7 +87,7 @@
                                                 </td>
                                                 <td>${e.getId()}</td>
                                                 <td>${e.getEmail()}</td>
-                                                <td>0${e.getPhoneNumber()}</td>
+                                                <td>${e.getPhoneNumber()}</td>
                                                 <td style="padding: 0">
                                                     <c:choose>
                                                         <c:when test = "${e.getRoleID() ==  1}" ><span style="border: none; background: none; font-size: 13px; text-align: left;font-weight: 500 " class="custom-badge status-green">Admin</span></c:when>
