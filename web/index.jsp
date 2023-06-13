@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8">
         <title>DentCare - Dental Clinic Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -37,6 +38,7 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
     </head>
     <body>
 
@@ -332,9 +334,9 @@
                                 <input type="time" name="txtTime" class="form-control" required></input>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" value="Xem lịch còn trống">
-                            <input type="submit" class="btn btn-success" value="Tạo lịch hẹn">
+                        <div class="modal-footer" style="background: white;">
+                            <input type="button" class=""  value="Xem lịch còn trống">
+                            <input type="submit" class="" style="background: #06A3DA; border: 1;" value="Tạo lịch hẹn">
                         </div>
                     </form>
                 </div>

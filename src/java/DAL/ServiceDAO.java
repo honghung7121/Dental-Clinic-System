@@ -5,6 +5,8 @@
  */
 package DAL;
 
+import static DAL.FeedbackServiceDAO.getFeedbackService;
+import Models.FeedbackService;
 import Models.Service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,6 +35,26 @@ public class ServiceDAO {
             Connection connection = dbu.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, from);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Service c = new Service(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getBoolean(5));
+                list.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public static ArrayList<Service> getAllService() {
+        ArrayList<Service> list = new ArrayList<>();
+        Util dbu = new Util();
+
+        String sql = " SELECT *\n"
+                + "FROM tblService\n";
+        try {
+            Connection connection = dbu.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Service c = new Service(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getBoolean(5));
@@ -180,7 +202,7 @@ public class ServiceDAO {
         } catch (Exception e) {
         }
     }
-    
+
     public int countService() {
         Connection cn = null;
         String sql = "SELECT COUNT(*) AS total_rows FROM tblService;";
@@ -234,5 +256,57 @@ public class ServiceDAO {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public static Service getServiceUser(String keyword) throws SQLException {
+        Service fbs = null;
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select tblFeedBackService.id as id,serviceName, description,price, comment\n"
+                        + "from tblFeedBackService, tblUser, tblService\n"
+                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and "
+                        + "tblService.id = ? ";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, keyword);
+                rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String servicename = rs.getString("serviceName");
+                        String description = rs.getString("description");
+                        float price = rs.getFloat("price");
+                        String cmt = rs.getString("comment");
+                        fbs = new Service(id, servicename, description, price, cmt);
+
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                rs.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return fbs;
+    }
+
+    public static void main(String[] args) throws SQLException {
+
+        ArrayList<Service> list = getAllService();
+        for (Service o : list) {
+            System.out.println(o);
+        }
+//System.out.println(list);
     }
 }
