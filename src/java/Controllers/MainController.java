@@ -71,8 +71,11 @@ public class MainController extends HttpServlet {
     private final String CHANGEPASSWORDPAGE = "changePassword.jsp";
     private final String CHANGEPASSWORD = "ChangePasswordController";
     
-            
-
+    private final String CUSTOMER_DENTIST_PAGE = "customer-dentists.jsp";
+    private final String CUSTOMER_SHOW_DENTIST = "ShowDentistController";   
+    private final String CUSTOMER_DENTIST_PROFILE_PAGE = "profileDentistByCustomer.jsp";
+    private final String CUSTOMER_DENTIST_PROFILE = "profileDentistByCustomerController";
+    
 
 
     /**
@@ -189,6 +192,19 @@ public class MainController extends HttpServlet {
             }
             else if (action.equals("saveChangePass")) {
                 url = CHANGEPASSWORD;
+            }
+            
+            else if (action.equals("customer_dentists_page")) {
+                url = CUSTOMER_DENTIST_PAGE;
+            }
+            else if (action.equals("showDentist")) {
+                url = CUSTOMER_SHOW_DENTIST;
+            }
+            else if (action.equals("showProfileDentistController")) {
+                url = CUSTOMER_DENTIST_PROFILE;
+            }
+            else if (action.equals("showProfileDentist")) {
+                url = CUSTOMER_DENTIST_PROFILE_PAGE;
             }
             
             

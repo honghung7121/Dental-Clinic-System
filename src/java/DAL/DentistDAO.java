@@ -64,7 +64,7 @@ public class DentistDAO {
         return list;
     }
 
-    public static ArrayList<Dentist> getTop8Dentist() {
+    public ArrayList<Dentist> getTop8Dentist() {
         Connection cn = null;
         ArrayList<Dentist> list = new ArrayList<>();
         Dentist den = null;
@@ -109,7 +109,7 @@ public class DentistDAO {
         return list;
     }
 
-    public static ArrayList<Dentist> getNext4Dentist(int amount) {
+    public ArrayList<Dentist> getNext4Dentist(int amount) {
         Connection cn = null;
         ArrayList<Dentist> list = new ArrayList<>();
         Dentist den = null;
@@ -156,8 +156,56 @@ public class DentistDAO {
         }
         return list;
     }
+    
+    public ArrayList<Dentist> getNext3Dentist(int amount) {
+        Connection cn = null;
+        ArrayList<Dentist> list = new ArrayList<>();
+        Dentist den = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select * from tblUser u, tblDentist d\n"
+                        + "where u.id = d.dentistID and status = 1\n"
+                        + "order by id offset ? rows\n"
+                        + "fetch next 3 rows only";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, amount);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                       int idden = rs.getInt("id");
+                        String fullnameden = rs.getString("fullName");
+                        int phoneden = rs.getInt("phoneNumber");
+                        String passwordden = rs.getString("password");
+                        String emailden = rs.getString("email");
+                        int idRoleden = rs.getInt("idRole");
+                        String Rollden = rs.getString("Roll");
+                        String genderden = rs.getString("gender");
+                        String degreeden = rs.getString("degree");
+                        String experienceden = rs.getString("experience");
+                        String imgden = rs.getString("image");
+                        boolean statusden = rs.getBoolean("status");
+ 
+                        den = new Dentist(degreeden, experienceden, imgden, idden, fullnameden, passwordden, phoneden, idRoleden, statusden, emailden, Rollden, genderden);
+                        list.add(den);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return list;
+    }
 
-    public static Dentist getDentistByID(String id) {
+    public Dentist getDentistByID(String id) {
         Connection cn = null;
         Dentist den = null;
         try {

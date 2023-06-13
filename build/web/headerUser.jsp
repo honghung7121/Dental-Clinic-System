@@ -4,6 +4,9 @@
     Author     : Admin
 --%>
 
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -85,7 +88,14 @@
                             <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+84 374 312 384</p>
                         </div>
                         <div class="py-2">
-                            <a style="color:white;" href="login.jsp" class="m-0"><i class="fa fa-user"></i> Đăng Nhập </a>
+
+                            <c:if test="${sessionScope.User != null}">
+                                <a href="appointment.html" class="m-0" style="color: white">Đặt lịch hẹn</a>
+                            </c:if>
+                            <c:if test="${sessionScope.User == null}">
+                                <a style="color:white;" href="login.jsp" class="m-0"><i class="fa fa-user"></i> Đăng Nhập </a>
+                            </c:if>
+
                         </div>
                     </div>
                 </div>
@@ -111,17 +121,41 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
                         <div class="dropdown-menu m-0">
                             <a href="price.html" class="dropdown-item">Bảng giá</a>
-                            <a href="team.html" class="dropdown-item">Nha sĩ của chúng tôi</a>
+                            <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
                             <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
                             <a href="appointment.html" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+
+                    <a href="contact.jsp" class="nav-item nav-link">Liên hệ</a>
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>
-                <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Đặt lịch hẹn</a>
+                
+                <c:if test="${sessionScope.User != null}">
+                    <div class=" nav-item dropdown has-arrow">
+                        <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                            <span class="user-img">
+                                <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+                                <span class="status online"></span>
+                            </span>
+                            <span>${sessionScope.User.getFullName()}</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a>
+                            <form action="MainController">
+                                <button class="dropdown-item" name="action" value="Logout">Đăng Xuất</button>
+                            </form>
+                        </div>
+                    </div>
+                </c:if>
+                
             </div>
         </nav>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+
     </body>
 </html>

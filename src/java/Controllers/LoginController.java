@@ -63,7 +63,9 @@ public class LoginController extends HttpServlet {
                 } else if (user.getRoleID() == 3) {
                     url = "MarketingDentistController";
                 } else if (user.getRoleID() == 5) {
-                    url = "index.html";
+
+                    url = "index.jsp";
+
                 }
             } else {
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
