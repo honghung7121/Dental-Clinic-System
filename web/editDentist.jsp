@@ -44,7 +44,8 @@
 
                     <%
                         String dentistID = request.getParameter("dentistID");
-                        Dentist dentist = DentistDAO.getDentistByID(dentistID);
+                        DentistDAO dentistDAO = new DentistDAO();
+                        Dentist dentist = dentistDAO.getDentistByID(dentistID);
                     %>
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
@@ -66,11 +67,11 @@
                                         </div>
                                         <h6 style="color: red">${requestScope.reportEmail}</h6>
                                     </div>
-
+                                    
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Số Điện Thoại (10 số) </label>
-                                            <input class="form-control" type="text" name="editPhoneDentist" pattern="[0-9]{10}" value="0<%= dentist.getPhoneNumber()%>">
+                                            <input class="form-control" type="text" name="editPhoneDentist" pattern="[0-9]{10}" value="<%= dentist.getPhoneNumber()%>">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
