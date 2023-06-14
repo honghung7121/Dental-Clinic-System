@@ -34,7 +34,7 @@ public class SignUpController extends HttpServlet {
         try {
             String fullName = request.getParameter("fullName");
             final String email = request.getParameter("email");
-            int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+            String phoneNumber = request.getParameter("phoneNumber");
 
             String password = PasswordEncoder.toSHA1(request.getParameter("password"));
 

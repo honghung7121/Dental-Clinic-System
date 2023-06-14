@@ -39,7 +39,7 @@ public class EditDentistController extends HttpServlet {
             // img, experience, degree null thì lấy giá trị củ
             String id = request.getParameter("editIDDentist");
             String fullname = request.getParameter("editNameDentist");
-            int phone = Integer.parseInt(request.getParameter("editPhoneDentist"));
+            String phone = request.getParameter("editPhoneDentist");
             String email = request.getParameter("editEmailDentist");
             String degree = request.getParameter("editDegreeDentist");
             String experience = request.getParameter("editExperienceDentist");
@@ -50,8 +50,10 @@ public class EditDentistController extends HttpServlet {
             if (img != null && !img.isEmpty()) {
                 img = "image/" + img;
             }
-
-            Dentist den = DentistDAO.getDentistByID(id);
+            
+            DentistDAO dentistDAO = new DentistDAO();
+            Dentist den = dentistDAO.getDentistByID(id);
+            
             String[] denOld = {den.getImg(), den.getExperience(), den.getDegree()};
             String[] denNew = {img, experience, degree};
             for (int i = 0; i < denNew.length; i++) {

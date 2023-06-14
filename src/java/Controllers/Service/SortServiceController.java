@@ -81,7 +81,10 @@ public class SortServiceController extends HttpServlet {
 
             if (request.getParameter("flag").equals("ad")) {
                 request.getRequestDispatcher("service-2.jsp").forward(request, response);
-            }else{
+            }else if (request.getParameter("flag").equals("us")) {
+                request.getRequestDispatcher("serviceUser.jsp").forward(request, response);
+            }
+            else{
                 request.getRequestDispatcher("serviceMarketing.jsp").forward(request, response);
             }
         }

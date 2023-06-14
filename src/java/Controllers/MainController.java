@@ -46,6 +46,8 @@ public class MainController extends HttpServlet {
     private final String EDITSERVICECONTROLLER = "editServiceController";
     private final String UPDATESERVICECONTROLLER = "updateServiceController";
     private final String SEARCHSERVICENAME = "SearchServiceByNameController";
+    private final String SEARCHSERVICEUSERNAME = "SearchServiceUserByNameController";
+    private final String VIEWSERVICEUSER = "ServiceUserController";
 
     private final String VIEWFEEDBACKDENTIST = "ViewFeedbackDentistController";
     private final String VIEWFEEDBACKSERVICE = "ViewFeedbackServiceController";
@@ -69,8 +71,11 @@ public class MainController extends HttpServlet {
     private final String CHANGEPASSWORDPAGE = "changePassword.jsp";
     private final String CHANGEPASSWORD = "ChangePasswordController";
     
-            
-
+    private final String CUSTOMER_DENTIST_PAGE = "customer-dentists.jsp";
+    private final String CUSTOMER_SHOW_DENTIST = "ShowDentistController";   
+    private final String CUSTOMER_DENTIST_PROFILE_PAGE = "profileDentistByCustomer.jsp";
+    private final String CUSTOMER_DENTIST_PROFILE = "profileDentistByCustomerController";
+    
 
 
     /**
@@ -133,6 +138,10 @@ public class MainController extends HttpServlet {
                 url = UPDATESERVICECONTROLLER;
             } else if (action.equals("Search Service By Name")) {
                 url = SEARCHSERVICENAME;
+            }else if (action.equals("Search Service User By Name")) {
+                url = SEARCHSERVICEUSERNAME;
+            } else if (action.equals("ViewService")) {
+                url = VIEWSERVICEUSER;
             } else if (action.equals("View Feedback Dentist")) {
                 url = VIEWFEEDBACKDENTIST;
             } else if (action.equals("View Feedback Service")) {
@@ -183,6 +192,19 @@ public class MainController extends HttpServlet {
             }
             else if (action.equals("saveChangePass")) {
                 url = CHANGEPASSWORD;
+            }
+            
+            else if (action.equals("customer_dentists_page")) {
+                url = CUSTOMER_DENTIST_PAGE;
+            }
+            else if (action.equals("showDentist")) {
+                url = CUSTOMER_SHOW_DENTIST;
+            }
+            else if (action.equals("showProfileDentistController")) {
+                url = CUSTOMER_DENTIST_PROFILE;
+            }
+            else if (action.equals("showProfileDentist")) {
+                url = CUSTOMER_DENTIST_PROFILE_PAGE;
             }
             
             
