@@ -3,32 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/dentistappointment.jsp</file>
-            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/index.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/headerConsultant.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/patient.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/headerdentist.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/profileDentist.jsp</file>
             <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/WEB-INF/web.xml</file>
-            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/myprofile.jsp</file>
-=======
-<<<<<<< HEAD
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/editemployee.jsp</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/employee.jsp</file>
-=======
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/confirmMailController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/dentistappointment.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Models/Service.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Service/addServiceController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Advisory/CreateAdvisoryController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/forgotPassword.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/LoginController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/DAL/ServiceDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Dentist/LoadMoreDentistController.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/DAL/FeedbackDentistDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Models/User.java</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/confirmEmail.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/addEmployee.jsp</file>
->>>>>>> 58c69e810d6dc81f07631b8097a08bcc88e04473
->>>>>>> 36769c228c9ee692f17b0a642140db0906880b5f
         </group>
     </open-files>
 </project-private>
