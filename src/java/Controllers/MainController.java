@@ -64,6 +64,8 @@ public class MainController extends HttpServlet {
     
     private final String SEARCHAPPOINTMENTBYDATE = "SearchAppointmentController";
     private final String APPOINTMENTPAGE = "appointments.jsp";
+    private final String CHECKAPPOINTMENTDATE = "CheckAppointmentDateController";
+    private final String CREATEAPPOINTMENT = "CreateAppointmentController";
     private final String CREATEAPPOINTMENTPAGE = "addAppointment.jsp";
     private final String APPOINTMENTEDIT = "EditAppointmentController";
     private final String APPOINTMENTCREATE = "CreateAppointmentController";
@@ -176,6 +178,12 @@ public class MainController extends HttpServlet {
             }
             else if (action.equals("appointment")) {
                 url = APPOINTMENTPAGE;
+            }
+            else if (action.equals("Check Appointment Date")) {
+                url = CHECKAPPOINTMENTDATE;
+            } 
+            else if (action.equals("Create Appointment")) {
+                url = CREATEAPPOINTMENT;            
             }
             else if (action.equals("CreateAppointmentPage")) {
                 url = CREATEAPPOINTMENTPAGE;

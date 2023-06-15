@@ -277,26 +277,85 @@
                 </div>
                 <main class="main-container">
                     <div class="main-title">
-                        <div id="${c.getId()} course" class="items">
-                            <div class="items-info">
-                                <div class="items-details">
-                                    <h3 style="text-align: left; margin-bottom: 10px;" class="teachers-name">P13<span>-Trần Hồng Hưng</span></h3>
-                                    <span style="color: black; font-size: 1rem;">Mô Tả:</span><p class="teachers-subject" style="display: inline"> Sử dụng từ ngữ rõ ràng và mô tả chức năng: Đặt tên file .jsp theo cách thể hiện rõ ràng chức năng hoặc nội dung của trang web hoặc ứng dụng của bạn. Ví dụ: "login.jsp", "signup.jsp" hoặc "profile.jsp".</p>
-                                    <div style="margin-top: 10px">
-                                        <span style="color: black; font-size: 1rem">Thời Gian:</span><h2> 8:30</h2>
-                                    </div>
-                                    <div style="margin-top: 10px">
-                                        <button class="button-4 completed-advisory" role="button">Hoàn Thành</button> 
+                        <c:forEach items="${Appointments}" var="a">
+                            <div id="${a.getId()}" class="items">
+                                <div class="items-info">
+                                    <div class="items-details">
+                                        <h3 style="text-align: left; margin-bottom: 10px;" class="teachers-name">${a.getRoll()}<span>-${a.getUserName()}</span></h3>
+                                        <span style="color: black; font-size: 1rem;">Mô Tả:</span><p class="teachers-subject" style="display: inline">${a.getDescription()}</p>
+                                        <div style="margin-top: 10px">
+                                            <span style="color: black; font-size: 1rem">Thời Gian:</span><h2> ${a.getDate()} - ${a.getTime()}</h2>
+                                        </div>
+                                        <div style="margin-top: 10px">
+                                            <button onclick="deleteCourse(${a.getId()})" class="button-4 completed-appointment" role="button">Hoàn Thành</button> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
+                        <!--                        <div id="" class="items">
+                                                    <div class="items-info">
+                                                        <div class="items-details">
+                                                            <h3 style="text-align: left; margin-bottom: 10px;" class="teachers-name">P13<span>-Trần Hồng Hưng</span></h3>
+                                                            <span style="color: black; font-size: 1rem;">Mô Tả:</span><p class="teachers-subject" style="display: inline"> Sử dụng từ ngữ rõ ràng và mô tả chức năng: Đặt tên file .jsp theo cách thể hiện rõ ràng chức năng hoặc nội dung của trang web hoặc ứng dụng của bạn. Ví dụ: "login.jsp", "signup.jsp" hoặc "profile.jsp".</p>
+                                                            <div style="margin-top: 10px">
+                                                                <span style="color: black; font-size: 1rem">Thời Gian:</span><h2> 8:30</h2>
+                                                            </div>
+                                                            <div style="margin-top: 10px">
+                                                                <button class="button-4 completed-advisory" role="button">Hoàn Thành</button> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                     </div>
                 </main>
             </div>
-
-
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+                                                function deleteCourse(id) {
+                                                    event.preventDefault();
+                                                    var comfirmation = confirm("Bạn có chắc muốn hoàn thành chứ?");
+                                                    if (comfirmation) {
+                                                        $.ajax({
+                                                            url: '/SWP391-SE1743/CompletedAppointmentController',
+                                                            type: 'POST',
+                                                            data: {
+                                                                id: id
+                                                            },
+                                                            success: function (respone) {
+                                                                let element = document.getElementById(id);
+                                                                element.remove();
+                                                            }
+                                                        });
+                                                    }
+                                                }
+//                                            document.querySelectorAll('.completed-appointment').forEach(function (item) {
+//                                                item.addEventListener('click', function (event) {
+//                                                    event.preventDefault();
+//                                                    var advisoryRow = this.closest('tr');
+//                                                    var advisoryID = advisoryRow.querySelector('td:first-child').textContent;
+//                                                    var comfirmation = confirm("Bạn có chắc muốn hoàn thành chứ?");
+//                                                    if (comfirmation) {
+//                                                        $.ajax({
+//                                                            url: '/SWP391-SE1743/CompletedAppointmentController',
+//                                                            data: {
+//                                                                action: 'Complete Advisory',
+//                                                                id: advisoryID
+//                                                            },
+//                                                            success: function (data) {
+//                                                                let advisory = document.getElementById(advisoryID);
+//                                                                advisory.remove();
+//                                                            },
+//                                                            error: function (error) {
+//                                                                console("Fail");
+//                                                            },
+//                                                            type: 'POST'
+//                                                        });
+//                                                    }
+//                                                });
+//                                            });
+    </script>
 </body>
 </html>

@@ -90,7 +90,7 @@
                         <div class="py-2">
 
                             <c:if test="${sessionScope.User != null}">
-                                <a href="appointment.html" class="m-0" style="color: white">Đặt lịch hẹn</a>
+                                <a href="index.jsp" class="m-0" style="color: white">Đặt lịch hẹn</a>
                             </c:if>
                             <c:if test="${sessionScope.User == null}">
                                 <a style="color:white;" href="login.jsp" class="m-0"><i class="fa fa-user"></i> Đăng Nhập </a>
@@ -118,12 +118,12 @@
                     <a href="aboutus.jsp" class="nav-item nav-link ">Về Chúng Tôi</a>
                     <a href="ServiceUserController" class="nav-item nav-link ">Dịch Vụ</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Xem Thêm</a>
                         <div class="dropdown-menu m-0">
                             <a href="price.html" class="dropdown-item">Bảng giá</a>
                             <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
                             <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
-                            <a href="appointment.html" class="dropdown-item">Cuộc hẹn</a>
+                            <a href="index.jsp" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
 
