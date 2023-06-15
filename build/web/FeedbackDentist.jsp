@@ -29,6 +29,106 @@
         <c:set var="isAdmin" value="${role eq 1}" />
         <c:set var="isMarketing" value="${role eq 3}" />
         <div class="main-wrapper">
+
+            <c:if test="${isMarketing}">
+                <jsp:include page="headerMarketing.jsp"></jsp:include>
+           <c:if test="${isAdmin}">
+                <jsp:include page="header.jsp"></jsp:include>
+
+                    <div class="page-wrapper">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-4 col-3">
+                                    <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
+                                </div>
+                                <div class="col-sm-8 col-9 text-right m-b-20">
+                                    <form action="MainController" method="post" accept-charset="UTF-8">
+                                        <input placeholder="Tìm Kiếm" type="text" name="txt" value="<c:out value="${empty param.txt ? '' : param.txt}" escapeXml="false" />">
+                                    <select name="searchby">
+                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                        <option value="bydentistname">Theo Tên Nha Sĩ</option>
+                                    </select>
+                                    <button type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!--                            <div class="row filter-row">
+                                                        <div class="col-sm-6 col-md-3">
+                                                            <div class="form-group form-focus">
+                                                                <label class="focus-label">Tìm Phản Hồi</label>
+                                                                <input oninput="searchByName(this)" type="text" name="txt" class="form-control floating">
+                                                                <select name="searchby">
+                                                                    <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                                                    <option value="bydentistname">Theo Tên Nha Sĩ</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table id="myTable" class="table table-border table-striped custom-table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th><a href="#">Feedback ID</a></th>
+                                                <th><a href="#">Tên Khách Hàng</a></th>
+                                                <th><a href="#">Tên Nha Sĩ</a></th>
+                                                <th><a href="#">Đánh Giá</a></th>
+                                                <th><a href="#">Nội dung</a></th>
+
+                                                <th class="text-right">Chỉnh sửa</th>
+
+                                            </tr>                                        
+                                        </thead>
+                                        <tbody id="content">
+                                            <c:forEach var="feedback" items="${sessionScope.list}">
+                                                <tr>
+                                                    <td><c:out value="${feedback.getId()}"></c:out></td>
+                                                    <td><c:out value="${feedback.getNamecustomer()}"></c:out></td>
+                                                    <td><c:out value="${feedback.getNamedentist()}"></c:out></td>
+                                                        <td class="rating">
+                                                        <c:set var="rating" value="${feedback.getRate()}" /> <!-- Số điểm rating -->
+                                                        <c:forEach begin="1" end="5" var="star">
+                                                            <span class="star">
+                                                                <c:choose>
+                                                                    <c:when test="${star <= rating}">
+                                                                        <span style='color: gold;'>★</span>  <!-- Hiển thị ngôi sao đã chọn -->
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        &#9734; <!-- Hiển thị ngôi sao chưa chọn -->
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </span>
+                                                        </c:forEach>
+
+                                                    </td>
+                                                    <td><c:out value="${feedback.getComment()}"></c:out></td>
+                                                    </tr>
+                                            </c:forEach>                                        
+                                        </tbody>
+                                    </table>                                 
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--            <div id="delete_schedule" class="modal fade delete-modal" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body text-center">
+                                            <img src="assets/img/sent.png" alt="" width="50" height="46">
+                                            <h3>Are you sure want to delete this Schedule?</h3>
+                                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                                                <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+            </c:if>
             <c:if test="${isMarketing}">
                 <jsp:include page="headerMarketing.jsp"></jsp:include>
                     <div class="page-wrapper">
@@ -95,10 +195,23 @@
                                                         </c:forEach>
                                                     </td>
                                                     <td><c:out value="${feedback.getComment()}"></c:out></td>
+
+                                                        </td>
+                                                        <td><c:out value="${feedback.getComment()}"></c:out></td>
+                                                        <td class="text-right">
+                                                            <div class="dropdown dropdown-action">
+                                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a class="dropdown-item delete-schedule" href="#" data-toggle="modal" data-target="#delete_schedule"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
                                                     </tr>
                                             </c:forEach>                                        
                                         </tbody>
                                     </table>
+
 
                                 </div>
                             </div>
@@ -106,6 +219,8 @@
                     </div>
                 </div>
 
+
+              
             </c:if>
         </div>
         <script src="assets/js/title_sort.js"></script>                        

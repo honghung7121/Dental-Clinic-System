@@ -184,6 +184,7 @@
                     <div class="sign-up-htm" >
                         <div class="group" id="formFullName">
                             <label for="user" class="label">Họ Và Tên</label>
+
                             <input style="border-radius: 0" id="fullName" name="fullName" type="text" class="input">
                         </div>
                         <div class="group" id="formEmail">
@@ -204,7 +205,7 @@
                         </div>
                         <div class="group" id="formSignUp">
                             <input onclick="signup(this)" style="background-color: #06A3DA;border-radius: 0" type="submit" class="button" value="Đăng Kí">
-                        </div>
+                    </div>
                         <div class="foot-lnk">
                             <label style="cursor: pointer;" for="tab-1">Bạn Đã Là Thành Viên?</a>
                         </div>

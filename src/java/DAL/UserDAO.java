@@ -738,6 +738,7 @@ public class UserDAO {
                     stm = con.prepareStatement(sql1);
                     rs = stm.executeQuery();
                     String rawRoll1 = "";
+
                     if (rs.next()) {
                         rawRoll1 = rs.getString("Roll");
                     }
@@ -770,6 +771,7 @@ public class UserDAO {
         }
         return success;
     }
+
 
     public static ArrayList<Bill> getBill() {
         ArrayList<Bill> list = new ArrayList<>();
