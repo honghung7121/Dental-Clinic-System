@@ -8,6 +8,7 @@ package Controllers.Bill;
 import DAL.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,14 +36,31 @@ public class SearchUserStatus extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
              String searchstatus = request.getParameter("status");
-            ArrayList list = null;
-            if(searchstatus.equals("bynot")) {
+            String fromDate = request.getParameter("from");
+            String toDate = request.getParameter("to");
+            
+            java.util.Date datenow = new java.util.Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String date = dateFormat.format(datenow);
+            
+          
+            ArrayList list = new ArrayList();
+
+            if (searchstatus.equals("bynot")) {
                 list = UserDAO.getUnpaidBills();
-            } else if(searchstatus.equals("bydone")) {
+            } else if (searchstatus.equals("bydone")) {
                 list = UserDAO.getpaidBills();
-            } else if(searchstatus.equals("byall")) {
+//            } else if (searchstatus.equals("byall")) {
+//                list = UserDAO.getBill();
+            } else if ((fromDate == null || fromDate.isEmpty()) && (toString() == null || toDate.isEmpty())) {                
                 list = UserDAO.getBill();
-            } 
+//            } else if (toDate == null || toDate.isEmpty()) {
+//                list = UserDAO.searchUserByDate(fromDate, date);
+//            } else if (fromDate == null || fromDate.isEmpty()) {
+//                list = UserDAO.searchUserByDate(fromDate, toDate);
+            } else if(fromDate !=null && toDate !=null){                
+                list = UserDAO.searchUserByDate(fromDate, toDate);
+            }
             request.setAttribute("loadbill", list);
             request.getRequestDispatcher("bill.jsp").forward(request, response);
         }

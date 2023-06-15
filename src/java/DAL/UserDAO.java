@@ -779,9 +779,11 @@ public class UserDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select tblTreatmentCourse.id as id, usertable.fullName as username,datetable.treatmentDate as treatmentDate,servicetable.price as price, tblTreatmentCourse.PaidStatus\n"
-                        + "from tblTreatmentCourse, (select id, fullName from tblUser where idRole = 5) as usertable, (select id, price from tblService) as servicetable, (select id, treatmentDate from tblTreatmentCourseDetail) as datetable\n"
-                        + "where tblTreatmentCourse.userID = usertable.id and tblTreatmentCourse.serviceID = servicetable.id and tblTreatmentCourse.id = datetable.id  ";
+                String sql = "SELECT tblTreatmentCourse.id AS id, usertable.fullName AS username, datetable.treatmentDate AS treatmentDate,datetable.description as description, servicetable.price AS price, tblTreatmentCourse.status as status\n"
+                        + "FROM tblTreatmentCourse\n"
+                        + "JOIN (SELECT id, fullName FROM tblUser WHERE idRole = 5) AS usertable ON tblTreatmentCourse.userID = usertable.id\n"
+                        + "JOIN (SELECT id, price FROM tblService) AS servicetable ON tblTreatmentCourse.id = servicetable.id\n"
+                        + "JOIN (SELECT id, treatmentDate, description, statusPaid  FROM tblTreatmentCourseDetail) AS datetable ON tblTreatmentCourse.id = datetable.id";
                 pst = cn.prepareStatement(sql);
                 rs = pst.executeQuery();
                 if (rs != null) {
@@ -789,9 +791,10 @@ public class UserDAO {
                         int id = rs.getInt("id");
                         String username = rs.getString("username");
                         String treatmentDate = rs.getString("treatmentDate");
+                        String description = rs.getString("description");
                         float price = rs.getFloat("price");
-                        boolean status = rs.getBoolean("PaidStatus");
-                        Bill bill = new Bill(id, username, treatmentDate, price, status);
+                        boolean status = rs.getBoolean("status");
+                        Bill bill = new Bill(id, username, treatmentDate, description, price, status);
                         list.add(bill);
                     }
                 }
@@ -808,9 +811,11 @@ public class UserDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select tblTreatmentCourse.id as id, usertable.fullName as username,datetable.treatmentDate as treatmentDate,servicetable.price as price, tblTreatmentCourse.PaidStatus\n"
-                        + "from tblTreatmentCourse, (select id, fullName from tblUser where idRole = 5) as usertable, (select id, price from tblService) as servicetable, (select id, treatmentDate from tblTreatmentCourseDetail) as datetable\n"
-                        + "where tblTreatmentCourse.userID = usertable.id and tblTreatmentCourse.serviceID = servicetable.id and  tblTreatmentCourse.id = datetable.id and tblTreatmentCourse.PaidStatus = 0";
+                String sql = "SELECT tblTreatmentCourse.id AS id, usertable.fullName AS username, datetable.treatmentDate AS treatmentDate,datetable.description as description, servicetable.price AS price, tblTreatmentCourse.status as status\n"
+                        + "FROM tblTreatmentCourse\n"
+                        + "JOIN (SELECT id, fullName FROM tblUser WHERE idRole = 5) AS usertable ON tblTreatmentCourse.userID = usertable.id\n"
+                        + "JOIN (SELECT id, price FROM tblService) AS servicetable ON tblTreatmentCourse.id = servicetable.id\n"
+                        + "JOIN (SELECT id, treatmentDate, description, statusPaid  FROM tblTreatmentCourseDetail) AS datetable ON tblTreatmentCourse.id = datetable.id and tblTreatmentCourse.status = 0";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null) {
@@ -818,9 +823,10 @@ public class UserDAO {
                         int id = rs.getInt("id");
                         String username = rs.getString("username");
                         String treatmentDate = rs.getString("treatmentDate");
+                        String description = rs.getString("description");
                         float price = rs.getFloat("price");
-                        boolean status = rs.getBoolean("PaidStatus");
-                        Bill bill = new Bill(id, username, treatmentDate, price, status);
+                        boolean status = rs.getBoolean("status");
+                        Bill bill = new Bill(id, username, treatmentDate, username, price, status);
                         list.add(bill);
                     }
                 }
@@ -838,9 +844,11 @@ public class UserDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select tblTreatmentCourse.id as id, usertable.fullName as username,datetable.treatmentDate as treatmentDate,servicetable.price as price, tblTreatmentCourse.PaidStatus\n"
-                        + "from tblTreatmentCourse, (select id, fullName from tblUser where idRole = 5) as usertable, (select id, price from tblService) as servicetable, (select id, treatmentDate from tblTreatmentCourseDetail) as datetable\n"
-                        + "where tblTreatmentCourse.userID = usertable.id and tblTreatmentCourse.serviceID = servicetable.id and  tblTreatmentCourse.id = datetable.id and tblTreatmentCourse.PaidStatus = 1";
+                String sql = "SELECT tblTreatmentCourse.id AS id, usertable.fullName AS username, datetable.treatmentDate AS treatmentDate,datetable.description as description, servicetable.price AS price, tblTreatmentCourse.status as status\n"
+                        + "FROM tblTreatmentCourse\n"
+                        + "JOIN (SELECT id, fullName FROM tblUser WHERE idRole = 5) AS usertable ON tblTreatmentCourse.userID = usertable.id\n"
+                        + "JOIN (SELECT id, price FROM tblService) AS servicetable ON tblTreatmentCourse.id = servicetable.id\n"
+                        + "JOIN (SELECT id, treatmentDate, description, statusPaid  FROM tblTreatmentCourseDetail) AS datetable ON tblTreatmentCourse.id = datetable.id and tblTreatmentCourse.status = 1";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null) {
@@ -848,9 +856,10 @@ public class UserDAO {
                         int id = rs.getInt("id");
                         String username = rs.getString("username");
                         String treatmentDate = rs.getString("treatmentDate");
+                        String description = rs.getString("description");
                         float price = rs.getFloat("price");
-                        boolean status = rs.getBoolean("PaidStatus");
-                        Bill bill = new Bill(id, username, treatmentDate, price, status);
+                        boolean status = rs.getBoolean("status");
+                        Bill bill = new Bill(id, username, treatmentDate, username, price, status);
                         list.add(bill);
                     }
                 }
@@ -885,4 +894,44 @@ public class UserDAO {
 //        }
 //        return list;
 //    }
+    public static ArrayList<Bill> searchUserByDate(String fromDate, String toDate) {
+        ArrayList< Bill> list = new ArrayList<>();
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT tblTreatmentCourse.id AS id, usertable.fullName AS username, datetable.treatmentDate AS treatmentDate,datetable.description as description, servicetable.price AS price, tblTreatmentCourse.status as status\n"
+                        + "FROM tblTreatmentCourse\n"
+                        + "JOIN (SELECT id, fullName FROM tblUser WHERE idRole = 5) AS usertable ON tblTreatmentCourse.userID = usertable.id\n"
+                        + "JOIN (SELECT id, price FROM tblService) AS servicetable ON tblTreatmentCourse.id = servicetable.id\n"
+                        + "JOIN (SELECT id, treatmentDate, description, statusPaid  FROM tblTreatmentCourseDetail) AS datetable ON tblTreatmentCourse.id = datetable.id\n"
+                        + "where datetable.treatmentDate BETWEEN ?  AND ?";
+
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, fromDate);
+                pst.setString(2, toDate);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String username = rs.getString("username");
+                        String treatmentDate = rs.getString("treatmentDate");
+                        String description = rs.getString("description");
+                        float price = rs.getFloat("price");
+                        boolean status = rs.getBoolean("status");
+                        Bill bill = new Bill(id, username, treatmentDate, description, price, status);
+                        list.add(bill);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Bill> p = UserDAO.searchUserByDate("01-01-2022", "12-12-2023");
+        System.out.println(p.toString());
+    }
 }

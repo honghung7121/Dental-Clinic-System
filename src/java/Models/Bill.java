@@ -15,20 +15,21 @@ public class Bill implements Serializable{
     private int id;
     private String username;
     private String treatmentDate;
+    private String description;
     private float price;
-    private boolean PaidStatus;
+    private boolean status;
 
     public Bill() {
     }
 
-    public Bill(int id, String username, String treatmentDate, float price, boolean PaidStatus) {
+    public Bill(int id, String username, String treatmentDate, String description, float price, boolean status) {
         this.id = id;
         this.username = username;
         this.treatmentDate = treatmentDate;
+        this.description = description;
         this.price = price;
-        this.PaidStatus = PaidStatus;
+        this.status = status;
     }
-    
 
     public int getId() {
         return id;
@@ -54,21 +55,31 @@ public class Bill implements Serializable{
         this.treatmentDate = treatmentDate;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public float getPrice() {
         return price;
     }
 
     public void setPrice(float price) {
         this.price = price;
-    }   
-
-    public boolean isPaidStatus() {
-        return PaidStatus;
     }
 
-    public void setPaidStatus(boolean PaidStatus) {
-        this.PaidStatus = PaidStatus;
+    public boolean isStatus() {
+        return status;
     }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    
     
     
 }
