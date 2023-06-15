@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,30 +33,51 @@ public class ChangePasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = "";
+        HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
             String email = request.getParameter("EmailNow");
             String passnow = PasswordEncoder.toSHA1(request.getParameter("PassNow"));
             String passnew = PasswordEncoder.toSHA1(request.getParameter("PassNew"));
             String passnewagain = PasswordEncoder.toSHA1(request.getParameter("PassNewAgain"));
-            
+
             UserDAO userDAO = new UserDAO();
             User user = userDAO.getUserByEmail(email);
-            
-            if (!passnew.equals(passnewagain)) {
-                request.setAttribute("report2", "Mật khẩu không giống!!!");
-                request.getRequestDispatcher("MainController?action=changePassPage").forward(request, response);
+            session.setAttribute("User", user);
+            session.setAttribute("role", user.getRoleID());
+            if (user.getRoleID() == 1) {
+                if (!passnew.equals(passnewagain)) {
+                    request.setAttribute("report2", "Mật khẩu không giống!!!");
+                    request.getRequestDispatcher("MainController?action=changePassPage").forward(request, response);
+                } else if (!user.getPassword().equals(passnow)) {
+                    request.setAttribute("report1", "Mật khẩu không đúng!!!");
+                    request.getRequestDispatcher("MainController?action=changePassPage").forward(request, response);
+                } else {
+                    userDAO.editPasswordUser(email, passnew);
+                    request.getRequestDispatcher("MainController?action=Logout").forward(request, response);
+                }
+            } else if (user.getRoleID() == 4) {
+                url = "GetAdvisoryController";
+            } else if (user.getRoleID() == 3) {
+                url = "MarketingDentistController";
+            } else if (user.getRoleID() == 5) {
+
+                if (!passnew.equals(passnewagain)) {
+                    request.setAttribute("report2", "Mật khẩu không giống!!!");
+                    request.getRequestDispatcher("MainController?action=changePassUser").forward(request, response);
+                } else if (!user.getPassword().equals(passnow)) {
+                    request.setAttribute("report1", "Mật khẩu không đúng!!!");
+                    request.getRequestDispatcher("MainController?action=changePassUser").forward(request, response);
+                } else {
+                    userDAO.editPasswordUser(email, passnew);
+                    request.getRequestDispatcher("MainController?action=Logout").forward(request, response);
+                }
+
             }
-            else if (!user.getPassword().equals(passnow)) {
-                request.setAttribute("report1", "Mật khẩu không đúng!!!");
-                request.getRequestDispatcher("MainController?action=changePassPage").forward(request, response);
-            }
-            else {
-                userDAO.editPasswordUser(email, passnew);
-                request.getRequestDispatcher("MainController?action=Logout").forward(request, response);
-            }
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -237,6 +237,14 @@
         <servlet-class>Controllers.Customer.profileDentistByCustomerController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>TreatmentCourseController</servlet-name>
+        <servlet-class>Controllers.Treatment.TreatmentCourseController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TreatmentCourseDetailController</servlet-name>
+        <servlet-class>Controllers.Treatment.TreatmentCourseDetailController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GetAppointmentController</servlet-name>
         <servlet-class>Controllers.Appointment.GetAppointmentController</servlet-class>
     </servlet>
@@ -485,6 +493,14 @@
         <url-pattern>/profileDentistByCustomerController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>TreatmentCourseController</servlet-name>
+        <url-pattern>/TreatmentCourseController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TreatmentCourseDetailController</servlet-name>
+        <url-pattern>/TreatmentCourseDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>GetAppointmentController</servlet-name>
         <url-pattern>/GetAppointmentController</url-pattern>
     </servlet-mapping>
@@ -494,12 +510,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckAppointmentDateController</servlet-name>
-        <url-pattern>/CheckAppointmentDateController</url-pattern>
+        <url-pattern>/CheckAppointmentDateController</url-pattern>   
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

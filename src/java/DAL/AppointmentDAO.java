@@ -239,7 +239,7 @@ public class AppointmentDAO {
                 pst.setDate(3, date);
                 pst.setTime(4, time);
                 pst.setString(5, note);
-                pst.setBoolean(6, true);
+                pst.setBoolean(6, false);
                 pst.executeUpdate();
                 result = true;
             }
