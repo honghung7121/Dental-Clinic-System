@@ -6,6 +6,8 @@
 package Models;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -17,8 +19,10 @@ public class Appointment{
     private String userName;
     private String dentistName;
     private Date date;  
+    private Time time;
     private String description;
     private boolean status;
+    private String Roll;
 
     public Appointment() {
     }
@@ -31,6 +35,36 @@ public class Appointment{
         this.description = description;
         this.status = status;
     }
+
+    public Appointment(int id, String userName, Date date, Time time, String description, boolean status, String Roll) {
+        this.id = id;
+        this.userName = userName;
+        this.dentistName = dentistName;
+        this.date = date;
+        this.time = time;
+        this.description = description;
+        this.status = status;
+        this.Roll = Roll;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public String getRoll() {
+        return Roll;
+    }
+
+    public void setRoll(String Roll) {
+        this.Roll = Roll;
+    }
+
+    
+    
 
     public int getId() {
         return id;
@@ -56,8 +90,9 @@ public class Appointment{
         this.dentistName = dentistName;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(date);
     }
 
     public void setDate(Date date) {
