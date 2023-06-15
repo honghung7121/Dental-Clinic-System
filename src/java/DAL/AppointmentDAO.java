@@ -221,4 +221,80 @@ public class AppointmentDAO {
             }
         }
     }
+    public static boolean ReceiveAppointment(int userID, int denID, String stringdate, String stringtime, String note) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                Date date = Date.valueOf(stringdate);
+                Time time = Time.valueOf(stringtime);
+                String sql = "INSERT INTO tblAppointment(userID, dentistID, appDate, appTime, description, status)\n"
+                        + "values (?,?,?,?,?,?)";
+                pst = cn.prepareStatement(sql);
+                pst.setInt(1, userID);
+                pst.setInt(2, denID);
+                pst.setDate(3, date);
+                pst.setTime(4, time);
+                pst.setString(5, note);
+                pst.setBoolean(6, true);
+                pst.executeUpdate();
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return result;
+    }
+
+    public static boolean isTimeBooked(String stringdate, String stringtime, int dentistid) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                Date date = Date.valueOf(stringdate);
+                Time time = Time.valueOf(stringtime);
+                String sql = "SELECT appDate, appTime, dentistID\n"
+                        + "FROM tblAppointment\n"
+                        + "WHERE appDate = ? AND appTime = ? AND dentistID = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setDate(1, date);
+                pst.setTime(2, time);
+                pst.setInt(3, dentistid);
+                rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    result = true;
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return result;
+    }    
 }
