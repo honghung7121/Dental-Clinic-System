@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/headerConsultant.jsp</file>
-            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/patient.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Appointment/GetAppointmentController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Appointment/CompletedAppointmentController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/DAL/AppointmentDAO.java</file>
             <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/headerdentist.jsp</file>
-            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/profileDentist.jsp</file>
-            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
