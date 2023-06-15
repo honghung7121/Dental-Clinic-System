@@ -31,28 +31,32 @@
     <script src="assets/js/app.js"></script>
 </head>
 <body>
+    <c:set var="u" value="${sessionScope.User}"></c:set>
+        <div class="header">
+            <div class="header-left">
+                <a href="admin.jsp" class="logo">
+                    <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>DentCare</span>
+                </a>
+            </div>
+            <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
 
-    <div class="header">
-        <div class="header-left">
-            <a href="admin.jsp" class="logo">
-                <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>DentCare</span>
-            </a>
-        </div>
-        <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
-        <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
-        <ul class="nav user-menu float-right">
 
-
-            <li class="nav-item dropdown has-arrow">
-                <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
-                    <span class="user-img">
-                        <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
-                        <span class="status online"></span>
-                    </span>
-                    <span>${sessionScope.User.getFullName()}</span>
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+                            <span class="status online"></span>
+                        </span>
+                        <span>${sessionScope.User.getFullName()}</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a>
+                    <c:choose>                  
+                        <c:when test = "${u.getRoleID() ==  5}" ><a class="dropdown-item" href="profileUser.jsp">Tài Khoản</a></c:when>
+                        <c:otherwise><a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a></c:otherwise>
+                    </c:choose>
+
                     <form action="MainController">
                         <button class="dropdown-item" name="action" value="Logout">Đăng Xuất</button>
                     </form>

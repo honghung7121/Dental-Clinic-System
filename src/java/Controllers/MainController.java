@@ -23,7 +23,6 @@ public class MainController extends HttpServlet {
     private final String SEND = "javaMailController";
     private final String MAIL = "confirmMailController";
 
-
     private final String DENTIST = "DentistController";
     private final String DENTISTPROFILE = "DentistProfileController";
     private final String DENTISTEDIT = "EditDentistController";
@@ -61,22 +60,22 @@ public class MainController extends HttpServlet {
     private final String CREATEPATIENT = "AddPatient";
     private final String DELETEPATIENT = "DeletePatient";
 
-    
     private final String SEARCHAPPOINTMENTBYDATE = "SearchAppointmentController";
     private final String APPOINTMENTPAGE = "appointments.jsp";
     private final String CREATEAPPOINTMENTPAGE = "addAppointment.jsp";
     private final String APPOINTMENTEDIT = "EditAppointmentController";
     private final String APPOINTMENTCREATE = "CreateAppointmentController";
-    
+
     private final String CHANGEPASSWORDPAGE = "changePassword.jsp";
+    private final String CHANGEPASSWORDUSER = "changePasswordUser.jsp";
     private final String CHANGEPASSWORD = "ChangePasswordController";
-    
+
     private final String CUSTOMER_DENTIST_PAGE = "customer-dentists.jsp";
-    private final String CUSTOMER_SHOW_DENTIST = "ShowDentistController";   
+    private final String CUSTOMER_SHOW_DENTIST = "ShowDentistController";
     private final String CUSTOMER_DENTIST_PROFILE_PAGE = "profileDentistByCustomer.jsp";
     private final String CUSTOMER_DENTIST_PROFILE = "profileDentistByCustomerController";
-    
 
+    private final String TREATMENT = "TreatmentCourseController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -95,12 +94,11 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action.equals("Login")) {
                 url = LOGIN;
-            }else if (action.equals("sendMail")) {
+            } else if (action.equals("sendMail")) {
                 url = SEND;
-            }else if (action.equals("codeMail")) {
+            } else if (action.equals("codeMail")) {
                 url = MAIL;
-            }
-            else if (action.equals("dentist")) {
+            } else if (action.equals("dentist")) {
                 url = DENTIST;
             } else if (action.equals("dentistProfile")) {
                 url = DENTISTPROFILE;
@@ -138,7 +136,7 @@ public class MainController extends HttpServlet {
                 url = UPDATESERVICECONTROLLER;
             } else if (action.equals("Search Service By Name")) {
                 url = SEARCHSERVICENAME;
-            }else if (action.equals("Search Service User By Name")) {
+            } else if (action.equals("Search Service User By Name")) {
                 url = SEARCHSERVICEUSERNAME;
             } else if (action.equals("ViewService")) {
                 url = VIEWSERVICEUSER;
@@ -169,45 +167,34 @@ public class MainController extends HttpServlet {
 
             } else if (action.equals("DeleteEmployee")) {
                 url = DELETEEMPLOYEEBYID;
-            }
-            
-            else if (action.equals("searchAppointmentByDate")) {
+            } else if (action.equals("searchAppointmentByDate")) {
                 url = SEARCHAPPOINTMENTBYDATE;
-            }
-            else if (action.equals("appointment")) {
+            } else if (action.equals("appointment")) {
                 url = APPOINTMENTPAGE;
-            }
-            else if (action.equals("CreateAppointmentPage")) {
+            } else if (action.equals("CreateAppointmentPage")) {
                 url = CREATEAPPOINTMENTPAGE;
-            }
-            else if (action.equals("createAppoint")) {
+            } else if (action.equals("createAppoint")) {
                 url = APPOINTMENTCREATE;
-            }
-            else if (action.equals("editAppoint")) {
+            } else if (action.equals("editAppoint")) {
                 url = APPOINTMENTEDIT;
-            }
-            
-            else if (action.equals("changePassPage")) {
+            } else if (action.equals("changePassPage")) {
                 url = CHANGEPASSWORDPAGE;
-            }
-            else if (action.equals("saveChangePass")) {
+            } else if (action.equals("changePassUser")) {
+                url = CHANGEPASSWORDUSER;
+            } else if (action.equals("saveChangePass")) {
                 url = CHANGEPASSWORD;
-            }
-            
-            else if (action.equals("customer_dentists_page")) {
+            } else if (action.equals("customer_dentists_page")) {
                 url = CUSTOMER_DENTIST_PAGE;
-            }
-            else if (action.equals("showDentist")) {
+            } else if (action.equals("showDentist")) {
                 url = CUSTOMER_SHOW_DENTIST;
-            }
-            else if (action.equals("showProfileDentistController")) {
+            } else if (action.equals("showProfileDentistController")) {
                 url = CUSTOMER_DENTIST_PROFILE;
-            }
-            else if (action.equals("showProfileDentist")) {
+            } else if (action.equals("showProfileDentist")) {
                 url = CUSTOMER_DENTIST_PROFILE_PAGE;
-            }
-            
-            
+            }else if (action.equals("TreatmentCourse")) {
+                url = TREATMENT;
+            } 
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -54,40 +54,42 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        
     </head>
     <body>
-        <div id="spinner"
-             class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-grow text-primary m-1" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div class="spinner-grow text-dark m-1" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div class="spinner-grow text-secondary m-1" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
-
-
-        <!-- Topbar Start -->
-        <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
-            <div class="row gx-0">
-                <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Giờ mở cửa: Thứ hai - Thứ bảy : 6.00 am - 10.00 pm</small>
-                    </div>
+        <c:set var="u" value="${sessionScope.User}"></c:set>
+            <div id="spinner"
+                 class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+                <div class="spinner-grow text-primary m-1" role="status">
+                    <span class="sr-only">Loading...</span>
                 </div>
-                <div class="col-md-6 text-center text-lg-end">
-                    <div class="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
-                        <div class="me-3 pe-3 border-end py-2">
-                            <p class="m-0"><i class="fa fa-envelope-open me-2"></i>DentalClinic@gmail.com</p>
+                <div class="spinner-grow text-dark m-1" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-secondary m-1" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <!-- Spinner End -->
+
+
+            <!-- Topbar Start -->
+            <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
+                <div class="row gx-0">
+                    <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
+                        <div class="d-inline-flex align-items-center">
+                            <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Giờ mở cửa: Thứ hai - Thứ bảy : 6.00 am - 10.00 pm</small>
                         </div>
-                        <div class="me-3 pe-3 border-end py-2">
-                            <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+84 374 312 384</p>
-                        </div>
-                        <div class="py-2">
+                    </div>
+                    <div class="col-md-6 text-center text-lg-end">
+                        <div class="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
+                            <div class="me-3 pe-3 border-end py-2">
+                                <p class="m-0"><i class="fa fa-envelope-open me-2"></i>DentalClinic@gmail.com</p>
+                            </div>
+                            <div class="me-3 pe-3 border-end py-2">
+                                <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+84 374 312 384</p>
+                            </div>
+                            <div class="py-2">
 
                             <c:if test="${sessionScope.User != null}">
                                 <a href="appointment.html" class="m-0" style="color: white">Đặt lịch hẹn</a>
@@ -131,7 +133,7 @@
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>
-                
+
                 <c:if test="${sessionScope.User != null}">
                     <div class=" nav-item dropdown has-arrow">
                         <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
@@ -142,14 +144,24 @@
                             <span>${sessionScope.User.getFullName()}</span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a>
+                            <c:choose>                  
+                                <c:when test = "${u.getRoleID() ==  5}" >
+                                    
+                                    <form action="MainController" method="POST">
+                                        <button class="dropdown-item" style="">Tài Khoản</button>
+                                        <input type="hidden" name="id" value="${u.getId()}">
+                                        <input type="hidden" name="action" value="TreatmentCourse">
+                                    </form>
+                                </c:when>
+                                <c:otherwise><a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a></c:otherwise>
+                            </c:choose>
                             <form action="MainController">
                                 <button class="dropdown-item" name="action" value="Logout">Đăng Xuất</button>
                             </form>
                         </div>
                     </div>
                 </c:if>
-                
+
             </div>
         </nav>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
