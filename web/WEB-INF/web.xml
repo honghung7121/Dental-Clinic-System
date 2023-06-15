@@ -244,6 +244,18 @@
         <servlet-name>TreatmentCourseDetailController</servlet-name>
         <servlet-class>Controllers.Treatment.TreatmentCourseDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.GetAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompletedAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.CompletedAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckAppointmentDateController</servlet-name>
+        <servlet-class>Controllers.Appointment.CheckAppointmentDateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -487,6 +499,18 @@
     <servlet-mapping>
         <servlet-name>TreatmentCourseDetailController</servlet-name>
         <url-pattern>/TreatmentCourseDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAppointmentController</servlet-name>
+        <url-pattern>/GetAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompletedAppointmentController</servlet-name>
+        <url-pattern>/CompletedAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckAppointmentDateController</servlet-name>
+        <url-pattern>/CheckAppointmentDateController</url-pattern>   
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

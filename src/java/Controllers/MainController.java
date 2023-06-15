@@ -62,6 +62,8 @@ public class MainController extends HttpServlet {
 
     private final String SEARCHAPPOINTMENTBYDATE = "SearchAppointmentController";
     private final String APPOINTMENTPAGE = "appointments.jsp";
+    private final String CHECKAPPOINTMENTDATE = "CheckAppointmentDateController";
+    private final String CREATEAPPOINTMENT = "CreateAppointmentController";
     private final String CREATEAPPOINTMENTPAGE = "addAppointment.jsp";
     private final String APPOINTMENTEDIT = "EditAppointmentController";
     private final String APPOINTMENTCREATE = "CreateAppointmentController";
@@ -164,13 +166,16 @@ public class MainController extends HttpServlet {
                 url = LOGOUT;
             } else if (action.equals("deletePatient")) {
                 url = DELETEPATIENT;
-
             } else if (action.equals("DeleteEmployee")) {
                 url = DELETEEMPLOYEEBYID;
             } else if (action.equals("searchAppointmentByDate")) {
                 url = SEARCHAPPOINTMENTBYDATE;
             } else if (action.equals("appointment")) {
                 url = APPOINTMENTPAGE;
+            } else if (action.equals("Check Appointment Date")) {
+                url = CHECKAPPOINTMENTDATE;
+            } else if (action.equals("Create Appointment")) {
+                url = CREATEAPPOINTMENT;
             } else if (action.equals("CreateAppointmentPage")) {
                 url = CREATEAPPOINTMENTPAGE;
             } else if (action.equals("createAppoint")) {
@@ -191,9 +196,9 @@ public class MainController extends HttpServlet {
                 url = CUSTOMER_DENTIST_PROFILE;
             } else if (action.equals("showProfileDentist")) {
                 url = CUSTOMER_DENTIST_PROFILE_PAGE;
-            }else if (action.equals("TreatmentCourse")) {
+            } else if (action.equals("TreatmentCourse")) {
                 url = TREATMENT;
-            } 
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

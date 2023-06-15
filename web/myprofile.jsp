@@ -51,7 +51,7 @@
                                             <ul class="personal-info">
                                                 <li>
                                                     <span class="title">Số Điện Thoại:</span>
-                                                    <span class="text"><a href="#">0${u.getPhoneNumber()}</a></span>
+                                                    <span class="text"><a href="#">${u.getPhoneNumber()}</a></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Email:</span>
