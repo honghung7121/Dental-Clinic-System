@@ -262,38 +262,13 @@
                             <a  href="#"><i class="ri-calendar-todo-fill"></i> <span>Lịch Hẹn</span></a>
                         </li>  
                         <li>
-                            <a  href="#"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>
+                            <a  href="view-patients-of-dentist.jsp"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="page-wrapper">
-            <div class="content">
-                <div class="row">
-                    <div class="col-sm-4 col-4">
-                        <h4 class="page-title">Lịch Hẹn</h4>
-                    </div>
-                </div>
-                <main class="main-container">
-                    <div class="main-title">
-                        <div id="${c.getId()} course" class="items">
-                            <div class="items-info">
-                                <div class="items-details">
-                                    <h3 style="text-align: left; margin-bottom: 10px;" class="teachers-name">P13<span>-Trần Hồng Hưng</span></h3>
-                                    <span style="color: black; font-size: 1rem;">Mô Tả:</span><p class="teachers-subject" style="display: inline"> Sử dụng từ ngữ rõ ràng và mô tả chức năng: Đặt tên file .jsp theo cách thể hiện rõ ràng chức năng hoặc nội dung của trang web hoặc ứng dụng của bạn. Ví dụ: "login.jsp", "signup.jsp" hoặc "profile.jsp".</p>
-                                    <div style="margin-top: 10px">
-                                        <span style="color: black; font-size: 1rem">Thời Gian:</span><h2> 8:30</h2>
-                                    </div>
-                                    <div style="margin-top: 10px">
-                                        <button class="button-4 completed-advisory" role="button">Hoàn Thành</button> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
+        
 
 
         </div>
