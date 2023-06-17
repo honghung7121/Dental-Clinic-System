@@ -1,26 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Treatment;
+package Controllers.Treatment_Dentist;
+
 
 import DAL.TreatmentCourseDAO;
+import Models.TreatmentCourse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Models.TreatmentCourse;
-import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author ADMIN
  */
-public class TreatmentCourseController extends HttpServlet {
+public class ViewTreatmentOfDentistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,23 +34,15 @@ public class TreatmentCourseController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        String url = "TreatmentCourseDetailController";
         try {
             /* TODO output your page here. You may use following sample code. */
             String id = request.getParameter("id");
             TreatmentCourseDAO sdao = new TreatmentCourseDAO();
-            ArrayList<TreatmentCourse> slist = sdao.getTreatmentByCustomerID(id);
+            ArrayList<TreatmentCourse> slist = sdao.getTreatmentByDentistID(id);
             request.setAttribute("TreatmentList", slist);
-            
-            String action = request.getParameter("action");
-            if(action.equals("ViewTreatmentByCustomer")){
-                url = "view-patients-of-dentist.jsp";
-            }
+            request.getRequestDispatcher("view-patients-of-dentist.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

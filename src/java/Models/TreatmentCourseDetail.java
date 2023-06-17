@@ -10,16 +10,19 @@ package Models;
  * @author Admin
  */
 public class TreatmentCourseDetail {
-    private String treatmentdate;
     private int id;
+    private String treatmentdate;
+    private String treatmenttime;
     private String nameService;
     private String description;
     private boolean status;
     private boolean statusPaid;
 
-    public TreatmentCourseDetail(String treatmentdate, int id, String nameService, String description, boolean status, boolean statusPaid) {
-        this.treatmentdate = treatmentdate;
+    
+    public TreatmentCourseDetail(int id, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
         this.id = id;
+        this.treatmentdate = treatmentdate;
+        this.treatmenttime = treatmenttime;
         this.nameService = nameService;
         this.description = description;
         this.status = status;
@@ -32,6 +35,14 @@ public class TreatmentCourseDetail {
 
     public void setTreatmentdate(String treatmentdate) {
         this.treatmentdate = treatmentdate;
+    }
+
+    public String getTreatmenttime() {
+        return treatmenttime;
+    }
+
+    public void setTreatmenttime(String treatmenttime) {
+        this.treatmenttime = treatmenttime;
     }
 
     public int getId() {

@@ -47,6 +47,7 @@ public class CreateDentistController extends HttpServlet {
             String degree = request.getParameter("createDegreeDentist");
             int status = Integer.parseInt(request.getParameter("createStatusDentist"));
             String gender = request.getParameter("gender");
+            String roleDentist = request.getParameter("roleDentist");
             
             boolean checkemail = dao.checkEmailExists(email);
             if (checkemail) {
@@ -61,7 +62,7 @@ public class CreateDentistController extends HttpServlet {
             
             boolean check = false;
             if (pass.equals(passAgain)) {
-                check = DentistDAO.insertDentist(fullname, phone, email, pass, degree, experience, img, status, gender);
+                check = DentistDAO.insertDentist(fullname, phone, email, pass, degree, experience, img, status, gender, roleDentist);
                 if (check) {
                     request.getRequestDispatcher("MainController?action=dentist").forward(request, response);
                 }

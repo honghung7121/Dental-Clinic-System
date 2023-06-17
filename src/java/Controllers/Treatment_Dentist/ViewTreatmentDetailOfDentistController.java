@@ -1,26 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Treatment;
+package Controllers.Treatment_Dentist;
 
-import DAL.TreatmentCourseDAO;
+import DAL.TreatmentCourseDetailDAO;
+import Models.TreatmentCourseDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Models.TreatmentCourse;
-import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author ADMIN
  */
-public class TreatmentCourseController extends HttpServlet {
+public class ViewTreatmentDetailOfDentistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,22 +34,21 @@ public class TreatmentCourseController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String url = "TreatmentCourseDetailController";
         try {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
-            TreatmentCourseDAO sdao = new TreatmentCourseDAO();
-            ArrayList<TreatmentCourse> slist = sdao.getTreatmentByCustomerID(id);
-            request.setAttribute("TreatmentList", slist);
-            
-            String action = request.getParameter("action");
-            if(action.equals("ViewTreatmentByCustomer")){
-                url = "view-patients-of-dentist.jsp";
+            String idTreatment = request.getParameter("idTreatment");
+            String nameCus = request.getParameter("nameCus");
+            if (idTreatment != null) {
+                session.setAttribute("nameCus", nameCus);
+                session.setAttribute("idTreatment", idTreatment);
             }
+            TreatmentCourseDetailDAO sdao = new TreatmentCourseDetailDAO();
+            ArrayList<TreatmentCourseDetail> slist = sdao.getTreatmentDetailByTreatmentID((String)session.getAttribute("idTreatment"));
+            request.setAttribute("TreatmentDetailList", slist);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("view-treatmentcourse-of-dentist.jsp").forward(request, response);
         }
     }
 

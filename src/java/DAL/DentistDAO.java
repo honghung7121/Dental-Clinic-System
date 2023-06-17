@@ -292,7 +292,7 @@ public class DentistDAO {
         return kq;
     }
 
-    public static boolean insertDentist(String fullname, String phone, String email, String password, String degree, String experience, String img, int status, String gender) {
+    public static boolean insertDentist(String fullname, String phone, String email, String password, String degree, String experience, String img, int status, String gender, String idRoleDentist) {
         Connection cn = null;
         try {
             cn = Util.getConnection();
@@ -318,15 +318,15 @@ public class DentistDAO {
                 if (rs != null && rs.next()) {
                     iddentist = rs.getInt("id");
                 }
-                System.out.println("iddentist: " + iddentist);
 
                 sql = "INSERT INTO tblDentist\n"
-                        + "values (?, ?, ?, ?)";
+                        + "values (?, ?, ?, ?, ?)";
                 pst = cn.prepareStatement(sql);
                 pst.setInt(1, iddentist);
                 pst.setString(2, experience);
                 pst.setString(3, degree);
                 pst.setString(4, img);
+                pst.setString(5, idRoleDentist);
                 pst.executeUpdate();
 
                 cn.close();

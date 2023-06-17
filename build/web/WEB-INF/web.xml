@@ -256,6 +256,30 @@
         <servlet-name>CheckAppointmentDateController</servlet-name>
         <servlet-class>Controllers.Appointment.CheckAppointmentDateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewTreatmentOfDentistController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.ViewTreatmentOfDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewTreatmentDetailOfDentistController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.ViewTreatmentDetailOfDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditTreatmentDetailController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.EditTreatmentDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getTreatmentDetailByID</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.getTreatmentDetailByID</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTreatmentDetailController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.AddTreatmentDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchTreatmentCourseController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.SearchTreatmentCourseController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -510,10 +534,34 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckAppointmentDateController</servlet-name>
-        <url-pattern>/CheckAppointmentDateController</url-pattern>   
+        <url-pattern>/CheckAppointmentDateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewTreatmentOfDentistController</servlet-name>
+        <url-pattern>/ViewTreatmentOfDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewTreatmentDetailOfDentistController</servlet-name>
+        <url-pattern>/ViewTreatmentDetailOfDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTreatmentDetailController</servlet-name>
+        <url-pattern>/EditTreatmentDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getTreatmentDetailByID</servlet-name>
+        <url-pattern>/getTreatmentDetailByID</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTreatmentDetailController</servlet-name>
+        <url-pattern>/AddTreatmentDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchTreatmentCourseController</servlet-name>
+        <url-pattern>/SearchTreatmentCourseController</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>100</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
