@@ -92,7 +92,7 @@
                                             <tr>
                                                 <td>${list.getId()}</td>
                                                 <td>${list.getNamecustomer()}</td>
-                                                <td>${list.getNameTreatment()}</td>  
+                                                <td>${list.getNameTreatment()}</td>
                                                 <c:if test="${list.isStatus() == true}">
                                                     <td style="color: red; font-weight: bold;">Đã hoàn thành</td>
                                                 </c:if>

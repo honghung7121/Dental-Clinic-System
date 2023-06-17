@@ -39,7 +39,7 @@ public class TreatmentCourseDetailController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String id = request.getParameter("id");
             TreatmentCourseDetailDAO sdao = new TreatmentCourseDetailDAO();
-            ArrayList<TreatmentCourseDetail> slist = sdao.getTreatmentDetailByTreatmentID("1");
+            ArrayList<TreatmentCourseDetail> slist = sdao.getTreatmentDetailByUserID(id);
             request.setAttribute("TreatmentDetailList", slist);
         } catch (Exception e) {
             e.printStackTrace();

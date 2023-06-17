@@ -44,7 +44,7 @@ public class TreatmentCourseController extends HttpServlet {
             request.setAttribute("TreatmentList", slist);
             
             String action = request.getParameter("action");
-            if(action.equals("ViewTreatmentByCustomer")){
+            if (action.equals("ViewTreatmentByCustomer")) {
                 url = "view-patients-of-dentist.jsp";
             }
         } catch (Exception e) {
