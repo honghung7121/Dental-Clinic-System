@@ -78,6 +78,13 @@ public class MainController extends HttpServlet {
     private final String CUSTOMER_DENTIST_PROFILE = "profileDentistByCustomerController";
 
     private final String TREATMENT = "TreatmentCourseController";
+    
+    private final String TREATMENTOFDENTIST = "ViewTreatmentOfDentistController";
+    private final String TREATMENTDETAILOFDENTIST = "ViewTreatmentDetailOfDentistController";
+    private final String EDITTREATMENTDETAIL = "EditTreatmentDetailController";
+    private final String ADDTREATMENTDETAIL = "AddTreatmentDetailController";
+    private final String SEARCHTREATMENTCOURSE = "SearchTreatmentCourseController";
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -198,8 +205,19 @@ public class MainController extends HttpServlet {
                 url = CUSTOMER_DENTIST_PROFILE_PAGE;
             } else if (action.equals("TreatmentCourse")) {
                 url = TREATMENT;
+            } else if (action.equals("ViewTreatmentByCustomer")) {
+                url = TREATMENTOFDENTIST;
+            } else if (action.equals("ViewTreatmentDetailByCustomer")) {
+                url = TREATMENTDETAILOFDENTIST;
+            } else if (action.equals("editDetail")) {
+                url = EDITTREATMENTDETAIL;
+            } else if (action.equals("addDetail")) {
+                url = ADDTREATMENTDETAIL;
+            } else if (action.equals("SearchTreatmentCourse")) {
+                url = SEARCHTREATMENTCOURSE;
             }
-
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

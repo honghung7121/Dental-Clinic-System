@@ -20,7 +20,6 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-
 public class SearchFeedbackDentistController extends HttpServlet {
 
     /**
@@ -42,16 +41,54 @@ public class SearchFeedbackDentistController extends HttpServlet {
                 String searchby = request.getParameter("searchby");
                 HttpSession session = request.getSession();
                 ArrayList<FeedbackDentist> list = FeedbackDentistDAO.getFeedbackDentist(txtSearch, searchby);
+                int roleid = (int) session.getAttribute("role");
                 if (list != null && !list.isEmpty()) {
                     session.setAttribute("list", list);
+                    for (FeedbackDentist feedbackDentist : list) {
+                        out.println("<tr>\n"
+                                + "    <td>" + feedbackDentist.getId() + "</td>\n"
+                                + "    <td>" + feedbackDentist.getNamecustomer() + "</td>\n"
+                                + "    <td>" + feedbackDentist.getNamedentist() + "</td>\n"
+                                + "    <td class=\"rating\">\n");
+
+                        int rating = feedbackDentist.getRate(); // Lấy giá trị rating
+
+                        for (int star = 1; star <= 5; star++) {
+                            out.println("        <span class=\"star\">");
+
+                            if (star <= rating) {
+                                out.println("            <span style='color: gold;'>★</span>"); // Hiển thị ngôi sao đã chọn
+                            } else {
+                                out.println("            &#9734;"); // Hiển thị ngôi sao chưa chọn
+                            }
+
+                            out.println("        </span>");
+                        }
+
+                        out.println("    </td>\n"
+                                + "    <td>" + feedbackDentist.getComment() + "</td>\n");
+                        if (roleid == 1) {
+                            out.println("    <td class=\"text-right\">\n"
+                                    + "        <div class=\"dropdown dropdown-action\">\n"
+                                    + "            <a href=\"#\" class=\"action-icon dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fa fa-ellipsis-v\"></i></a>\n"
+                                    + "            <div class=\"dropdown-menu dropdown-menu-right\">\n"
+                                    + "                <a class=\"dropdown-item delete-schedule\" href=\"#\" data-toggle=\"modal\" data-target=\"#delete_schedule\"><i class=\"fa fa-trash-o m-r-5\"></i> Delete</a>\n"
+                                    + "            </div>\n"
+                                    + "        </div>\n"
+                                    + "    </td>"
+                                    + "</tr>");
+                        } else {
+                            out.println("</tr>");
+                        }
+                    }
                 } else {
                     session.setAttribute("list", null);
-                    request.setAttribute("RESPONSE", "Không Tìm Thấy!");
+                    out.print("<span style='color: red; text-align: center'>\n"
+                            + "                                            Tìm không thấy"
+                            + "                                        </span>");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                request.getRequestDispatcher("FeedbackDentist.jsp").forward(request, response);
+                out.println("<script>alert('Lỗi xảy ra'); window.location.href = 'login.jsp';</script>");
             }
         }
     }

@@ -12,12 +12,14 @@ package Models;
 public class TreatmentCourse {
 
     private int id;
+    private String nameTreatment;
     private String namecustomer;
     private String namedentist;
     private boolean status;
 
-    public TreatmentCourse(int id, String namecustomer, String namedentist, boolean status) {
+    public TreatmentCourse(int id, String nameTreatment, String namecustomer, String namedentist, boolean status) {
         this.id = id;
+        this.nameTreatment = nameTreatment;
         this.namecustomer = namecustomer;
         this.namedentist = namedentist;
         this.status = status;
@@ -29,6 +31,14 @@ public class TreatmentCourse {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNameTreatment() {
+        return nameTreatment;
+    }
+
+    public void setNameTreatment(String nameTreatment) {
+        this.nameTreatment = nameTreatment;
     }
 
     public String getNamecustomer() {

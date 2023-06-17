@@ -35,16 +35,22 @@ public class TreatmentCourseController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        String url = "TreatmentCourseDetailController";
         try {
             /* TODO output your page here. You may use following sample code. */
             String id = request.getParameter("id");
             TreatmentCourseDAO sdao = new TreatmentCourseDAO();
-            ArrayList<TreatmentCourse> slist = sdao.getTreatment(id);
+            ArrayList<TreatmentCourse> slist = sdao.getTreatmentByCustomerID(id);
             request.setAttribute("TreatmentList", slist);
+            
+            String action = request.getParameter("action");
+            if (action.equals("ViewTreatmentByCustomer")) {
+                url = "view-patients-of-dentist.jsp";
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher("TreatmentCourseDetailController").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

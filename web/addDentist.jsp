@@ -42,7 +42,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
-                            <form action="MainController" method="post"> 
+                            <form action="MainController" method="get"> 
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
@@ -91,15 +91,29 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>  
+                                                
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="gender">Giới tính:</label>
+                                                <select id="gender" name="gender" value="<%= (request.getParameter("txtname")==null)?"": request.getParameter("txtname") %>">
+                                                  <option value="Nam">Nam</option>
+                                                  <option value="Nữ">Nữ</option>
+                                                  <option value="Khác">Khác</option>
+                                                </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gender">Giới tính:</label>
-                                        <select id="gender" name="gender" value="<%= (request.getParameter("txtname")==null)?"": request.getParameter("txtname") %>">
-                                          <option value="Nam">Nam</option>
-                                          <option value="Nữ">Nữ</option>
-                                          <option value="Khác">Khác</option>
-                                        </select>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="roleDentist">Vị trí</label>
+                                                <select id="roleDentist" name="roleDentist" value="<%= (request.getParameter("txtname")==null)?"": request.getParameter("txtname") %>">
+                                                  <option value="1">Nha sĩ</option>
+                                                  <option value="2">Hộ lý nha khoa</option>
+                                                  <option value="3">Điều dượng nha khoa</option>
+                                                </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Kinh nghiệm</label>
@@ -131,7 +145,6 @@
                         </div>
                     </div>
                 </div>
-               
             </div>
         </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

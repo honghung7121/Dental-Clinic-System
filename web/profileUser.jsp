@@ -9,6 +9,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@page import="java.util.Date"%>
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +66,10 @@
         </style>
     </head>
     <body>
-
+        <%
+            Date dNow = new Date();
+            SimpleDateFormat ft = new SimpleDateFormat("E yyyy.MM.dd");
+        %>
         <jsp:include page="headerUser.jsp"></jsp:include>
         <c:set var="u" value="${sessionScope.User}"></c:set>
             <div class="modal fade" id="searchModal" tabindex="-1">
@@ -174,6 +179,7 @@
                                                                         <th style="text-align: center">ID</th>
                                                                         <th style="text-align: center">Tên Bệnh Nhân</th>
                                                                         <th style="text-align: center">Tên Bác Sĩ</th>
+                                                                        <th style="text-align: center">Tên Liệu Trình</th>
                                                                         <th style="text-align: center">Trạng Thái</th>
                                                                     </tr>
                                                                 </thead>
@@ -183,6 +189,7 @@
                                                                             <td><c:out value="${s.getId()}"></c:out></td>
                                                                             <td><c:out value="${s.getNamecustomer()}"></c:out></td>
                                                                             <td><c:out value="${s.getNamedentist()}"></c:out></td>
+                                                                            <td><c:out value="${s.getNameTreatment()}"></c:out></td>
                                                                             <c:if test="${s.isStatus()==true}">
                                                                                 <td><span style="width: 100px;
                                                                                           height: 40px;line-height: 35px;" class="custom-badge status-green">Hoàn Thành</span></td>
@@ -211,8 +218,9 @@
                                                             <table id="myTable" class="table table-hover mb-0">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th style="text-align: center">ID Liệu Trình</th>
+                                                                        <th style="text-align: center">Tên Liệu Trình</th>
                                                                         <th style="text-align: center">Ngày Tái Khám</th>
+                                                                        <th style="text-align: center">Giờ Hẹn</th>
                                                                         <th style="text-align: center">Dịch Vụ</th>
                                                                         <th style="text-align: center">Mô Tả</th>
                                                                         <th style="text-align: center">Trạng Thái</th>
@@ -222,8 +230,9 @@
                                                                 <tbody id="content">
                                                                     <c:forEach var="d" items="${requestScope.TreatmentDetailList}">
                                                                         <tr style="text-align: center">
-                                                                            <td><c:out value="${d.getId()}"></c:out></td>
+                                                                            <td><c:out value="${d.getNameTreatment()}"></c:out></td>
                                                                             <td><c:out value="${d.getTreatmentdate()}"></c:out></td>
+                                                                            <td><c:out value="${d.getTreatmenttime()}"></c:out></td>
                                                                             <td><c:out value="${d.getNameService()}"></c:out></td>
                                                                             <td><c:out value="${d.getDescription()}"></c:out></td>
                                                                             <c:if test="${d.isStatus()==true}">
