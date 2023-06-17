@@ -2,25 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers;
+package Controllers.Treatment_Dentist;
 
-import DAL.UserDAO;
-import Models.User;
-import Util.PasswordEncoder;
+import DAL.TreatmentCourseDetailDAO;
+import Models.TreatmentCourseDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author ADMIN
  */
-public class LoginController extends HttpServlet {
+public class getTreatmentDetailByID extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,48 +31,16 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        HttpSession session = request.getSession();
-        session.setAttribute("activeLink", "dashboardLink");
-        try {
-            String accountName = request.getParameter("accountName");
-            String password = request.getParameter("password");
-            String remember = request.getParameter("remember");
-            if (remember != null) {
-                Cookie emailCookie = new Cookie("emailCookie", accountName);
-                Cookie passwordCookie = new Cookie("passwordCookie", password);
-                emailCookie.setMaxAge(86400);
-                passwordCookie.setMaxAge(86400);
-                response.addCookie(emailCookie);
-                response.addCookie(passwordCookie);
-            }
-            String encryptedpassword = PasswordEncoder.toSHA1(password.trim());
-
-            UserDAO dao = new UserDAO();
-            User user = dao.checkLogin(accountName, encryptedpassword);
-            if (user != null) {
-                session.setAttribute("User", user);
-                session.setAttribute("role", user.getRoleID());
-                if (user.getRoleID() == 1) {
-                    url = "DashBoardController";
-                } else if (user.getRoleID() == 2) {
-                    url = "GetAppointmentController";
-                } else if (user.getRoleID() == 4) {
-                    url = "GetAdvisoryController";
-                } else if (user.getRoleID() == 3) {
-                    url = "MarketingDentistController";
-                } else if (user.getRoleID() == 5) {
-                    url = "index.jsp";
-
-                }
-            } else {
-                request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
-                url = "login.jsp";
-            }
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            String idDetail =(String) request.getParameter("idDetail");
+            TreatmentCourseDetailDAO detailDAO = new TreatmentCourseDetailDAO();
+            TreatmentCourseDetail treatmentdetail = detailDAO.getTreatmentDetailByID(idDetail);
+            
+            request.setAttribute("treatmentdetail", treatmentdetail);
+            request.getRequestDispatcher("edit-treatmentcoursedetail.jsp").forward(request, response);
         } catch (Exception e) {
-
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            e.printStackTrace();
         }
     }
 

@@ -33,9 +33,6 @@ public class User {
         this.Roll = Roll;
     }
 
-
-    
-    
     public String getGender() {
         return gender;
     }

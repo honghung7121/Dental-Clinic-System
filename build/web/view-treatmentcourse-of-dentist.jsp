@@ -48,62 +48,69 @@
 
         </style>
     </head>
-    <body>
+    <body>idTreatment
         <jsp:include page="headerdentist.jsp"></jsp:include>
-        
+        <c:set var="TreatmentDetailList" value="${requestScope.TreatmentDetailList}"></c:set>
         <div class="tab-pane show active" id="solid-rounded-justified-tab1">
             <div class="page-wrapper">
                 <div class="content">
                     
                      <div class="row">
                         <div class="col-sm-7 col-6">
-                            <h4 class="page-title">Bệnh nhân: Nguyễn Văn A</h4>
+                            <h4 class="page-title">Bệnh nhân: ${sessionScope.nameCus}</h4>
                         </div>
-                        <c:set var="dentistByID" value="${requestScope.dentistByID}"></c:set>
+
                         <div class="col-sm-5 col-6 text-right m-b-30">
-                            <a href="editDentist.jsp?dentistID=${dentistByID.id}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Tạo lịch hẹn mới </a>
+                            <a href="add-treatmentcoursedetail.jsp" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Tạo ngày hẹn mới </a>
                         </div>
                     </div>
                         
-                    <div class="row">
+                    <div class="row" style="text-align: center">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table id="myTable" class="table table-border table-striped custom-table mb-0">
-                                    <thead>
+                                <table class="table table-striped custom-table">
+                                    <thead>  
                                         <tr>
-                                            <th style="text-align: center">Lần khám</th>
-                                            <th style="text-align: center">Ngày Hẹn</th>
-                                            <th style="text-align: center">Giờ Hẹn</th>
-                                            <th style="text-align: center">Dịch Vụ</th>
-                                            <th style="text-align: center">Trạng thái</th>
-                                            <th style="text-align: center">Chỉnh sửa</th>
+                                            <th><a href="#">Lần khám</a></th>
+                                            <th><a href="#">Ngày Hẹn</a></th>
+                                            <th><a href="#">Giờ Hẹn</a></th>
+                                            <th><a href="#">Dịch Vụ</a></th>
+                                            <th><a href="#">Ghi Chú</a></th>
+                                            <th><a href="#">Trạng Thái Khám</a></th>
+                                            <th><a href="#">Trạng Thái Thanh Toán</a></th>
+                                            <th><a href="#">Chỉnh sửa</a></th>
                                         </tr>                                        
                                     </thead>
                                     <tbody id="content">
-                                       <tr style="text-align: center">
-                                            <td>1</td>
-                                            <td>13/6/2023</td>
-                                            <td>7:30 AM</td>
-                                            <td>Lấy Tuỷ</td>
-                                            <td>Đã hoàn thành</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr style="text-align: center">
-                                            <td>2</td>
-                                            <td>14/6/2023</td>
-                                            <td>9:00 AM</td>
-                                            <td>Trám Răng</td>
-                                            <td>Đang xử lý</td>
-                                            <td><a href="view-treatmentcourse-of-dentist.jsp" class="">Chỉnh sửa</a></td>
-                                        </tr>
-                                        <tr style="text-align: center">
-                                            <td>3</td>
-                                            <td>15/6/2023</td>
-                                            <td>8:30 AM</td>
-                                            <td>Nhổ Răng</td>
-                                            <td>Đang xử lý</td>
-                                            <td><a href="view-treatmentcourse-of-dentist.jsp" class="">Chỉnh sửa</a></td>
-                                        </tr>   
+                                        <c:forEach var="listD" items="${TreatmentDetailList}" varStatus="status">
+                                            <tr style="text-align: center">
+                                                <td>${status.index + 1}</td>
+                                                <td>${listD.treatmentdate}</td>
+                                                <td>${listD.treatmenttime}</td>
+                                                <td>${listD.nameService}</td>
+                                                <td>${listD.description}</td>
+                                                <c:if test="${listD.status == true}">
+                                                    <td style="color: red; font-weight: bold;">Đã hoàn thành</td>
+                                                    <c:if test="${listD.statusPaid == true}">
+                                                        <td style="color: red; font-weight: bold;">Đã thanh toán</td>
+                                                    </c:if>   
+                                                    <c:if test="${listD.statusPaid == false}">
+                                                        <td style="color: #35BA67; font-weight: bold;">Chưa thanh toán</td>
+                                                    </c:if>
+                                                    <td></td>
+                                                </c:if>
+                                                <c:if test="${listD.status == false}">
+                                                    <td style="color: #35BA67; font-weight: bold;">Chưa hoàn thành</td>
+                                                    <c:if test="${listD.statusPaid == true}">
+                                                        <td style="color: red; font-weight: bold;">Đã thanh toán</td>
+                                                    </c:if>   
+                                                    <c:if test="${listD.statusPaid == false}">
+                                                        <td style="color: #35BA67; font-weight: bold;">Chưa thanh toán</td>
+                                                    </c:if>
+                                                    <td><a href="edit-treatmentcoursedetail.jsp?idDetail=${listD.id}" class="">Chỉnh sửa</a></td> 
+                                                </c:if>
+                                            </tr>
+                                        </c:forEach>                                       
                                     </tbody>
                                 </table>
                                 <span style="color: red;">

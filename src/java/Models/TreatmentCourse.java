@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Models;
 
@@ -9,19 +10,19 @@ package Models;
  * @author Admin
  */
 public class TreatmentCourse {
+
     private int id;
-    private int userID;
-    private int dentistID;
-    private int serviceID;
+    private String nameTreatment;
+    private String namecustomer;
+    private String namedentist;
+    private boolean status;
 
-    public TreatmentCourse(int id, int userID, int dentistID, int serviceID) {
+    public TreatmentCourse(int id, String nameTreatment, String namecustomer, String namedentist, boolean status) {
         this.id = id;
-        this.userID = userID;
-        this.dentistID = dentistID;
-        this.serviceID = serviceID;
-    }
-
-    public TreatmentCourse() {
+        this.nameTreatment = nameTreatment;
+        this.namecustomer = namecustomer;
+        this.namedentist = namedentist;
+        this.status = status;
     }
 
     public int getId() {
@@ -32,28 +33,42 @@ public class TreatmentCourse {
         this.id = id;
     }
 
-    public int getUserID() {
-        return userID;
+    public String getNameTreatment() {
+        return nameTreatment;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setNameTreatment(String nameTreatment) {
+        this.nameTreatment = nameTreatment;
     }
 
-    public int getDentistID() {
-        return dentistID;
+    public String getNamecustomer() {
+        return namecustomer;
     }
 
-    public void setDentistID(int dentistID) {
-        this.dentistID = dentistID;
+    public void setNamecustomer(String namecustomer) {
+        this.namecustomer = namecustomer;
     }
 
-    public int getServiceID() {
-        return serviceID;
+    public String getNamedentist() {
+        return namedentist;
     }
 
-    public void setServiceID(int serviceID) {
-        this.serviceID = serviceID;
+    public void setNamedentist(String namedentist) {
+        this.namedentist = namedentist;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "TreatmentCourse{" + "id=" + id + ", namecustomer=" + namecustomer + ", namedentist=" + namedentist + ", status=" + status + '}';
+    }
+
     
 }

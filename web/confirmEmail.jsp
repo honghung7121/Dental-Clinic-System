@@ -183,7 +183,7 @@
                             });
                             if (c1 !== c2 ) {
                                 let fullNameForm = document.getElementById('formCode');
-                                fullNameForm.innerHTML += '<label class="errorMessage" style="color: red;">Mã xác nhận không trùng </label>';
+                                fullNameForm.innerHTML += '<label class="errorMessage" style="color: red;">Mã xác nhận không đúng </label>';
                             } else {
                                 $.ajax({
                                     url: '/SWP391-SE1743/MainController',
