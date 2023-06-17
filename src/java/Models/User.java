@@ -32,10 +32,12 @@ public class User {
         this.email = email;
         this.Roll = Roll;
     }
+    public User(int id, String fullName, String Roll){
+        this.id = id;
+        this.fullName = fullName;
+        this.Roll = Roll;
+    }
 
-
-    
-    
     public String getGender() {
         return gender;
     }

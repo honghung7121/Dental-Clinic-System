@@ -8,6 +8,11 @@
             <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Appointment/GetAppointmentController.java</file>
             <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Appointment/CompletedAppointmentController.java</file>
             <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Feedback/SearchFeedbackDentistController.java</file>
+            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Appointment/SearchAppointmentController.java</file>
+            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/MainController.java</file>
+            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/view-patients-of-dentist.jsp</file>
+            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/SearchTreatmentCourseController.java</file>
+            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/DAL/TreatmentCourseDAO.java</file>
         </group>
     </open-files>
 </project-private>

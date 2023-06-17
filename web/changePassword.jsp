@@ -28,13 +28,13 @@
     </head>
 
     <body>
-        <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
+        <c:if test="${sessionScope.User.getRoleID() != 1 && sessionScope.User.getRoleID() != 5}"><c:redirect url="login.jsp"/></c:if>
             <div class="main-wrapper">
 
             <jsp:include page="header.jsp"></jsp:include>\
 
             <c:set var="u" value="${sessionScope.User}"></c:set>
-            
+
                 <div class="page-wrapper">
                     <div class="content">
                         <div class="row">
@@ -48,10 +48,10 @@
                             <div class="col-lg-8 offset-lg-2">
                                 <form action="MainController" method="post">
 
-                                <div class="row">
+                                    <div class="row">
 
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
                                                 <label>Email Hiện Tại <span class="text-danger">*</span></label>
                                                 <input class="form-control" value="${u.email}" name="EmailNow" rows="3" cols="30" readonly></input>
                                         </div>

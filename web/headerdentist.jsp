@@ -23,339 +23,210 @@
                     <script src="assets/js/html5shiv.min.js"></script>
                     <script src="assets/js/respond.min.js"></script>
             <![endif]-->
-    <div class="sidebar-overlay" data-reff=""></div>
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/Chart.bundle.js"></script>
-    <script src="assets/js/chart.js"></script>
-    <script src="assets/js/app.js"></script>
-    <style>
-        :root {
-            --green: #009ce7;
-            --white: #fff;
-            --light-white: #aaa;
-            --black: #3d3d3d;
-            --light-bg: #4b4b4b;
-            --box-shadow: .5rem .5rem 0 rgba(22, 160, 100, .2);
-        }
+        <div class="sidebar-overlay" data-reff=""></div>
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/Chart.bundle.js"></script>
+        <script src="assets/js/chart.js"></script>
+        <script src="assets/js/app.js"></script>
+        <style>
+            :root {
+                --green: #009ce7;
+                --white: #fff;
+                --light-white: #aaa;
+                --black: #3d3d3d;
+                --light-bg: #4b4b4b;
+                --box-shadow: .5rem .5rem 0 rgba(22, 160, 100, .2);
+            }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--light-bg);
-            cursor: pointer;
-            color: var(--white);
-            font-size: 1rem;
-            padding: .5rem 1.2rem;
-            border: 0;
-        }
+            .btn {
+                display: inline-block;
+                background-color: var(--light-bg);
+                cursor: pointer;
+                color: var(--white);
+                font-size: 1rem;
+                padding: .5rem 1.2rem;
+                border: 0;
+            }
 
-        .btn:hover {
-            transition: .2s;
-            background-color: var(--white);
-            color: var(--black);
-        }
+            .btn:hover {
+                transition: .2s;
+                background-color: var(--white);
+                color: var(--black);
+            }
 
-        .top {
-            display: flex;
-            margin: 1rem 0;
-            gap: 1rem
-        }
+            .top {
+                display: flex;
+                margin: 1rem 0;
+                gap: 1rem
+            }
 
-        .top h2 {
-            margin: 0;
-        }
-
-
-        .top a{
-            background-color: var(--white);
-            color: var(--black);
-            font-size: 1rem;
-            padding: .2rem;
-            transition: .5s;
-        }
-        .top a:hover{
-            transform: translateY(-5px);
-        }
-        .main-title {
-            display: grid;
-        }
-        .items{
-            margin-top: 1rem;
-        }
-        .items-info img {
-            width: 130px;
-            height: 130px;
-        }
-
-        .items-info {
-            display: flex;
-            gap: 1rem;
-            padding-bottom: .8rem;
-            border-bottom: solid .1rem #009ce7;
-        }
-
-        .items-info h3 {
-            font-size: 1.4rem;
-            color: var(--green);
-            margin: 0;
-        }
-
-        .items-info h3 span {
-            font-size: 1.3rem;
-            color: black;
-        }
+            .top h2 {
+                margin: 0;
+            }
 
 
-        .items-info h2 {
-            color: tan;
-            font-size: 1rem;
-            display: inline;
-        }
+            .top a{
+                background-color: var(--white);
+                color: var(--black);
+                font-size: 1rem;
+                padding: .2rem;
+                transition: .5s;
+            }
+            .top a:hover{
+                transform: translateY(-5px);
+            }
+            .main-title {
+                display: grid;
+            }
+            .items{
+                margin-top: 1rem;
+            }
+            .items-info img {
+                width: 130px;
+                height: 130px;
+            }
 
-        .button-4 {
-            appearance: none;
-            background-color: #FAFBFC;
-            border: 1px solid rgba(27, 31, 35, 0.15);
-            border-radius: 6px;
-            box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-            box-sizing: border-box;
-            color: #24292E;
-            cursor: pointer;
-            display: inline-block;
-            font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 20px;
-            list-style: none;
-            padding: 6px 16px;
-            position: relative;
-            transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: middle;
-            white-space: nowrap;
-            word-wrap: break-word;
-        }
+            .items-info {
+                display: flex;
+                gap: 1rem;
+                padding-bottom: .8rem;
+                border-bottom: solid .1rem #009ce7;
+            }
 
-        .button-4:hover {
-            background-color: #F3F4F6;
-            text-decoration: none;
-            transition-duration: 0.1s;
-        }
+            .items-info h3 {
+                font-size: 1.4rem;
+                color: var(--green);
+                margin: 0;
+            }
 
-        .button-4:disabled {
-            background-color: #FAFBFC;
-            border-color: rgba(27, 31, 35, 0.15);
-            color: #959DA5;
-            cursor: default;
-        }
-
-        .button-4:active {
-            background-color: #EDEFF2;
-            box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-            transition: none 0s;
-        }
-
-        .button-4:focus {
-            outline: 1px transparent;
-        }
-
-        .button-4:before {
-            display: none;
-        }
-
-        .button-4:-webkit-details-marker {
-            display: none;
-        }
-        .btnLink{
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #009ce7;
-            text-decoration: underline;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="main-wrapper">
-        <div class="header">
-            <div class="header-left">
-                <a href="index-2.html" class="logo">
-                    <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>DentCare</span>
-                </a>
-            </div>
-            <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
-            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
-            <ul class="nav user-menu float-right">
+            .items-info h3 span {
+                font-size: 1.3rem;
+                color: black;
+            }
 
 
-                <li class="nav-item dropdown has-arrow">
-                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
-                        <span class="user-img">
-                            <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
-                            <span class="status online"></span>
-                        </span>
-                        <span>${sessionScope.User.getFullName()}</span>
+            .items-info h2 {
+                color: tan;
+                font-size: 1rem;
+                display: inline;
+            }
+
+            .button-4 {
+                appearance: none;
+                background-color: #FAFBFC;
+                border: 1px solid rgba(27, 31, 35, 0.15);
+                border-radius: 6px;
+                box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+                box-sizing: border-box;
+                color: #24292E;
+                cursor: pointer;
+                display: inline-block;
+                font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 20px;
+                list-style: none;
+                padding: 6px 16px;
+                position: relative;
+                transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                vertical-align: middle;
+                white-space: nowrap;
+                word-wrap: break-word;
+            }
+
+            .button-4:hover {
+                background-color: #F3F4F6;
+                text-decoration: none;
+                transition-duration: 0.1s;
+            }
+
+            .button-4:disabled {
+                background-color: #FAFBFC;
+                border-color: rgba(27, 31, 35, 0.15);
+                color: #959DA5;
+                cursor: default;
+            }
+
+            .button-4:active {
+                background-color: #EDEFF2;
+                box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+                transition: none 0s;
+            }
+
+            .button-4:focus {
+                outline: 1px transparent;
+            }
+
+            .button-4:before {
+                display: none;
+            }
+
+            .button-4:-webkit-details-marker {
+                display: none;
+            }
+            .btnLink{
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: #009ce7;
+                text-decoration: underline;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div class="header">
+                <div class="header-left">
+                    <a href="index-2.html" class="logo">
+                        <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>DentCare</span>
                     </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="myprofile.jsp">Tài Khoản Của Tôi</a>
-                        <a class="dropdown-item" href="MainController?action=Logout">Đăng Xuất</a>
+                </div>
+                <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+                <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+                <ul class="nav user-menu float-right">
+
+
+                    <li class="nav-item dropdown has-arrow">
+                        <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                            <span class="user-img">
+                                <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+                                <span class="status online"></span>
+                            </span>
+                            <span>${sessionScope.User.getFullName()}</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="myprofile.jsp">Tài Khoản Của Tôi</a>
+                            <a class="dropdown-item" href="MainController?action=Logout">Đăng Xuất</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+                    <div id="sidebar-menu" class="sidebar-menu">
+
+                        <c:set var="activeLink" value="${sessionScope.activeLink}"></c:set>
+                        <c:set var="option" value="${sessionScope.option}"></c:set>
+
+                        <ul>       
+                            <li class="menu-title">Main</li>
+                            <li class="active">
+                                <a  href="#"><i class="ri-calendar-todo-fill"></i> <span>Lịch Hẹn</span></a>
+                            </li>  
+                            <li>
+                                <a  href="MainController?action=ViewTreatmentByCustomer&id=${sessionScope.User.getId()}"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-            </ul>
-        </div>
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-inner slimscroll">
-                <div id="sidebar-menu" class="sidebar-menu">
-
-                    <c:set var="activeLink" value="${sessionScope.activeLink}"></c:set>
-                    <c:set var="option" value="${sessionScope.option}"></c:set>
-
-                    <c:set var="dashboardLink" value="dashboardLink"></c:set>
-                    <c:set var="dentistLink" value="dentistLink"></c:set>
-                    <c:set var="patientLink" value="patientLink"></c:set>
-                    <c:set var="serviceLink" value="serviceLink"></c:set>
-                    <c:set var="employeeLink" value="employeeLink"></c:set>
-                    <c:set var="dsnv" value="dsnv"></c:set>
-                    <c:set var="feedbackLink" value="feedbackLink"></c:set>
-                    <c:set var="feedbackDentistLink" value="feedbackDentistLink"></c:set>
-                    <c:set var="feedbackServiceLink" value="feedbackServiceLink"></c:set>
-
-                    <c:if test="${activeLink eq dashboardLink}">
-                        <c:set var="dashboardLink" value="active"></c:set>
-                    </c:if>
-                    <c:if test="${activeLink eq dentistLink}">
-                        <c:set var="dentistLink" value="active"></c:set>
-                    </c:if>
-                    <c:if test="${activeLink eq patientLink}">
-                        <c:set var="patientLink" value="active"></c:set>
-                    </c:if>
-                    <c:if test="${activeLink eq serviceLink}">
-                        <c:set var="serviceLink" value="active"></c:set>
-                    </c:if>
-
-                    <c:if test="${activeLink eq employeeLink}">
-                        <c:set var="employeeLink" value="active"></c:set>
-                        <c:if test="${option eq dsnv}">
-                            <c:set var="employeeLink2" value="#888888"></c:set>
-                            <c:set var="employeeLink3" value="#888888"></c:set>
-                        </c:if>
-                    </c:if>
-
-                    <c:if test="${activeLink eq feedbackLink}">
-                        <c:set var="feedbackLink" value="active"></c:set>
-                        <c:if test="${option eq feedbackDentistLink}">
-                            <c:set var="feedbackServiceLink" value="#888888"></c:set>
-                        </c:if>
-                        <c:if test="${option eq feedbackServiceLink}">
-                            <c:set var="feedbackDentistLink" value="#888888"></c:set>
-                        </c:if>
-                    </c:if>
-
-                    <ul>       
-                        <li class="menu-title">Main</li>
-                        <li class="active">
-                            <a  href="#"><i class="ri-calendar-todo-fill"></i> <span>Lịch Hẹn</span></a>
-                        </li>  
-                        <li>
-                            <a  href="#"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>
-                        </li>
-                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="page-wrapper">
-            <div class="content">
-                <div class="row">
-                    <div class="col-sm-4 col-4">
-                        <h4 class="page-title">Lịch Hẹn</h4>
-                    </div>
-                </div>
-                <main class="main-container">
-                    <div class="main-title">
-                        <c:forEach items="${Appointments}" var="a">
-                            <div id="${a.getId()}" class="items">
-                                <div class="items-info">
-                                    <div class="items-details">
-                                        <h3 style="text-align: left; margin-bottom: 10px;" class="teachers-name">${a.getRoll()}<span>-${a.getUserName()}</span></h3>
-                                        <span style="color: black; font-size: 1rem;">Mô Tả:</span><p class="teachers-subject" style="display: inline">${a.getDescription()}</p>
-                                        <div style="margin-top: 10px">
-                                            <span style="color: black; font-size: 1rem">Thời Gian:</span><h2> ${a.getDate()} - ${a.getTime()}</h2>
-                                        </div>
-                                        <div style="margin-top: 10px">
-                                            <button onclick="deleteCourse(${a.getId()})" class="button-4 completed-appointment" role="button">Hoàn Thành</button> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach>
-                        <!--                        <div id="" class="items">
-                                                    <div class="items-info">
-                                                        <div class="items-details">
-                                                            <h3 style="text-align: left; margin-bottom: 10px;" class="teachers-name">P13<span>-Trần Hồng Hưng</span></h3>
-                                                            <span style="color: black; font-size: 1rem;">Mô Tả:</span><p class="teachers-subject" style="display: inline"> Sử dụng từ ngữ rõ ràng và mô tả chức năng: Đặt tên file .jsp theo cách thể hiện rõ ràng chức năng hoặc nội dung của trang web hoặc ứng dụng của bạn. Ví dụ: "login.jsp", "signup.jsp" hoặc "profile.jsp".</p>
-                                                            <div style="margin-top: 10px">
-                                                                <span style="color: black; font-size: 1rem">Thời Gian:</span><h2> 8:30</h2>
-                                                            </div>
-                                                            <div style="margin-top: 10px">
-                                                                <button class="button-4 completed-advisory" role="button">Hoàn Thành</button> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
-                    </div>
-                </main>
-            </div>
-        </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-                                                function deleteCourse(id) {
-                                                    event.preventDefault();
-                                                    var comfirmation = confirm("Bạn có chắc muốn hoàn thành chứ?");
-                                                    if (comfirmation) {
-                                                        $.ajax({
-                                                            url: '/SWP391-SE1743/CompletedAppointmentController',
-                                                            type: 'POST',
-                                                            data: {
-                                                                id: id
-                                                            },
-                                                            success: function (respone) {
-                                                                let element = document.getElementById(id);
-                                                                element.remove();
-                                                            }
-                                                        });
-                                                    }
-                                                }
-//                                            document.querySelectorAll('.completed-appointment').forEach(function (item) {
-//                                                item.addEventListener('click', function (event) {
-//                                                    event.preventDefault();
-//                                                    var advisoryRow = this.closest('tr');
-//                                                    var advisoryID = advisoryRow.querySelector('td:first-child').textContent;
-//                                                    var comfirmation = confirm("Bạn có chắc muốn hoàn thành chứ?");
-//                                                    if (comfirmation) {
-//                                                        $.ajax({
-//                                                            url: '/SWP391-SE1743/CompletedAppointmentController',
-//                                                            data: {
-//                                                                action: 'Complete Advisory',
-//                                                                id: advisoryID
-//                                                            },
-//                                                            success: function (data) {
-//                                                                let advisory = document.getElementById(advisoryID);
-//                                                                advisory.remove();
-//                                                            },
-//                                                            error: function (error) {
-//                                                                console("Fail");
-//                                                            },
-//                                                            type: 'POST'
-//                                                        });
-//                                                    }
-//                                                });
-//                                            });
-    </script>
-</body>
+        </div>                     
+    </body>
 </html>

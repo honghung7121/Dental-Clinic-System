@@ -115,8 +115,9 @@ public class FeedbackDentistDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "delete from tblFeedBackDentist\n"
-                        + " where id = ?";
+                String sql = "UPDATE tblFeedBackDentist\n"
+                        + "SET status = 0\n"
+                        + " WHERE id = ?";
                 pst = cn.prepareStatement(sql);
                 pst.setInt(1, feedbackid);
                 pst.executeUpdate();
