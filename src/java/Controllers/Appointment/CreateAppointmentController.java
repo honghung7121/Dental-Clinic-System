@@ -71,8 +71,8 @@ public class CreateAppointmentController extends HttpServlet {
                 LocalDate localDate = LocalDate.parse(date);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 final String formattedDate = localDate.format(formatter);
-                boolean check = AppointmentDAO.ReceiveAppointment(userid, denid, date, time, note);
-                if (check) {
+                int check = AppointmentDAO.ReceiveAppointment(userid, denid, date, time, note);
+                if (check == 1) {
                     Runnable myRunnable = new Runnable() {
                         public void run() {
                             // Các công việc được thực thi trong luồng này
@@ -111,10 +111,17 @@ public class CreateAppointmentController extends HttpServlet {
                     out.println("window.location.href='index.jsp';");  // Thay 'your_jsp_page.jsp' bằng trang JSP bạn muốn chuyển hướng sau khi thông báo
                     out.println("</script>");
                     out.println("</body></html>");
-                } else {
+                } else if (check == 0) {
                     out.println("<html><body>");
                     out.println("<script>");
                     out.println("alert('Đặt lịch hẹn thất bại, vui lòng thử lại sau');");
+                    out.println("window.location.href='index.jsp';");  // Thay 'your_jsp_page.jsp' bằng trang JSP bạn muốn chuyển hướng sau khi thông báo
+                    out.println("</script>");
+                    out.println("</body></html>");
+                } else if (check == 2) {
+                    out.println("<html><body>");
+                    out.println("<script>");
+                    out.println("alert('Đặt lịch hẹn thất bại, có vẻ như bạn đã đặt lịch hẹn trước đó. Nếu bạn muốn thay đổi lịch hẹn, xin vui lòng hãy liên hệ cho chúng tôi qua hotline số điện thoại +84 374 312 384 để được hỗ trợ cập nhật trực tiếp.');");
                     out.println("window.location.href='index.jsp';");  // Thay 'your_jsp_page.jsp' bằng trang JSP bạn muốn chuyển hướng sau khi thông báo
                     out.println("</script>");
                     out.println("</body></html>");

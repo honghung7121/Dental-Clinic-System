@@ -170,12 +170,12 @@ public class AppointmentDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select a.*,u.fullName, u.Roll  from tblAppointment a join tblUser u\n" +
-                                "on a.userID = u.id where dentistID = ? and a.status = 0";
+                String sql = "select a.*,u.fullName, u.Roll  from tblAppointment a join tblUser u\n"
+                        + "on a.userID = u.id where dentistID = ? and a.status = 0";
                 stm = cn.prepareStatement(sql);
                 stm.setInt(1, id);
                 rs = stm.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     int a = rs.getInt("id");
                     String name = rs.getString("fullName");
                     Date c = rs.getDate("appDate");
@@ -189,59 +189,77 @@ public class AppointmentDAO {
             if (cn != null) {
                 cn.close();
             }
-            if(stm !=null){
+            if (stm != null) {
                 stm.close();
             }
-            if(rs!=null){
+            if (rs != null) {
                 rs.close();
             }
         }
         return list;
     }
-    public void CompleteAppointment(int id) throws SQLException{
+
+    public void CompleteAppointment(int id) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
-        try{
+        try {
             con = Util.getConnection();
-            if(con!=null){
+            if (con != null) {
                 String sql = "update tblAppointment set status = 1 where id = ?";
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, id);
                 stm.executeUpdate();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             if (con != null) {
                 con.close();
             }
-            if(stm !=null){
+            if (stm != null) {
                 stm.close();
             }
         }
     }
-    public static boolean ReceiveAppointment(int userID, int denID, String stringdate, String stringtime, String note) throws SQLException {
+
+    public static int ReceiveAppointment(int userID, int denID, String stringdate, String stringtime, String note) throws SQLException {
         Connection cn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
-        boolean result = false;
+        int result = 0;
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                Date date = Date.valueOf(stringdate);
-                Time time = Time.valueOf(stringtime);
-                String sql = "INSERT INTO tblAppointment(userID, dentistID, appDate, appTime, description, status)\n"
-                        + "values (?,?,?,?,?,?)";
-                pst = cn.prepareStatement(sql);
+                // Kiểm tra sự tồn tại của bản ghi theo userID
+                String checkSql = "SELECT COUNT(*) FROM tblAppointment WHERE userID = ? and status = ?";
+                pst = cn.prepareStatement(checkSql);
                 pst.setInt(1, userID);
-                pst.setInt(2, denID);
-                pst.setDate(3, date);
-                pst.setTime(4, time);
-                pst.setString(5, note);
-                pst.setBoolean(6, false);
-                pst.executeUpdate();
-                result = true;
+                pst.setBoolean(2, false);
+                rs = pst.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+                rs.close();
+                pst.close();
+
+                if (count == 0) {
+                    // Thêm lịch hẹn nếu không có bản ghi tồn tại với userID
+                    Date date = Date.valueOf(stringdate);
+                    Time time = Time.valueOf(stringtime);
+                    String sql = "INSERT INTO tblAppointment(userID, dentistID, appDate, appTime, description, status)\n"
+                            + "values (?,?,?,?,?,?)";
+                    pst = cn.prepareStatement(sql);
+                    pst.setInt(1, userID);
+                    pst.setInt(2, denID);
+                    pst.setDate(3, date);
+                    pst.setTime(4, time);
+                    pst.setString(5, note);
+                    pst.setBoolean(6, false);
+                    pst.executeUpdate();
+                    result = 1;
+                } else if (count == 1){
+                    // Đã tồn tại một bản ghi với userID, trả về false
+                    result = 2;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -296,5 +314,39 @@ public class AppointmentDAO {
             }
         }
         return result;
-    }    
+    }
+
+    public static boolean isExistAppointment(int userid) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String checkSql = "SELECT COUNT(*) FROM tblAppointment WHERE userID = ?";
+                pst = cn.prepareStatement(checkSql);
+                pst.setInt(1, userid);
+                rs = pst.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+                if (count == 0) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return result;
+    }
 }

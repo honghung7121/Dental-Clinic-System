@@ -298,7 +298,7 @@
                                         <option value="${dentist.id}">${dentist.fullName}</option>
                                     </c:forEach>
                                 </select>
-                                    <p style="color: white; font-size: smaller">Bạn không biết chọn ai? Tham khảo tại <a href="MainController?action=showDentist" target="_blank" style="color: white; text-decoration: underline;">tại đây</a>.</p>
+                                    <p style="color: white; font-size: smaller">Bạn không biết chọn ai? Tham khảo <a href="MainController?action=showDentist" target="_blank" style="color: white; text-decoration: underline;">tại đây</a>.</p>
                             </div>
                             <div class="form-group" id="dateSelection" style="display: none;">
                                 <label style="color: white;">Ngày hẹn</label>
