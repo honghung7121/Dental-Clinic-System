@@ -50,7 +50,6 @@ public class AppointmentDAO {
                         Date dateApp = rs.getDate("appointmentDate");
                         String descriptionApp = rs.getString("description");
                         boolean statusApp = rs.getBoolean("status");
-
                         app = new Appointment(idApp, userName, dentistName, dateApp, descriptionApp, statusApp);
                         list.add(app);
                     }

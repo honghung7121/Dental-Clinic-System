@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Appointment;
+package Controllers.Treatment_Dentist;
 
-import DAL.AppointmentDAO;
+import DAL.TreatmentCourseDAO;
+import DAL.UserDAO;
 import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class GetAppointmentController extends HttpServlet {
+public class AddTreatmentCourseController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,16 +34,20 @@ public class GetAppointmentController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("User");
-            AppointmentDAO dao = new AppointmentDAO();
-            ArrayList list = dao.getAllAppointmentByDentistID(user.getId());
-            request.setAttribute("Appointments", list);
-        }catch(Exception e){
+            String roll = request.getParameter("roll");
+            String treatmentName = request.getParameter("treatmentName");
+            UserDAO userDAO = new UserDAO();
+            int id = userDAO.searchUserByRoll(roll);
+            if (id == 0) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); 
+            } else {
+                HttpSession session = request.getSession();
+                User user = (User)session.getAttribute("User");
+                TreatmentCourseDAO treatmentDAO = new TreatmentCourseDAO();
+                treatmentDAO.createNewTreatmentCourse(id, user.getId() , treatmentName);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{
-            request.getRequestDispatcher("dentistappointment.jsp").forward(request, response);
         }
     }
 

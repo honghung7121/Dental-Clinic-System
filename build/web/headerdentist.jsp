@@ -218,7 +218,7 @@
                         <ul>       
                             <li class="menu-title">Main</li>
                             <li class="active">
-                                <a  href="#"><i class="ri-calendar-todo-fill"></i> <span>Lịch Hẹn</span></a>
+                                <a  href="GetAppointmentController"><i class="ri-calendar-todo-fill"></i> <span>Lịch Hẹn</span></a>
                             </li>  
                             <li>
                                 <a  href="MainController?action=ViewTreatmentByCustomer&id=${sessionScope.User.getId()}"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>

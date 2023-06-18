@@ -300,13 +300,4 @@ public class ServiceDAO {
         }
         return fbs;
     }
-
-    public static void main(String[] args) throws SQLException {
-
-        ArrayList<Service> list = getAllService();
-        for (Service o : list) {
-            System.out.println(o);
-        }
-//System.out.println(list);
-    }
 }

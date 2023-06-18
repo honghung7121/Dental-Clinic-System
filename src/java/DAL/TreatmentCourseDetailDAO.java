@@ -219,13 +219,4 @@ public class TreatmentCourseDetailDAO {
         }
         return idPatient;
     }
-
-    public static void main(String[] args) {
-        TreatmentCourseDetailDAO dao = new TreatmentCourseDetailDAO();
-        ArrayList<TreatmentCourseDetail> list = dao.getTreatmentDetailByUserID("36");
-        for (TreatmentCourseDetail o : list) {
-            System.out.println(o);
-        }
-    }
-
 }

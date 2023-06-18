@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -164,45 +165,53 @@
 
     </style>
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
+        <jsp:include page="headerdentist.jsp"></jsp:include>
             <div class="page-wrapper">
                 <div class="content">
                     <div class="row">
                         <div class="col-sm-4 col-3">
                             <h4 class="page-title">Lịch Hẹn</h4>
                         </div>
-                        <div class="col-sm-8 col-9 text-right m-b-20">
-                            <a href="addEmployee.jsp" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> Thêm Nhân Viên</a>
-                        </div>
                     </div>
-                    <div id="${c.getId()} course" class="items">
-                    <div class="items-info">
-                        <div class="items-details">
-                            <h3 style="text-align: left; color: #009ce7; margin-bottom: 10px" class="teachers-name">P16<span style="color: black">-Trần Hồng Hưng</span></h3>
-                            <span style="color: black">Mô Tả:</span><data class="teachers-subject">đau răng gì mà nó đau quá trời quá đất luôn á mấy má.</data>
-                            <div style="margin-bottom: 10px"></div>
-                            <div class="price" style="margin-bottom: 10px">
-                                <span style="color: black">Thời Gian:</span><h2 style="display: inline">12:40</h2>
-
+                <c:forEach items="${Appointments}" var="a">
+                    <div id="${a.getId()}" class="items">
+                        <div class="items-info">
+                            <div class="items-details">
+                                <h3 style="text-align: left; color: #009ce7; margin-bottom: 10px" class="teachers-name">${a.getRoll()}<span style="color: black">-${a.getUserName()}</span></h3>
+                                <span style="color: black">Mô Tả:</span><data class="teachers-subject">${a.getDescription()}</data>
+                                <div style="margin-bottom: 10px"></div>
+                                <div class="price" style="margin-bottom: 10px">
+                                    <span style="color: black">Thời Gian:</span><h2 style="display: inline">${a.getDate()} - ${a.getTime()}</h2>
+                                </div>
+                                <button onclick="completeAppointment(${a.getId()})" class="button-4 completed-advisory" role="button">Hoàn Thành</button>
                             </div>
-                            <button class="button-4 completed-advisory" role="button">Hoàn Thành</button>
                         </div>
                     </div>
-                </div>
-                <div id="${c.getId()} course" class="items">
-                    <div class="items-info">
-                        <div class="items-details">
-                            <h3 style="text-align: left; color: #009ce7; margin-bottom: 10px" class="teachers-name">P17<span style="color: black">-Lê Hòa Bình</span></h3>
-                            <span style="color: black">Mô Tả:</span><data class="teachers-subject">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus quasi dolores minima reprehenderit illo vero repudiandae. Hic, facilis, in facere aliquid nesciunt obcaecati est, neque culpa recusandae repudiandae eius iure.</data>
-                            <div style="margin-bottom: 10px"></div>
-                            <div class="price" style="margin-bottom: 10px">
-                                <span style="color: black">Thời Gian:</span><h2 style="display: inline">12:40</h2>
-                            </div>
-                            <button class="button-4 completed-advisory" role="button">Hoàn Thành</button>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+                                    function completeAppointment(id) {
+                                        event.preventDefault();
+                                        var comfirmation = confirm("Bạn có chắc muốn xóa chứ?");
+                                        if (comfirmation) {
+                                            $.ajax({
+                                                url: '/SWP391-SE1743/CompletedAppointmentController',
+                                                data: {
+                                                    id: id
+                                                },
+                                                success: function (data) {
+                                                    let element = document.getElementById(id);
+                                                    element.remove();
+                                                },
+                                                error: function (error) {
+                                                    console("Fail");
+                                                },
+                                                type: 'POST'
+                                            });
+                                        }
+                                    }
+        </script>
     </body>
 </html>

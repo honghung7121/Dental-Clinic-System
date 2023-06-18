@@ -191,7 +191,7 @@
                 <a onclick="closePopUp(this)" class="close" href="#">&times;</a>
                 <div class="content">
                     Đã Thêm Mới Nhân Viên Thành Công. Chúc Sức Khỏe.
-                    <a href="MainController?action=GetEmployees&index=1&click=1">Xem danh sách nhân viên</a>
+                    <a href="MainController?action=ViewTreatmentByCustomer&id=${sessionScope.User.getId()}">Xem danh sách nhân viên</a>
                 </div>
             </div>
         </div>
