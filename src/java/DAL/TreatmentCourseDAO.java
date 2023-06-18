@@ -137,37 +137,31 @@ public class TreatmentCourseDAO {
         return list;
     }
 
-    public User searchPatientIDByRoll(String roll) throws SQLException {
-        User user = null;
+    public void createNewTreatmentCourse(int userID, int dentistID, String treatmentName) throws SQLException{
         Connection con = null;
         PreparedStatement stm = null;
-        ResultSet rs = null;
-        try {
+        try{
             con = Util.getConnection();
-            if (con != null) {
-                String sql = "select * from tblUser where Roll = ?";
+            if(con!=null){
+                String sql = "insert into tblTreatmentCourse values(?,?,?,?)";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, roll);
-                rs = stm.executeQuery();
-                if (rs.next()) {
-                    return user = new User(rs.getInt("id"), rs.getString("fullName"), rs.getString("Roll"));
-                }
+                stm.setInt(1, userID);
+                stm.setInt(2, dentistID);
+                stm.setBoolean(3, false);
+                stm.setString(4, treatmentName);
+                stm.executeUpdate();
             }
-        } catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
+        }
+        finally{
+            if(stm!=null){
                 stm.close();
             }
-            if (con != null) {
+            if(con!=null){
                 con.close();
             }
         }
-        return user;
     }
-
     
 }

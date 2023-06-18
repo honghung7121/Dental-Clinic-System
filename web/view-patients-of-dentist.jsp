@@ -46,34 +46,36 @@
         <link rel="stylesheet" type="text/css" href="assets/css/search-bar.css">
         <style>
             .green-button {
-              background-color: #009efb;
-              color: white;
+                background-color: #009efb;
+                color: white;
             }
         </style>
     </head>
     <body>
         <div class="main-wrapper">
-                <jsp:include page="headerdentist.jsp"></jsp:include>
-
-                    <div class="page-wrapper">
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-sm-4 col-3">
-                                    <h4 class="page-title">Danh Sách Liệu Trình</h4>
-                                </div>
-                                <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="get" accept-charset="UTF-8">
-                                        <div class="form-row">
-                                            <input class="form-input" type="text" name="txtSearch" placeholder="Tìm Kiếm" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                        <select class="form-select" name="searchby">
-                                            <option value="bydentistname">Theo Tên Khách Hàng</option>
-                                        </select>
-                                        <button class="form-button" type="submit" name="action" value="SearchTreatmentCourse">Tìm Kiếm</button>
-                                    </div>
-                                </form>
+            <jsp:include page="headerdentist.jsp"></jsp:include>
+                <div class="page-wrapper">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-sm-4 col-3">
+                                <h4 class="page-title">Danh Sách Liệu Trình</h4>
                             </div>
+                            <div class="col-sm-8 col-9 text-right m-b-20">
+                                <a style="background: #009ce7;" href="add-treatmentcourse.jsp" class="btn float-right"><i class="fa fa-plus"></i>Tạo liệu trình</a>
+                            </div>
+                            <div class="col-sm-8 col-9 text-right m-b-20">
+                                <form action="MainController" method="get" accept-charset="UTF-8">
+                                    <div class="form-row">
+                                        <input class="form-input" type="text" name="txtSearch" placeholder="Tìm Kiếm" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
+                                    <select class="form-select" name="searchby">
+                                        <option value="bydentistname">Theo Tên Khách Hàng</option>
+                                    </select>
+                                    <button class="form-button" type="submit" name="action" value="SearchTreatmentCourse">Tìm Kiếm</button>
+                                </div>
+                            </form>
                         </div>
-                        <c:set var="TreatmentList" value="${requestScope.TreatmentList}"></c:set>
+                    </div>
+                    <c:set var="TreatmentList" value="${requestScope.TreatmentList}"></c:set>
                         <div class="row" style="text-align: center">
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -92,7 +94,7 @@
                                             <tr>
                                                 <td>${list.getId()}</td>
                                                 <td>${list.getNamecustomer()}</td>
-                                                <td>${list.getNameTreatment()}</td>  
+                                                <td>${list.getNameTreatment()}</td>
                                                 <c:if test="${list.isStatus() == true}">
                                                     <td style="color: red; font-weight: bold;">Đã hoàn thành</td>
                                                 </c:if>
@@ -102,19 +104,19 @@
                                                 <td><a href="MainController?action=ViewTreatmentDetailByCustomer&idTreatment=${list.getId()}&nameCus=${list.getNamecustomer()}" class="btn btn-primary">Chi tiết</a></td>
                                             </tr>
                                         </c:forEach>
-                                        </tbody>
-                                    </table>
-                                    <span style="color: red;">
-                                        <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
-                                    </span>
-                                </div>
+                                    </tbody>
+                                </table>
+                                <span style="color: red;">
+                                    <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
         </div>
-                                    
+
         <script src="assets/js/title_sort.js"></script>                        
 
         <script src="assets/js/jquery.dataTables.min.js"></script>

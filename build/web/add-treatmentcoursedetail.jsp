@@ -67,7 +67,6 @@
                                             <input class="form-control" type="time" name="editTimeDetail" required="">
                                         </div>
                                     </div>
-                                    
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <strong><label>Dịch Vụ</label></strong>
@@ -77,7 +76,7 @@
                                                  for (Service ser : listService) {
                                                 %>
                                                     <option value="<%= ser.getId() %>"><%= ser.getName() %></option>
-                                                <%        
+                                                <%
                                                 }
                                                 %>
                                             </select>

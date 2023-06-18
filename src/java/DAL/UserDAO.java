@@ -736,11 +736,11 @@ public class UserDAO {
                     stm = con.prepareStatement(sql1);
                     rs = stm.executeQuery();
                     String rawRoll1 = "";
-                    if(rs.next()){
-                         rawRoll1 = rs.getString("Roll");
+                    if (rs.next()) {
+                        rawRoll1 = rs.getString("Roll");
                     }
-                  int rawRoll2 = Integer.parseInt(rawRoll1.substring(1)) + 1;
-                    String Roll = "P" +  rawRoll2;
+                    int rawRoll2 = Integer.parseInt(rawRoll1.substring(1)) + 1;
+                    String Roll = "P" + rawRoll2;
                     String sql2 = "insert into tblUser values(?,?,?,5,1,?,?,null)";
                     stm = con.prepareStatement(sql2);
                     stm.setString(1, name);
@@ -768,5 +768,35 @@ public class UserDAO {
         }
         return success;
     }
-    
+
+    public int searchUserByRoll(String Roll) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int id = 0;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select id from tblUser where Roll = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, Roll);
+                rs = stm.executeQuery();
+                if(rs.next()){
+                    id = rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return id;
+    }
 }

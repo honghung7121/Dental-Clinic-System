@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/view-treatmentcourse-of-dentist.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/edit-treatmentcoursedetail.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/DAL/UserDAO.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/AddTreatmentCourseController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/DAL/TreatmentCourseDAO.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/add-treatmentcourse.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/headerdentist.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/addEmployee.jsp</file>
+        </group>
     </open-files>
 </project-private>

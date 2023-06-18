@@ -284,6 +284,10 @@
         <servlet-name>SearchTreatmentCourseByRoll</servlet-name>
         <servlet-class>Controllers.Treatment.SearchTreatmentCourseByRoll</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddTreatmentCourseController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.AddTreatmentCourseController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -567,6 +571,10 @@
     <servlet-mapping>
         <servlet-name>SearchTreatmentCourseByRoll</servlet-name>
         <url-pattern>/SearchTreatmentCourseByRoll</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTreatmentCourseController</servlet-name>
+        <url-pattern>/AddTreatmentCourseController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>

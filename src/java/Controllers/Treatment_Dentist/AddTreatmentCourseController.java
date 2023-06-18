@@ -1,15 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Treatment;
+package Controllers.Treatment_Dentist;
 
-import DAL.TreatmentCourseDetailDAO;
-import Models.TreatmentCourseDetail;
+import DAL.TreatmentCourseDAO;
+import DAL.UserDAO;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class TreatmentCourseDetailController extends HttpServlet {
+public class AddTreatmentCourseController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,17 +33,21 @@ public class TreatmentCourseDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
-            TreatmentCourseDetailDAO sdao = new TreatmentCourseDetailDAO();
-            ArrayList<TreatmentCourseDetail> slist = sdao.getTreatmentDetailByUserID(id);
-            request.setAttribute("TreatmentDetailList", slist);
+            String roll = request.getParameter("roll");
+            String treatmentName = request.getParameter("treatmentName");
+            UserDAO userDAO = new UserDAO();
+            int id = userDAO.searchUserByRoll(roll);
+            if (id == 0) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); 
+            } else {
+                HttpSession session = request.getSession();
+                User user = (User)session.getAttribute("User");
+                TreatmentCourseDAO treatmentDAO = new TreatmentCourseDAO();
+                treatmentDAO.createNewTreatmentCourse(id, user.getId() , treatmentName);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher("profileUser.jsp").forward(request, response);
         }
     }
 
