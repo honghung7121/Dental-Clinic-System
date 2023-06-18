@@ -164,7 +164,7 @@ public class TreatmentCourseDetailDAO {
         return kq;
     }
 
-    public static int getIDPatientByDetailID(String idTreatment) {
+    public static int getIDPatientByTreatmentID(String idTreatment) {
         Connection cn = null;
         int idPatient = 0;
         try {

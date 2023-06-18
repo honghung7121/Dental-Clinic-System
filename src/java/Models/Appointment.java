@@ -39,7 +39,6 @@ public class Appointment{
     public Appointment(int id, String userName, Date date, Time time, String description, boolean status, String Roll) {
         this.id = id;
         this.userName = userName;
-        this.dentistName = dentistName;
         this.date = date;
         this.time = time;
         this.description = description;

@@ -63,7 +63,7 @@ public class EditTreatmentDetailController extends HttpServlet {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             final String formattedDate = localDate.format(formatter);
                 
-            int idPatient = TreatmentCourseDetailDAO.getIDPatientByDetailID(idTreatment);
+            int idPatient = TreatmentCourseDetailDAO.getIDPatientByTreatmentID(idTreatment);
             final User patient = UserDAO.getPatient(idPatient);
             if (check) {
                 Runnable myRunnable = new Runnable() {

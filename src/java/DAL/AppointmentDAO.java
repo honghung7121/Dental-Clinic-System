@@ -50,7 +50,6 @@ public class AppointmentDAO {
                         Date dateApp = rs.getDate("appointmentDate");
                         String descriptionApp = rs.getString("description");
                         boolean statusApp = rs.getBoolean("status");
-
                         app = new Appointment(idApp, userName, dentistName, dateApp, descriptionApp, statusApp);
                         list.add(app);
                     }
@@ -176,10 +175,6 @@ public class AppointmentDAO {
                 stm.setInt(1, id);
                 rs = stm.executeQuery();
                 while(rs.next()){
-                    int a = rs.getInt("id");
-                    String name = rs.getString("fullName");
-                    Date c = rs.getDate("appDate");
-                    Time d = rs.getTime("appTime");
                     list.add(new Appointment(rs.getInt("id"), rs.getString("fullName"), rs.getDate("appDate"), rs.getTime("appTime"), rs.getString("Description"), rs.getBoolean("status"), rs.getString("Roll")));
                 }
             }
