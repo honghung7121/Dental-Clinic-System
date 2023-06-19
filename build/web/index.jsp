@@ -37,6 +37,14 @@
         <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
         <link href="lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
 
+
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        
         <!-- Customized Bootstrap Stylesheet -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -298,7 +306,7 @@
                                         <option value="${dentist.id}">${dentist.fullName}</option>
                                     </c:forEach>
                                 </select>
-                                    <p style="color: white; font-size: smaller">Bạn không biết chọn ai? Tham khảo <a href="MainController?action=showDentist" target="_blank" style="color: white; text-decoration: underline;">tại đây</a>.</p>
+                                <p style="color: white; font-size: smaller">Bạn không biết chọn ai? Tham khảo <a href="MainController?action=showDentist" target="_blank" style="color: white; text-decoration: underline;">tại đây</a>.</p>
                             </div>
                             <div class="form-group" id="dateSelection" style="display: none;">
                                 <label style="color: white;">Ngày hẹn</label>
