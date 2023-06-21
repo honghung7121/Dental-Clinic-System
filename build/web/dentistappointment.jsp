@@ -184,6 +184,10 @@
                                     <span style="color: black">Thời Gian:</span><h2 style="display: inline">${a.getDate()} - ${a.getTime()}</h2>
                                 </div>
                                 <button onclick="completeAppointment(${a.getId()})" class="button-4 completed-advisory" role="button">Hoàn Thành</button>
+                                <form action="SendRollToJSPController" method="POST">
+                                    <button style="margin-top: 5px" type="submit" class="button-4 completed-advisory" role="button">Tạo Liệu Trình</button>
+                                    <input type="hidden" name="roll" value="${a.getRoll()}">
+                                </form>
                             </div>
                         </div>
                     </div>
