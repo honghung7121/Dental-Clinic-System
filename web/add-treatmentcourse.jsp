@@ -90,7 +90,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group" id="form-Roll">
                                             <strong><label>Mã Bệnh Nhân<span class="text-danger">*</span></label></strong>
-                                            <input class="form-control" type="text" id="roll" required="">
+                                            <input class="form-control" value="${requestScope.Roll}" type="text" id="roll" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-12">

@@ -4,10 +4,6 @@
  */
 package Controllers.Treatment_Dentist;
 
-import DAL.AppointmentDAO;
-import DAL.TreatmentCourseDAO;
-import DAL.UserDAO;
-import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,7 +16,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class AddTreatmentCourseController extends HttpServlet {
+public class SendRollToJSPController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,25 +30,17 @@ public class AddTreatmentCourseController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
+        try{
+            String id = request.getParameter("id");
             String roll = request.getParameter("roll");
-            String treatmentName = request.getParameter("treatmentName");
-            UserDAO userDAO = new UserDAO();
-            int id = userDAO.searchUserByRoll(roll);
-            if (id == 0) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); 
-            } else {
-                HttpSession session = request.getSession();
-                int appointmentID = Integer.parseInt(session.getAttribute("appointmentID").toString());
-                User user = (User)session.getAttribute("User");
-                TreatmentCourseDAO treatmentDAO = new TreatmentCourseDAO();
-                AppointmentDAO appointmentDAO = new AppointmentDAO();
-                appointmentDAO.CompleteAppointment(appointmentID);
-                treatmentDAO.createNewTreatmentCourse(id, user.getId() , treatmentName);
-                session.removeAttribute("appointmentID");
-            }
-        } catch (Exception e) {
+            request.setAttribute("Roll", roll);
+            HttpSession session = request.getSession();
+            session.setAttribute("appointmentID", id);
+        }catch(Exception e){
             e.printStackTrace();
+        }
+        finally{
+            request.getRequestDispatcher("add-treatmentcourse.jsp").forward(request, response);
         }
     }
 
