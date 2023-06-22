@@ -32,7 +32,7 @@
                     <div class="account-box">
                         <form class="form-signin" action="MainController" method="POST">
                             <div class="account-logo">
-                                <a href="index-2.html"><img src="assets/img/logo.png" alt=""></a>
+                                <a href="index.jsp"><img src="assets/img/logo.png" alt=""></a>
                             </div>
                             <div class="form-group">
                                 <label>Nhập Email Của Bạn</label>

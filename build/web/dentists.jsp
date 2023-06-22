@@ -60,6 +60,7 @@
                                         </div>
                                     </div>
                                     <h4 class="doctor-name text-ellipsis"><a href="MainController?action=dentistProfile&dentistID=${dentist.id}">${dentist.fullName}</a></h4>
+                                    <h4></h4>
                                     <div class="user-country">
                                         <i class="fa fa-map-marker"></i> ${dentist.degree}
                                     </div>
@@ -71,7 +72,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="see-all">
-                            <button class="see-all-btn" onclick="loadMoreDentist()">Load More</button>
+                            <button class="see-all-btn" onclick="loadMoreDentist()">Xem Thêm</button>
                         </div>
                     </div>
                 </div>
