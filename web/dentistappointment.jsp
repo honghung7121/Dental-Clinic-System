@@ -199,7 +199,7 @@
         <script>
                                     function completeAppointment(id) {
                                         event.preventDefault();
-                                        var comfirmation = confirm("Bạn có chắc muốn xóa chứ?");
+                                        var comfirmation = confirm("Bạn có chắc muốn hoàn thành lịch hẹn này chứ?");
                                         if (comfirmation) {
                                             $.ajax({
                                                 url: '/SWP391-SE1743/CompletedAppointmentController',

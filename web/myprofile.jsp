@@ -64,8 +64,8 @@
                                                 <li>
                                                     <span class="title">Vai Trò:</span>
                                                     <c:choose>
-                                                        <c:when test = "${e.getRoleID() ==  1}" ><span class="text">Admin</span></c:when>
-                                                        <c:when test = "${e.getRoleID() ==  3}" ><span class="text">Marketing</span></c:when>
+                                                        <c:when test = "${u.getRoleID() ==  1}" ><span class="text">Admin</span></c:when>
+                                                        <c:when test = "${u.getRoleID() ==  3}" ><span class="text">Marketing</span></c:when>
                                                         <c:otherwise><span class="text">Chăm Sóc Khách Hàng</span></c:otherwise>
                                                     </c:choose>
                                                 </li>

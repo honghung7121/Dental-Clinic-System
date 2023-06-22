@@ -9,7 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
     </head>
     <style>
 
@@ -121,29 +122,11 @@
                             <div class="bg-light rounded h-100 p-5">
                                 <div class="section-title">
                                     <h5 class="position-relative d-inline-block text-primary text-uppercase">Liên hệ chúng tôi</h5>
-                                    <h1 class="display-6 mb-4">Cứ liên lạc nếu cần</h1>
                                 </div>
                                 <div class="d-flex align-items-center mb-2">
-                                    <i class="bi bi-geo-alt fs-1 text-primary me-3"></i>
-                                    <div class="text-start">
-                                        <h5 class="mb-0">Văn phòng của chúng tôi</h5>
-                                        <span>123 Street, New York, USA</span>
-                                    </div>
+                                    <img src="assets/img/QR.jpg"> 
                                 </div>
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
-                                    <div class="text-start">
-                                        <h5 class="mb-0">Gửi email cho chúng tôi</h5>
-                                        <span>info@example.com</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
-                                    <div class="text-start">
-                                        <h5 class="mb-0">Gọi cho chúng tôi</h5>
-                                        <span>+012 345 6789</span>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">

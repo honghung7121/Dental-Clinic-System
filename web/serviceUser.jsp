@@ -15,13 +15,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>DentCare - Dental Clinic Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
 
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
 
         <!-- Google Web Fonts -->
 
@@ -129,7 +128,7 @@
                                                     <th style="width: 15%;">Tên Dịch Vụ</th>
                                                     <th style="width: 65%;">Mô Tả</th>
                                                     <th style="width: 10%;">Giá Tiền</th>
-                                                    <th style="width: 10%;" class="text-center">Đặt Lịch</th>
+<!--                                                    <th style="width: 10%;" class="text-center">Đặt Lịch</th>-->
 
                                                 </tr>
                                             </thead>
@@ -143,11 +142,11 @@
                                                     <td><c:out value="${s.getMota()}"></c:out></td>
                                                     <td><fmt:formatNumber value="${s.getPrice()}" type = "currency"/></td>
 
-                                                    <td class="text-right">
+<!--                                                    <td class="text-right">
                                                         <button type="button" class="open-modal-link btn btn btn-primary py-0 px-4 ms-3" aria-label="Search">
                                                             Tạo lịch hẹn
                                                         </button>
-                                                    </td>
+                                                    </td>-->
                                                 </tr>
                                             </c:forEach>
 

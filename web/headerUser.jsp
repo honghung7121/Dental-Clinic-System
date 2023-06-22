@@ -12,7 +12,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>DentCare - Dental Clinic Website Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -78,7 +79,7 @@
                 <div class="row gx-0">
                     <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                         <div class="d-inline-flex align-items-center">
-                            <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Giờ mở cửa: Thứ hai - Thứ bảy : 6.00 am - 10.00 pm</small>
+                            <small class="py-2"><i class="far fa-clock text-primary me-2"></i>Giờ mở cửa: Thứ hai - Thứ sáu 8:00 sáng - 9:00 tối</small>
                         </div>
                     </div>
                     <div class="col-md-6 text-center text-lg-end">
@@ -122,9 +123,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Xem Thêm</a>
                         <div class="dropdown-menu m-0">
-                            <a href="price.html" class="dropdown-item">Bảng giá</a>
                             <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
-                            <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
                             <a href="index.jsp" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
