@@ -4,6 +4,7 @@
  */
 package Controllers.Treatment_Dentist;
 
+import DAL.AppointmentDAO;
 import DAL.TreatmentCourseDAO;
 import DAL.UserDAO;
 import Models.User;
@@ -42,9 +43,13 @@ public class AddTreatmentCourseController extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST); 
             } else {
                 HttpSession session = request.getSession();
+                int appointmentID = Integer.parseInt(session.getAttribute("appointmentID").toString());
                 User user = (User)session.getAttribute("User");
                 TreatmentCourseDAO treatmentDAO = new TreatmentCourseDAO();
+                AppointmentDAO appointmentDAO = new AppointmentDAO();
+                appointmentDAO.CompleteAppointment(appointmentID);
                 treatmentDAO.createNewTreatmentCourse(id, user.getId() , treatmentName);
+                session.removeAttribute("appointmentID");
             }
         } catch (Exception e) {
             e.printStackTrace();

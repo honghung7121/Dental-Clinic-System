@@ -61,9 +61,6 @@
                                 <h4 class="page-title">Danh Sách Liệu Trình</h4>
                             </div>
                             <div class="col-sm-8 col-9 text-right m-b-20">
-                                <a style="background: #009ce7;" href="add-treatmentcourse.jsp" class="btn float-right"><i class="fa fa-plus"></i>Tạo liệu trình</a>
-                            </div>
-                            <div class="col-sm-8 col-9 text-right m-b-20">
                                 <form action="MainController" method="get" accept-charset="UTF-8">
                                     <div class="form-row">
                                         <input class="form-input" type="text" name="txtSearch" placeholder="Tìm Kiếm" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">

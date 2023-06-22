@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,8 +31,11 @@ public class SendRollToJSPController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try{
+            String id = request.getParameter("id");
             String roll = request.getParameter("roll");
             request.setAttribute("Roll", roll);
+            HttpSession session = request.getSession();
+            session.setAttribute("appointmentID", id);
         }catch(Exception e){
             e.printStackTrace();
         }
