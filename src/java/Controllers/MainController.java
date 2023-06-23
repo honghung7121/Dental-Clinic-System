@@ -78,13 +78,15 @@ public class MainController extends HttpServlet {
     private final String CUSTOMER_DENTIST_PROFILE = "profileDentistByCustomerController";
 
     private final String TREATMENT = "TreatmentCourseController";
-    
+
     private final String TREATMENTOFDENTIST = "ViewTreatmentOfDentistController";
     private final String TREATMENTDETAILOFDENTIST = "ViewTreatmentDetailOfDentistController";
     private final String EDITTREATMENTDETAIL = "EditTreatmentDetailController";
     private final String ADDTREATMENTDETAIL = "AddTreatmentDetailController";
     private final String SEARCHTREATMENTCOURSE = "SearchTreatmentCourseController";
-    
+
+    private final String INSERTUSERLOGINBYGOOGLE = "InsertUserLoginByGoogleController";
+    private final String INSERTUSERLOGINBYFACEBOOK = "InsertUserLoginByFacebookController";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -215,9 +217,12 @@ public class MainController extends HttpServlet {
                 url = ADDTREATMENTDETAIL;
             } else if (action.equals("SearchTreatmentCourse")) {
                 url = SEARCHTREATMENTCOURSE;
+            } else if (action.equals("logbygg")) {
+                url = INSERTUSERLOGINBYGOOGLE;
+            } else if (action.equals("logbyfb")) {
+                url = INSERTUSERLOGINBYFACEBOOK;
             }
-            
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

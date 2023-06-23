@@ -189,6 +189,15 @@
                             <div class="group">
                                 <button style="background-color: #06A3DA; border-radius: 0;" type="submit" class="button" name="action" value="Login">Đăng Nhập</button>
                             </div>
+                            <div class="group">
+                                <h3 style="color: white; text-align: center">Hoặc đăng nhập bằng</h3>
+                                <br>
+                                <div>
+                                    <a href="https://www.facebook.com/dialog/oauth?client_id=254936600471264&redirect_uri=http://localhost:8084/SWP391-SE1743/login-facebook">Login Facebook</a>
+                                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/SWP391-SE1743/login-google&response_type=code
+                                       &client_id=48607043062-12cu71hg20p1gljop1vm7s6fjnjmcv3b.apps.googleusercontent.com&approval_prompt=force">Login With Google</a> 
+                                </div>
+                            </div>
                         </form>
                         <div class="hr"></div>
                         <div class="foot-lnk">
@@ -278,7 +287,7 @@
                                         div.classList.add('active');
                                     } else {
                                         let formSignUp = document.getElementById('formSignUp');
-                                        formSignUp.innerHTML+='<label class="errorMessage" style="color: red; margin-top:5px">Email Đã Được Đăng Kí</label>';
+                                        formSignUp.innerHTML += '<label class="errorMessage" style="color: red; margin-top:5px">Email Đã Được Đăng Kí</label>';
                                     }
                                 },
                                 error: function (error) {
