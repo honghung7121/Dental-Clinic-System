@@ -292,6 +292,22 @@
         <servlet-name>SendRollToJSPController</servlet-name>
         <servlet-class>Controllers.Treatment_Dentist.SendRollToJSPController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginFacebookController</servlet-name>
+        <servlet-class>Controllers.Facebook.LoginFacebookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleController</servlet-name>
+        <servlet-class>Controllers.Google.LoginGoogleController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertUserLoginByFacebookController</servlet-name>
+        <servlet-class>Controllers.Facebook.InsertUserLoginByFacebookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertUserLoginByGoogleController</servlet-name>
+        <servlet-class>Controllers.Google.InsertUserLoginByGoogleController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -583,6 +599,22 @@
     <servlet-mapping>
         <servlet-name>SendRollToJSPController</servlet-name>
         <url-pattern>/SendRollToJSPController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginFacebookController</servlet-name>
+        <url-pattern>/LoginFacebookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleController</servlet-name>
+        <url-pattern>/LoginGoogleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertUserLoginByFacebookController</servlet-name>
+        <url-pattern>/InsertUserLoginByFacebookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertUserLoginByGoogleController</servlet-name>
+        <url-pattern>/InsertUserLoginByGoogleController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>
