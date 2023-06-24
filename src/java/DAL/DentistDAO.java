@@ -34,7 +34,7 @@ public class DentistDAO {
                     while (rs.next()) {
                         int idden = rs.getInt("id");
                         String fullnameden = rs.getString("fullName");
-                        int phoneden = rs.getInt("phoneNumber");
+                        String phoneden = rs.getString("phoneNumber");
                         String passwordden = rs.getString("password");
                         String emailden = rs.getString("email");
                         int idRoleden = rs.getInt("idRole");
@@ -44,7 +44,7 @@ public class DentistDAO {
                         String experienceden = rs.getString("experience");
                         String imgden = rs.getString("image");
                         boolean statusden = rs.getBoolean("status");
- 
+
                         den = new Dentist(degreeden, experienceden, imgden, idden, fullnameden, passwordden, phoneden, idRoleden, statusden, emailden, Rollden, genderden);
                         list.add(den);
                     }
@@ -64,33 +64,33 @@ public class DentistDAO {
         return list;
     }
 
-    public static ArrayList<Dentist> getTop8Dentist() {
+    public ArrayList<Dentist> getTop8Dentist() {
         Connection cn = null;
         ArrayList<Dentist> list = new ArrayList<>();
         Dentist den = null;
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select top 8 * from tblUser u, tblDentist d\n"
-                        + "where u.id = d.dentistID and status = 1";
+                String sql = "select top 8 * from tblUser u, tblDentist d, tblRoleDentist rd\n"
+                        + "where u.id = d.dentistID and d.idRoleDentist = rd.id and status = 1";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null) {
                     while (rs.next()) {
-                       int idden = rs.getInt("id");
+                        int idden = rs.getInt("id");
                         String fullnameden = rs.getString("fullName");
-                        int phoneden = rs.getInt("phoneNumber");
+                        String phoneden = rs.getString("phoneNumber");
                         String passwordden = rs.getString("password");
                         String emailden = rs.getString("email");
-                        int idRoleden = rs.getInt("idRole");
+                        int idrole = rs.getInt("idRole");
                         String Rollden = rs.getString("Roll");
                         String genderden = rs.getString("gender");
                         String degreeden = rs.getString("degree");
                         String experienceden = rs.getString("experience");
                         String imgden = rs.getString("image");
                         boolean statusden = rs.getBoolean("status");
- 
-                        den = new Dentist(degreeden, experienceden, imgden, idden, fullnameden, passwordden, phoneden, idRoleden, statusden, emailden, Rollden, genderden);
+                        String idRoleden = rs.getString("name");
+                        den = new Dentist(degreeden, experienceden, imgden, idRoleden, idden, fullnameden, passwordden, phoneden, idrole, statusden, emailden, Rollden, genderden);
                         list.add(den);
                     }
                 }
@@ -109,36 +109,36 @@ public class DentistDAO {
         return list;
     }
 
-    public static ArrayList<Dentist> getNext4Dentist(int amount) {
+    public ArrayList<Dentist> getNext4Dentist(int amount) {
         Connection cn = null;
         ArrayList<Dentist> list = new ArrayList<>();
         Dentist den = null;
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select * from tblUser u, tblDentist d\n"
-                        + "where u.id = d.dentistID and status = 1\n"
-                        + "order by id offset ? rows\n"
+                String sql = "select * from tblUser u, tblDentist d, tblRoleDentist rd\n"
+                        + "where u.id = d.dentistID and d.idRoleDentist = rd.id and status = 1\n"
+                        + "order by u.id offset ? rows\n"
                         + "fetch next 4 rows only";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, amount);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null) {
                     while (rs.next()) {
-                       int idden = rs.getInt("id");
+                        int idden = rs.getInt("id");
                         String fullnameden = rs.getString("fullName");
-                        int phoneden = rs.getInt("phoneNumber");
+                        String phoneden = rs.getString("phoneNumber");
                         String passwordden = rs.getString("password");
                         String emailden = rs.getString("email");
-                        int idRoleden = rs.getInt("idRole");
+                        int idrole = rs.getInt("idRole");
                         String Rollden = rs.getString("Roll");
                         String genderden = rs.getString("gender");
                         String degreeden = rs.getString("degree");
                         String experienceden = rs.getString("experience");
                         String imgden = rs.getString("image");
                         boolean statusden = rs.getBoolean("status");
- 
-                        den = new Dentist(degreeden, experienceden, imgden, idden, fullnameden, passwordden, phoneden, idRoleden, statusden, emailden, Rollden, genderden);
+                        String idRoleden = rs.getString("name");
+                        den = new Dentist(degreeden, experienceden, imgden, idRoleden, idden, fullnameden, passwordden, phoneden, idrole, statusden, emailden, Rollden, genderden);
                         list.add(den);
                     }
                 }
@@ -157,7 +157,55 @@ public class DentistDAO {
         return list;
     }
 
-    public static Dentist getDentistByID(String id) {
+    public ArrayList<Dentist> getNext3Dentist(int amount) {
+        Connection cn = null;
+        ArrayList<Dentist> list = new ArrayList<>();
+        Dentist den = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select * from tblUser u, tblDentist d, tblRoleDentist rd\n"
+                        + "where u.id = d.dentistID and d.idRoleDentist = rd.id and status = 1\n"
+                        + "order by u.id offset ? rows\n"
+                        + "fetch next 3 rows only";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, amount);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int idden = rs.getInt("id");
+                        String fullnameden = rs.getString("fullName");
+                        String phoneden = rs.getString("phoneNumber");
+                        String passwordden = rs.getString("password");
+                        String emailden = rs.getString("email");
+                        int idrole = rs.getInt("idRole");
+                        String Rollden = rs.getString("Roll");
+                        String genderden = rs.getString("gender");
+                        String degreeden = rs.getString("degree");
+                        String experienceden = rs.getString("experience");
+                        String imgden = rs.getString("image");
+                        boolean statusden = rs.getBoolean("status");
+                        String idRoleden = rs.getString("name");
+                        den = new Dentist(degreeden, experienceden, imgden, idRoleden, idden, fullnameden, passwordden, phoneden, idrole, statusden, emailden, Rollden, genderden);
+                        list.add(den);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return list;
+    }
+
+    public Dentist getDentistByID(String id) {
         Connection cn = null;
         Dentist den = null;
         try {
@@ -171,9 +219,9 @@ public class DentistDAO {
 
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
-                   int idden = rs.getInt("id");
+                    int idden = rs.getInt("id");
                     String fullnameden = rs.getString("fullName");
-                    int phoneden = rs.getInt("phoneNumber");
+                    String phoneden = rs.getString("phoneNumber");
                     String passwordden = rs.getString("password");
                     String emailden = rs.getString("email");
                     int idRoleden = rs.getInt("idRole");
@@ -201,7 +249,7 @@ public class DentistDAO {
         return den;
     }
 
-    public static boolean updateDentist(int id, String fullname, int phone, String email, String degree, String experience, String img, int status, String gender) {
+    public static boolean updateDentist(int id, String fullname, String phone, String email, String degree, String experience, String img, int status, String gender) {
         boolean kq = false;
         Dentist den = null;
         Connection cn = null;
@@ -217,7 +265,7 @@ public class DentistDAO {
                         + "WHERE dentistID = ?;";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, fullname);
-                pst.setInt(2, phone);
+                pst.setString(2, phone);
                 pst.setString(3, email);
                 pst.setInt(4, status);
                 pst.setString(5, gender);
@@ -244,7 +292,7 @@ public class DentistDAO {
         return kq;
     }
 
-    public static boolean insertDentist(String fullname, int phone, String email, String password, String degree, String experience, String img, int status, String gender) {
+    public static boolean insertDentist(String fullname, String phone, String email, String password, String degree, String experience, String img, int status, String gender) {
         Connection cn = null;
         try {
             cn = Util.getConnection();
@@ -256,7 +304,7 @@ public class DentistDAO {
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, fullname);
                 pst.setString(2, password);
-                pst.setInt(3, phone);
+                pst.setString(3, phone);
                 pst.setInt(4, 2);
                 pst.setInt(5, 1);
                 pst.setString(6, email);

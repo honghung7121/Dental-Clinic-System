@@ -218,6 +218,55 @@
         <servlet-class>Controllers.Bill.SearchUserStatus</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ServiceUserController</servlet-name>
+        <servlet-class>Controllers.Service.ServiceUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServiceUserByNameController</servlet-name>
+        <servlet-class>Controllers.Service.SearchServiceUserByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnServiceUserController</servlet-name>
+        <servlet-class>Controllers.Service.ReturnServiceUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowDentistController</servlet-name>
+        <servlet-class>Controllers.Customer.ShowDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadMoreDentistByCustomerController</servlet-name>
+        <servlet-class>Controllers.Customer.LoadMoreDentistByCustomerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateAdvisoryController</servlet-name>
+        <servlet-class>Controllers.Advisory.CreateAdvisoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>profileDentistByCustomerController</servlet-name>
+        <servlet-class>Controllers.Customer.profileDentistByCustomerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TreatmentCourseController</servlet-name>
+        <servlet-class>Controllers.Treatment.TreatmentCourseController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TreatmentCourseDetailController</servlet-name>
+        <servlet-class>Controllers.Treatment.TreatmentCourseDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.GetAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompletedAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.CompletedAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckAppointmentDateController</servlet-name>
+        <servlet-class>Controllers.Appointment.CheckAppointmentDateController</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -426,7 +475,6 @@
         <servlet-name>SignUpController</servlet-name>
         <url-pattern>/SignUpController</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>BillController</servlet-name>
         <url-pattern>/BillController</url-pattern>
@@ -435,11 +483,56 @@
         <servlet-name>SearchUserStatus</servlet-name>
         <url-pattern>/SearchUserStatus</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>ServiceUserController</servlet-name>
+        <url-pattern>/ServiceUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServiceUserByNameController</servlet-name>
+        <url-pattern>/SearchServiceUserByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnServiceUserController</servlet-name>
+        <url-pattern>/ReturnServiceUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowDentistController</servlet-name>
+        <url-pattern>/ShowDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreDentistByCustomerController</servlet-name>
+        <url-pattern>/LoadMoreDentistByCustomerController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAdvisoryController</servlet-name>
+        <url-pattern>/CreateAdvisoryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>profileDentistByCustomerController</servlet-name>
+        <url-pattern>/profileDentistByCustomerController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TreatmentCourseController</servlet-name>
+        <url-pattern>/TreatmentCourseController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TreatmentCourseDetailController</servlet-name>
+        <url-pattern>/TreatmentCourseDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAppointmentController</servlet-name>
+        <url-pattern>/GetAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompletedAppointmentController</servlet-name>
+        <url-pattern>/CompletedAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckAppointmentDateController</servlet-name>
+        <url-pattern>/CheckAppointmentDateController</url-pattern>   
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

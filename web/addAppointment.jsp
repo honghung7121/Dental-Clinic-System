@@ -1,9 +1,10 @@
-<%-- 
+
+    <%-- 
+
     Document   : addAppointment
     Created on : May 21, 2023, 2:31:08 PM
     Author     : ADMIN
 --%>
-
 <%@page import="DAL.UserDAO"%>
 <%@page import="DAL.DentistDAO"%>
 <%@page import="Models.User"%>
@@ -136,4 +137,3 @@
 
     <!-- add-doctor24:06-->
 </html>
-

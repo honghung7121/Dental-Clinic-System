@@ -37,7 +37,10 @@ public class MarketingLoadMoreDentistController extends HttpServlet {
         PrintWriter out = response.getWriter();
         int amount = Integer.parseInt(request.getParameter("exits"));
         HttpSession session = request.getSession();
-        ArrayList<Dentist> list = DentistDAO.getNext4Dentist(amount);
+
+        DentistDAO dentDAO = new DentistDAO();
+        ArrayList<Dentist> list = dentDAO.getNext4Dentist(amount);
+
         for (Dentist dentist : list) {
             out.println("<div class=\"dentistProduct col-md-4 col-sm-4  col-lg-3\">\n"
                     + "                                <div class=\"profile-widget\">\n"

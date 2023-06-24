@@ -35,7 +35,8 @@ public class SearchUserStatus extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-             String searchstatus = request.getParameter("status");
+            
+            String searchstatus = request.getParameter("status");
             String fromDate = request.getParameter("from");
             String toDate = request.getParameter("to");
             

@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/search-bar.css">
 
 
         <!--[if lt IE 9]>
@@ -34,6 +35,9 @@
         <c:set var="isAdmin" value="${role eq 1}" />
         <c:set var="isMarketing" value="${role eq 3}" />
         <div class="main-wrapper">
+
+
+
             <c:if test="${isAdmin}">
                 <jsp:include page="header.jsp"></jsp:include>
                     <div class="page-wrapper">
@@ -43,14 +47,17 @@
                                     <h4 class="page-title">Phản Hồi Về Dịch Vụ</h4>
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="get">
-                                        <input placeholder="Tìm Kiếm" type="text" name="txt" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                    <select name="searchby">
-                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                        <option value="byservicename">Theo Tên Dịch Vụ</option>
-                                    </select>
-                                    <button type="submit" name="action" value="Search Feedback Service">Tìm Kiếm</button>
+                                    <form action="MainController" method="post" accept-charset="UTF-8">
+                                        <div class="form-row">
+                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
+                                        <select class="form-select" name="searchby">
+                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                            <option value="byservicename">Theo Tên Dịch Vụ</option>
+                                        </select>
+                                        <button class="form-button" type="submit" name="action" value="Search Feedback Service">Tìm Kiếm</button>
+                                    </div>
                                 </form>
+
                             </div>
                         </div>
                         <div class="row">
@@ -102,26 +109,18 @@
                                             </c:forEach>                                        
                                         </tbody>
                                     </table>
-
+                                    <span style="color: red;">
+                                        <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </c:if>
-            <!--            <div id="delete_schedule" class="modal fade delete-modal" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-body text-center">
-                                        <img src="assets/img/sent.png" alt="" width="50" height="46">
-                                        <h3>Are you sure want to delete this Schedule?</h3>
-                                        <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                            <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
+
+
+
             <c:if test="${isMarketing}">
                 <jsp:include page="headerMarketing.jsp"></jsp:include>
                     <div class="page-wrapper">
@@ -131,13 +130,15 @@
                                     <h4 class="page-title">Phản Hồi Về Dịch Vụ</h4>
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="get">
-                                        <input placeholder="Tìm Kiếm" type="text" name="txt" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                    <select name="searchby">
-                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                        <option value="byservicename">Theo Tên Dịch Vụ</option>
-                                    </select>
-                                    <button type="submit" name="action" value="Search Feedback Service">Tìm Kiếm</button>
+                                    <form action="MainController" method="post" accept-charset="UTF-8">
+                                        <div class="form-row">
+                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
+                                        <select class="form-select" name="searchby">
+                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                            <option value="byservicename">Theo Tên Dịch Vụ</option>
+                                        </select>
+                                        <button class="form-button" type="submit" name="action" value="Search Feedback Service">Tìm Kiếm</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -181,7 +182,9 @@
                                             </c:forEach>                                        
                                         </tbody>
                                     </table>
-
+                                    <span style="color: red;">
+                                        <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
+                                    </span>
                                 </div>
                             </div>
                         </div>

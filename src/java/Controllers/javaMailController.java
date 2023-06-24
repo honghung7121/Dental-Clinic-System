@@ -38,16 +38,24 @@ public class javaMailController extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
-
-            String name = request.getParameter("gmail");
+            final String name = request.getParameter("gmail");
             SendDAO dao = new SendDAO();
+            
             User user = dao.checkMail(name);
             if (user != null) {
                 session.setAttribute("gmail", name);
-                String random = dao.getSoNgauNhien();
+                final String random = dao.getSoNgauNhien();
                 session.setAttribute("code", random);
-                SendMail.sendEmail(name, "Mail from Dental Clinic System", "Your verification code is: " + random, "forgot password");
+                Runnable myRunnable = new Runnable() {
+                    public void run() {
+                        // Các công việc được thực thi trong luồng này
+                        SendMail.sendEmail(name, "Mail from Dental Clinic System", "Your verification code is: " + random, "forgot password");
+                    }
+                };
+                Thread thread = new Thread(myRunnable);
+                thread.start();
                 url = "confirmEmail.jsp";
+                
             } else {
                 request.setAttribute("SIGNUP_FAIL", "Email Không Tồn Tại");
                 url = "forgotPassword.jsp";

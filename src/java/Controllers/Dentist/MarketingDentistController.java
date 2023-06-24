@@ -36,7 +36,10 @@ public class MarketingDentistController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            ArrayList<Dentist> list = DentistDAO.getTop8Dentist();
+
+            DentistDAO dentDAO = new DentistDAO();
+            ArrayList<Dentist> list = dentDAO.getTop8Dentist();
+            
             String url = "";
             if (list!=null) {
                 url = "marketing-dentists.jsp";

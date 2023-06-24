@@ -49,11 +49,11 @@
                         <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
                         <span class="status online"></span>
                     </span>
-                    <span>Marketing</span>
+                    <span>${sessionScope.User.getFullName()}</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="myprofile.jsp">My Profile</a>
-                    <a class="dropdown-item" href="MainController?action=Logout">Logout</a>
+                    <a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a>
+                    <a class="dropdown-item" href="MainController?action=Logout">Đăng Xuất</a>
                 </div>
             </li>
         </ul>
@@ -73,7 +73,7 @@
 
                 <c:set var="activeLink" value="${sessionScope.activeLink}"></c:set>
                 <c:set var="option" value="${sessionScope.option}"></c:set>
-                
+
                 <c:set var="dashboardLink" value="dashboardLink"></c:set>
                 <c:set var="dentistLink" value="dentistLink"></c:set>
                 <c:set var="patientLink" value="patientLink"></c:set>
@@ -83,7 +83,8 @@
                 <c:set var="feedbackLink" value="feedbackLink"></c:set>
                 <c:set var="feedbackDentistLink" value="feedbackDentistLink"></c:set>
                 <c:set var="feedbackServiceLink" value="feedbackServiceLink"></c:set>
-                
+                <c:set var="appointmentLink" value="appointmentLink"></c:set>
+
                 <c:if test="${activeLink eq dashboardLink}">
                     <c:set var="dashboardLink" value="active"></c:set>
                 </c:if>
@@ -96,7 +97,10 @@
                 <c:if test="${activeLink eq serviceLink}">
                     <c:set var="serviceLink" value="active"></c:set>
                 </c:if>
-                
+                <c:if test="${activeLink eq appointmentLink}">
+                    <c:set var="appointmentLink" value="active"></c:set>
+                </c:if>
+
                 <c:if test="${activeLink eq employeeLink}">
                     <c:set var="employeeLink" value="active"></c:set>
                     <c:if test="${option eq dsnv}">
@@ -104,7 +108,7 @@
                         <c:set var="employeeLink3" value="#888888"></c:set>
                     </c:if>
                 </c:if>
-                
+
                 <c:if test="${activeLink eq feedbackLink}">
                     <c:set var="feedbackLink" value="active"></c:set>
                     <c:if test="${option eq feedbackDentistLink}">
@@ -114,31 +118,30 @@
                         <c:set var="feedbackDentistLink" value="#888888"></c:set>
                     </c:if>
                 </c:if>
-                
+
                 <ul>        
                     <li class="menu-title">Main</li>
-                    
+
                     <li class="${dentistLink}">
                         <a href="MainController?action=marketingdentist"><i class="fa fa-user-md"></i> <span>Bác Sĩ</span></a>
                     </li>
-                    
-                    <li>
-                        <a href="appointments.jsp"><i class="fa fa-calendar"></i> <span>Lịch Hẹn</span></a>
+
+                    <li class="${appointmentLink}">
+                        <a href="MainController?action=searchAppointmentByDate"><i class="fa fa-calendar"></i> <span>Lịch Hẹn</span></a>
                     </li>
                     <li class="${serviceLink}">
                         <a href="MainController?action=ServiceMarketing"><i class="fa fa-cube"></i> <span>Dịch Vụ</span></a>
                     </li>
-                    
 
-                    <li class="submenu ${employeeLink}">
+<!--                    <li class="submenu ${employeeLink}">
                         <a href="#"><i class="fa fa-user"></i> <span> Nhân Viên </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
                             <li><a href="MainController?action=GetEmployees&index=1&click=1" style="color: ${employeeLink1}">Danh Sách Nhân Viên</a></li>
                             <li><a href="holidays.html" style="color: ${employeeLink2}">Ngày Nghỉ</a></li>
                             <li><a href="attendance.html" style="color: ${employeeLink3}">Điểm Danh</a></li>
                         </ul>
-                    </li>
-                    
+                    </li>-->
+
                     <li class="submenu ${feedbackLink}">
                         <a href="#"><i class="fa fa-comment"></i> <span> Phản hồi </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">

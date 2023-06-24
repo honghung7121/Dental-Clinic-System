@@ -43,15 +43,15 @@
                             <h4 class="page-title">Lịch Hẹn</h4>
                         </div>
                         <div class="col-sm-4 col-4">
-                            <form action="MainController" method="get">
+                            <form action="MainController" method="post">
                                 Từ <input type="date" name="from" placeholder="dd/mm/yyyy"> 
                                 Đến <input type="date" name="to" placeholder="dd/mm/yyyy">
                                 <button type="submit" value="searchAppointmentByDate" name="action">Tìm Kiếm</button>
                             </form>
                         </div>
-                        <div class="col-sm-4 col-4 text-right m-b-20">
+<!--                        <div class="col-sm-4 col-4 text-right m-b-20">
                             <a href="MainController?action=CreateAppointmentPage" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Thêm Cuộc Hẹn</a>
-                        </div>
+                        </div>-->
                     </div>                                      
                     
                     <div class="row">
@@ -65,7 +65,7 @@
                                             <th>Bác sĩ</th>
                                             <th>Ngày Khám</th>
                                             <th>Trạng thái</th>
-                                            <th class="text-right">Action</th>
+<!--                                            <th class="text-right">Action</th>-->
                                         </tr>
                                     </thead>
                                     
@@ -96,7 +96,7 @@
                                                         <span class="custom-badge status-green">Đang chờ</span>
                                                     </c:if>
                                                 </td>
-                                                <td class="text-right">
+<!--                                                <td class="text-right">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
@@ -104,7 +104,7 @@
                                                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_appointment"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td>-->
                                             </tr>
 
                                         </c:forEach>

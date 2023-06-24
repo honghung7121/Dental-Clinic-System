@@ -10,6 +10,7 @@ import Util.PasswordEncoder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +40,15 @@ public class LoginController extends HttpServlet {
         try {
             String accountName = request.getParameter("accountName");
             String password = request.getParameter("password");
-
+            String remember = request.getParameter("remember");
+            if (remember != null) {
+                Cookie emailCookie = new Cookie("emailCookie", accountName);
+                Cookie passwordCookie = new Cookie("passwordCookie", password);
+                emailCookie.setMaxAge(86400);
+                passwordCookie.setMaxAge(86400);
+                response.addCookie(emailCookie);
+                response.addCookie(passwordCookie);
+            }
             String encryptedpassword = PasswordEncoder.toSHA1(password.trim());
 
             UserDAO dao = new UserDAO();
@@ -49,12 +58,15 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("role", user.getRoleID());
                 if (user.getRoleID() == 1) {
                     url = "DashBoardController";
+                } else if (user.getRoleID() == 2) {
+                    url = "GetAppointmentController";
                 } else if (user.getRoleID() == 4) {
                     url = "GetAdvisoryController";
                 } else if (user.getRoleID() == 3) {
                     url = "MarketingDentistController";
                 } else if (user.getRoleID() == 5) {
                     url = "index.jsp";
+
                 }
             } else {
                 request.setAttribute("SIGNUP_FAIL", "Invalid email/phone number or password");
@@ -66,6 +78,7 @@ public class LoginController extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

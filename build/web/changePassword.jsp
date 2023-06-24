@@ -28,13 +28,13 @@
     </head>
 
     <body>
-        <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
+        <c:if test="${sessionScope.User.getRoleID() != 1 && sessionScope.User.getRoleID() != 5}"><c:redirect url="login.jsp"/></c:if>
             <div class="main-wrapper">
 
             <jsp:include page="header.jsp"></jsp:include>\
 
             <c:set var="u" value="${sessionScope.User}"></c:set>
-            
+
                 <div class="page-wrapper">
                     <div class="content">
                         <div class="row">
@@ -48,31 +48,31 @@
                             <div class="col-lg-8 offset-lg-2">
                                 <form action="MainController" method="post">
 
-                                <div class="row">
+                                    <div class="row">
 
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                                <label>Email Hiện Tại</label>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Email Hiện Tại <span class="text-danger">*</span></label>
                                                 <input class="form-control" value="${u.email}" name="EmailNow" rows="3" cols="30" readonly></input>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Nhập Mật Khẩu Hiện Tại</label>
+                                            <label>Nhập Mật Khẩu Hiện Tại <span class="text-danger">*</span></label>
                                             <input class="form-control" type="password" name="PassNow" required="">
                                         </div>
                                         <h6 style="color: red">${requestScope.report1}</h6>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Nhập Mật Khẩu Mới</label>
+                                            <label>Nhập Mật Khẩu Mới <span class="text-danger">*</span></label>
                                             <input class="form-control" type="password" name="PassNew" required="">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Nhập Lại Mật Khẩu Mới</label>
+                                            <label>Nhập Lại Mật Khẩu Mới <span class="text-danger">*</span></label>
                                             <input class="form-control" type="password" name="PassNewAgain" required="">
                                         </div>
                                         <h6 style="color: red">${requestScope.report2}</h6>

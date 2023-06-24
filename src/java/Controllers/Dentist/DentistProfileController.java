@@ -36,7 +36,8 @@ public class DentistProfileController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String dentistID = request.getParameter("dentistID");
             Dentist den = new Dentist();
-            den = DentistDAO.getDentistByID(dentistID);
+            DentistDAO dentistDAO = new DentistDAO();
+            den = dentistDAO.getDentistByID(dentistID);
             request.setAttribute("dentistByID", den);
             request.getRequestDispatcher("profileDentist.jsp").forward(request, response);
         }

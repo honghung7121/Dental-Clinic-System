@@ -6,6 +6,7 @@
 package Controllers.Dentist;
 
 import DAL.DentistDAO;
+import DAL.UserDAO;
 import Models.Dentist;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,11 +35,11 @@ public class EditDentistController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+            UserDAO dao = new UserDAO();
             // img, experience, degree null thì lấy giá trị củ
             String id = request.getParameter("editIDDentist");
             String fullname = request.getParameter("editNameDentist");
-            int phone = Integer.parseInt(request.getParameter("editPhoneDentist"));
+            String phone = request.getParameter("editPhoneDentist");
             String email = request.getParameter("editEmailDentist");
             String degree = request.getParameter("editDegreeDentist");
             String experience = request.getParameter("editExperienceDentist");
@@ -50,8 +51,9 @@ public class EditDentistController extends HttpServlet {
                 img = "image/" + img;
             }
             
-            boolean check = false;
-            Dentist den = DentistDAO.getDentistByID(id);
+            DentistDAO dentistDAO = new DentistDAO();
+            Dentist den = dentistDAO.getDentistByID(id);
+            
             String[] denOld = {den.getImg(), den.getExperience(), den.getDegree()};
             String[] denNew = {img, experience, degree};
             for (int i = 0; i < denNew.length; i++) {
@@ -59,6 +61,17 @@ public class EditDentistController extends HttpServlet {
                     denNew[i] = denOld[i]; 
                 }
             }
+            
+            String emailreal = request.getParameter("editEmailDentistReal");
+            boolean checkemail = dao.checkEmailExists(email);
+            if (!emailreal.equals(email)) {
+                if (checkemail) {
+                    request.setAttribute("reportEmail", "Email này đã được sử dụng!!!");
+                    request.getRequestDispatcher("editDentist.jsp?dentistID=" + id).forward(request, response);
+                }
+            }
+
+            boolean check = false;
             check = DentistDAO.updateDentist(Integer.parseInt(id), fullname, phone, email, denNew[2], denNew[1], denNew[0], status, gender);
 
             if (check) {

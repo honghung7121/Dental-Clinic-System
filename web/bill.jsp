@@ -1,6 +1,6 @@
 <%-- 
     Document   : bill
-    Created on : 09-Jun-2023, 23:17:36
+    Created on : Jun 9, 2023, 10:02:31 PM
     Author     : Admin
 --%>
 
@@ -15,6 +15,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+
+        <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="index.jsp"/></c:if>
         <jsp:include page="header.jsp"></jsp:include>
 
             <div class="page-wrapper">
@@ -51,10 +53,11 @@
                                         <option value="bynot">Chưa Thánh Toán</option>
                                         <option value="bydone">Đã Thanh Toán</option>
                                     </select>
-                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">
+<!--                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">-->
                                 </div>
                             </div>
-                            <!--                            <a href="MainController?action=Search" class="btn btn-success btn-block"> Search </a>-->                  
+<!--                                                        <a href="MainController?action=Search" class="btn btn-success btn-block" > Search </a>                  -->
+                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">
                         </div>
                     </form>
 
@@ -86,7 +89,7 @@
                                             <td><c:out value="${ac.getId()}"></c:out></td>
                                             <td><c:out value="${ac.getUsername() }"></c:out></td>
 
-                                            <td><c:out value="${ac.getTreatmentDate() }"></c:out></td>
+                                                <td><c:out value="${ac.getTreatmentDate() }"></c:out></td>
                                             <td><c:out value="${ac.getDescription() }"></c:out></td>
                                             <td><fmt:formatNumber value="${ac.getPrice()}" type = "currency"/></td>
                                             <td>

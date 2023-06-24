@@ -41,7 +41,9 @@
                                                 <div class="profile-info-left">
                                                     <h3 class="user-name m-t-0 mb-0">${u.getFullName()}</h3>
                                                 <div class="staff-id">ID Nhân Sự: ${u.getId()}</div>
-                                                <div class="staff-msg"><a href="MainController?action=changePassPage" class="btn btn-primary">Thay đổi mật khẩu</a></div>
+                                                <div class="staff-id">Chức vụ: Admin</div>
+
+                                                <div class="staff-msg"><a href="MainController?action=changePassPage" class="btn btn-primary btn-rounded">Thay đổi mật khẩu</a></div>
 
                                             </div>
                                         </div>
@@ -49,7 +51,7 @@
                                             <ul class="personal-info">
                                                 <li>
                                                     <span class="title">Số Điện Thoại:</span>
-                                                    <span class="text"><a href="#">0${u.getPhoneNumber()}</a></span>
+                                                    <span class="text"><a href="#">${u.getPhoneNumber()}</a></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Email:</span>
@@ -75,6 +77,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </body>

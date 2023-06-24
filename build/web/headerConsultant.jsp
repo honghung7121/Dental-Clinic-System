@@ -4,11 +4,6 @@
     Author     : Admin
 --%>
 
-<%-- 
-    Document   : header
-    Created on : May 22, 2023, 1:56:36 PM
-    Author     : Admin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -122,7 +117,7 @@
                             <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
                             <span class="status online"></span>
                         </span>
-                        <span>Chăm Sóc Khách Hàng</span>
+                        <span>${sessionScope.User.getFullName()}</span>
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="myprofile.jsp">Tài Khoản Của Tôi</a>
@@ -181,8 +176,8 @@
 
                     <ul>       
                         <li class="menu-title">Main</li>
-                        <li>
-                            <a class="active" href="settings.html"><i class="ri-customer-service-2-line"></i> <span>Danh Sách tư vấn</span></a>
+                        <li class="active">
+                            <a  href="#"><i class="ri-customer-service-2-line"></i> <span>Danh Sách tư vấn</span></a>
                         </li>                        
                     </ul>
                 </div>
@@ -205,12 +200,12 @@
                                         <th >Số điện thoại</th>
                                         <th>
                                             <form action="SortDateAdvisoryController" method="POST">
-                                                <button class="btnLink" style="">Ngày Đăng Kí</button>
+                                                <button class="btnLink" style="text-align: center">Ngày Đăng Kí</button>
                                                 <input type="hidden" name="sortBy" value="${requestScope.SORT_BY}">
                                             </form>
                                         </th>
                                         <th>Mô Tả</th>
-                                        <th class="text-right">Chỉnh Sửa</th>
+                                        <th  style="text-align: center">Chỉnh Sửa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -227,7 +222,6 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-
                                 </tbody>
                             </table>
                         </div>

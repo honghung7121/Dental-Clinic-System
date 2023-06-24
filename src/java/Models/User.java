@@ -13,14 +13,16 @@ public class User {
     private int id;
     private String fullName;
     private String password;
-    private int phoneNumber;
+    private String phoneNumber;
     private int roleID;
     private boolean status;
     private String email;
     private String Roll;
     private String gender;
 
-    public User(int id, String fullName, String password, int phoneNumber, int roleID, boolean status, String email, String Roll) {
+    
+    
+    public User(int id, String fullName, String password, String phoneNumber, int roleID, boolean status, String email, String Roll) {
         this.id = id;
         this.fullName = fullName;
         this.password = password;
@@ -67,11 +69,11 @@ public class User {
         this.password = password;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -110,7 +112,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String fullName, String password, int phoneNumber, int roleID, boolean status, String email, String Roll, String gender) {
+    public User(int id, String fullName, String password, String phoneNumber, int roleID, boolean status, String email, String Roll, String gender) {
         this.id = id;
         this.fullName = fullName;
         this.password = password;

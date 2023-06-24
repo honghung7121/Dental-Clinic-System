@@ -14,9 +14,8 @@
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300;400;500;800&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300;400;500;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -63,7 +62,7 @@
             </div>
         </div>
     </div>
-<!--    <div class="container-fluid text-light py-4" style="background: #051225;">
+    <div class="container-fluid text-light py-4" style="background: #051225;">
         <div class="container">
             <div class="row g-0">
                 <div class="col-md-6 text-center text-md-start">
@@ -76,6 +75,6 @@
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
     </body>
 </html>

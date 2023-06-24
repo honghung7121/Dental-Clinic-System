@@ -40,13 +40,13 @@ public class SearchFeedbackDentistController extends HttpServlet {
             try {
                 String txtSearch = request.getParameter("txt");
                 String searchby = request.getParameter("searchby");
+                HttpSession session = request.getSession();
                 ArrayList<FeedbackDentist> list = FeedbackDentistDAO.getFeedbackDentist(txtSearch, searchby);
                 if (list != null && !list.isEmpty()) {
-                    HttpSession session = request.getSession();
                     session.setAttribute("list", list);
-                    request.setAttribute("RESPONE", "Load successfully!");
                 } else {
-                    request.setAttribute("RESPONE", "Load fail!");
+                    session.setAttribute("list", null);
+                    request.setAttribute("RESPONSE", "Không Tìm Thấy!");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
