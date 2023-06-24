@@ -87,7 +87,7 @@
                         <h1 class="display-3 text-white animated zoomIn">Tài Khoản</h1>
                         <a href="" class="h4 text-white">Trang chủ</a>
                         <i class="far fa-circle text-white px-2"></i>
-                        <a href="" class="h4 text-white">Thông Tin</a>
+                        <a href="" class="h4 text-white">Đổi Mật Khẩu</a>
                     </div>
                 </div>
             </div>
@@ -161,13 +161,6 @@
                                                 <form action="MainController" method="post">
 
                                                     <div class="row">
-
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label>Email Hiện Tại <span class="text-danger">*</span></label>
-                                                                <input class="form-control" value="${u.email}" name="EmailNow" rows="3" cols="30" readonly></input>
-                                                            </div>
-                                                        </div>
 
                                                         <div class="col-sm-12">
                                                             <div class="form-group">

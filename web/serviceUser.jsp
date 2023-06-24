@@ -3,7 +3,9 @@
     Created on : Jun 8, 2023, 7:53:27 PM
     Author     : Admin
 --%>
-
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAL.DentistDAO"%>
+<%@page import="DAL.AppointmentDAO"%>
 <%@page import="DAL.ServiceDAO"%>
 <%@page import="Models.Service"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,13 +15,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>DentCare - Dental Clinic Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
 
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
 
         <!-- Google Web Fonts -->
 
@@ -29,7 +30,7 @@
 
 
         <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;300;400;500;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-        
+
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -119,47 +120,34 @@
 
                             <div class="row">
                                 <div class="col-md-12">
+
                                     <div class="table-responsive">
                                         <table id="myTable" class="table table-border table-striped custom-table mb-0">
                                             <thead>
-                                                <tr>
-                                                    <!--                                                    <th><a href="#">ID </th>-->
-                                                    <th><a href="#">Tên Dịch Vụ</th>
-                                                    <th><a href="#">Mô Tả</th>
-                                                    <th><a href="#">Giá Tiền</th>
-                                                    <!--                                                    <th>
-                                                                                                            <form action="SortServiceController" method="POST">
-                                                                                                                <button class="btnLink" style="">Giá Tiền</button>
-                                                                                                                <input type="hidden" name="page" value="${requestScope.current}">
-                                                                                                            <input type="hidden" name="count" value="${requestScope.count}">
-                                                                                                            <input type="hidden" name="flag" value="us">
-                                                                                                        </form>
-                                                                                                        </th>-->
-                                                <!--                                                <th><a href="#">Trạng Thái</th>-->
-                                                <th class="text-center">Đặt Lịch</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="content">
+                                                <tr style="text-align: center">
+                                                    <th style="width: 15%;">Tên Dịch Vụ</th>
+                                                    <th style="width: 65%;">Mô Tả</th>
+                                                    <th style="width: 10%;">Giá Tiền</th>
+<!--                                                    <th style="width: 10%;" class="text-center">Đặt Lịch</th>-->
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="content">
 
                                             <fmt:setLocale value = "vi_VN"/>
                                             <c:forEach var="s" items="${sessionScope.ServiceList}">
-
-                                                <tr>
+                                                <tr style="text-align: center">
 <!--                                                    <td><c:out value="${s.getId()}"></c:out></td>-->
                                                     <td><c:out value="${s.getName()}"></c:out></td>
                                                     <td><c:out value="${s.getMota()}"></c:out></td>
                                                     <td><fmt:formatNumber value="${s.getPrice()}" type = "currency"/></td>
 
-                                                    <td class="text-right">
-                                                        <!--                                                        <button type="button" class="btn btn-primary py-0 px-4 ms-3" data-bs-toggle="modal"
-                                                                                                                        data-bs-target="#createModal" aria-label="Search">
-                                                                                                                    Đặt lịch
-                                                                                                                </button>-->
-                                                        <a href="appointment.html" class="btn btn-primary py-0 px-4 ms-3">Đặt lịch</a>
-                                                    </td>
-
+<!--                                                    <td class="text-right">
+                                                        <button type="button" class="open-modal-link btn btn btn-primary py-0 px-4 ms-3" aria-label="Search">
+                                                            Tạo lịch hẹn
+                                                        </button>
+                                                    </td>-->
                                                 </tr>
-
                                             </c:forEach>
 
                                         </tbody>
@@ -170,60 +158,49 @@
 
                         <!-- Full Screen Create Start -->
                         <div class="modal fade" id="createModal" tabindex="-1">
-                            <!--                            <div class="modal-dialog">
-                                                            <div class="modal-content" style="background: rgba(6, 163, 218, .7);">
-                                                                <div class="modal-body d-flex align-items-center justify-content-center">
-                                                                    <div class="input-group" style="max-width: 600px; color: white; font-size: 1.2rem;" >
-                                                                        Chúng tôi xin lỗi khi phải thông báo lịch bạn vừa chọn đã trùng. Vui lòng chọn lịch hẹn khác.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>-->
                             <div class="modal-dialog">
                                 <div class="modal-content" style="background: rgba(6, 163, 218, .7);">
-                                    <form action="xemLich" method="post">
+                                    <form action="MainController" method="get">
                                         <div class="modal-header">
-
                                             <h4 class="modal-title" style="color: white;">Thông Tin</h4>
-                                            <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-
-
-                                            <div class="form-group">
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected>Lựa chọn dịch vụ</option>
-                                                    <option value="1">Dịch vụ 1</option>
-                                                    <option value="2">Dịch vụ 2</option>
-                                                    <option value="3">Dịch vụ 3</option>
+                                            <c:set var="dentistlist" value="${DentistDAO.getAllDentist()}"></c:set>
+                                                <div class="form-group">
+                                                    <label style="color: white;">Nha sĩ</label>
+                                                    <select id="selectdentist" name="dentistid" class="form-select" aria-label="Default select example">
+                                                        <option selected>Lựa chọn nha sĩ</option>
+                                                    <c:forEach var="dentist" items="${dentistlist}">
+                                                        <option value="${dentist.id}">${dentist.fullName}</option>
+                                                    </c:forEach>
                                                 </select>
+                                                <p style="color: white; font-size: smaller">Bạn không biết chọn ai? Tham khảo <a href="MainController?action=showDentist" target="_blank" style="color: white; text-decoration: underline;">tại đây</a>.</p>
                                             </div>
-                                            <br>
-                                            <div class="form-group">
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected>Lựa chọn nha sĩ</option>
-                                                    <option value="1">Nha sĩ 1</option>
-                                                    <option value="2">Nha sĩ 2</option>
-                                                    <option value="3">Nha sĩ 3</option>
-                                                </select>
-                                            </div>
-
-                                            <br>
-
-                                            <div class="form-group">
+                                            <div class="form-group" id="dateSelection" style="display: none;">
                                                 <label style="color: white;">Ngày hẹn</label>
-                                                <input name="date" type="date" class="form-control" required></input>
+                                                <input name="txtDate" id="appointmentDate" type="date" class="form-control" required>
+                                            </div>
+
+                                            <div class="form-group" id="timeSelection" style="display: none;">
+                                                <label style="color: white;">Thời gian hẹn</label>
+                                                <select name="txtTime" id="appointmentTime" class="form-control" required>
+                                                    <option value="" disabled selected>Chọn thời gian</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
-                                                <label style="color: white;">Thời gian hẹn</label>
-                                                <input type="time" name="txtTime" class="form-control" required></input>
+                                                <label style="color: white;">Ghi chú (nếu có)</label>
+                                                <textarea id="myTextarea" name="txtNote" class="form-control" rows="3" maxlength="300"></textarea>
+                                                <span id="charCount" style="font-size: 12px; color: white;"></span>
                                             </div>
                                         </div>
-                                        <div class="modal-footer" style="background: white;">
-                                            <input type="button" class=""  value="Xem lịch còn trống">
-                                            <input type="submit" class="" style="background: #06A3DA; border: 1;" value="Tạo lịch hẹn">
+                                        <div class="modal-footer">
+                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Thoát">
+                                            <button class="btn btn-success" name="action" value="Create Appointment">Tạo Lịch Hẹn</button>
                                         </div>
+                                        <c:set var="user" value="${sessionScope.User}"></c:set>
+                                        <input type="hidden" name="userid" value="${user.getId()}">
+                                        <input type="hidden" name="useremail" value="${user.getEmail()}">
+                                        <input type="hidden" name="username" value="${user.getFullName()}">
                                     </form>
                                 </div>
                             </div>
@@ -237,7 +214,7 @@
                                         <ul class="pagination float-right">
                                         <c:if test="${currentPage > 1}">
                                             <li class="page-item">
-                                                <a class="page-link" href="ServiceUserController?page=${currentPage - 1}&click=true" tabindex="-1">Previous</a>
+                                                <a class="page-link" href="ServiceUserController?page=${currentPage - 1}&click=true" tabindex="-1">Sau</a>
                                             </li>
                                         </c:if>
 
@@ -266,7 +243,7 @@
                                         </c:choose>
                                         <c:if test="${currentPage < totalPages}">
                                             <li class="page-item">
-                                                <a class="page-link" href="ServiceUserController?page=${currentPage + 1}&click=true">Next</a>
+                                                <a class="page-link" href="ServiceUserController?page=${currentPage + 1}&click=true">Tiếp</a>
                                             </li>
                                         </c:if>
                                     </ul>
@@ -294,12 +271,6 @@
         </div>
         <!-- Service End -->
 
-
-        <!-- Full Screen Create Start -->
-
-        <!-- Full Screen Create End -->
-
-
         <!-- Newsletter Start -->
         <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
             <div class="container">
@@ -319,63 +290,93 @@
         <jsp:include page="footer.jsp"></jsp:include>
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-        <script src="lib/twentytwenty/jquery.event.move.js"></script>
-        <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="lib/wow/wow.min.js"></script>
+            <script src="lib/easing/easing.min.js"></script>
+            <script src="lib/waypoints/waypoints.min.js"></script>
+            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+            <script src="lib/tempusdominus/js/moment.min.js"></script>
+            <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+            <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+            <script src="lib/twentytwenty/jquery.event.move.js"></script>
+            <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
 
-        <!-- Template Javascript -->
-       
-        
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/Chart.bundle.js"></script>
-        <script src="assets/js/chart.js"></script>
-        <script src="assets/js/app.js"></script>
+            <!-- Template Javascript -->
 
-        <script src="assets/js/title_sort.js"></script>                        
 
-        <script src="assets/js/jquery.dataTables.min.js"></script>
-        <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+            <script src="assets/js/popper.min.js"></script>
+            <script src="assets/js/bootstrap.min.js"></script>
+            <script src="assets/js/jquery.slimscroll.js"></script>
+            <script src="assets/js/Chart.bundle.js"></script>
+            <script src="assets/js/chart.js"></script>
+            <script src="assets/js/app.js"></script>
 
-        <script src="assets/js/select2.min.js"></script>
-        <script src="assets/js/moment.min.js"></script>
-        <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script>
-            function searchByName(text) {
-                $.ajax({
-                    url: '/SWP391-SE1743/MainController',
-                    data: {
-                        action: 'Search Service User By Name',
-                        name: text.value
-                    },
-                    success: function (data) {
-                        let row = document.getElementById("content");
-                        row.innerHTML = data;
-                    },
-                    error: function (error) {
-                        console("Fail");
-                    },
-                    type: 'GET'
+            <script src="assets/js/title_sort.js"></script>                        
+
+            <script src="assets/js/jquery.dataTables.min.js"></script>
+            <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+
+            <script src="assets/js/select2.min.js"></script>
+            <script src="assets/js/moment.min.js"></script>
+            <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+            <script src="js/main.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+            <script>
+                function searchByName(text) {
+                    $.ajax({
+                        url: '/SWP391-SE1743/MainController',
+                        data: {
+                            action: 'Search Service User By Name',
+                            name: text.value
+                        },
+                        success: function (data) {
+                            let row = document.getElementById("content");
+                            row.innerHTML = data;
+                        },
+                        error: function (error) {
+                            console("Fail");
+                        },
+                        type: 'GET'
+                    });
+                }
+
+            </script>
+            <script src="assets/js/show-appointment-times.js"></script>
+            <script>
+                var textarea = document.getElementById('myTextarea');
+                var charCount = document.getElementById('charCount');
+
+                textarea.addEventListener('input', function () {
+                    var currentLength = textarea.value.length;
+                    var maxLength = parseInt(textarea.getAttribute('maxlength'));
+                    charCount.textContent = currentLength + '/' + maxLength;
                 });
-            }
 
-        </script>
+                var openModalLinks = document.getElementsByClassName('open-modal-link');
 
+                for (var i = 0; i < openModalLinks.length; i++) {
+                    openModalLinks[i].addEventListener('click', function (event) {
+                        event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+
+                        // Kiểm tra trạng thái đăng nhập ở đây
+                        var isAuthenticated = <%= session.getAttribute("User") != null%>;
+
+                        if (!isAuthenticated) {
+                            alert("Bạn chưa đăng nhập!");
+                            window.location.href = "/SWP391-SE1743/login.jsp"; // Chuyển hướng đến trang đăng nhập
+                        } else {
+                            // Mã mở modal ở đây (sử dụng data-bs-toggle và data-bs-target)
+                            var modal = new bootstrap.Modal(document.getElementById('createModal'));
+                            modal.show();
+                        }
+                    });
+                }
+        </script>  
     </body>
 </html>

@@ -12,8 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-        <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -218,7 +218,7 @@
                         <ul>       
                             <li class="menu-title">Main</li>
                             <li class="active">
-                                <a  href="#"><i class="ri-calendar-todo-fill"></i> <span>Lịch Hẹn</span></a>
+                                <a  href="GetAppointmentController"><i class="ri-calendar-todo-fill"></i> <span>Lịch Hẹn</span></a>
                             </li>  
                             <li>
                                 <a  href="MainController?action=ViewTreatmentByCustomer&id=${sessionScope.User.getId()}"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>

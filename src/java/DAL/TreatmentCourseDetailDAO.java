@@ -20,6 +20,40 @@ import java.util.ArrayList;
  */
 public class TreatmentCourseDetailDAO {
 
+    public static ArrayList<TreatmentCourseDetail> getTreatmentDetailByUserID(String from, String paid) {
+        ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
+        Util dbu = new Util();
+
+        String sql = "select nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid\n"
+                + "from tblTreatmentCourse tc\n"
+                + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
+                + "JOIN tblService ON td.serviceID = tblService.id\n"
+                + "where tc.userID = ? and td.statusPaid = ?\n"
+                + "ORDER BY td.status DESC, treatmentDate ASC, treatmentTime ASC";
+        try {
+            Connection connection = dbu.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, from);
+            ps.setString(2, paid);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                String nameTreatment = rs.getString("nameTreatment");
+                String treatmentdate = rs.getString("treatmentDate");
+                String treatmenttime = rs.getString("treatmentTime");
+                String servicename = rs.getString("serviceName");
+                String description = rs.getString("description");
+                boolean status = rs.getBoolean("status");
+                boolean statuspaid = rs.getBoolean("statusPaid");
+                TreatmentCourseDetail c = new TreatmentCourseDetail(nameTreatment, treatmentdate, treatmenttime, servicename, description, status, statuspaid);
+                list.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public static ArrayList<TreatmentCourseDetail> getTreatmentDetailByTreatmentID(String from) {
         ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
         Util dbu = new Util();

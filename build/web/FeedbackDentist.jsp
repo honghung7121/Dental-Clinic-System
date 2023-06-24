@@ -35,7 +35,6 @@
 
             <c:if test="${isAdmin}">
                 <jsp:include page="header.jsp"></jsp:include>
-
                     <div class="page-wrapper">
                         <div class="content">
                             <div class="row">
@@ -43,30 +42,15 @@
                                     <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="post" accept-charset="UTF-8">
-                                        <div class="form-row">
-                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                        <select class="form-select" name="searchby">
-                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                            <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                        </select>
-                                        <button class="form-button" type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
-                                    </div>
-                                </form>
+                                    <div class="form-row">
+                                        <input oninput="searchByName(this)" class="form-input" type="text" name="txt" placeholder="Tìm Kiếm">
+                                    <select class="form-select" name="searchby">
+                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                        <option value="bydentistname">Theo Tên Nha Sĩ</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <!--                        <div class="row filter-row">
-                                                    <div class="col-sm-6 col-md-3">
-                                                        <div class="form-group form-focus">
-                                                            <label class="focus-label">Tìm Phản Hồi</label>
-                                                            <input oninput="searchByName(this)" type="text" name="txt" class="form-control floating">
-                                                            <select name="searchby">
-                                                                <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                                                <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -115,31 +99,12 @@
                                             </c:forEach>   
                                         </tbody>
                                     </table>
-                                    <span style="color: red;">
-                                        <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
-                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--            <div id="delete_schedule" class="modal fade delete-modal" role="dialog">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-body text-center">
-                                            <img src="assets/img/sent.png" alt="" width="50" height="46">
-                                            <h3>Are you sure want to delete this Schedule?</h3>
-                                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                                <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
             </c:if>
-
-
-
             <c:if test="${isMarketing}">
                 <jsp:include page="headerMarketing.jsp"></jsp:include>
 
@@ -151,122 +116,13 @@
                                     <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="post" accept-charset="UTF-8">
-                                        <div class="form-row">
-                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                        <select class="form-select" name="searchby">
-                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                            <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                        </select>
-                                        <button class="form-button" type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!--                        <div class="row filter-row">
-                                                    <div class="col-sm-6 col-md-3">
-                                                        <div class="form-group form-focus">
-                                                            <label class="focus-label">Tìm Phản Hồi</label>
-                                                            <input oninput="searchByName(this)" type="text" name="txt" class="form-control floating">
-                                                            <select name="searchby">
-                                                                <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                                                <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table id="myTable" class="table table-border table-striped custom-table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th><a href="#">Feedback ID</a></th>
-                                                <th><a href="#">Tên Khách Hàng</a></th>
-                                                <th><a href="#">Tên Nha Sĩ</a></th>
-                                                <th><a href="#">Đánh Giá</a></th>
-                                                <th><a href="#">Nội dung</a></th>
-                                            </tr>                                        
-                                        </thead>
-                                        <tbody id="content">
-                                            <c:forEach var="feedback" items="${sessionScope.list}">
-                                                <tr>
-                                                    <td><c:out value="${feedback.getId()}"></c:out></td>
-                                                    <td><c:out value="${feedback.getNamecustomer()}"></c:out></td>
-                                                    <td><c:out value="${feedback.getNamedentist()}"></c:out></td>
-                                                        <td class="rating">
-                                                        <c:set var="rating" value="${feedback.getRate()}" /> <!-- Số điểm rating -->
-                                                        <c:forEach begin="1" end="5" var="star">
-                                                            <span class="star">
-                                                                <c:choose>
-                                                                    <c:when test="${star <= rating}">
-                                                                        <span style='color: gold;'>★</span>  <!-- Hiển thị ngôi sao đã chọn -->
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        &#9734; <!-- Hiển thị ngôi sao chưa chọn -->
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                                            </span>
-                                                        </c:forEach>
-                                                    </td>
-                                                    <td><c:out value="${feedback.getComment()}"></c:out></td>
-                                                    </tr>
-
-                                            </c:forEach> 
-                                        <span style="color: red; text-align: center">
-                                            <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
-                                        </span>
-
-
-                                        </tbody>
-                                    </table>
-                                    <span style="color: red;">
-                                        <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
-                                    </span>
+                                    <div class="form-row">
+                                        <input oninput="searchByName(this)" class="form-input" type="text" name="txt" placeholder="Tìm Kiếm">
+                                    <select class="form-select" name="searchby">
+                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                        <option value="bydentistname">Theo Tên Nha Sĩ</option>
+                                    </select>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--            <div id="delete_schedule" class="modal fade delete-modal" role="dialog">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-body text-center">
-                                            <img src="assets/img/sent.png" alt="" width="50" height="46">
-                                            <h3>Are you sure want to delete this Schedule?</h3>
-                                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                                <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
-            </c:if>
-
-
-
-            <c:if test="${isMarketing}">
-                <jsp:include page="headerMarketing.jsp"></jsp:include>
-                    <div class="page-wrapper">
-                        <div class="content">
-                            <div class="row">
-                                <div class="col-sm-4 col-3">
-                                    <h4 class="page-title">Phản Hồi Cho Nha Sĩ</h4>
-                                </div>
-                                <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="post" accept-charset="UTF-8">
-                                        <div class="form-row">
-                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                        <select class="form-select" name="searchby">
-                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                            <option value="bydentistname">Theo Tên Nha Sĩ</option>
-                                        </select>
-                                        <button class="form-button" type="submit" name="action" value="Search Feedback Dentist">Tìm Kiếm</button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                         <div class="row">
@@ -306,20 +162,13 @@
                                                     <td><c:out value="${feedback.getComment()}"></c:out></td>
                                                     </tr>
                                             </c:forEach> 
-                                        <span style="color: red; text-align: center">
-                                            <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
-                                        </span>
                                         </tbody>
                                     </table>
-                                    <span style="color: red;">
-                                        <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
-                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </c:if>
         </div>
         <script src="assets/js/title_sort.js"></script>                        
@@ -327,13 +176,9 @@
         <script src="assets/js/jquery.dataTables.min.js"></script>
         <script src="assets/js/dataTables.bootstrap4.min.js"></script>
 
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-
         <script src="assets/js/select2.min.js"></script>
         <script src="assets/js/moment.min.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
 // Lắng nghe sự kiện click của nút "Delete" cho từng mục
@@ -373,26 +218,25 @@
             });
         </script>  
         <script>
-            function searchByName(param) {
-                var txtSearch = param.value;
+            function searchByName(text) {
                 var searchBy = document.getElementsByName("searchby")[0].value;
                 $.ajax({
-                    url: "MainController?action=Search Feedback Dentist",
-                    type: "get",
+                    url: '/SWP391-SE1743/MainController',
                     data: {
-                        txt: txtSearch,
+                        action: 'Search Feedback Dentist',
+                        txt: text.value,
                         searchby: searchBy
                     },
                     success: function (data) {
                         let row = document.getElementById("content");
                         row.innerHTML = data;
                     },
-                    error: function (xhr) {
-                        console.error(xhr);
-                    }
+                    error: function (error) {
+                        console("Fail");
+                    },
+                    type: 'POST'
                 });
             }
-
         </script>
     </body>
 </html>

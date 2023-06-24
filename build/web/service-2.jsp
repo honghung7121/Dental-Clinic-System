@@ -61,12 +61,14 @@
 
                         <div class="row">
                             <div class="col-md-12">
+                                
                                 <div class="table-responsive">
+                                    
                                     <table id="myTable" class="table table-border table-striped custom-table mb-0">
                                         <thead>
                                             <tr>
                                                 <th><a href="#">ID </th>
-                                                <th><a href="#">Tên Dịch Vụ</th>
+                                                <th ><a href="#">Tên Dịch Vụ</th>
                                                 <!--                                                <th>Mô Tả</th>-->
                                             <th>
                                                 <form action="SortServiceController" method="POST">

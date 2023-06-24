@@ -4,8 +4,10 @@
  */
 package Controllers.Treatment_Dentist;
 
+import DAL.ServiceDAO;
 import DAL.TreatmentCourseDetailDAO;
 import DAL.UserDAO;
+import Models.Service;
 import Models.User;
 import Util.SendMail;
 import java.io.IOException;
@@ -55,7 +57,8 @@ public class AddTreatmentDetailController extends HttpServlet {
             LocalDate localDate = LocalDate.parse(DateDetail);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             final String formattedDate = localDate.format(formatter);
-                
+            ServiceDAO serDAO = new ServiceDAO();
+            final Service ser = serDAO.getServiceById(Integer.parseInt(ServiceDetail));
             int idPatient = TreatmentCourseDetailDAO.getIDPatientByTreatmentID(idTreatment);
             final User patient = UserDAO.getPatient(idPatient);
             if (check) {
@@ -70,6 +73,7 @@ public class AddTreatmentDetailController extends HttpServlet {
                                 + "Khách hàng: " + patient.getFullName() + "<br>"
                                 + "Ngày hẹn: " + formattedDate + "<br>"
                                 + "Thời gian: " + TimeDetail + "<br>"
+                                + "Giá điều trị: " + ser.getPrice() + " VND" + "<br>"
                                 + "Địa chỉ: Quận 9, Thành phố Hồ Chí Minh<br>"
                                 + "<br>"
                                 + "Chúng tôi rất mong được gặp bạn vào ngày hẹn trên. Để đảm bảo quá trình hẹn được diễn ra thuận lợi, vui lòng lưu ý các thông tin sau:<br>"

@@ -4,8 +4,6 @@
  */
 package DAL;
 
-import static DAL.ServiceDAO.getAllService;
-import Models.Service;
 import Models.TreatmentCourse;
 import Models.User;
 import Util.Util;
@@ -139,4 +137,31 @@ public class TreatmentCourseDAO {
         return list;
     }
 
+    public void createNewTreatmentCourse(int userID, int dentistID, String treatmentName) throws SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        try{
+            con = Util.getConnection();
+            if(con!=null){
+                String sql = "insert into tblTreatmentCourse values(?,?,?,?)";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, userID);
+                stm.setInt(2, dentistID);
+                stm.setBoolean(3, false);
+                stm.setString(4, treatmentName);
+                stm.executeUpdate();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            if(stm!=null){
+                stm.close();
+            }
+            if(con!=null){
+                con.close();
+            }
+        }
+    }
+    
 }
