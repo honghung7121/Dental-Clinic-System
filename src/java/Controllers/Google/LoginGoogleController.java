@@ -11,6 +11,7 @@ import Models.GooglePojo;
 import DAL.GoogleDAO;
 import DAL.UserDAO;
 import Models.User;
+import java.io.PrintWriter;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/login-google")
@@ -40,12 +41,24 @@ public class LoginGoogleController extends HttpServlet {
                     RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
                     dis.forward(request, response);
                 } else {
-                    request.setAttribute("id", googlePojo.getId());
-                    request.setAttribute("name", googlePojo.getName());
-                    request.setAttribute("email", googlePojo.getEmail());
-                    request.setAttribute("logbygg", true);
-                    RequestDispatcher dis = request.getRequestDispatcher("additional-info.jsp");
-                    dis.forward(request, response);
+                    boolean checkemail = UserDAO.checkEmail(googlePojo.getEmail());
+                    if (checkemail) {
+                        request.setAttribute("id", googlePojo.getId());
+                        request.setAttribute("name", googlePojo.getName());
+                        request.setAttribute("email", googlePojo.getEmail());
+                        request.setAttribute("logbygg", true);
+                        RequestDispatcher dis = request.getRequestDispatcher("additional-info.jsp");
+                        dis.forward(request, response);
+                    } else {
+                        response.setContentType("text/html;charset=UTF-8");
+                        PrintWriter out = response.getWriter();
+                        out.println("<html><body>");
+                        out.println("<script>");
+                        out.println("alert('Gmail này đã được sử dụng để đăng kí, xin vui lòng chọn gmail khác.');");
+                        out.println("window.location.href='login.jsp';");  // Thay 'your_jsp_page.jsp' bằng trang JSP bạn muốn chuyển hướng sau khi thông báo
+                        out.println("</script>");
+                        out.println("</body></html>");                        
+                    }
                 }
             }
         } catch (Exception e) {

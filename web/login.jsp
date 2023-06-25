@@ -153,7 +153,7 @@
                             <a href="price.html" class="dropdown-item">Bảng giá</a>
                             <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
                             <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
-                            <a href="appointment.html" class="dropdown-item">Cuộc hẹn</a>
+                            <a href="index.jsp" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
 
@@ -162,7 +162,7 @@
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>
-                <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Đăng Ký Cuộc Hẹn</a>
+                <a href="index.jsp" class="btn btn-primary py-2 px-4 ms-3">Đăng Ký Cuộc Hẹn</a>
             </div>
         </nav>
         <div class="login-wrap">
@@ -193,9 +193,19 @@
                                 <h3 style="color: white; text-align: center">Hoặc đăng nhập bằng</h3>
                                 <br>
                                 <div>
-                                    <a href="https://www.facebook.com/dialog/oauth?client_id=254936600471264&redirect_uri=http://localhost:8084/SWP391-SE1743/login-facebook">Login Facebook</a>
-                                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/SWP391-SE1743/login-google&response_type=code
-                                       &client_id=48607043062-12cu71hg20p1gljop1vm7s6fjnjmcv3b.apps.googleusercontent.com&approval_prompt=force">Login With Google</a> 
+                                    <a class="input" style="border-radius: 0; margin-bottom: 5px;"  href="https://www.facebook.com/dialog/oauth?client_id=254936600471264&redirect_uri=http://localhost:8084/SWP391-SE1743/login-facebook">
+                                        <svg width="50" height="50" viewBox="0 0 50 50" style="margin-right: 5px;">
+                                            <image xlink:href="img/iconfb.svg" width="50" height="50" />
+                                        </svg>
+                                        Facebook
+                                    </a>
+                                    <a class="input" style="border-radius: 0" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/SWP391-SE1743/login-google&response_type=code
+                                       &client_id=48607043062-12cu71hg20p1gljop1vm7s6fjnjmcv3b.apps.googleusercontent.com&approval_prompt=force">
+                                        <svg width="50" height="50" viewBox="0 0 50 50" style="margin-right: 5px;">
+                                            <image xlink:href="img/icongg.svg" width="50" height="50" />
+                                        </svg>
+                                        Google
+                                    </a> 
                                 </div>
                             </div>
                         </form>
