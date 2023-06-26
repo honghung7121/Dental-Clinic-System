@@ -36,7 +36,7 @@ public class editServiceController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
              int id = Integer.parseInt(request.getParameter("id"));
             ServiceDAO dao = new ServiceDAO();
-            Service p = dao.getPlant(id);
+            Service p = dao.getServiceById(id);
             request.setAttribute("detail", p);
             request.getRequestDispatcher("edit-service.jsp").forward(request, response);
         }

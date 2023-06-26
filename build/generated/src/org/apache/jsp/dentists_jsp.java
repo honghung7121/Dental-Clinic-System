@@ -65,7 +65,6 @@ public final class dentists_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
-      out.write("<!DOCTYPE html>\r\n");
       out.write("<html lang=\"en\">\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -117,16 +116,12 @@ public final class dentists_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
       out.write("                <div class=\"row\">\r\n");
       out.write("                    <div class=\"col-sm-12\">\r\n");
       out.write("                        <div class=\"see-all\">\r\n");
-      out.write("                            <button class=\"see-all-btn\" onclick=\"loadMoreDentist()\">Load More</button>\r\n");
+      out.write("                            <button class=\"see-all-btn\" onclick=\"loadMoreDentist()\">Xem Thêm</button>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
@@ -306,6 +301,7 @@ public final class dentists_jsp extends org.apache.jasper.runtime.HttpJspBase
           out.write('>');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dentist.fullName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</a></h4>\r\n");
+          out.write("                                    <h4></h4>\r\n");
           out.write("                                    <div class=\"user-country\">\r\n");
           out.write("                                        <i class=\"fa fa-map-marker\"></i> ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${dentist.degree}", java.lang.String.class, (PageContext)_jspx_page_context, null));

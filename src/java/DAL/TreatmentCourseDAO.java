@@ -4,8 +4,6 @@
  */
 package DAL;
 
-import static DAL.ServiceDAO.getAllService;
-import Models.Service;
 import Models.TreatmentCourse;
 import Models.User;
 import Util.Util;
@@ -52,11 +50,11 @@ public class TreatmentCourseDAO {
         return total;
     }
 
-    public static ArrayList<TreatmentCourse> getTreatment(String from) {
+    public static ArrayList<TreatmentCourse> getTreatmentByCustomerID(String from) {
         ArrayList<TreatmentCourse> list = new ArrayList<>();
         Util dbu = new Util();
 
-        String sql = "select tblTreatmentCourse.id as id, customertable.fullName as customername, dentisttable.fullName as dentistname,tblTreatmentCourse.status as status\n"
+        String sql = "select tblTreatmentCourse.id as id, nameTreatment, customertable.fullName as customername, dentisttable.fullName as dentistname,tblTreatmentCourse.status as status\n"
                 + "from tblTreatmentCourse, (select id, fullName from tblUser where idRole = 2) as dentisttable, (select id, fullName from tblUser where id = ?) as customertable\n"
                 + "where tblTreatmentCourse.dentistID = dentisttable.id and tblTreatmentCourse.userID = customertable.id";
         try {
@@ -66,10 +64,11 @@ public class TreatmentCourseDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
+                String nameTreat = rs.getString("nameTreatment");
                 String cusname = rs.getString("customername");
                 String denname = rs.getString("dentistname");
                 boolean status = rs.getBoolean("status");
-                TreatmentCourse c = new TreatmentCourse(id, cusname, denname, status);
+                TreatmentCourse c = new TreatmentCourse(id, nameTreat, cusname, denname, status);
                 list.add(c);
             }
         } catch (Exception e) {
@@ -78,12 +77,91 @@ public class TreatmentCourseDAO {
         return list;
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static ArrayList<TreatmentCourse> getTreatmentByDentistID(String from) {
+        ArrayList<TreatmentCourse> list = new ArrayList<>();
+        Util dbu = new Util();
 
-        ArrayList<TreatmentCourse> list = getTreatment("36");
-        for (TreatmentCourse o : list) {
-            System.out.println(o);
+        String sql = "select tblTreatmentCourse.id as id, nameTreatment, customertable.fullName as customername, dentisttable.fullName as dentistname,tblTreatmentCourse.status as status\n"
+                + "from tblTreatmentCourse, (select id, fullName from tblUser where id = ?) as dentisttable, (select id, fullName from tblUser where idRole = 5) as customertable\n"
+                + "where tblTreatmentCourse.dentistID = dentisttable.id and tblTreatmentCourse.userID = customertable.id";
+        try {
+            Connection connection = dbu.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, from);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nameTreat = rs.getString("nameTreatment");
+                String cusname = rs.getString("customername");
+                String denname = rs.getString("dentistname");
+                boolean status = rs.getBoolean("status");
+                TreatmentCourse c = new TreatmentCourse(id, nameTreat, cusname, denname, status);
+                list.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
-//System.out.println(list);
+        return list;
     }
+
+    public static ArrayList<TreatmentCourse> searchTreatmentCourseByNamePatient(String namePatient) {
+        ArrayList<TreatmentCourse> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select tblTreatmentCourse.id as id, nameTreatment, customertable.fullName as customername, dentisttable.fullName as dentistname,tblTreatmentCourse.status as status\n"
+                        + "from tblTreatmentCourse, (select id, fullName from tblUser) as dentisttable, (select id, fullName from tblUser) as customertable\n"
+                        + "where tblTreatmentCourse.dentistID = dentisttable.id and tblTreatmentCourse.userID = customertable.id\n"
+                        + "AND customertable.fullName like ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, "%" + namePatient + "%");
+
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String nameTreat = rs.getString("nameTreatment");
+                    String cusname = rs.getString("customername");
+                    String denname = rs.getString("dentistname");
+                    boolean status = rs.getBoolean("status");
+                    TreatmentCourse c = new TreatmentCourse(id, nameTreat, cusname, denname, status);
+                    list.add(c);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public void createNewTreatmentCourse(int userID, int dentistID, String treatmentName) throws SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        try{
+            con = Util.getConnection();
+            if(con!=null){
+                String sql = "insert into tblTreatmentCourse values(?,?,?,?)";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, userID);
+                stm.setInt(2, dentistID);
+                stm.setBoolean(3, false);
+                stm.setString(4, treatmentName);
+                stm.executeUpdate();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            if(stm!=null){
+                stm.close();
+            }
+            if(con!=null){
+                con.close();
+            }
+        }
+    }
+    
 }

@@ -43,7 +43,7 @@ public class GetAppointmentController extends HttpServlet {
             e.printStackTrace();
         }
         finally{
-            request.getRequestDispatcher("headerdentist.jsp").forward(request, response);
+            request.getRequestDispatcher("dentistappointment.jsp").forward(request, response);
         }
     }
 

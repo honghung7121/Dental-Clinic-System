@@ -84,7 +84,7 @@
                     </div>
                     
                 </div>
-                <div class="notification-box">
+<!--                <div class="notification-box">
                     <div class="msg-sidebar notifications msg-noti">
                         <div class="topnav-dropdown-header">
                             <span>Messages</span>
@@ -294,7 +294,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
     </body>
 </html>

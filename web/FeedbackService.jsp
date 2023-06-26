@@ -47,17 +47,13 @@
                                     <h4 class="page-title">Phản Hồi Về Dịch Vụ</h4>
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="post" accept-charset="UTF-8">
-                                        <div class="form-row">
-                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                        <select class="form-select" name="searchby">
-                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                            <option value="byservicename">Theo Tên Dịch Vụ</option>
-                                        </select>
-                                        <button class="form-button" type="submit" name="action" value="Search Feedback Service">Tìm Kiếm</button>
-                                    </div>
-                                </form>
-
+                                    <div class="form-row">
+                                        <input oninput="searchByName(this)" class="form-input" type="text" name="txt" placeholder="Tìm Kiếm">
+                                    <select class="form-select" name="searchby">
+                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                        <option value="byservicename">Theo Tên Dịch Vụ</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -75,7 +71,7 @@
                                             </tr>
 
                                         </thead>
-                                        <tbody>
+                                        <tbody id="content">
                                             <c:forEach var="feedback" items="${sessionScope.list}">
                                                 <tr>
                                                     <td><c:out value="${feedback.getId()}"></c:out></td>
@@ -130,16 +126,13 @@
                                     <h4 class="page-title">Phản Hồi Về Dịch Vụ</h4>
                                 </div>
                                 <div class="col-sm-8 col-9 text-right m-b-20">
-                                    <form action="MainController" method="post" accept-charset="UTF-8">
-                                        <div class="form-row">
-                                            <input class="form-input" type="text" name="txt" placeholder="Tìm Kiếm (Không dấu)" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                        <select class="form-select" name="searchby">
-                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                            <option value="byservicename">Theo Tên Dịch Vụ</option>
-                                        </select>
-                                        <button class="form-button" type="submit" name="action" value="Search Feedback Service">Tìm Kiếm</button>
-                                    </div>
-                                </form>
+                                    <div class="form-row">
+                                        <input oninput="searchByName(this)" class="form-input" type="text" name="txt" placeholder="Tìm Kiếm">
+                                    <select class="form-select" name="searchby">
+                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                        <option value="byservicename">Theo Tên Dịch Vụ</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -154,9 +147,8 @@
                                                 <th><a href="#">Đánh Giá</a></th>
                                                 <th><a href="#">Nội dung</a></th>
                                             </tr>
-
                                         </thead>
-                                        <tbody>
+                                        <tbody id="content">
                                             <c:forEach var="feedback" items="${sessionScope.list}">
                                                 <tr>
                                                     <td><c:out value="${feedback.getId()}"></c:out></td>
@@ -235,5 +227,26 @@
                 });
             });
         </script>
+        <script>
+            function searchByName(text) {
+                var searchBy = document.getElementsByName("searchby")[0].value;
+                $.ajax({
+                    url: '/SWP391-SE1743/MainController',
+                    data: {
+                        action: 'Search Feedback Service',
+                        txt: text.value,
+                        searchby: searchBy
+                    },
+                    success: function (data) {
+                        let row = document.getElementById("content");
+                        row.innerHTML = data;
+                    },
+                    error: function (error) {
+                        console("Fail");
+                    },
+                    type: 'POST'
+                });
+            }
+        </script>        
     </body>
 </html>

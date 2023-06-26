@@ -9,6 +9,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@page import="java.util.Date"%>
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +66,10 @@
         </style>
     </head>
     <body>
-
+        <%
+            Date dNow = new Date();
+            SimpleDateFormat ft = new SimpleDateFormat("E yyyy.MM.dd");
+        %>
         <jsp:include page="headerUser.jsp"></jsp:include>
         <c:set var="u" value="${sessionScope.User}"></c:set>
             <div class="modal fade" id="searchModal" tabindex="-1">
@@ -145,6 +150,7 @@
                                                             </c:choose>
                                                         </li>
                                                     </ul>
+                                                        <div class="staff-msg"><a href="changeProfileUser.jsp" class="btn btn-primary btn-rounded">Chỉnh sửa hồ sơ</a></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,7 +164,7 @@
                                 <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded nav-justified">
                                     <li class="nav-item"><a class="nav-link active" href="#solid-rounded-justified-tab1" data-toggle="tab">Liệu Trình</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab2" data-toggle="tab">Lịch Hẹn</a></li>
-                                    <!--                                    <li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab3" data-toggle="tab">Hoá Đơn</a></li>-->
+                                    <li class="nav-item"><a class="nav-link" href="#solid-rounded-justified-tab3" data-toggle="tab">Lịch Sử Khám Bệnh</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane show active" id="solid-rounded-justified-tab1">
@@ -174,6 +180,7 @@
                                                                         <th style="text-align: center">ID</th>
                                                                         <th style="text-align: center">Tên Bệnh Nhân</th>
                                                                         <th style="text-align: center">Tên Bác Sĩ</th>
+                                                                        <th style="text-align: center">Tên Liệu Trình</th>
                                                                         <th style="text-align: center">Trạng Thái</th>
                                                                     </tr>
                                                                 </thead>
@@ -183,6 +190,7 @@
                                                                             <td><c:out value="${s.getId()}"></c:out></td>
                                                                             <td><c:out value="${s.getNamecustomer()}"></c:out></td>
                                                                             <td><c:out value="${s.getNamedentist()}"></c:out></td>
+                                                                            <td><c:out value="${s.getNameTreatment()}"></c:out></td>
                                                                             <c:if test="${s.isStatus()==true}">
                                                                                 <td><span style="width: 100px;
                                                                                           height: 40px;line-height: 35px;" class="custom-badge status-green">Hoàn Thành</span></td>
@@ -211,8 +219,9 @@
                                                             <table id="myTable" class="table table-hover mb-0">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th style="text-align: center">ID Liệu Trình</th>
+                                                                        <th style="text-align: center">Tên Liệu Trình</th>
                                                                         <th style="text-align: center">Ngày Tái Khám</th>
+                                                                        <th style="text-align: center">Giờ Hẹn</th>
                                                                         <th style="text-align: center">Dịch Vụ</th>
                                                                         <th style="text-align: center">Mô Tả</th>
                                                                         <th style="text-align: center">Trạng Thái</th>
@@ -222,8 +231,9 @@
                                                                 <tbody id="content">
                                                                     <c:forEach var="d" items="${requestScope.TreatmentDetailList}">
                                                                         <tr style="text-align: center">
-                                                                            <td><c:out value="${d.getId()}"></c:out></td>
+                                                                            <td><c:out value="${d.getNameTreatment()}"></c:out></td>
                                                                             <td><c:out value="${d.getTreatmentdate()}"></c:out></td>
+                                                                            <td><c:out value="${d.getTreatmenttime()}"></c:out></td>
                                                                             <td><c:out value="${d.getNameService()}"></c:out></td>
                                                                             <td><c:out value="${d.getDescription()}"></c:out></td>
                                                                             <c:if test="${d.isStatus()==true}">
@@ -262,32 +272,42 @@
                                                             <table id="myTable" class="table table-hover mb-0">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th style="text-align: center">ID</th>
-                                                                        <th style="text-align: center">Tên Dịch Vụ</th>
-                                                                        <th style="text-align: center">Số Tiền</th>
-                                                                        <th style="text-align: center">Giao Dịch</th>
+                                                                        <th style="text-align: center">Tên Liệu Trình</th>
+                                                                        <th style="text-align: center">Ngày Khám Bệnh</th>
+                                                                        <th style="text-align: center">Giờ Hẹn</th>
+                                                                        <th style="text-align: center">Dịch Vụ</th>
+                                                                        <th style="text-align: center">Mô Tả</th>
+                                                                        <th style="text-align: center">Trạng Thái</th>
+                                                                        <th style="text-align: center">Thanh Toán</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <tr style="text-align: center">
-                                                                        <td>1</td>
-                                                                        <td>Lấy Tuỷ</td>
-                                                                        <td>200.000đ</td>
-                                                                        <td><a href="invoiceView.jsp" class="btn btn-primary btn-rounded">Thanh Toán</a></td>
-                                                                    </tr>
-                                                                    <tr style="text-align: center">
-                                                                        <td>2</td>
-                                                                        <td>Khám Tổng Quát</td>
-                                                                        <td>100.000đ</td>
-                                                                        <td><a href="#" class="btn btn-primary btn-rounded">Thanh Toán</a></td>
-                                                                    </tr>
-                                                                    <tr style="text-align: center">
-                                                                        <td>2</td>
-                                                                        <td>Trám Răng</td>
-                                                                        <td>250.000đ</td>
-                                                                        <td><a href="#" class="btn btn-primary btn-rounded">Thanh Toán</a></td>
-                                                                    </tr>
-                                                                </tbody>
+                                                                <tbody id="content">
+                                                                    <c:forEach var="d" items="${requestScope.HistoryList}">
+                                                                        <tr style="text-align: center">
+                                                                            <td><c:out value="${d.getNameTreatment()}"></c:out></td>
+                                                                            <td><c:out value="${d.getTreatmentdate()}"></c:out></td>
+                                                                            <td><c:out value="${d.getTreatmenttime()}"></c:out></td>
+                                                                            <td><c:out value="${d.getNameService()}"></c:out></td>
+                                                                            <td><c:out value="${d.getDescription()}"></c:out></td>
+                                                                            <c:if test="${d.isStatus()==true}">
+                                                                                <td style=""><span style="width: 100px;
+                                                                                                   height: 40px;line-height: 35px;" class="custom-badge status-green">Hoàn Thành</span></td>
+                                                                                </c:if>
+                                                                                <c:if test="${d.isStatus()==false}">
+                                                                                <td><span style="width: 100px;
+                                                                                          height: 40px;line-height: 35px;" class="custom-badge status-orange">Đang Điều Trị</span></td>
+                                                                                </c:if>
+                                                                                <c:if test="${d.isStatusPaid()==true}">
+                                                                                <td><span style="width: 100px;
+                                                                                          height: 40px;" class="custom-badge status-green"> Đã Thanh Toán</span></td>
+                                                                                </c:if>
+                                                                                <c:if test="${d.isStatusPaid()==false}">
+                                                                                <td><span style="width: 100px;
+                                                                                          height: 40px;" class="custom-badge status-orange">Chưa Thanh Toán</span></td>
+                                                                                </c:if>
+                                                                        </tr>
+                                                                    </c:forEach>
+                                                                </tbody>               
                                                             </table>
                                                         </div>
                                                     </div>

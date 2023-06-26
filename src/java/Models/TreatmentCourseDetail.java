@@ -10,20 +10,50 @@ package Models;
  * @author Admin
  */
 public class TreatmentCourseDetail {
-    private String treatmentdate;
+
     private int id;
+    private String nameTreatment;
+    private String treatmentdate;
+    private String treatmenttime;
     private String nameService;
     private String description;
     private boolean status;
     private boolean statusPaid;
 
-    public TreatmentCourseDetail(String treatmentdate, int id, String nameService, String description, boolean status, boolean statusPaid) {
-        this.treatmentdate = treatmentdate;
+    public TreatmentCourseDetail(int id, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
         this.id = id;
+        this.treatmentdate = treatmentdate;
+        this.treatmenttime = treatmenttime;
         this.nameService = nameService;
         this.description = description;
         this.status = status;
         this.statusPaid = statusPaid;
+    }
+
+    public TreatmentCourseDetail(String nameTreatment, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
+        this.nameTreatment = nameTreatment;
+        this.treatmentdate = treatmentdate;
+        this.treatmenttime = treatmenttime;
+        this.nameService = nameService;
+        this.description = description;
+        this.status = status;
+        this.statusPaid = statusPaid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNameTreatment() {
+        return nameTreatment;
+    }
+
+    public void setNameTreatment(String nameTreatment) {
+        this.nameTreatment = nameTreatment;
     }
 
     public String getTreatmentdate() {
@@ -34,12 +64,12 @@ public class TreatmentCourseDetail {
         this.treatmentdate = treatmentdate;
     }
 
-    public int getId() {
-        return id;
+    public String getTreatmenttime() {
+        return treatmenttime;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTreatmenttime(String treatmenttime) {
+        this.treatmenttime = treatmenttime;
     }
 
     public String getNameService() {
@@ -76,8 +106,7 @@ public class TreatmentCourseDetail {
 
     @Override
     public String toString() {
-        return "TreatmentCourseDetail{" + "treatmentdate=" + treatmentdate + ", id=" + id + ", nameService=" + nameService + ", description=" + description + ", status=" + status + ", statusPaid=" + statusPaid + '}';
+        return "TreatmentCourseDetail{" + "nameTreatment=" + nameTreatment + ", treatmentdate=" + treatmentdate + ", treatmenttime=" + treatmenttime + ", nameService=" + nameService + ", description=" + description + ", status=" + status + ", statusPaid=" + statusPaid + '}';
     }
-    
-    
+
 }

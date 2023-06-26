@@ -37,7 +37,7 @@ public class GetAdvisoryController extends HttpServlet {
             AdvisoryDAO dao = new AdvisoryDAO();
             List<Advisory> list = dao.getAddvisory();
             request.setAttribute("ADVISORY_LIST", list);
-            url = "headerConsultant.jsp";
+            url = "header-consultant.jsp";
         }catch(Exception e){
             e.printStackTrace();
         }

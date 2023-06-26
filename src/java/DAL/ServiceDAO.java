@@ -155,7 +155,7 @@ public class ServiceDAO {
         return false;
     }
 
-    public static Service getPlant(int pid) {
+    public static Service getServiceById(int pid) {
         Connection cn = null;
         Service p = null;
         try {
@@ -299,14 +299,5 @@ public class ServiceDAO {
             }
         }
         return fbs;
-    }
-
-    public static void main(String[] args) throws SQLException {
-
-        ArrayList<Service> list = getAllService();
-        for (Service o : list) {
-            System.out.println(o);
-        }
-//System.out.println(list);
     }
 }
