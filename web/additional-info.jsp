@@ -175,11 +175,16 @@
                     <c:set var="email" value="${requestScope.email}"></c:set>
                     <c:set var="loginByGg" value="${requestScope.logbygg}"></c:set>
                     <c:set var="loginByFb" value="${requestScope.logbyfb}"></c:set>
+                    <c:if test="${not empty message}">
+                        <script>
+                            alert('${message}');
+                        </script>
+                    </c:if>
                     <c:if test="${loginByGg}">
                         <form action="MainController" method="post">
                             <div class="group">
                                 <label class="label">Họ Và Tên</label>
-                                <input style="border-radius: 0" name="accountName" type="text" class="input" value="">
+                                <input style="border-radius: 0" name="accountName" type="text" class="input" value="" required="">
                             </div>
                             <div class="group">
                                 <label class="label">Email</label>
@@ -187,14 +192,28 @@
                             </div>
                             <div class="group">
                                 <label class="label">Số Điện Thoại</label>
-                                <input style="border-radius: 0" name="numberPhone" type="text" class="input" value="">
+                                <input style="border-radius: 0" name="numberPhone" type="text" class="input" value="" required="">
                             </div>
+                            <style>
+                                .radio-group {
+                                    display: inline-block;
+                                    color: white;
+                                }
+
+                                .radio-group label {
+                                    margin-right: 10px;
+                                }
+                            </style>                            
                             <div class="group">
-                                <label class="label">Giới Tính</label>
-                                <select style="border-radius: 0" name="gender" class="input" aria-label="Default select example">
-                                    <option value="Nam">Nam</option>
-                                    <option value="Nữ">Nữ</option>
-                                </select>
+                                <label class="label" style="margin-bottom: 5px;">Giới Tính</label>
+                                <div class="radio-group">
+                                    <input style="border-radius: 0" type="radio" name="gender" id="genderMale" value="Nam" checked>
+                                    <label for="genderMale">Nam</label>
+                                </div>
+                                <div class="radio-group">
+                                    <input style="border-radius: 0" type="radio" name="gender" id="genderFemale" value="Nữ">
+                                    <label for="genderFemale">Nữ</label>
+                                </div>
                             </div>
                             <div class="group">
                                 <button style="background-color: #06A3DA; border-radius: 0;" type="submit" class="button" name="action" value="logbygg">Tiếp tục</button>
@@ -206,21 +225,21 @@
                         <form action="MainController" method="POST">
                             <div class="group">
                                 <label class="label">Họ Và Tên</label>
-                                <input style="border-radius: 0" name="accountName" type="text" class="input" value="${name}">
+                                <input style="border-radius: 0" name="accountName" type="text" class="input" value="${name}" required="">
                             </div>
                             <div class="group">
                                 <label class="label">Email</label>
-                                <input style="border-radius: 0" name="gmail" type="text" class="input" value="">
+                                <input style="border-radius: 0" id="gmaillogbyfb" name="gmail" type="text" class="input" value="" required pattern="[a-zA-Z0-9._%+-]+@gmail\.com">
                             </div>
                             <div class="group">
                                 <label class="label">Số Điện Thoại</label>
-                                <input style="border-radius: 0" name="numberPhone" type="text" class="input" value="">
+                                <input style="border-radius: 0" name="numberPhone" type="text" class="input" value="" required="">
                             </div>
                             <div class="group">
                                 <label class="label">Giới Tính</label>
                                 <select style="border-radius: 0" name="gender" class="input" aria-label="Default select example">
-                                    <option value="male">Nam</option>
-                                    <option value="female">Nữ</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
                                 </select>
                             </div>
                             <div class="group">
@@ -241,5 +260,35 @@
                 </div>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>            
+        <script>
+                    document.getElementById('gmaillogbyfb').addEventListener('change', function () {
+                    var gmail = document.getElementById('gmaillogbyfb').value;
+                    $.ajax({
+                    url: '/SWP391-SE1743/MainController',
+                            method: 'POST',
+                            data: {
+                            action: 'Check Appointment Date',
+                                    gmail: gmail
+                            },
+                            success: function (response, status, xhr) {
+                            if (xhr.status === 200) {
+                            option.disabled = true;
+                            option.style.color = 'gray';
+                            }
+                            },
+                            error: function (error) {
+                            console.error('Error: ' + error);
+                            }
+                    });
+                    timeSelect.appendChild(option);
+                    }
+                    }
+                    } else {
+                    // Nếu không chọn ngày hẹn, ẩn phần tử chọn thời gian hẹn
+                    document.getElementById('timeSelection').style.display = 'none';
+                    }
+                    });
+        </script>
     </body>
 </html>
