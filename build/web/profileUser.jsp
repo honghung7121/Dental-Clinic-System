@@ -266,7 +266,6 @@
                                             <div class="col-md-12">
                                                 <div class="card-box">
                                                     <div class="card-block">
-
                                                         <div class="table-responsive">
                                                             <table id="myTable" class="table table-hover mb-0">
                                                                 <thead>
@@ -278,6 +277,7 @@
                                                                         <th style="text-align: center">Mô Tả</th>
                                                                         <th style="text-align: center">Trạng Thái</th>
                                                                         <th style="text-align: center">Thanh Toán</th>
+                                                                        <th style="text-align: center">Đánh giá</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody id="content">
@@ -304,6 +304,12 @@
                                                                                 <td><span style="width: 100px;
                                                                                           height: 40px;" class="custom-badge status-orange">Chưa Thanh Toán</span></td>
                                                                                 </c:if>
+                                                                                <td>
+                                                                                    <form action="GetTreatmentCourseDataController" method="POST">
+                                                                                        <button type="submit">Đánh Giá</button>
+                                                                                        <input type="hidden" name="treatmentCourseDetailID" value="${d.getId()}">
+                                                                                    </form>
+                                                                                </td>
                                                                         </tr>
                                                                     </c:forEach>
                                                                 </tbody>               
