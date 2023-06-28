@@ -61,17 +61,12 @@
                                 <h4 class="page-title">Danh Sách Liệu Trình</h4>
                             </div>
                             <div class="col-sm-8 col-9 text-right m-b-20">
-                                <form action="MainController" method="get" accept-charset="UTF-8">
-                                    <div class="form-row">
-                                        <input class="form-input" type="text" name="txtSearch" placeholder="Tìm Kiếm" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
-                                    <select class="form-select" name="searchby">
-                                        <option value="bydentistname">Theo Tên Khách Hàng</option>
-                                    </select>
-                                    <button class="form-button" type="submit" name="action" value="SearchTreatmentCourse">Tìm Kiếm</button>
+                                <div class="form-row">
+                                    <input  oninput="searchByName(this)" class="form-input" type="text" name="txtSearch" placeholder="Tìm Kiếm" value="<%= (request.getParameter("txt") == null) ? "" : request.getParameter("txt")%>">
+                                    <button class="form-button">Theo Tên Khách Hàng</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
                     <c:set var="TreatmentList" value="${requestScope.TreatmentList}"></c:set>
                         <div class="row" style="text-align: center">
                             <div class="col-md-12">
@@ -165,26 +160,23 @@
             });
         </script>  
         <script>
-            function searchByName(param) {
-                var txtSearch = param.value;
-                var searchBy = document.getElementsByName("searchby")[0].value;
+            function searchByName(text) {
                 $.ajax({
-                    url: "MainController?action=Search Feedback Dentist",
-                    type: "get",
+                    url: '/SWP391-SE1743/MainController',
                     data: {
-                        txt: txtSearch,
-                        searchby: searchBy
+                        action: 'SearchTreatmentCourse',
+                        txt: text.value,
                     },
                     success: function (data) {
                         let row = document.getElementById("content");
                         row.innerHTML = data;
                     },
-                    error: function (xhr) {
-                        console.error(xhr);
-                    }
+                    error: function (error) {
+                        console("Fail");
+                    },
+                    type: 'POST'
                 });
             }
-
         </script>
     </body>
 </html>

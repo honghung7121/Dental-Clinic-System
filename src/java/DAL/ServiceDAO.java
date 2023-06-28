@@ -155,7 +155,7 @@ public class ServiceDAO {
         return false;
     }
 
-    public static Service getPlant(int pid) {
+    public static Service getServiceById(int pid) {
         Connection cn = null;
         Service p = null;
         try {

@@ -34,11 +34,28 @@ public class SearchTreatmentCourseController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String txtSearch = request.getParameter("txtSearch");
+            String txtSearch = request.getParameter("txt");
             ArrayList<TreatmentCourse> listTreatment = TreatmentCourseDAO.searchTreatmentCourseByNamePatient(txtSearch);
-            request.setAttribute("TreatmentList", listTreatment);
-            request.getRequestDispatcher("view-patients-of-dentist.jsp").forward(request, response);
-            
+
+            if (listTreatment != null && !listTreatment.isEmpty()) {
+                for (TreatmentCourse list : listTreatment) {
+                    out.print("<tr>\n"
++ "                             <td>" + list.getId() + "</td>\n"
++ "                             <td>" + list.getNamecustomer() + "</td>\n"
++ "                             <td>" + list.getNameTreatment() + "</td>\n");
+                    if(list.isStatus() == true){
+                        out.print("<td style=\"color: red; font-weight: bold;\">Đã hoàn thành</td>");
+                    } else {
+                        out.print("<td style=\"color: #35BA67; font-weight: bold;\">Chưa hoàn thành</td>");
+                    }
+                    out.print("<td><a href=\"MainController?action=ViewTreatmentDetailByCustomer&idTreatment=" + list.getId() + "&nameCus=" + list.getNamecustomer()+ "\" class=\"btn btn-primary\">Chi tiết</a></td>");
+                    out.print("</tr>");
+                }
+            }
+
+            //request.setAttribute("TreatmentList", listTreatment);
+            //request.getRequestDispatcher("view-patients-of-dentist.jsp").forward(request, response);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

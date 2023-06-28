@@ -12,7 +12,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
 
@@ -152,7 +153,7 @@
                             <a href="price.html" class="dropdown-item">Bảng giá</a>
                             <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
                             <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
-                            <a href="appointment.html" class="dropdown-item">Cuộc hẹn</a>
+                            <a href="index.jsp" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>
 
@@ -161,7 +162,7 @@
                 </div>
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>
-                <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Đăng Ký Cuộc Hẹn</a>
+                <a href="index.jsp" class="btn btn-primary py-2 px-4 ms-3">Đăng Ký Cuộc Hẹn</a>
             </div>
         </nav>
         <div class="login-wrap">
@@ -188,6 +189,26 @@
                             <div class="group">
                                 <button style="background-color: #06A3DA; border-radius: 0;" type="submit" class="button" name="action" value="Login">Đăng Nhập</button>
                             </div>
+                            <div class="group">
+                                <h3 style="color: white; text-align: center">Hoặc đăng nhập bằng</h3>
+                                <br>
+                                <div>
+                                    <a class="input" style="border-radius: 0; margin-bottom: 5px;"  href="https://www.facebook.com/dialog/oauth?client_id=254936600471264&redirect_uri=http://localhost:8084/SWP391-SE1743/login-facebook">
+                                        <svg width="50" height="50" viewBox="0 0 50 50" style="margin-right: 5px;">
+                                            <image xlink:href="img/iconfb.svg" width="50" height="50" />
+                                        </svg>
+                                        Facebook
+                                    </a>
+                                    <a class="input" style="border-radius: 0" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/SWP391-SE1743/login-google&response_type=code
+                                       &client_id=48607043062-12cu71hg20p1gljop1vm7s6fjnjmcv3b.apps.googleusercontent.com&approval_prompt=force">
+                                        <svg width="50" height="50" viewBox="0 0 50 50" style="margin-right: 5px;">
+                                            <image xlink:href="img/icongg.svg" width="50" height="50" />
+                                        </svg>
+                                        Google
+                                    </a> 
+                                </div>
+                            </div>
+                            
                         </form>
                         <div class="hr"></div>
                         <div class="foot-lnk">
@@ -277,7 +298,7 @@
                                         div.classList.add('active');
                                     } else {
                                         let formSignUp = document.getElementById('formSignUp');
-                                        formSignUp.innerHTML+='<label class="errorMessage" style="color: red; margin-top:5px">Email Đã Được Đăng Kí</label>';
+                                        formSignUp.innerHTML += '<label class="errorMessage" style="color: red; margin-top:5px">Email Đã Được Đăng Kí</label>';
                                     }
                                 },
                                 error: function (error) {

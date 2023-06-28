@@ -781,7 +781,7 @@ public class UserDAO {
                 stm = con.prepareStatement(sql);
                 stm.setString(1, Roll);
                 rs = stm.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     id = rs.getInt(1);
                 }
             }
@@ -799,4 +799,280 @@ public class UserDAO {
         }
         return id;
     }
+
+    public static User getUserLoginByGoogle(String idGg) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        User user = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select * from  tblUser where idGoogle = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, idGg);
+                rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    String name = rs.getString("fullName");
+                    String password = rs.getString("password");
+                    String phoneNumber = rs.getString("phoneNumber");
+                    int idRole = rs.getInt("idRole");
+                    boolean status = rs.getBoolean("status");
+                    String email = rs.getString("email");
+                    String roll = rs.getString("Roll");
+                    String gender = rs.getString("gender");
+                    user = new User(idRole, name, password, phoneNumber, idRole, status, email, roll, gender);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return user;
+    }
+
+    public static User getUserLoginByFacebook(String idFb) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        User user = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select * from  tblUser where idFacebook = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, idFb);
+                rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    String name = rs.getString("fullName");
+                    String password = rs.getString("password");
+                    String phoneNumber = rs.getString("phoneNumber");
+                    int idRole = rs.getInt("idRole");
+                    boolean status = rs.getBoolean("status");
+                    String email = rs.getString("email");
+                    String roll = rs.getString("Roll");
+                    String gender = rs.getString("gender");
+                    user = new User(idRole, name, password, phoneNumber, idRole, status, email, roll, gender);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return user;
+    }
+
+    public static boolean insertUserLoginByGoogle(String idGoogle, String name, String email, String phone, String gender) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select top(1) Roll from tblUser where idRole = 5 order by id desc";
+                pst = cn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                String rawRoll = "";
+                if (rs.next()) {
+                    rawRoll = rs.getString("Roll");
+                }
+                int nextRoll = Integer.parseInt(rawRoll.substring(1)) + 1;
+                String Roll = "P" + nextRoll;
+                sql = "insert into dbo.tblUser(fullName, email,phoneNumber,status,idRole,Roll,gender,idGoogle)\n"
+                        + "                        values (?,?,?,?,?,?,?,?)";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, name);
+                pst.setString(2, email);
+                pst.setString(3, phone);
+                pst.setInt(4, 1);
+                pst.setInt(5, 5);
+                pst.setString(6, Roll);
+                pst.setString(7, gender);
+                pst.setString(8, idGoogle);
+                pst.executeUpdate();
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return result;
+    }
+
+    public static boolean insertUserLoginByFacebook(String idFacebook, String name, String email, String phone, String gender) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select top(1) Roll from tblUser where idRole = 5 order by id desc";
+                pst = cn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                String rawRoll = "";
+                if (rs.next()) {
+                    rawRoll = rs.getString("Roll");
+                }
+                int nextRoll = Integer.parseInt(rawRoll.substring(1)) + 1;
+                String Roll = "P" + nextRoll;
+                sql = "insert into dbo.tblUser(fullName, email,phoneNumber,status,idRole,Roll,gender,idFacebook)\n"
+                        + "                        values (?,?,?,?,?,?,?,?)";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, name);
+                pst.setString(2, email);
+                pst.setString(3, phone);
+                pst.setInt(4, 1);
+                pst.setInt(5, 5);
+                pst.setString(6, Roll);
+                pst.setString(7, gender);
+                pst.setString(8, idFacebook);
+                pst.executeUpdate();
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return result;
+    }
+
+    public static boolean isExistAccountLoginByGoogle(String idGoogle) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT COUNT(*) FROM tblUser WHERE idGoogle = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, idGoogle);
+                rs = pst.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+                if (count != 0) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return result;
+    }
+
+    public static boolean isExistAccountLoginByFacebook(String idFacebook) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT COUNT(*) FROM tblUser WHERE idFacebook = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, idFacebook);
+                rs = pst.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+                if (count != 0) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return result;
+    }
+    
+    public static boolean checkEmail(String email) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT COUNT(*) FROM tblUser WHERE email = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, email);
+                rs = pst.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+                if (count == 0) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return result;
+    }    
 }

@@ -128,7 +128,7 @@
         <div class="row g-5">
             <div class="col-sm-12" style="text-align: center; padding-top: 30px">
                 <div class="see-all">
-                    <button class="see-all-btn" onclick="loadMoreDentistByCustomer()" style="font-size: 18px; padding: 10px 20px;">Load More</button>
+                    <button class="see-all-btn" onclick="loadMoreDentistByCustomer()" style="font-size: 18px; padding: 10px 20px;">Xem Thêm</button>
                 </div>
             </div>
         </div>
