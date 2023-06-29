@@ -173,7 +173,7 @@ public class FeedbackDentistDAO {
                 rs.close();
             }
             if (pst != null) {
-                rs.close();
+                pst.close();
             }
             if (cn != null) {
                 cn.close();
@@ -181,5 +181,30 @@ public class FeedbackDentistDAO {
         }
         return list;
     }
-
+    public void addFeedBackDentist(int userID,int dentistID,int rate, String content) throws SQLException{
+        Connection cn = null;
+        PreparedStatement pst = null;
+        try{
+            cn = Util.getConnection();
+            if(cn!=null){
+                String sql = "insert into tblFeedBackDentist values(?,?,?,?,1)";
+                pst = cn.prepareStatement(sql);
+                pst.setInt(1, userID);
+                pst.setInt(2, dentistID);
+                pst.setInt(3, rate);
+                pst.setString(4, content);
+                pst.execute();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+    }
 }

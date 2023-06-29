@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Models.TreatmentCourse;
+import Models.User;
 import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
@@ -38,9 +39,9 @@ public class TreatmentCourseController extends HttpServlet {
         String url = "TreatmentCourseDetailController";
         try {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
+            User user = (User)session.getAttribute("User");
             TreatmentCourseDAO sdao = new TreatmentCourseDAO();
-            ArrayList<TreatmentCourse> slist = sdao.getTreatmentByCustomerID(id);
+            ArrayList<TreatmentCourse> slist = sdao.getTreatmentByCustomerID(Integer.toString(user.getId()));
             request.setAttribute("TreatmentList", slist);
             
             String action = request.getParameter("action");
