@@ -46,7 +46,9 @@ public class SendDAO {
                 stm.setString(1, Mail);
                 rs = stm.executeQuery();
                 if (rs.next()) {
+
                     user = new User(rs.getInt(1), rs.getString(2), "*********", rs.getString(4), rs.getInt(5), rs.getBoolean(6), rs.getString(7), rs.getString(8), rs.getString(9));
+
                 }
             }
         } catch (Exception e) {

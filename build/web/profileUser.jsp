@@ -150,6 +150,7 @@
                                                             </c:choose>
                                                         </li>
                                                     </ul>
+                                                        <div class="staff-msg"><a href="changeProfileUser.jsp" class="btn btn-primary btn-rounded">Chỉnh sửa hồ sơ</a></div>
                                                 </div>
                                             </div>
                                         </div>

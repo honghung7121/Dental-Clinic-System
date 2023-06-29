@@ -40,7 +40,9 @@ public class AddPatient extends HttpServlet {
 
             String phoneStr = request.getParameter("txtphone");
             phoneStr = phoneStr.replaceAll("[^0-9]", "");
+
             String phone = phoneStr;
+
 
             int sta = Integer.parseInt(request.getParameter("status"));
             String roll = request.getParameter("txtroll");

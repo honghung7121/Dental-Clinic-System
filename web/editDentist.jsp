@@ -46,7 +46,7 @@
                         String dentistID = request.getParameter("dentistID");
                         DentistDAO dentistDAO = new DentistDAO();
                         Dentist dentist = dentistDAO.getDentistByID(dentistID);
-                    %>
+                    %>  
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2">
                             <form action="MainController" method="get">
@@ -165,4 +165,3 @@
     </body>
     <!-- edit-doctor24:06-->
 </html>
-

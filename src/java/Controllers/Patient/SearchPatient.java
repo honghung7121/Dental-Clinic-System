@@ -39,7 +39,6 @@ public class SearchPatient extends HttpServlet {
            
                 list = UserDAO.searchPatient(searchname);
           
-           
             request.setAttribute("patient", list);
             request.getRequestDispatcher("patient.jsp").forward(request, response);
         }
