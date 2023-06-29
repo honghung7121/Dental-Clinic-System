@@ -139,4 +139,30 @@ public class FeedbackServiceDAO {
         }
         return result;
     }
+
+    public void addFeedBackService(int userID, int serviceID, int rate, String content) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "insert into tblFeedBackService values(?,?,?,?,1)";
+                pst = cn.prepareStatement(sql);
+                pst.setInt(1, userID);
+                pst.setInt(2, serviceID);
+                pst.setInt(3, rate);
+                pst.setString(4, content);
+                pst.execute();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+    }
 }

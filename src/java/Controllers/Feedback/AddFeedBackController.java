@@ -4,12 +4,16 @@
  */
 package Controllers.Feedback;
 
+import DAL.FeedbackDentistDAO;
+import DAL.FeedbackServiceDAO;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,17 +33,24 @@ public class AddFeedBackController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddFeedBackController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddFeedBackController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try{
+            HttpSession session = request.getSession();
+            User user = (User)session.getAttribute("User");
+            int dentistID = Integer.parseInt(request.getParameter("dentistID"));
+            int serviceID = Integer.parseInt(request.getParameter("serviceID"));
+            int dentistRate = Integer.parseInt(request.getParameter("dentistRate"));
+            int serviceRate = Integer.parseInt(request.getParameter("serviceRate"));
+            String dentistFeedback = request.getParameter("dentistFeedback");
+            String serviceFeedback = request.getParameter("serviceFeedback");
+            FeedbackDentistDAO feedbackDentistDAO = new FeedbackDentistDAO();
+            FeedbackServiceDAO feedbackServiceDAO = new FeedbackServiceDAO();
+            feedbackDentistDAO.addFeedBackDentist(user.getId(), dentistID, dentistRate, dentistFeedback);
+            feedbackServiceDAO.addFeedBackService(user.getId(), serviceID, serviceRate, serviceFeedback);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            request.getRequestDispatcher("TreatmentCourseController").forward(request, response);
         }
     }
 
