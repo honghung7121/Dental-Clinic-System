@@ -35,31 +35,40 @@ public class InsertUserLoginByFacebookController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();           
+            HttpSession session = request.getSession();
             try {
                 String idFb = request.getParameter("idFacebook");
                 String name = request.getParameter("accountName");
                 String email = request.getParameter("gmail");
                 String phone = request.getParameter("numberPhone");
                 String gender = request.getParameter("gender");
-                boolean result = UserDAO.insertUserLoginByFacebook(idFb, name, email, phone, gender);
-                
-                if (result) {
-                    User user = UserDAO.getUserLoginByFacebook(idFb);
-                    session.setAttribute("User", user);
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                boolean checkgmail = UserDAO.checkEmail(email);
+                if (checkgmail == false) {
+                    request.setAttribute("id", idFb);
+                    request.setAttribute("name", name);
+                    request.setAttribute("logbyfb", true);
+                    String message = "Email này đã được sử dụng để đăng kí, xin vui lòng nhập email khác.";
+                    request.setAttribute("message", message);
+                    request.getRequestDispatcher("additional-info.jsp").forward(request, response);
                 } else {
-                    out.println("<html><body>");
-                    out.println("<script>");
-                    out.println("alert('Lỗi hệ thống, vui lòng thử lại sau.');");
-                    out.println("window.location.href='login.jsp';");  // Thay 'your_jsp_page.jsp' bằng trang JSP bạn muốn chuyển hướng sau khi thông báo
-                    out.println("</script>");
-                    out.println("</body></html>");
+                    boolean result = UserDAO.insertUserLoginByFacebook(idFb, name, email, phone, gender);
+                    if (result) {
+                        User user = UserDAO.getUserLoginByFacebook(idFb);
+                        session.setAttribute("User", user);
+                        String message = "Đăng nhập thành công.";
+                        request.setAttribute("message", message);
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    } else {
+                        out.println("<html><body>");
+                        out.println("<script>");
+                        out.println("alert('Lỗi hệ thống, vui lòng thử lại sau.');");
+                        out.println("window.location.href='login.jsp';");  // Thay 'your_jsp_page.jsp' bằng trang JSP bạn muốn chuyển hướng sau khi thông báo
+                        out.println("</script>");
+                        out.println("</body></html>");
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         }
     }

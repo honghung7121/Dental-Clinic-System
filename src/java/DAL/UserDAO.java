@@ -1252,6 +1252,7 @@ public class UserDAO {
 
                 int rs = pst.executeUpdate();
                 kq = true;
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1266,6 +1267,41 @@ public class UserDAO {
         }
         return kq;
     }
+    
+    public static boolean checkEmail(String email) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT COUNT(*) FROM tblUser WHERE email = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, email);
+                rs = pst.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+                if (count == 0) {
+                    result = true;
+                }
+                  }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                pst.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+     
+        return result;
+    }    
+}
 
     public static User getUserByID(String id)  {
         User user = null;
@@ -1293,4 +1329,5 @@ public class UserDAO {
         User q = UserDAO.getUserByID("1");
         System.out.println(q.getFullName());
     }
+
 }

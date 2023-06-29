@@ -324,6 +324,15 @@
         <servlet-name>UserProfileController</servlet-name>
         <servlet-class>Controllers.Patient.UserProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetTreatmentCourseDataController</servlet-name>
+        <servlet-class>Controllers.Feedback.GetTreatmentCourseDataController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddFeedBackController</servlet-name>
+        <servlet-class>Controllers.Feedback.AddFeedBackController</servlet-class>
+
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -647,6 +656,14 @@
     <servlet-mapping>
         <servlet-name>UserProfileController</servlet-name>
         <url-pattern>/UserProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTreatmentCourseDataController</servlet-name>
+        <url-pattern>/GetTreatmentCourseDataController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddFeedBackController</servlet-name>
+        <url-pattern>/AddFeedBackController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>

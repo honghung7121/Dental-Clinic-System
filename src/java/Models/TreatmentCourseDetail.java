@@ -30,7 +30,8 @@ public class TreatmentCourseDetail {
         this.statusPaid = statusPaid;
     }
 
-    public TreatmentCourseDetail(String nameTreatment, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
+    public TreatmentCourseDetail(int id, String nameTreatment, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
+        this.id = id;
         this.nameTreatment = nameTreatment;
         this.treatmentdate = treatmentdate;
         this.treatmenttime = treatmenttime;
