@@ -53,11 +53,11 @@
                                         <option value="bynot">Chưa Thánh Toán</option>
                                         <option value="bydone">Đã Thanh Toán</option>
                                     </select>
-<!--                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">-->
+                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">
                                 </div>
                             </div>
-<!--                                                        <a href="MainController?action=Search" class="btn btn-success btn-block" > Search </a>                  -->
-                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">
+<!--                                                        <a href="MainController?action=Search" class="btn btn-success float-lg-right" > Tìm Kiếm </a>                  -->
+<!--                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">-->
                         </div>
                     </form>
 

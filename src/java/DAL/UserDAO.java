@@ -763,7 +763,7 @@ public class UserDAO {
                     }
                     int rawRoll2 = Integer.parseInt(rawRoll1.substring(1)) + 1;
                     String Roll = "P" + rawRoll2;
-                    String sql2 = "insert into tblUser values(?,?,?,5,1,?,?,null)";
+                    String sql2 = "insert into tblUser values(?,?,?,5,1,?,?,'Nam')";
                     stm = con.prepareStatement(sql2);
                     stm.setString(1, name);
                     stm.setString(2, password);
