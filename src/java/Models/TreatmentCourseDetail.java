@@ -30,6 +30,19 @@ public class TreatmentCourseDetail {
         this.statusPaid = statusPaid;
     }
 
+    public TreatmentCourseDetail(int id, String nameTreatment, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
+        this.id = id;
+        this.nameTreatment = nameTreatment;
+        this.treatmentdate = treatmentdate;
+        this.treatmenttime = treatmenttime;
+        this.nameService = nameService;
+        this.description = description;
+        this.status = status;
+        this.statusPaid = statusPaid;
+    }
+    
+    
+
     public TreatmentCourseDetail(String nameTreatment, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
         this.nameTreatment = nameTreatment;
         this.treatmentdate = treatmentdate;
@@ -106,7 +119,9 @@ public class TreatmentCourseDetail {
 
     @Override
     public String toString() {
-        return "TreatmentCourseDetail{" + "nameTreatment=" + nameTreatment + ", treatmentdate=" + treatmentdate + ", treatmenttime=" + treatmenttime + ", nameService=" + nameService + ", description=" + description + ", status=" + status + ", statusPaid=" + statusPaid + '}';
+        return "TreatmentCourseDetail{" + "id=" + id + ", nameTreatment=" + nameTreatment + ", treatmentdate=" + treatmentdate + ", treatmenttime=" + treatmenttime + ", nameService=" + nameService + ", description=" + description + ", status=" + status + ", statusPaid=" + statusPaid + '}';
     }
+
+    
 
 }

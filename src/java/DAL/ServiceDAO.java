@@ -155,7 +155,7 @@ public class ServiceDAO {
         return false;
     }
 
-    public static Service getServiceById(int pid) {
+    public static Service getServiceById(int sid) {
         Connection cn = null;
         Service p = null;
         try {
@@ -164,14 +164,14 @@ public class ServiceDAO {
                 String sql = "select * from  tblService\n"
                         + "where id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setInt(1, pid);
+                pst.setInt(1, sid);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
                     String name = rs.getString("serviceName");
                     String mota = rs.getString("description");
                     float price = rs.getFloat("price");
                     boolean status = rs.getBoolean("status");
-                    p = new Service(pid, name, mota, price, status);
+                    p = new Service(sid, name, mota, price, status);
                 }
             }
         } catch (Exception e) {
@@ -258,46 +258,46 @@ public class ServiceDAO {
         return list;
     }
 
-    public static Service getServiceUser(String keyword) throws SQLException {
-        Service fbs = null;
-        Connection cn = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        try {
-            cn = Util.getConnection();
-            if (cn != null) {
-                String sql = "select tblFeedBackService.id as id,serviceName, description,price, comment\n"
-                        + "from tblFeedBackService, tblUser, tblService\n"
-                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and "
-                        + "tblService.id = ? ";
-                pst = cn.prepareStatement(sql);
-                pst.setString(1, keyword);
-                rs = pst.executeQuery();
-                if (rs != null) {
-                    while (rs.next()) {
-                        int id = rs.getInt("id");
-                        String servicename = rs.getString("serviceName");
-                        String description = rs.getString("description");
-                        float price = rs.getFloat("price");
-                        String cmt = rs.getString("comment");
-                        fbs = new Service(id, servicename, description, price, cmt);
-
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (pst != null) {
-                rs.close();
-            }
-            if (cn != null) {
-                cn.close();
-            }
-        }
-        return fbs;
-    }
+//    public static Service getServiceUser(String keyword) throws SQLException {
+//        Service fbs = null;
+//        Connection cn = null;
+//        PreparedStatement pst = null;
+//        ResultSet rs = null;
+//        try {
+//            cn = Util.getConnection();
+//            if (cn != null) {
+//                String sql = "select tblFeedBackService.id as id,serviceName, description,price, comment\n"
+//                        + "from tblFeedBackService, tblUser, tblService\n"
+//                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and "
+//                        + "tblService.id = ? ";
+//                pst = cn.prepareStatement(sql);
+//                pst.setString(1, keyword);
+//                rs = pst.executeQuery();
+//                if (rs != null) {
+//                    while (rs.next()) {
+//                        int id = rs.getInt("id");
+//                        String servicename = rs.getString("serviceName");
+//                        String description = rs.getString("description");
+//                        float price = rs.getFloat("price");
+//                        String cmt = rs.getString("comment");
+//                        fbs = new Service(id, servicename, description, price, cmt);
+//
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            if (pst != null) {
+//                rs.close();
+//            }
+//            if (cn != null) {
+//                cn.close();
+//            }
+//        }
+//        return fbs;
+//    }
 }

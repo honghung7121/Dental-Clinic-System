@@ -209,7 +209,6 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="hr"></div>
                         <div class="foot-lnk">
                             <a href="forgotPassword.jsp">Quên Mật Khẩu?</a>
                         </div>

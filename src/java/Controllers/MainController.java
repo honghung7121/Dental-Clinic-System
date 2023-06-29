@@ -43,6 +43,7 @@ public class MainController extends HttpServlet {
     private final String SERVICEMARKETINGCONTROLLER = "loadServiceMarketingController";
     private final String ADDSERVICECONTROLLER = "addServiceController";
     private final String EDITSERVICECONTROLLER = "editServiceController";
+    private final String DELETESERVICECONTROLLER = "deleteServiceController";
     private final String UPDATESERVICECONTROLLER = "updateServiceController";
     private final String SEARCHSERVICENAME = "SearchServiceByNameController";
     private final String SEARCHSERVICEUSERNAME = "SearchServiceUserByNameController";
@@ -143,6 +144,8 @@ public class MainController extends HttpServlet {
                 url = ADDSERVICECONTROLLER;
             } else if (action.equals("EditService")) {
                 url = EDITSERVICECONTROLLER;
+            } else if (action.equals("DeleteService")) {
+                url = DELETESERVICECONTROLLER;
             } else if (action.equals("UpdateService")) {
                 url = UPDATESERVICECONTROLLER;
             } else if (action.equals("Search Service By Name")) {
