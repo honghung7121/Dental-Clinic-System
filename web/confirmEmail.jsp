@@ -142,14 +142,14 @@
                                 <label>Nhập Mật Khẩu Mới</label>
                                 <input type="password" class="form-control" id="password1" name="pass1" required="" >
                             </div>
-                            <div class="form-group" >
+                            <div class="form-group" id="formPassword">
                                 <label>Nhập Lại Mật Khẩu</label>
                                 <input type="password" class="form-control" id="password2" name="pass2" required="" >
                             </div>
                             <h6 style="color: red">${requestScope.report}</h6>
 
                             <div class="form-group text-center"> 
-                                <a onclick="addService(this)" class="btn btn-primary submit-btn">Xác nhận Mã</a>
+                                <a onclick="forgotPass(this)" class="btn btn-primary submit-btn">Xác nhận Mã</a>
                             </div>
                             <div class="text-center register-link">
                                 <a href="login.jsp">Quay về đăng nhập</a>
@@ -158,13 +158,13 @@
                     </div>
                 </div>
             </div>
-            <div id="popup1" class="overlay">
-                <div class="popup">
-                    <h2>Thành Công</h2>
-                    <a onclick="closePopUp(this)" class="close" href="#">&times;</a>
-                    <div class="content">
-                        Đã Thêm Mới Dịch Vụ Thành Công. Chúc Sức Khỏe.
-                    </div>
+        </div>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>Thành Công</h2>
+                <a onclick="closePopUp(this)" class="close" href="#">&times;</a>
+                <div class="content">
+                    Chúc Sức Khỏe.
                 </div>
             </div>
         </div>
@@ -174,43 +174,42 @@
         <script src="assets/js/app.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
-                        function addService() {
-                            let c1 = document.getElementById('name').value;
-                            let c2 = document.getElementById('code').value;
-                            let labels = Array.from(document.getElementsByClassName('errorMessage'));
-                            labels.forEach(element => {
-                                element.remove();
-                            });
-                            if (c1 !== c2 ) {
-                                let fullNameForm = document.getElementById('formCode');
-                                fullNameForm.innerHTML += '<label class="errorMessage" style="color: red;">Mã xác nhận không đúng </label>';
-                            } else {
-                                $.ajax({
-                                    url: '/SWP391-SE1743/MainController',
-                                    data: {
-                                        action: 'AddService',
-                                        name: name,
-                                        name2: name2,
-                                    },
-                                    success: function (data) {
+                    function forgotPass() {
+                        let c1 = document.getElementById('name').value;
+                        let c2 = document.getElementById('code').value;
+                        let p1 = document.getElementById('password1').value;
+                        let p2 = document.getElementById('password2').value;
+                        let labels = Array.from(document.getElementsByClassName('errorMessage'));
+                        labels.forEach(element => {
+                            element.remove();
+                        });
+                        if (c1 !== c2) {
+                            let fullCodeForm = document.getElementById('formCode');
+                            fullCodeForm.innerHTML += '<label class="errorMessage" style="color: red;">Mã xác nhận không đúng </label>';
+                        } else if (p1 !== p2) {
+                            let fullPassForm = document.getElementById('formPassword');
+                            fullPassForm.innerHTML += '<label class="errorMessage" style="color: red;">Mật khẩu không trùng nhau </label>';
+                        } else {
+                            $.ajax({
+                                url: '/SWP391-SE1743/MainController',
+                                data: {
+                                    action: 'codeMail',
+                                    pass: p1
+                                },
+                                success: function (data) {
+                                    if (data === 'success') {
                                         const div = document.querySelector('.overlay');
                                         div.classList.add('active');
-                                    },
-                                    error: function (error) {
-                                        console("Fail");
-                                    },
-                                    type: 'GET'
-                                });
-                            }
+                                    }
+                                },
+                                error: function (error) {
+                                    console("Fail");
+                                },
+                                type: 'GET'
+                            });
                         }
-                        function closePopUp() {
-                            const div = document.querySelector('.overlay');
-                            div.classList.remove('active');
-                        }
+                    }
         </script>
     </body>
 
-
-
 </html>
-

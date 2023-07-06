@@ -3,7 +3,6 @@
     Created on : 31-May-2023, 18:07:54
     Author     : Admin
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -85,7 +84,7 @@
                     </div>
                     
                 </div>
-                <div class="notification-box">
+<!--                <div class="notification-box">
                     <div class="msg-sidebar notifications msg-noti">
                         <div class="topnav-dropdown-header">
                             <span>Messages</span>
@@ -295,7 +294,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
     </body>
 </html>

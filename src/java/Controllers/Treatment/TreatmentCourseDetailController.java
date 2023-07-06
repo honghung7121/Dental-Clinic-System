@@ -7,6 +7,7 @@ package Controllers.Treatment;
 
 import DAL.TreatmentCourseDetailDAO;
 import Models.TreatmentCourseDetail;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -37,10 +38,10 @@ public class TreatmentCourseDetailController extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
+            User user = (User)session.getAttribute("User"); 
             TreatmentCourseDetailDAO sdao = new TreatmentCourseDetailDAO();
-            ArrayList<TreatmentCourseDetail> slist = sdao.getTreatmentDetailByUserID(id, "0");
-            ArrayList<TreatmentCourseDetail> hlist = sdao.getTreatmentDetailByUserID(id, "1");
+            ArrayList<TreatmentCourseDetail> slist = sdao.getTreatmentDetailByUserID(Integer.toString(user.getId()), "0");
+            ArrayList<TreatmentCourseDetail> hlist = sdao.getTreatmentDetailByUserID(Integer.toString(user.getId()), "1");
             request.setAttribute("TreatmentDetailList", slist);
             request.setAttribute("HistoryList", hlist);
         } catch (Exception e) {

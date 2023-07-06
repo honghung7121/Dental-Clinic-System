@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import Models.Service;
 import Models.TreatmentCourse;
 import Models.User;
 import Util.Util;
@@ -27,7 +28,7 @@ public class TreatmentCourseDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql1 = "select SUM(s.price) from tblTreatmentCourse tc join tblService s on tc.serviceID = s.id";
+                String sql1 = "select SUM(s.price) from tblTreatmentCourseDetail tc join tblService s on tc.serviceID = s.id";
                 stm = con.prepareStatement(sql1);
                 rs = stm.executeQuery();
                 if (rs.next()) {
@@ -137,12 +138,12 @@ public class TreatmentCourseDAO {
         return list;
     }
 
-    public void createNewTreatmentCourse(int userID, int dentistID, String treatmentName) throws SQLException{
+    public void createNewTreatmentCourse(int userID, int dentistID, String treatmentName) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
-        try{
+        try {
             con = Util.getConnection();
-            if(con!=null){
+            if (con != null) {
                 String sql = "insert into tblTreatmentCourse values(?,?,?,?)";
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, userID);
@@ -151,17 +152,82 @@ public class TreatmentCourseDAO {
                 stm.setString(4, treatmentName);
                 stm.executeUpdate();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{
-            if(stm!=null){
+        } finally {
+            if (stm != null) {
                 stm.close();
             }
-            if(con!=null){
+            if (con != null) {
                 con.close();
             }
         }
     }
-    
+
+    public int getDentistByTreatmentCourseID(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int dentistID = 0;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select t.dentistID \n"
+                        + "from tblTreatmentCourse t join tblTreatmentCourseDetail td on t.id = td.treatmentID \n"
+                        + "where td.id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, id);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    dentistID = rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return dentistID;
+    }
+    public int getServiceByTreatmentCourseID(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int serviceID = 0;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select td.ServiceID \n"
+                        + "from tblTreatmentCourse t join tblTreatmentCourseDetail td on t.id = td.treatmentID \n"
+                        + "where td.id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, id);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    serviceID = rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return serviceID;
+    }
 }

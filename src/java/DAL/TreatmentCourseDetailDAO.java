@@ -24,7 +24,8 @@ public class TreatmentCourseDetailDAO {
         ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
         Util dbu = new Util();
 
-        String sql = "select td.id,nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid\n"
+
+        String sql = "select td.id, nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid\n"
                 + "from tblTreatmentCourse tc\n"
                 + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
                 + "JOIN tblService ON td.serviceID = tblService.id\n"
@@ -37,7 +38,7 @@ public class TreatmentCourseDetailDAO {
             ps.setString(2, paid);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Integer id = rs.getInt("id");
+                int id = rs.getInt("id");
                 String nameTreatment = rs.getString("nameTreatment");
                 String treatmentdate = rs.getString("treatmentDate");
                 String treatmenttime = rs.getString("treatmentTime");

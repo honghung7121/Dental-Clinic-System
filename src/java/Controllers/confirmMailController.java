@@ -34,24 +34,19 @@ public class confirmMailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        String url = null;
+        HttpSession session = request.getSession();
+        try {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();
-            String code1 = String.valueOf(session.getAttribute("code"));
-            String code2 = request.getParameter("maxacnhan");
-            String pass1 = request.getParameter("pass1");
-            String pass2 = request.getParameter("pass2");
-            if (pass1.equals(pass2) && code1.equals(code2)) {
-                String gmail = String.valueOf(session.getAttribute("gmail"));
-                String passnewagain = PasswordEncoder.toSHA1(request.getParameter("pass1"));
-                SendDAO dao = new SendDAO();
-                dao.forgotPass(passnewagain, gmail);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            } else {
-                request.setAttribute("report", "Mật khẩu không trùng khớp. Xin mời nhập lại");
-                request.getRequestDispatcher("confirmEmail.jsp").forward(request, response);
-            }
 
+            String gmail = String.valueOf(session.getAttribute("gmail"));
+            String newPass = request.getParameter("pass");
+            SendDAO.forgotPass(newPass, gmail);
+            url = "login.jsp";
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
