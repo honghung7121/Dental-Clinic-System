@@ -71,6 +71,8 @@ public class MainController extends HttpServlet {
     private final String CHANGEPASSWORDPAGE = "changePassword.jsp";
     private final String CHANGEPASSWORDUSER = "changePasswordUser.jsp";
     private final String CHANGEPASSWORD = "ChangePasswordController";
+    private final String CHANGEPROFILEUSER = "ChangeProfileUser";
+     private final String SAVEPROFILEUSER = "UserProfileController";
 
     private final String CUSTOMER_DENTIST_PAGE = "customer-dentists.jsp";
     private final String CUSTOMER_SHOW_DENTIST = "ShowDentistController";
@@ -78,6 +80,9 @@ public class MainController extends HttpServlet {
     private final String CUSTOMER_DENTIST_PROFILE = "profileDentistByCustomerController";
 
     private final String TREATMENT = "TreatmentCourseController";
+
+    private final String LOADBILL = "BillController";
+    private final String SEARCHUSERSTATUS = "SearchUserStatus";
 
     private final String TREATMENTOFDENTIST = "ViewTreatmentOfDentistController";
     private final String TREATMENTDETAILOFDENTIST = "ViewTreatmentDetailOfDentistController";
@@ -87,6 +92,7 @@ public class MainController extends HttpServlet {
 
     private final String INSERTUSERLOGINBYGOOGLE = "InsertUserLoginByGoogleController";
     private final String INSERTUSERLOGINBYFACEBOOK = "InsertUserLoginByFacebookController";
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -207,6 +213,10 @@ public class MainController extends HttpServlet {
                 url = CUSTOMER_DENTIST_PROFILE_PAGE;
             } else if (action.equals("TreatmentCourse")) {
                 url = TREATMENT;
+            } else if (action.equals("loadbill")) {
+                url = LOADBILL;
+            } else if (action.equals("Search")) {
+                url = SEARCHUSERSTATUS;
             } else if (action.equals("ViewTreatmentByCustomer")) {
                 url = TREATMENTOFDENTIST;
             } else if (action.equals("ViewTreatmentDetailByCustomer")) {
@@ -221,8 +231,11 @@ public class MainController extends HttpServlet {
                 url = INSERTUSERLOGINBYGOOGLE;
             } else if (action.equals("logbyfb")) {
                 url = INSERTUSERLOGINBYFACEBOOK;
+//            } else if (action.equals("changeProfileUser")) {
+//                url = CHANGEPROFILEUSER;
+            } else if (action.equals("saveChangeProfileUser")) {
+                url = CHANGEPROFILEUSER ;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
