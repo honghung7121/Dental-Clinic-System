@@ -15,23 +15,23 @@ public class Service {
     private String mota;
     private float price;
     private boolean status;
-    private String comment;
+//    private String comment;
 
-    public Service(int id, String name, String mota, float price, String comment) {
-        this.id = id;
-        this.name = name;
-        this.mota = mota;
-        this.price = price;
-        this.comment = comment;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+//    public Service(int id, String name, String mota, float price, String comment) {
+//        this.id = id;
+//        this.name = name;
+//        this.mota = mota;
+//        this.price = price;
+//        this.comment = comment;
+//    }
+//
+//    public String getComment() {
+//        return comment;
+//    }
+//
+//    public void setComment(String comment) {
+//        this.comment = comment;
+//    }
 
     
     public Service(int id, String name, String mota, float price, boolean status) {

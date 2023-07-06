@@ -122,8 +122,10 @@
                                                         <div class="staff-id">ID Nhân Sự: ${u.getId()}</div>
                                                         <div class="staff-id">Mã Bệnh Nhân : ${u.getRoll()}</div>
 
-                                                        <div class="staff-msg"><a href="changePasswordUser.jsp" class="btn btn-primary btn-rounded">Thay đổi mật khẩu</a></div>
-
+                                                        <div class="staff-msg" style="display: flex; gap: 15px;">
+                                                            <a href="changePasswordUser.jsp" class="btn btn-primary btn-rounded">Thay đổi mật khẩu</a>
+                                                            <a href="changeProfileUser.jsp" class="btn btn-primary btn-rounded">Chỉnh sửa hồ sơ</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-7">
@@ -150,7 +152,7 @@
                                                             </c:choose>
                                                         </li>
                                                     </ul>
-                                                        <div class="staff-msg"><a href="changeProfileUser.jsp" class="btn btn-primary btn-rounded">Chỉnh sửa hồ sơ</a></div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -305,12 +307,12 @@
                                                                                 <td><span style="width: 100px;
                                                                                           height: 40px;" class="custom-badge status-orange">Chưa Thanh Toán</span></td>
                                                                                 </c:if>
-                                                                                <td>
-                                                                                    <form action="GetTreatmentCourseDataController" method="POST">
-                                                                                        <button type="submit">Đánh Giá</button>
-                                                                                        <input type="hidden" name="treatmentCourseDetailID" value="${d.getId()}">
-                                                                                    </form>
-                                                                                </td>
+                                                                            <td>
+                                                                                <form action="GetTreatmentCourseDataController" method="POST">
+                                                                                    <button type="submit">Đánh Giá</button>
+                                                                                    <input type="hidden" name="treatmentCourseDetailID" value="${d.getId()}">
+                                                                                </form>
+                                                                            </td>
                                                                         </tr>
                                                                     </c:forEach>
                                                                 </tbody>               

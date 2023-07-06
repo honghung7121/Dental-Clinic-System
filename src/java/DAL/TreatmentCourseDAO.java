@@ -28,7 +28,7 @@ public class TreatmentCourseDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql1 = "select SUM(s.price) from tblTreatmentCourse tc join tblService s on tc.serviceID = s.id";
+                String sql1 = "select SUM(s.price) from tblTreatmentCourseDetail tc join tblService s on tc.serviceID = s.id";
                 stm = con.prepareStatement(sql1);
                 rs = stm.executeQuery();
                 if (rs.next()) {
