@@ -150,7 +150,7 @@
                     <li class="submenu">
                         <a href="#"><i class="fa fa-money"></i> <span> Tài Khoản </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
-                            <li><a href="invoices.html">Hoá Đơn</a></li>
+                            <li><a href="MainController?action=loadbill">Hoá Đơn</a></li>
                             <li><a href="payments.html">Thanh Toán</a></li>
                         </ul>
                     </li>

@@ -41,6 +41,10 @@ public class Service {
         this.price = price;
         this.status = status;
     }
+    public Service(int id, String name){
+        this.id = id;
+        this.mota = mota;
+    }
 
     public int getId() {
         return id;

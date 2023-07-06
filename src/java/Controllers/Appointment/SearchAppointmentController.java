@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
  *
  * @author ADMIN
@@ -38,7 +39,9 @@ public class SearchAppointmentController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+
             HttpSession session = request.getSession();
+
             Date datenow = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String date = dateFormat.format(datenow);
@@ -57,7 +60,9 @@ public class SearchAppointmentController extends HttpServlet {
             } else {                
                 list = appDAO.getAppointmentByDate(from, to);
             }
+
             session.setAttribute("activeLink", "appointmentLink");
+
             request.setAttribute("listAppointment", list);
             request.getRequestDispatcher("MainController?action=appointment").forward(request, response);
         }

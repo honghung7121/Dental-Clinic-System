@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class AppointmentDAO {
                         d = dentistDAO.getDentistByID(String.valueOf(dentistIDApp));
                         String userName = u.getFullName();
                         String dentistName = d.getFullName();
+
                         Date dateApp = rs.getDate("appointmentDate");
                         String descriptionApp = rs.getString("description");
                         boolean statusApp = rs.getBoolean("status");
@@ -99,7 +101,6 @@ public class AppointmentDAO {
                         Date dateApp = rs.getDate("appointmentDate");
                         String descriptionApp = rs.getString("description");
                         boolean statusApp = rs.getBoolean("status");
-
                         app = new Appointment(idApp, userName, dentistName, dateApp, descriptionApp, statusApp);
                         list.add(app);
                     }
@@ -122,11 +123,12 @@ public class AppointmentDAO {
     int id;
     private String userName;
     private String dentistName;
-    private Date date;
+    private Date date;  
     private String description;
     private boolean status;
-
+  
     public boolean insertAppointment(String userID, String dentistID, Date date, String description, String status) {
+
         Connection cn = null;
         try {
             cn = Util.getConnection();
@@ -312,7 +314,7 @@ public class AppointmentDAO {
                 cn.close();
             }
         }
-        return result;
+        return result; 
     }
 
     public static boolean isExistAppointment(int userid) throws SQLException {

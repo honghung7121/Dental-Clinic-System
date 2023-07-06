@@ -10,6 +10,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 
 
+
 /**
  *
  * @author ADMIN
@@ -35,6 +36,7 @@ public class Appointment{
         this.description = description;
         this.status = status;
     }
+
 
     public Appointment(int id, String userName, Date date, Time time, String description, boolean status, String Roll) {
         this.id = id;
@@ -64,7 +66,6 @@ public class Appointment{
 
     
     
-
     public int getId() {
         return id;
     }
@@ -88,6 +89,7 @@ public class Appointment{
     public void setDentistName(String dentistName) {
         this.dentistName = dentistName;
     }
+
 
     public String getDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
