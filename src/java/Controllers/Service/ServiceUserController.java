@@ -6,7 +6,6 @@
 package Controllers.Service;
 
 import DAL.ServiceDAO;
-import static DAL.ServiceDAO.getServiceUser;
 import Models.Service;
 import java.io.IOException;
 import java.io.PrintWriter;

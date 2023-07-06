@@ -118,7 +118,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Đánh Giá <span class="text-danger">*</span></label> 
-                                        <textarea class="form-control" name="dentistFeedback" cols="30" rows="10"></textarea>
+                                        <textarea class="form-control" name="dentistFeedback" cols="30" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Đánh Giá <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" name="serviceFeedback" cols="30" rows="10"></textarea>
+                                        <textarea class="form-control" name="serviceFeedback" cols="30" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>

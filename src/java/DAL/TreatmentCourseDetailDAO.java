@@ -24,6 +24,7 @@ public class TreatmentCourseDetailDAO {
         ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
         Util dbu = new Util();
 
+
         String sql = "select td.id, nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid\n"
                 + "from tblTreatmentCourse tc\n"
                 + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
@@ -220,4 +221,12 @@ public class TreatmentCourseDetailDAO {
         return idPatient;
     }
 
+    public static void main (String[] args){
+
+        ArrayList<TreatmentCourseDetail> list =getTreatmentDetailByUserID("36", "0");
+        for (TreatmentCourseDetail o : list) {
+            System.out.println(o);
+        }
+    }
+    
 }
