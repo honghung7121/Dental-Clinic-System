@@ -159,15 +159,6 @@
                 </div>
             </div>
         </div>
-        <div id="popup1" class="overlay">
-            <div class="popup">
-                <h2>Thành Công</h2>
-                <a onclick="closePopUp(this)" class="close" href="#">&times;</a>
-                <div class="content">
-                    Chúc Sức Khỏe.
-                </div>
-            </div>
-        </div>
         <script src="assets/js/jquery-3.2.1.min.js"></script>
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
@@ -197,10 +188,7 @@
                                     pass: p1
                                 },
                                 success: function (data) {
-                                    if (data === 'success') {
-                                        const div = document.querySelector('.overlay');
-                                        div.classList.add('active');
-                                    }
+                                    window.location.href = "login.jsp";
                                 },
                                 error: function (error) {
                                     console("Fail");

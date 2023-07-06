@@ -38,9 +38,8 @@ public class confirmMailController extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
-
             String gmail = String.valueOf(session.getAttribute("gmail"));
-            String newPass = request.getParameter("pass");
+            String newPass = PasswordEncoder.toSHA1(request.getParameter("pass"));
             SendDAO.forgotPass(newPass, gmail);
             url = "login.jsp";
         }catch(Exception e){
