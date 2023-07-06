@@ -195,20 +195,20 @@
                                 <div>
                                     <a class="input" style="border-radius: 0; margin-bottom: 5px;"  href="https://www.facebook.com/dialog/oauth?client_id=254936600471264&redirect_uri=http://localhost:8084/SWP391-SE1743/login-facebook">
                                         <svg width="50" height="50" viewBox="0 0 50 50" style="margin-right: 5px;">
-                                            <image xlink:href="img/iconfb.svg" width="50" height="50" />
+                                        <image xlink:href="img/iconfb.svg" width="50" height="50" />
                                         </svg>
                                         Facebook
                                     </a>
                                     <a class="input" style="border-radius: 0" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/SWP391-SE1743/login-google&response_type=code
                                        &client_id=48607043062-12cu71hg20p1gljop1vm7s6fjnjmcv3b.apps.googleusercontent.com&approval_prompt=force">
                                         <svg width="50" height="50" viewBox="0 0 50 50" style="margin-right: 5px;">
-                                            <image xlink:href="img/icongg.svg" width="50" height="50" />
+                                        <image xlink:href="img/icongg.svg" width="50" height="50" />
                                         </svg>
                                         Google
                                     </a> 
                                 </div>
                             </div>
-                            
+
                         </form>
                         <div class="hr"></div>
                         <div class="foot-lnk">
@@ -296,6 +296,9 @@
                                     if (data === 'success') {
                                         const div = document.querySelector('.overlay');
                                         div.classList.add('active');
+                                        setTimeout(function () {
+                                            location.reload();
+                                        }, 2000);
                                     } else {
                                         let formSignUp = document.getElementById('formSignUp');
                                         formSignUp.innerHTML += '<label class="errorMessage" style="color: red; margin-top:5px">Email Đã Được Đăng Kí</label>';
