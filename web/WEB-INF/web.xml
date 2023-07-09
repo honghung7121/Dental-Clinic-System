@@ -331,7 +331,14 @@
     <servlet>
         <servlet-name>AddFeedBackController</servlet-name>
         <servlet-class>Controllers.Feedback.AddFeedBackController</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>LoadMoreFeedbackDentistController</servlet-name>
+        <servlet-class>Controllers.Feedback.LoadMoreFeedbackDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadMoreFeedbackServiceController</servlet-name>
+        <servlet-class>Controllers.Feedback.LoadMoreFeedbackServiceController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -664,6 +671,14 @@
     <servlet-mapping>
         <servlet-name>AddFeedBackController</servlet-name>
         <url-pattern>/AddFeedBackController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreFeedbackDentistController</servlet-name>
+        <url-pattern>/LoadMoreFeedbackDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreFeedbackServiceController</servlet-name>
+        <url-pattern>/LoadMoreFeedbackServiceController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>

@@ -28,9 +28,9 @@ public class FeedbackServiceDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select tblFeedBackService.id as id, tblService.serviceName as serviceName, tblUser.fullName as customerName, tblFeedBackService.rate as rate, tblFeedBackService.comment as comment\n"
+                String sql = "select top 5 tblFeedBackService.id as id, tblService.serviceName as serviceName, tblUser.fullName as customerName, tblFeedBackService.rate as rate, tblFeedBackService.comment as comment\n"
                         + "from tblFeedBackService, tblService, tblUser\n"
-                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id";
+                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and tblFeedBackService.status = 1";
                 pst = cn.prepareStatement(sql);
                 rs = pst.executeQuery();
                 if (rs != null) {
@@ -60,8 +60,52 @@ public class FeedbackServiceDAO {
         }
         return list;
     }
+    
+    public static ArrayList<FeedbackService> getNext5FeedbackService(int position) throws SQLException {
+        ArrayList<FeedbackService> list = new ArrayList<>();
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select tblFeedBackService.id as id, tblService.serviceName as serviceName, tblUser.fullName as customerName, tblFeedBackService.rate as rate, tblFeedBackService.comment as comment\n"
+                        + "from tblFeedBackService, tblService, tblUser\n"
+                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and tblFeedBackService.status = 1\n"
+                        + "order by id offset ? rows\n"
+                        + "fetch next 5 rows only";                        
+                pst = cn.prepareStatement(sql);
+                pst.setInt(1, position);
+                rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String cusname = rs.getString("customerName");
+                        String sername = rs.getString("serviceName");
+                        int rate = rs.getInt("rate");
+                        String cmt = rs.getString("comment");
+                        FeedbackService fbs = new FeedbackService(id, cusname, sername, rate, cmt);
+                        list.add(fbs);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                rs.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return list;
+    }
 
-    public static ArrayList<FeedbackService> getFeedbackService(String keyword, String searchby) throws SQLException {
+    public static ArrayList<FeedbackService> getNext5FeedbackService(String keyword, String searchby, int position) throws SQLException {
         ArrayList<FeedbackService> list = new ArrayList<>();
         Connection cn = null;
         PreparedStatement pst = null;
@@ -71,7 +115,57 @@ public class FeedbackServiceDAO {
             if (cn != null && searchby != null) {
                 String sql = "select tblFeedBackService.id as id, tblUser.fullName as customername, serviceName, rate, comment\n"
                         + "from tblFeedBackService, tblUser, tblService\n"
-                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and ";
+                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and tblFeedBackService.status = 1 and";
+                if (searchby.equalsIgnoreCase("bycustomername")) {
+                    sql = sql + " tblUser.fullName like ? COLLATE SQL_Latin1_General_CP1_CI_AI\n";
+                } else {
+                    sql = sql + " tblService.serviceName like ? COLLATE SQL_Latin1_General_CP1_CI_AI\n";
+                }
+                sql += "order by id offset ? rows\n"
+                        + "fetch next 5 rows only";                    
+                pst = cn.prepareStatement(sql);
+                pst.setString(1, "%" + keyword + "%");
+                pst.setInt(2, position);
+                rs = pst.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String customername = rs.getString("customername");
+                        String servicename = rs.getString("serviceName");
+                        int rate = rs.getInt("rate");
+                        String cmt = rs.getString("comment");
+                        FeedbackService fbs = new FeedbackService(id, customername, servicename, rate, cmt);
+                        list.add(fbs);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pst != null) {
+                rs.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+        return list;
+    }    
+
+    public static ArrayList<FeedbackService> getFeedbackService(String keyword, String searchby) throws SQLException {
+        ArrayList<FeedbackService> list = new ArrayList<>();
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null && searchby != null) {
+                String sql = "select top 5 tblFeedBackService.id as id, tblUser.fullName as customername, serviceName, rate, comment\n"
+                        + "from tblFeedBackService, tblUser, tblService\n"
+                        + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and tblFeedBackService.status = 1 and";
                 if (searchby.equalsIgnoreCase("bycustomername")) {
                     sql = sql + " tblUser.fullName like ? COLLATE SQL_Latin1_General_CP1_CI_AI";
                 } else {
