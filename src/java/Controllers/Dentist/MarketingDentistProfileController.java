@@ -41,6 +41,8 @@ public class MarketingDentistProfileController extends HttpServlet {
 
             request.setAttribute("dentistByID", den);
             request.getRequestDispatcher("MarketingProfileDentist.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

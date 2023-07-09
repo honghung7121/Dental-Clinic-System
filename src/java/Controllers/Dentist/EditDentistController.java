@@ -77,10 +77,9 @@ public class EditDentistController extends HttpServlet {
             if (check) {
                 request.getRequestDispatcher("MainController?action=dentist").forward(request, response);
             }
-            else request.getRequestDispatcher("MainController?action=dentist").forward(request, response);
-            
-            
-            
+            else request.getRequestDispatcher("MainController?action=dentist").forward(request, response);    
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
