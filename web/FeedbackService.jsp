@@ -49,31 +49,31 @@
                                 <div class="col-sm-8 col-9 text-right m-b-20">
                                     <div class="form-row">
                                         <input oninput="searchByName(this)" class="form-input" type="text" name="txt" placeholder="Tìm Kiếm">
-                                    <select class="form-select" name="searchby">
-                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                        <option value="byservicename">Theo Tên Dịch Vụ</option>
-                                    </select>
+                                        <select class="form-select" name="searchby">
+                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                            <option value="byservicename">Theo Tên Dịch Vụ</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table id="myTable" class="table table-border table-striped custom-table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th><a href="#">Feedback ID</a></th>
-                                                <th><a href="#">Tên Khách Hàng</a></th>
-                                                <th><a href="#">Tên Dịch Vụ</a></th>
-                                                <th><a href="#">Đánh Giá</a></th>
-                                                <th><a href="#">Nội dung</a></th>
-                                                <th class="text-right">Chỉnh sửa</th>
-                                            </tr>
-
-                                        </thead>
-                                        <tbody id="content">
-                                            <c:forEach var="feedback" items="${sessionScope.list}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table id="myTable" class="table table-border table-striped custom-table mb-0">
+                                            <thead>
                                                 <tr>
+                                                    <th><a href="#">Feedback ID</a></th>
+                                                    <th><a href="#">Tên Khách Hàng</a></th>
+                                                    <th><a href="#">Tên Dịch Vụ</a></th>
+                                                    <th><a href="#">Đánh Giá</a></th>
+                                                    <th><a href="#">Nội dung</a></th>
+                                                    <th class="text-right">Chỉnh sửa</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody id="content">
+                                            <c:forEach var="feedback" items="${sessionScope.list}">
+                                                <tr class="feedbackServiceList">
                                                     <td><c:out value="${feedback.getId()}"></c:out></td>
                                                     <td><c:out value="${feedback.getNameCustomer()}"></c:out></td>
                                                     <td><c:out value="${feedback.getNameService()}"></c:out></td>
@@ -108,6 +108,13 @@
                                     <span style="color: red;">
                                         <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
                                     </span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="see-all">
+                                                <button class="see-all-btn" onclick="loadMoreFeedbackService()">Xem Thêm</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -128,29 +135,29 @@
                                 <div class="col-sm-8 col-9 text-right m-b-20">
                                     <div class="form-row">
                                         <input oninput="searchByName(this)" class="form-input" type="text" name="txt" placeholder="Tìm Kiếm">
-                                    <select class="form-select" name="searchby">
-                                        <option value="bycustomername">Theo Tên Khách Hàng</option>
-                                        <option value="byservicename">Theo Tên Dịch Vụ</option>
-                                    </select>
+                                        <select class="form-select" name="searchby">
+                                            <option value="bycustomername">Theo Tên Khách Hàng</option>
+                                            <option value="byservicename">Theo Tên Dịch Vụ</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table id="myTable" class="table table-border table-striped custom-table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th><a href="#">Feedback ID</a></th>
-                                                <th><a href="#">Tên Khách Hàng</a></th>
-                                                <th><a href="#">Tên Dịch Vụ</a></th>
-                                                <th><a href="#">Đánh Giá</a></th>
-                                                <th><a href="#">Nội dung</a></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="content">
-                                            <c:forEach var="feedback" items="${sessionScope.list}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table id="myTable" class="table table-border table-striped custom-table mb-0">
+                                            <thead>
                                                 <tr>
+                                                    <th><a href="#">Feedback ID</a></th>
+                                                    <th><a href="#">Tên Khách Hàng</a></th>
+                                                    <th><a href="#">Tên Dịch Vụ</a></th>
+                                                    <th><a href="#">Đánh Giá</a></th>
+                                                    <th><a href="#">Nội dung</a></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="content">
+                                            <c:forEach var="feedback" items="${sessionScope.list}">
+                                                <tr class="feedbackServiceList">
                                                     <td><c:out value="${feedback.getId()}"></c:out></td>
                                                     <td><c:out value="${feedback.getNameCustomer()}"></c:out></td>
                                                     <td><c:out value="${feedback.getNameService()}"></c:out></td>
@@ -177,6 +184,13 @@
                                     <span style="color: red;">
                                         <%= (request.getAttribute("RESPONSE") == null) ? "" : (String) request.getAttribute("RESPONSE")%>
                                     </span>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="see-all">
+                                                <button class="see-all-btn" onclick="loadMoreFeedbackService()">Xem Thêm</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -198,34 +212,64 @@
         <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
-            // Lắng nghe sự kiện click của nút "Delete" cho từng mục
-            document.querySelectorAll('.delete-schedule').forEach(function (item) {
-                item.addEventListener('click', function (event) {
-                    event.preventDefault();
+                                                    function loadMoreFeedbackService() {
+                                                        var amount = document.getElementsByClassName("feedbackServiceList").length;
+                                                        var text = document.getElementsByName("txt")[0].value;
+                                                        var isSearch = document.getElementsByName("txt")[0].value !== ""; // Kiểm tra xem đã nhập từ khóa tìm kiếm hay chưa
+                                                        var searchBy = document.getElementsByName("searchby")[0].value;
+                                                        $.ajax({
+                                                            url: "/SWP391-SE1743/LoadMoreFeedbackServiceController",
+                                                            type: "get", //send it through get method
+                                                            data: {
+                                                                exits: amount,
+                                                                issearch: isSearch,
+                                                                txt: text,
+                                                                searchby: searchBy
+                                                            },
+                                                            success: function (data) {
+                                                                var row = document.getElementById("content");
+                                                                row.innerHTML += data;
+                                                            },
+                                                            error: function (xhr) {
+                                                                //Do Something to handle error
+                                                            }
+                                                        });
+                                                    }
+        </script>        
+        <script>
+// Lắng nghe sự kiện click của nút "Delete" cho từng mục
+            $(document).on('click', '.delete-schedule', function (event) {
+                event.preventDefault();
 
-                    // Lưu trữ thẻ <tr> chứa thông tin phản hồi
-                    var feedbackRow = this.closest('tr');
+                // Lưu trữ thẻ <tr> chứa thông tin phản hồi
+                var feedbackRow = $(this).closest('tr');
 
-                    // Lấy giá trị ID từ phần tử <td> trong thẻ <tr>
-                    var feedbackId = feedbackRow.querySelector('td:first-child').textContent;
+                // Lấy giá trị ID từ phần tử <td> trong thẻ <tr>
+                var feedbackId = feedbackRow.find('td:first-child').text();
 
-                    // Hiển thị bảng thông báo xác nhận xóa
-                    var confirmation = confirm("Bạn có chắc chắn muốn xóa?");
+                // Hiển thị bảng thông báo xác nhận xóa
+                var confirmation = confirm("Bạn có chắc chắn muốn xóa?");
 
-                    // Kiểm tra sự chấp nhận của người dùng
-                    if (confirmation) {
-                        // Tạo một đường dẫn (URL) mới với action "Delete Feedback Dentist" và ID của phản hồi
-                        var url = 'MainController?action=Delete%20Feedback%20Service&id=' + feedbackId;
-
-                        // Chuyển hướng đến đường dẫn mới
-                        window.location.href = url;
-                    } else {
-                        // Xử lý khi người dùng không đồng ý xóa
-                        console.log('Hủy xóa');
-                        // Có thể thực hiện các hành động khác tại đây (ví dụ: tắt form)
-                    }
-                });
-            });
+                // Kiểm tra sự chấp nhận của người dùng
+                if (confirmation) {
+                    // Gửi yêu cầu AJAX để xóa phần tử
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'MainController?action=Delete%20Feedback%20Service&id=' + feedbackId);
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            // Xóa phần tử khỏi giao diện
+                            feedbackRow.remove();
+                        } else {
+                            console.error('Đã xảy ra lỗi khi xóa phản hồi.');
+                        }
+                    };
+                    xhr.send();
+                } else {
+                    // Xử lý khi người dùng không đồng ý xóa
+                    console.log('Hủy xóa');
+                    // Có thể thực hiện các hành động khác tại đây (ví dụ: tắt form)
+                }
+            });            
         </script>
         <script>
             function searchByName(text) {
