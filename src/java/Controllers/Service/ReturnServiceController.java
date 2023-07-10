@@ -36,7 +36,7 @@ public class ReturnServiceController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             NumberFormat fmt = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-            List<Service> list = (List<Service>) request.getAttribute("LIST_EMPLOYEE");
+            List<Service> list = (List<Service>) request.getAttribute("LIST_SERVICE");
             PrintWriter out = response.getWriter();
             for (Service s : list) {
                 String status = "";

@@ -177,7 +177,7 @@
                         <h2>Thành Công</h2>
                         <a onclick="closePopUp(this)" class="close" href="#">&times;</a>
                         <div class="content">
-                            Đã Thêm Mới Dịch Vụ Thành Công. Chúc Sức Khỏe.
+                            Đã Thêm Mới Dịch Vụ Thành Công.
                         </div>
                     </div>
                 </div>

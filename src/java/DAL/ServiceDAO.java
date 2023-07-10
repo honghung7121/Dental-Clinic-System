@@ -222,7 +222,7 @@ public class ServiceDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // Đảm bảo đóng kết nối sau khi sử dụng
+            
             if (cn != null) {
                 try {
                     cn.close();

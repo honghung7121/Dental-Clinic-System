@@ -29,7 +29,7 @@ public class PasswordEncoder {
     }
     public static void main(String[] args) {
 
-        System.out.println(toSHA1("nga"));
+        System.out.println(toSHA1("binh"));
 
     }
 }
