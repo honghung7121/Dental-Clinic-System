@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Admin/Desktop/SWP391-SE1743/src/java/Controllers/Patient/AddPatient.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391-SE1743/web/send-feedback.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391-SE1743/src/java/Controllers/Patient/Patient.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391-SE1743/web/add-patient.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391-SE1743/src/java/Controllers/Feedback/AddFeedBackController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391-SE1743/src/java/Controllers/Patient/SearchPatient.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391-SE1743/web/patient.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391-SE1743/src/java/DAL/UserDAO.java</file>
+        </group>
     </open-files>
 </project-private>

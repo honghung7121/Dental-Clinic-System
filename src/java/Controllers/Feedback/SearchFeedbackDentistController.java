@@ -43,9 +43,8 @@ public class SearchFeedbackDentistController extends HttpServlet {
                 ArrayList<FeedbackDentist> list = FeedbackDentistDAO.getFeedbackDentist(txtSearch, searchby);
                 int roleid = (int) session.getAttribute("role");
                 if (list != null && !list.isEmpty()) {
-                    session.setAttribute("list", list);
                     for (FeedbackDentist feedbackDentist : list) {
-                        out.println("<tr>\n"
+                        out.println("<tr class='feedbackDentistList'>\n"
                                 + "    <td>" + feedbackDentist.getId() + "</td>\n"
                                 + "    <td>" + feedbackDentist.getNamecustomer() + "</td>\n"
                                 + "    <td>" + feedbackDentist.getNamedentist() + "</td>\n"

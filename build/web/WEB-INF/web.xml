@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+     <servlet>
+        <servlet-name>MainController</servlet-name>
+        <servlet-class>Controllers.MainController</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>Controllers.LoginController</servlet-class>
@@ -329,9 +333,17 @@
         <servlet-class>Controllers.Feedback.AddFeedBackController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MainController</servlet-name>
-        <servlet-class>Controllers.MainController</servlet-class>
+        <servlet-name>LoadMoreFeedbackDentistController</servlet-name>
+        <servlet-class>Controllers.Feedback.LoadMoreFeedbackDentistController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadMoreFeedbackServiceController</servlet-name>
+        <servlet-class>Controllers.Feedback.LoadMoreFeedbackServiceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MainController</servlet-name>
+        <url-pattern>/MainController</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -661,8 +673,12 @@
         <url-pattern>/AddFeedBackController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MainController</servlet-name>
-        <url-pattern>/MainController</url-pattern>
+        <servlet-name>LoadMoreFeedbackDentistController</servlet-name>
+        <url-pattern>/LoadMoreFeedbackDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadMoreFeedbackServiceController</servlet-name>
+        <url-pattern>/LoadMoreFeedbackServiceController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>
