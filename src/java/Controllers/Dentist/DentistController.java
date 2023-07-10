@@ -50,6 +50,8 @@ public class DentistController extends HttpServlet {
                 url = "admin.jsp";
                 request.getRequestDispatcher(url).forward(request, response);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

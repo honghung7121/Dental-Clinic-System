@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class SearchFeedbackServiceController extends HttpServlet {
+public class LoadMoreFeedbackServiceController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,11 +36,20 @@ public class SearchFeedbackServiceController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
+            session.setAttribute("activeLink", "feedbackLink");
+            session.setAttribute("option", "feedbackServiceLink");
             try {
+                int position = Integer.parseInt(request.getParameter("exits"));
+                boolean isSearch = Boolean.parseBoolean(request.getParameter("issearch"));
                 String txtSearch = request.getParameter("txt");
                 String searchby = request.getParameter("searchby");
-                HttpSession session = request.getSession();
-                ArrayList<FeedbackService> list = FeedbackServiceDAO.getFeedbackService(txtSearch, searchby);
+                ArrayList<FeedbackService> list = new ArrayList<>();
+                if (isSearch) {
+                    list = FeedbackServiceDAO.getNext5FeedbackService(txtSearch, searchby, position);
+                } else {
+                    list = FeedbackServiceDAO.getNext5FeedbackService(position);
+                }
                 int roleid = (int) session.getAttribute("role");
                 if (list != null && !list.isEmpty()) {
                     session.setAttribute("list", list);
@@ -80,14 +89,9 @@ public class SearchFeedbackServiceController extends HttpServlet {
                             out.println("</tr>");
                         }
                     }
-                } else {
-                    session.setAttribute("list", null);
-                    out.print("<span style='color: red; text-align: center'>\n"
-                            + "                                            Tìm không thấy"
-                            + "                                        </span>");
                 }
             } catch (Exception e) {
-                out.println("<script>alert('Lỗi xảy ra'); window.location.href = 'login.jsp';</script>");
+
             }
         }
     }
