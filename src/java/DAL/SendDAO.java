@@ -29,7 +29,7 @@ public class SendDAO {
             return getSoNgauNhien();
         }
 
-//		String s =  s1+s2+s3+s4+s5+s6;
+
         return s1;
     }
 

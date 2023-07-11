@@ -57,7 +57,7 @@ public class javaMailController extends HttpServlet {
                 url = "confirmEmail.jsp";
                 
             } else {
-                request.setAttribute("SIGNUP_FAIL", "Email Không Tồn Tại");
+                request.setAttribute("EMAIL_FAIL", "Email Không Tồn Tại");
                 url = "forgotPassword.jsp";
             }
         } catch (Exception e) {

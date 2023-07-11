@@ -5,10 +5,17 @@
  */
 package Models;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 /**
  *
  * @author Admin
  */
+@Getter
+@Setter
+@ToString
 public class TreatmentCourseDetail {
 
     private int id;
@@ -42,7 +49,6 @@ public class TreatmentCourseDetail {
     }
     
     
-
     public TreatmentCourseDetail(String nameTreatment, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
         this.nameTreatment = nameTreatment;
         this.treatmentdate = treatmentdate;
@@ -52,76 +58,4 @@ public class TreatmentCourseDetail {
         this.status = status;
         this.statusPaid = statusPaid;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNameTreatment() {
-        return nameTreatment;
-    }
-
-    public void setNameTreatment(String nameTreatment) {
-        this.nameTreatment = nameTreatment;
-    }
-
-    public String getTreatmentdate() {
-        return treatmentdate;
-    }
-
-    public void setTreatmentdate(String treatmentdate) {
-        this.treatmentdate = treatmentdate;
-    }
-
-    public String getTreatmenttime() {
-        return treatmenttime;
-    }
-
-    public void setTreatmenttime(String treatmenttime) {
-        this.treatmenttime = treatmenttime;
-    }
-
-    public String getNameService() {
-        return nameService;
-    }
-
-    public void setNameService(String nameService) {
-        this.nameService = nameService;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public boolean isStatusPaid() {
-        return statusPaid;
-    }
-
-    public void setStatusPaid(boolean statusPaid) {
-        this.statusPaid = statusPaid;
-    }
-
-    @Override
-    public String toString() {
-        return "TreatmentCourseDetail{" + "id=" + id + ", nameTreatment=" + nameTreatment + ", treatmentdate=" + treatmentdate + ", treatmenttime=" + treatmenttime + ", nameService=" + nameService + ", description=" + description + ", status=" + status + ", statusPaid=" + statusPaid + '}';
-    }
-
-    
-
 }

@@ -176,11 +176,11 @@
             document.querySelectorAll('.delete-service').forEach(function (item) {
                 item.addEventListener('click', function (event) {
                     event.preventDefault();
-                    
+
                     // Lưu trữ thẻ <tr> chứa thông tin dịch vụ
                     var serviceRow = this.closest('tr');
-                    
-                     // Lấy giá trị ID từ phần tử <td> trong thẻ <tr>
+
+                    // Lấy giá trị ID từ phần tử <td> trong thẻ <tr>
                     var serviceID = serviceRow.querySelector('td:first-child').textContent;
                     var comfirmation = confirm("Bạn có chắc muốn xóa chứ?");
                     if (comfirmation) {
