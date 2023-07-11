@@ -5,77 +5,26 @@
 package Models;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @author Admin
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Advisory {
     private int id;
     private Date advisoryDate;
     private String fullName;
     private int phoneNumber;
     private String Description;
-    private boolean status;
-
-    public Advisory() {
-    }
-
-    public Advisory(int id, Date advisoryDate, String fullName, int phoneNumber, String Description, boolean status) {
-        this.id = id;
-        this.advisoryDate = advisoryDate;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.Description = Description;
-        this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getAdvisoryDate() {
-        return advisoryDate;
-    }
-
-    public void setAdvisoryDate(Date advisoryDate) {
-        this.advisoryDate = advisoryDate;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-    
+    private boolean status; 
 }

@@ -8,13 +8,21 @@ package Models;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @author ADMIN
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Appointment{
     private int id;
     private String userName;
@@ -24,9 +32,6 @@ public class Appointment{
     private String description;
     private boolean status;
     private String Roll;
-
-    public Appointment() {
-    }
 
     public Appointment(int id, String userName, String dentistName, Date date, String description, boolean status) {
         this.id = id;
@@ -47,73 +52,4 @@ public class Appointment{
         this.status = status;
         this.Roll = Roll;
     }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
-    public String getRoll() {
-        return Roll;
-    }
-
-    public void setRoll(String Roll) {
-        this.Roll = Roll;
-    }
-
-    
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getDentistName() {
-        return dentistName;
-    }
-
-    public void setDentistName(String dentistName) {
-        this.dentistName = dentistName;
-    }
-
-
-    public String getDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(date);
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
 }

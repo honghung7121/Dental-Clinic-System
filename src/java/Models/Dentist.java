@@ -5,12 +5,21 @@
  */
 package Models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 /**
  *
  * @author ADMIN
  */
-
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Dentist extends User{
     
     private String degree;
@@ -25,13 +34,6 @@ public class Dentist extends User{
         this.img = img;
         this.roleDentist = roleDentist;
     }
-
-    
-    
-
-    public Dentist() {
-    }
-
     public Dentist(String degree, String experience, String img) {
         this.degree = degree;
         this.experience = experience;
@@ -43,39 +45,5 @@ public class Dentist extends User{
         this.degree = degree;
         this.experience = experience;
         this.img = img;
-    }
-
-    public String getDegree() {
-        return degree;
-    }
-
-    public void setDegree(String degree) {
-        this.degree = degree;
-    }
-
-    public String getExperience() {
-        return experience;
-    }
-
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public String getRoleDentist() {
-        return roleDentist;
-    }
-
-    public void setRoleDentist(String roleDentist) {
-        this.roleDentist = roleDentist;
-    }
-
-    
+    }  
 }
