@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author Admin
  */
 public class FeedbackDentist implements Serializable{
+    
     private int id;
     private String namedentist;
     private String namecustomer;
@@ -68,6 +69,4 @@ public class FeedbackDentist implements Serializable{
     public void setComment(String comment) {
         this.comment = comment;
     }
-    
-    
 }

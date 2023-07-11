@@ -40,6 +40,8 @@ public class DentistProfileController extends HttpServlet {
             den = dentistDAO.getDentistByID(dentistID);
             request.setAttribute("dentistByID", den);
             request.getRequestDispatcher("profileDentist.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

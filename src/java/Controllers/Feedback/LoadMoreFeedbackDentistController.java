@@ -5,8 +5,8 @@
  */
 package Controllers.Feedback;
 
-import DAL.FeedbackServiceDAO;
-import Models.FeedbackService;
+import DAL.FeedbackDentistDAO;
+import Models.FeedbackDentist;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class SearchFeedbackServiceController extends HttpServlet {
+public class LoadMoreFeedbackDentistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,22 +36,31 @@ public class SearchFeedbackServiceController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
+            session.setAttribute("activeLink", "feedbackLink");
+            session.setAttribute("option", "feedbackDentistLink");
             try {
+                int position = Integer.parseInt(request.getParameter("exits"));
+                boolean isSearch = Boolean.parseBoolean(request.getParameter("issearch"));
                 String txtSearch = request.getParameter("txt");
                 String searchby = request.getParameter("searchby");
-                HttpSession session = request.getSession();
-                ArrayList<FeedbackService> list = FeedbackServiceDAO.getFeedbackService(txtSearch, searchby);
+                ArrayList<FeedbackDentist> list = new ArrayList<>();
+                if (isSearch) {
+                    list = FeedbackDentistDAO.getNext5FeedbackDentist(txtSearch, searchby, position);
+                } else {
+                    list = FeedbackDentistDAO.getNext5FeedbackDentist(position);
+                }
                 int roleid = (int) session.getAttribute("role");
                 if (list != null && !list.isEmpty()) {
-                    session.setAttribute("list", list);
-                    for (FeedbackService feedbackService : list) {
-                        out.println("<tr class='feedbackServiceList'>\n"
-                                + "    <td>" + feedbackService.getId() + "</td>\n"
-                                + "    <td>" + feedbackService.getNameCustomer() + "</td>\n"
-                                + "    <td>" + feedbackService.getNameService() + "</td>\n"
+                    for (FeedbackDentist feedbackDentist : list) {
+                        out.println("<tr class='feedbackDentistList'>\n"
+                                + "    <td>" + feedbackDentist.getId() + "</td>\n"
+                                + "    <td>" + feedbackDentist.getNamecustomer() + "</td>\n"
+                                + "    <td>" + feedbackDentist.getNamedentist() + "</td>\n"
                                 + "    <td class=\"rating\">\n");
 
-                        int rating = feedbackService.getRate(); // Lấy giá trị rating
+                        int rating = feedbackDentist.getRate(); // Lấy giá trị rating
+
                         for (int star = 1; star <= 5; star++) {
                             out.println("        <span class=\"star\">");
 
@@ -65,7 +74,7 @@ public class SearchFeedbackServiceController extends HttpServlet {
                         }
 
                         out.println("    </td>\n"
-                                + "    <td>" + feedbackService.getComment() + "</td>\n");
+                                + "    <td>" + feedbackDentist.getComment() + "</td>\n");
                         if (roleid == 1) {
                             out.println("    <td class=\"text-right\">\n"
                                     + "        <div class=\"dropdown dropdown-action\">\n"
@@ -80,14 +89,9 @@ public class SearchFeedbackServiceController extends HttpServlet {
                             out.println("</tr>");
                         }
                     }
-                } else {
-                    session.setAttribute("list", null);
-                    out.print("<span style='color: red; text-align: center'>\n"
-                            + "                                            Tìm không thấy"
-                            + "                                        </span>");
                 }
             } catch (Exception e) {
-                out.println("<script>alert('Lỗi xảy ra'); window.location.href = 'login.jsp';</script>");
+                e.printStackTrace();
             }
         }
     }

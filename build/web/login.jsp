@@ -190,21 +190,21 @@
                                 <button style="background-color: #06A3DA; border-radius: 0;" type="submit" class="button" name="action" value="Login">Đăng Nhập</button>
                             </div>
                             <div class="group">
-                                <h3 style="color: white; text-align: center">Hoặc đăng nhập bằng</h3>
+                                <h3 style="color: white; text-align: center">Hoặc</h3>
                                 <br>
                                 <div>
                                     <a class="input" style="border-radius: 0; margin-bottom: 5px;"  href="https://www.facebook.com/dialog/oauth?client_id=254936600471264&redirect_uri=http://localhost:8084/SWP391-SE1743/login-facebook">
                                         <svg width="50" height="50" viewBox="0 0 50 50" style="margin-right: 5px;">
                                         <image xlink:href="img/iconfb.svg" width="50" height="50" />
                                         </svg>
-                                        Facebook
+                                        Đăng nhập bằng Facebook
                                     </a>
                                     <a class="input" style="border-radius: 0" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/SWP391-SE1743/login-google&response_type=code
                                        &client_id=48607043062-12cu71hg20p1gljop1vm7s6fjnjmcv3b.apps.googleusercontent.com&approval_prompt=force">
                                         <svg width="50" height="50" viewBox="0 0 50 50" style="margin-right: 5px;">
                                         <image xlink:href="img/icongg.svg" width="50" height="50" />
                                         </svg>
-                                        Google
+                                        Đăng nhập bằng Google
                                     </a> 
                                 </div>
                             </div>

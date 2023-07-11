@@ -50,6 +50,8 @@ public class MarketingDentistController extends HttpServlet {
                 url = "headerMarketing.jsp";
                 request.getRequestDispatcher(url).forward(request, response);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
