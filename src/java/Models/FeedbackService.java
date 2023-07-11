@@ -27,5 +27,4 @@ public class FeedbackService implements Serializable{
     private String nameService;
     private int rate;
     private String comment;
-
 }

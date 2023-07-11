@@ -58,5 +58,4 @@ public class TreatmentCourseDetail {
         this.status = status;
         this.statusPaid = statusPaid;
     }
-
 }
