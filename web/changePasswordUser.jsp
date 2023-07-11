@@ -161,32 +161,35 @@
                                                 <form action="MainController" method="post">
 
                                                     <div class="row">
+                                                            <div class="form-group" style="display: none">
+                                                                <label>Email Hiện Tại <span class="text-danger">*</span></label>
+                                                                <input class="form-control" value="${u.getEmail()}" name="EmailNow" rows="3" cols="30" readonly></input>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label>Nhập Mật Khẩu Hiện Tại <span class="text-danger">*</span></label>
+                                                                    <input class="form-control" type="password" name="PassNow" required="">
+                                                                </div>
+                                                                <h6 style="color: red">${requestScope.report1}</h6>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Nhập Mật Khẩu Mới <span class="text-danger">*</span></label>
+                                                                    <input class="form-control" type="password" name="PassNew" required="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Nhập Lại Mật Khẩu Mới <span class="text-danger">*</span></label>
+                                                                    <input class="form-control" type="password" name="PassNewAgain" required="">
+                                                                </div>
+                                                                <h6 style="color: red">${requestScope.report2}</h6>
+                                                            </div>
 
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label>Nhập Mật Khẩu Hiện Tại <span class="text-danger">*</span></label>
-                                                                <input class="form-control" type="password" name="PassNow" required="">
-                                                            </div>
-                                                            <h6 style="color: red">${requestScope.report1}</h6>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <label>Nhập Mật Khẩu Mới <span class="text-danger">*</span></label>
-                                                                <input class="form-control" type="password" name="PassNew" required="">
+                                                            <div class="m-t-20 text-center">
+                                                                <button style="border-radius: 50px" class="btn btn-primary submit-btn" name="action" value="saveChangePass">Lưu</button>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <label>Nhập Lại Mật Khẩu Mới <span class="text-danger">*</span></label>
-                                                                <input class="form-control" type="password" name="PassNewAgain" required="">
-                                                            </div>
-                                                            <h6 style="color: red">${requestScope.report2}</h6>
-                                                        </div>
-
-                                                        <div class="m-t-20 text-center">
-                                                            <button style="border-radius: 50px" class="btn btn-primary submit-btn" name="action" value="saveChangePass">Lưu</button>
-                                                        </div>
-                                                    </div>
                                                 </form>
 
                                             </div>

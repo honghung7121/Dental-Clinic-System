@@ -24,14 +24,14 @@
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <style>      
-        .btnLink{
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #009ce7;
-            font-weight: bold;
-        }
-    </style>
+            .btnLink{
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: #009ce7;
+                font-weight: bold;
+            }
+        </style>
     </head>
 
     <body>
@@ -61,19 +61,19 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                
+
                                 <div class="table-responsive">
-                                    
+
                                     <table id="myTable" class="table table-border table-striped custom-table mb-0">
                                         <thead>
                                             <tr>
                                                 <th><a href="#">ID </th>
                                                 <th ><a href="#">Tên Dịch Vụ</th>
                                                 <!--                                                <th>Mô Tả</th>-->
-                                            <th>
-                                                <form action="SortServiceController" method="POST">
-                                                    <button class="btnLink" style="">Giá Tiền</button>
-                                                    <input type="hidden" name="page" value="${requestScope.current}">
+                                                <th>
+                                                    <form action="SortServiceController" method="POST">
+                                                        <button class="btnLink" style="">Giá Tiền</button>
+                                                        <input type="hidden" name="page" value="${requestScope.current}">
                                                     <input type="hidden" name="count" value="${requestScope.count}">
                                                     <input type="hidden" name="flag" value="ad">
                                                 </form>
@@ -103,7 +103,7 @@
                                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item" href="MainController?action=EditService&id=${s.getId()}"><i class="fa fa-pencil m-r-5"></i> Chỉnh sửa</a>
-                                                            <a class="dropdown-item" href="deleteServiceController?id=${s.getId()}"><i class="fa fa-pencil m-r-5"></i> Xóa</a>
+                                                            <a class="dropdown-item delete-service" ><i class="fa fa-trash-o m-r-5"></i>Xóa</a>
 <!--                                                                    <a class="dropdown-item" data-toggle="modal" data-target="#delete_schedule" href="?id=${s.getId()}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>-->
                                                         </div>
                                                     </div>
@@ -173,6 +173,23 @@
         <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
+            document.querySelectorAll('.delete-service').forEach(function (item) {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    // Lưu trữ thẻ <tr> chứa thông tin dịch vụ
+                    var serviceRow = this.closest('tr');
+
+                    // Lấy giá trị ID từ phần tử <td> trong thẻ <tr>
+                    var serviceID = serviceRow.querySelector('td:first-child').textContent;
+                    var comfirmation = confirm("Bạn có chắc muốn xóa chứ?");
+                    if (comfirmation) {
+                        url = "MainController?action=DeleteService&id=" + serviceID;
+                        window.location.href = url;
+                    }
+                });
+            });
+
             function searchByName(text) {
                 $.ajax({
                     url: '/SWP391-SE1743/MainController',

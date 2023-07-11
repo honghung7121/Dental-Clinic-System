@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.jstl.fmt.*;
 import java.text.NumberFormat;
 import java.util.Locale;
+
 /**
  *
  * @author Admin
@@ -36,18 +37,15 @@ public class ReturnServiceUserController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             NumberFormat fmt = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-            List<Service> list = (List<Service>) request.getAttribute("LIST_EMPLOYEE");
+            List<Service> list = (List<Service>) request.getAttribute("LIST_SERVICE");
             PrintWriter out = response.getWriter();
             for (Service s : list) {
-                
+
                 out.println("<fmt:setLocale value = \"vi_VN\"/>"
                         + "<tr>\n"
                         + "                                                        <td>" + s.getName() + "</td>\n"
                         + "                                                        <td>" + s.getMota() + "</td>\n"
                         + "                                                        <td>" + fmt.format(s.getPrice()) + "</td>\n"
-                        + "                                                        <td class=\"text-right\">\n"
-                        + "                                                        <a href=\"appointment.html\" class=\"btn btn-primary py-0 px-4 ms-3\">Đặt lịch hẹn</a>\n"
-                        + "                                                    </td>"
                         + "                                                    </tr>");
             }
         } catch (Exception e) {

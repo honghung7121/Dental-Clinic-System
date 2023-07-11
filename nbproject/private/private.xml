@@ -3,8 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Models/User.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/DAL/AdvisoryDAO.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Models/FeedbackService.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/nbproject/project.xml</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/AddTreatmentCourseController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/nbproject/private/private.properties</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Models/Advisory.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Treatment/TreatmentCourseController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Models/Service.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Models/FeedbackDentist.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/DAL/UserDAO.java</file>
             <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/web/login.jsp</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/nbproject/ant-deploy.xml</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/nbproject/project.properties</file>
             <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/nbproject/private/private.xml</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/nbproject/genfiles.properties</file>
         </group>
     </open-files>
 </project-private>

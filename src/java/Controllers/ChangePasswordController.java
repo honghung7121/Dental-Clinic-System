@@ -63,7 +63,7 @@ public class ChangePasswordController extends HttpServlet {
             } else if (user.getRoleID() == 3) {
                 url = "MarketingDentistController";
             } else if (user.getRoleID() == 5) {
-
+ 
                 if (!passnew.equals(passnewagain)) {
                     request.setAttribute("report2", "Mật khẩu không giống!!!");
                     request.getRequestDispatcher("MainController?action=changePassUser").forward(request, response);

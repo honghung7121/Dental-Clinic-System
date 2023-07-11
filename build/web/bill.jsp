@@ -11,8 +11,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+        <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/search-bar.css">
+
     </head>
     <body>
 
@@ -56,8 +66,8 @@
                                     <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">
                                 </div>
                             </div>
-<!--                                                        <a href="MainController?action=Search" class="btn btn-success float-lg-right" > Tìm Kiếm </a>                  -->
-<!--                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">-->
+                            <!--                                                        <a href="MainController?action=Search" class="btn btn-success float-lg-right" > Tìm Kiếm </a>                  -->
+                            <!--                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">-->
                         </div>
                     </form>
 
@@ -108,12 +118,14 @@
                 </div>
             </div>
         </div>
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
+     <script src="assets/js/title_sort.js"></script>                        
+
+        <script src="assets/js/jquery.dataTables.min.js"></script>
+        <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+
         <script src="assets/js/select2.min.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
         <script src="assets/js/moment.min.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="assets/js/app.js"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     </body>
 </html>

@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label>Nhập Email Của Bạn</label>
                                 <input type="text" class="form-control" name="gmail" autofocus>
-                                <small style="color: red; margin-top: .3rem; font-size: 1rem">${requestScope.SIGNUP_FAIL}</small>
+                                <small style="color: red; margin-top: .3rem; font-size: 1rem">${requestScope.EMAIL_FAIL}</small>
                             </div>
                             <div class="form-group text-center">
                                 <button class="btn btn-primary account-btn" type="submit" name="action" value="sendMail">Xác nhận Email</button>

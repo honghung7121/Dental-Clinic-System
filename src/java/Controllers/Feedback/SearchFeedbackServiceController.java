@@ -45,7 +45,7 @@ public class SearchFeedbackServiceController extends HttpServlet {
                 if (list != null && !list.isEmpty()) {
                     session.setAttribute("list", list);
                     for (FeedbackService feedbackService : list) {
-                        out.println("<tr>\n"
+                        out.println("<tr class='feedbackServiceList'>\n"
                                 + "    <td>" + feedbackService.getId() + "</td>\n"
                                 + "    <td>" + feedbackService.getNameCustomer() + "</td>\n"
                                 + "    <td>" + feedbackService.getNameService() + "</td>\n"
