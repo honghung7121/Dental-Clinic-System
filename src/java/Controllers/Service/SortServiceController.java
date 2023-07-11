@@ -78,7 +78,6 @@ public class SortServiceController extends HttpServlet {
             e.printStackTrace();
         } finally {
             session.setAttribute("activeLink", "serviceLink");
-
             if (request.getParameter("flag").equals("ad")) {
                 request.getRequestDispatcher("service-2.jsp").forward(request, response);
             }else if (request.getParameter("flag").equals("us")) {

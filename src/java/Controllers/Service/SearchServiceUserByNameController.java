@@ -38,7 +38,7 @@ public class SearchServiceUserByNameController extends HttpServlet {
             String name = request.getParameter("name");
             ServiceDAO dao = new ServiceDAO();
             List<Service> list = dao.searchServiceByName(name);
-            request.setAttribute("LIST_EMPLOYEE", list);
+            request.setAttribute("LIST_SERVICE", list);
             url = "ReturnServiceUserController";
         } catch (Exception e) {
             e.printStackTrace();

@@ -347,36 +347,5 @@
                 }
 
             </script>
-            <script src="assets/js/show-appointment-times.js"></script>
-            <script>
-                var textarea = document.getElementById('myTextarea');
-                var charCount = document.getElementById('charCount');
-
-                textarea.addEventListener('input', function () {
-                    var currentLength = textarea.value.length;
-                    var maxLength = parseInt(textarea.getAttribute('maxlength'));
-                    charCount.textContent = currentLength + '/' + maxLength;
-                });
-
-                var openModalLinks = document.getElementsByClassName('open-modal-link');
-
-                for (var i = 0; i < openModalLinks.length; i++) {
-                    openModalLinks[i].addEventListener('click', function (event) {
-                        event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-
-                        // Kiểm tra trạng thái đăng nhập ở đây
-                        var isAuthenticated = <%= session.getAttribute("User") != null%>;
-
-                        if (!isAuthenticated) {
-                            alert("Bạn chưa đăng nhập!");
-                            window.location.href = "/SWP391-SE1743/login.jsp"; // Chuyển hướng đến trang đăng nhập
-                        } else {
-                            // Mã mở modal ở đây (sử dụng data-bs-toggle và data-bs-target)
-                            var modal = new bootstrap.Modal(document.getElementById('createModal'));
-                            modal.show();
-                        }
-                    });
-                }
-        </script>  
     </body>
 </html>

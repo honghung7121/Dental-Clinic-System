@@ -134,9 +134,9 @@
                                 <label>Nhập Mã Xác Nhận Của Bạn <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" name="maxacnhan" id="name" required="" >
                             </div>
-                            <div class="form-group" id="formCode">
-                                <label>Nhập Mã Xác Nhận Của Bạn</label>
-                                <input type="text" class="form-control" id="code"  value="${sessionScope.code}" readonly="" required="" >
+                            <div class="form-group" id="formCode" style="display: none;">
+                                <label>Mã Xác Nhận Của Bạn</label>
+                                <input class="form-control" id="code"  value="${sessionScope.code}" readonly="" required="" >
                             </div>
                             <div class="form-group" id="formPassword">
                                 <label>Nhập Mật Khẩu Mới</label>
@@ -177,7 +177,7 @@
                         if (c1 !== c2) {
                             let fullCodeForm = document.getElementById('formCode');
                             fullCodeForm.innerHTML += '<label class="errorMessage" style="color: red;">Mã xác nhận không đúng </label>';
-                        } else if (p1 !== p2) {
+                        } else if (p1 !== p2 || p1 === "") {
                             let fullPassForm = document.getElementById('formPassword');
                             fullPassForm.innerHTML += '<label class="errorMessage" style="color: red;">Mật khẩu không trùng nhau </label>';
                         } else {
