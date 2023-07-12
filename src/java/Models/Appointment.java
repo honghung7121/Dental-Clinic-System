@@ -52,4 +52,14 @@ public class Appointment{
         this.status = status;
         this.Roll = Roll;
     }
+    
+    public Appointment(int id, String userName, String dentistName, Date date, Time time, String description, boolean status) {
+        this.id = id;
+        this.userName = userName;
+        this.dentistName = dentistName;
+        this.date = date;
+        this.time = time;
+        this.description = description;
+        this.status = status;
+    }    
 }

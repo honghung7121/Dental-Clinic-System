@@ -36,23 +36,23 @@ public class AppointmentDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select id, appointmentDate, userID, dentistID, description, status from tblAppointment";
+                String sql = "select id, appDate, appTime, userID, dentistID, description, status from tblAppointment where status = 'false'";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null) {
                     while (rs.next()) {
                         int idApp = rs.getInt("id");
+                        Date appDate = rs.getDate("appDate");
+                        Time appTime = rs.getTime("appTime");
                         int userIDApp = rs.getInt("userID");
                         int dentistIDApp = rs.getInt("dentistID");
+                        String desciption = rs.getString("description");
                         u = userDAO.getEmployeeById(userIDApp);
                         d = dentistDAO.getDentistByID(String.valueOf(dentistIDApp));
                         String userName = u.getFullName();
                         String dentistName = d.getFullName();
-
-                        Date dateApp = rs.getDate("appointmentDate");
-                        String descriptionApp = rs.getString("description");
                         boolean statusApp = rs.getBoolean("status");
-                        app = new Appointment(idApp, userName, dentistName, dateApp, descriptionApp, statusApp);
+                        app = new Appointment(idApp, userName, dentistName, appDate, appTime, desciption, statusApp);
                         list.add(app);
                     }
                 }

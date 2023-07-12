@@ -29,6 +29,11 @@
     <script src="assets/js/Chart.bundle.js"></script>
     <script src="assets/js/chart.js"></script>
     <script src="assets/js/app.js"></script>
+    <style>
+        .post-link {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <c:set var="u" value="${sessionScope.User}"></c:set>
@@ -115,13 +120,13 @@
                 <ul>        
                     <li class="menu-title">Main</li>
                     <li class="${dashboardLink}">
-                        <a href="DashBoardController"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        <a href="http://localhost:8084/SWP391-SE1743/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                     </li>
                     <li class="${dentistLink}">
-                        <a href="MainController?action=dentist"><i class="fa fa-user-md"></i> <span>Bác Sĩ</span></a>
+                        <a href="#" class="post-link" data-action="dentist"><i class="fa fa-user-md"></i> <span>Bác Sĩ</span></a>
                     </li>
                     <li class="${patientLink}">
-                        <a href="MainController?action=patient"><i class="fa fa-wheelchair"></i> <span>Bệnh Nhân</span></a>
+                        <a href="#" class="post-link" data-action="patient"><i class="fa fa-wheelchair"></i> <span>Bệnh Nhân</span></a>
                     </li>
                     <!--                    <li>
                                             <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Cuộc Hẹn</span></a>
@@ -130,7 +135,7 @@
                                             <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Lịch Bác Sĩ</span></a>
                                         </li>-->
                     <li class="${serviceLink}">
-                        <a href="MainController?action=Service"><i class="fa fa-cube"></i> <span>Dịch Vụ</span></a>
+                        <a href="#" class="post-link" data-action="Service"><i class="fa fa-cube"></i> <span>Dịch Vụ</span></a>
                     </li>
 
                     <li class="submenu ${employeeLink}">
@@ -150,15 +155,15 @@
                     <li class="submenu">
                         <a href="#"><i class="fa fa-money"></i> <span> Tài Khoản </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
-                            <li><a href="MainController?action=loadbill">Hoá Đơn</a></li>
-<!--                            <li><a href="payments.html">Thanh Toán</a></li>-->
+                            <li><a href="#" class="post-link" data-action="loadbill">Hoá Đơn</a></li>
+                            <!--                            <li><a href="payments.html">Thanh Toán</a></li>-->
                         </ul>
                     </li>
                     <li class="submenu ${feedbackLink}">
                         <a href="#"><i class="fa fa-comment"></i> <span> Phản hồi </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
-                            <li><a href="MainController?action=View Feedback Dentist" onclick="event.stopPropagation();" style="color: ${feedbackDentistLink}">Nha sĩ</a></li>
-                            <li><a href="MainController?action=View Feedback Service" style="color: ${feedbackServiceLink}">Dịch vụ</a></li>
+                            <li><a href="#" class="post-link" data-action="View Feedback Dentist" style="color: ${feedbackDentistLink}">Nha sĩ</a></li>
+                            <li><a href="#" class="post-link" data-action="View Feedback Service" style="color: ${feedbackServiceLink}">Dịch vụ</a></li>
                         </ul>
                     </li> 
                     <li>
@@ -168,6 +173,6 @@
             </div>
         </div>
     </div>
-
+    <script src="assets/js/hide-link.js"></script>                    
 </body>
 </html>
