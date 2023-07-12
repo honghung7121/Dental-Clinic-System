@@ -308,10 +308,12 @@
                                                                                           height: 40px;" class="custom-badge status-orange">Chưa Thanh Toán</span></td>
                                                                                 </c:if>
                                                                             <td>
+                                                                            <c:if test="${d.isStatusFeedBack() == false}">
                                                                                 <form action="GetTreatmentCourseDataController" method="POST">
                                                                                     <button type="submit">Đánh Giá</button>
                                                                                     <input type="hidden" name="treatmentCourseDetailID" value="${d.getId()}">
                                                                                 </form>
+                                                                            </c:if>
                                                                             </td>
                                                                         </tr>
                                                                     </c:forEach>

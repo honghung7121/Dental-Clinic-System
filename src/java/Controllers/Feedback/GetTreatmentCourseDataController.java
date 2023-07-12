@@ -10,7 +10,6 @@ import DAL.TreatmentCourseDAO;
 import Models.Dentist;
 import Models.Service;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +43,7 @@ public class GetTreatmentCourseDataController extends HttpServlet {
             Service service = ServiceDAO.getServiceById(serviceid);
             request.setAttribute("Dentist", dentist);
             request.setAttribute("Service", service);
+            request.setAttribute("treatmentCourseDetailID", treatmentCourseDetailID);
         }catch(Exception e){
             e.printStackTrace();
         }
