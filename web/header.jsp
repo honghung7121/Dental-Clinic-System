@@ -29,6 +29,11 @@
     <script src="assets/js/Chart.bundle.js"></script>
     <script src="assets/js/chart.js"></script>
     <script src="assets/js/app.js"></script>
+    <style>
+        .post-link {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <c:set var="u" value="${sessionScope.User}"></c:set>
@@ -115,7 +120,7 @@
                 <ul>        
                     <li class="menu-title">Main</li>
                     <li class="${dashboardLink}">
-                        <a href="DashBoardController"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        <a href="/SWP391-SE1743/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                     </li>
                     <li class="${dentistLink}">
                         <a href="#" onclick="submitForm('dentist')"><i class="fa fa-user-md"></i> <span>Bác Sĩ</span></a>
@@ -145,7 +150,7 @@
                     <li class="submenu ${feedbackLink}">
                         <a href="#"><i class="fa fa-comment"></i> <span> Phản hồi </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
-                            <li><a href="MainController?action=View Feedback Dentist" onclick="event.stopPropagation();" style="color: ${feedbackDentistLink}">Nha sĩ</a></li>
+                            <li><a href="#" onclick="submitForm('feedbackDentist')" style="color: ${feedbackDentistLink}">Nha sĩ</a></li>
                             <li><a href="#" onclick="submitForm('feedbackService')" style="color: ${feedbackServiceLink}">Dịch vụ</a></li>
                         </ul>
                     </li>                       
@@ -209,6 +214,14 @@
                 
                 document.body.appendChild(form);
             }
+            else if(message === "feedbackDentist"){
+                form = document.createElement("form");
+                form.method = "POST";
+                form.action = "ViewFeedbackDentistController";
+                form.style.display = "none";
+                
+                document.body.appendChild(form);
+            }            
             else if(message === "feedbackService"){
                 form = document.createElement("form");
                 form.method = "POST";
