@@ -152,6 +152,7 @@
                                 <button class="btn btn-primary submit-btn">Gửi</button>
                                 <input type="hidden" name="dentistID" value="${requestScope.Dentist.getId()}">
                                 <input type="hidden" name="serviceID" value="${requestScope.Service.getId()}">
+                                <input type="hidden" name="treatmentCourseDetailID" value="${requestScope.treatmentCourseDetailID}">
                             </div>
                         </form>
                     </div>
