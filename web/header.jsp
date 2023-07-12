@@ -118,56 +118,108 @@
                         <a href="DashBoardController"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                     </li>
                     <li class="${dentistLink}">
-                        <a href="MainController?action=dentist"><i class="fa fa-user-md"></i> <span>Bác Sĩ</span></a>
+                        <a href="#" onclick="submitForm('dentist')"><i class="fa fa-user-md"></i> <span>Bác Sĩ</span></a>
                     </li>
                     <li class="${patientLink}">
-                        <a href="MainController?action=patient"><i class="fa fa-wheelchair"></i> <span>Bệnh Nhân</span></a>
+                        <a href="#" onclick="submitForm('patient')"><i class="fa fa-wheelchair"></i> <span>Bệnh Nhân</span></a>
                     </li>
-                    <!--                    <li>
-                                            <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Cuộc Hẹn</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Lịch Bác Sĩ</span></a>
-                                        </li>-->
                     <li class="${serviceLink}">
-                        <a href="MainController?action=Service"><i class="fa fa-cube"></i> <span>Dịch Vụ</span></a>
+                        <a href="#" onclick="submitForm('service')"><i class="fa fa-cube"></i> <span>Dịch Vụ</span></a>
                     </li>
 
                     <li class="submenu ${employeeLink}">
                         <a href="#"><i class="fa fa-user"></i> <span> Nhân Viên </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
                             <li>
-                                <!--                                                                <form action="MainController" method="POST">
-                                                                                                    <button type="submit">Danh Sách Nhân Viên</button>
-                                                                                                    <input type="hidden" name="action" value="GetEmployees">
-                                                                                                    <input type="hidden" name="index" value="1">
-                                                                                                    <input type="hidden" name="click" value="1">
-                                                                                                </form>-->
-                                <a href="MainController?action=GetEmployees&index=1&click=1" style="color: ${employeeLink1}">Danh Sách Nhân Viên</a>
+                                <a href="#" id="employeeLink" onclick="submitForm('employees')" style="color: ${employeeLink1}">Danh Sách Nhân Viên</a>
                             </li>
                         </ul>
                     </li>
                     <li class="submenu">
                         <a href="#"><i class="fa fa-money"></i> <span> Tài Khoản </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
-                            <li><a href="MainController?action=loadbill">Hoá Đơn</a></li>
-<!--                            <li><a href="payments.html">Thanh Toán</a></li>-->
+                            <li><a href="#" onclick="submitForm('bill')">Hoá Đơn</a></li>
+                            <!--                            <li><a href="payments.html">Thanh Toán</a></li>-->
                         </ul>
                     </li>
                     <li class="submenu ${feedbackLink}">
                         <a href="#"><i class="fa fa-comment"></i> <span> Phản hồi </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
                             <li><a href="MainController?action=View Feedback Dentist" onclick="event.stopPropagation();" style="color: ${feedbackDentistLink}">Nha sĩ</a></li>
-                            <li><a href="MainController?action=View Feedback Service" style="color: ${feedbackServiceLink}">Dịch vụ</a></li>
+                            <li><a href="#" onclick="submitForm('feedbackService')" style="color: ${feedbackServiceLink}">Dịch vụ</a></li>
                         </ul>
-                    </li> 
-                    <li>
-                        <a href="settings.html"><i class="fa fa-cog"></i> <span>Cài Đặt</span></a>
-                    </li>                        
+                    </li>                       
                 </ul>
             </div>
         </div>
     </div>
+    <script>
+        function submitForm(message) {
+            var form;
+            if (message === "employees") {
+                form = document.createElement("form");
+                form.method = "POST";
+                form.action = "GetEmployeesController";
+                form.style.display = "none";
 
+                var input1 = document.createElement("input");
+                input1.type = "hidden";
+                input1.name = "index";
+                input1.value = "1";
+
+                var input2 = document.createElement("input");
+                input2.type = "hidden";
+                input2.name = "click";
+                input2.value = "1";
+
+                form.appendChild(input1);
+                form.appendChild(input2);
+
+                document.body.appendChild(form);
+            }
+            else if(message === "dentist"){
+                form = document.createElement("form");
+                form.method = "POST";
+                form.action = "DentistController";
+                form.style.display = "none";
+                
+                document.body.appendChild(form);
+            }
+            else if(message === "patient"){
+                form = document.createElement("form");
+                form.method = "POST";
+                form.action = "Patient";
+                form.style.display = "none";
+                
+                document.body.appendChild(form);
+            }
+            else if(message === "service"){
+                form = document.createElement("form");
+                form.method = "POST";
+                form.action = "loadServiceController";
+                form.style.display = "none";
+                
+                document.body.appendChild(form);
+            }
+            else if(message === "bill"){
+                form = document.createElement("form");
+                form.method = "POST";
+                form.action = "BillController";
+                form.style.display = "none";
+                
+                document.body.appendChild(form);
+            }
+            else if(message === "feedbackService"){
+                form = document.createElement("form");
+                form.method = "POST";
+                form.action = "ViewFeedbackServiceController";
+                form.style.display = "none";
+                
+                document.body.appendChild(form);
+            }
+
+            form.submit();
+        }
+    </script>
 </body>
 </html>
