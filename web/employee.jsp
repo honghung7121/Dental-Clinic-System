@@ -101,8 +101,15 @@
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="MainController?action=GetEmPloyeeByID&id=${e.getId()}"><i class="fa fa-pencil m-r-5"></i>Chỉnh Sửa</a>
-                                                            <a class="dropdown-item delete-employee" ><i class="fa fa-trash-o m-r-5"></i>Xóa</a>
+                                                            <form action="GetEmployeeByIDController" method="POST">
+                                                                <button class="dropdown-item">
+                                                                    <i class="fa fa-pencil m-r-5"></i>
+                                                                    Chỉnh Sửa
+                                                                </button>
+                                                                <input type="hidden" name="id" value="${e.getId()}">
+                                                                <a class="dropdown-item delete-employee" ><i class="fa fa-trash-o m-r-5"></i>Xóa</a>
+                                                            </form>
+
                                                             <!--<a class="dropdown-item delete-employee" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i>Delete</a>-->
                                                         </div>
                                                     </div>
