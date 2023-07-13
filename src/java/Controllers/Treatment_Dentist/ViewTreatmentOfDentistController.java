@@ -34,12 +34,14 @@ public class ViewTreatmentOfDentistController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
             String id = request.getParameter("id");
             TreatmentCourseDAO sdao = new TreatmentCourseDAO();
             ArrayList<TreatmentCourse> slist = sdao.getTreatmentByDentistID(id);
             request.setAttribute("TreatmentList", slist);
+            session.setAttribute("activeLink", "viewpatientsofdentistLink");
             request.getRequestDispatcher("view-patients-of-dentist.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
