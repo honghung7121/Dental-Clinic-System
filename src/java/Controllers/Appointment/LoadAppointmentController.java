@@ -1,32 +1,22 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package Controllers;
+package Controllers.Appointment;
 
-import DAL.AppointmentDAO;
-import DAL.DentistDAO;
-import DAL.TreatmentCourseDAO;
-import DAL.UserDAO;
-import Models.Appointment;
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-@WebServlet("/dashboard")
-public class DashBoardController extends HttpServlet {
+public class LoadAppointmentController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,32 +30,17 @@ public class DashBoardController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        HttpSession session = request.getSession();
-        session.setAttribute("activeLink", "dashboardLink");
-        try{
-            TreatmentCourseDAO treatmentcourseDAO = new TreatmentCourseDAO();
-            UserDAO userDAO = new UserDAO();
-            AppointmentDAO appointmentDAO = new AppointmentDAO();
-            ArrayList<Appointment> list = appointmentDAO.getAllAppointment();
-            Date date = new java.sql.Date(123, 7, 20);
-            int month[] = new int[30];
-            for (Appointment appointment : list) {
-                if (date.getDate() > appointment.getDate().getDate()) {
-                    month[29 - (date.getDate() - appointment.getDate().getDate())]++;
-                }
-            }
-            Gson gson = new Gson();
-            String jsonData = gson.toJson(month);
-            session.setAttribute("appData", jsonData);
-            request.setAttribute("REVENUE", treatmentcourseDAO.getRevenue());
-            request.setAttribute("PATIENT", userDAO.getAllNumberPatient());
-            request.setAttribute("DENTIST", DentistDAO.getAllDentist().size());
-            url = "admin.jsp";
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            request.getRequestDispatcher(url).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet LoadAppointmentController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet LoadAppointmentController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

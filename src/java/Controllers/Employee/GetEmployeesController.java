@@ -55,7 +55,7 @@ public class GetEmployeesController extends HttpServlet {
         finally{
             session.setAttribute("activeLink", "employeeLink");
             session.setAttribute("option", "dsnv");
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("employee.jsp").forward(request, response);
         }
     }
 

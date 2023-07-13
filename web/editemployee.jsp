@@ -110,8 +110,8 @@
     </head>
 
     <body>
-         <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
-        <div class="main-wrapper">
+        <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="login.jsp"/></c:if>
+            <div class="main-wrapper">
 
             <jsp:include page="header.jsp"></jsp:include>
                 <div class="page-wrapper">
@@ -202,6 +202,7 @@
                                 <div class="content">
                                     Đã Cập Nhật Thông Tin Nhân Viên Thành Công. Chúc Sức Khỏe.
                                 </div>
+                                <a href="#" onclick="submitForm()">Xem nhân viên</a>
                             </div>
                         </div>
                     </div>
@@ -250,9 +251,33 @@
                                             type: 'POST'
                                         });
                                     }
+                                    
                                     function closePopUp() {
                                         const div = document.querySelector('.overlay');
                                         div.classList.remove('active');
+                                    }
+                                    function submitForm() {
+                                        var form = document.createElement("form");
+                                        form.method = "POST";
+                                        form.action = "GetEmployeesController";
+                                        form.style.display = "none";
+
+                                        var input1 = document.createElement("input");
+                                        input1.type = "hidden";
+                                        input1.name = "index";
+                                        input1.value = "1";
+
+                                        var input2 = document.createElement("input");
+                                        input2.type = "hidden";
+                                        input2.name = "click";
+                                        input2.value = "1";
+
+                                        form.appendChild(input1);
+                                        form.appendChild(input2);
+
+                                        document.body.appendChild(form);
+                                        
+                                        form.submit();
                                     }
         </script>
 
