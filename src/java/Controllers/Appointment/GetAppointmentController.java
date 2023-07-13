@@ -33,8 +33,8 @@ public class GetAppointmentController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         try {
-            HttpSession session = request.getSession();
             User user = (User) session.getAttribute("User");
             AppointmentDAO dao = new AppointmentDAO();
             ArrayList list = dao.getAllAppointmentByDentistID(user.getId());
@@ -43,6 +43,7 @@ public class GetAppointmentController extends HttpServlet {
             e.printStackTrace();
         }
         finally{
+            session.setAttribute("activeLink", "dentistappointmentLink");
             request.getRequestDispatcher("dentistappointment.jsp").forward(request, response);
         }
     }

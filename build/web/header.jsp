@@ -160,9 +160,6 @@
                             <li><a href="MainController?action=View Feedback Dentist" onclick="event.stopPropagation();" style="color: ${feedbackDentistLink}">Nha sĩ</a></li>
                             <li><a href="MainController?action=View Feedback Service" style="color: ${feedbackServiceLink}">Dịch vụ</a></li>
                         </ul>
-                    </li> 
-                    <li>
-                        <a href="settings.html"><i class="fa fa-cog"></i> <span>Cài Đặt</span></a>
                     </li>                        
                 </ul>
             </div>

@@ -115,21 +115,26 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.jsp" class="nav-item nav-link active">Trang Chủ</a>
-                    <a href="aboutus.jsp" class="nav-item nav-link ">Về Chúng Tôi</a>
-                    <a href="ServiceUserController" class="nav-item nav-link ">Dịch Vụ</a>
+                    <a href="index.jsp" class="nav-item nav-link ${pageContext.request.requestURI.endsWith('index.jsp') ? 'active' : ''}">Trang Chủ</a>
+                    <a href="aboutus.jsp" class="nav-item nav-link ${pageContext.request.requestURI.endsWith('aboutus.jsp') ? 'active' : ''}">Về Chúng Tôi</a>
+                    <a href="ServiceUserController" class="nav-item nav-link ${pageContext.request.servletPath.endsWith('serviceUser.jsp') ? 'active' : ''}">Dịch Vụ</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Xem Thêm</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown ">Xem Thêm</a>
                         <div class="dropdown-menu m-0">
-                            <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
-                            <a href="index.jsp" class="dropdown-item">Cuộc hẹn</a>
+                            <a href="MainController?action=showDentist" class="dropdown-item ${pageContext.request.servletPath.endsWith('customer-dentists.jsp') ? 'active' : ''}">
+                                Nha sĩ của chúng tôi
+                            </a>
+                            <a href="index.jsp" class="dropdown-item ${pageContext.request.requestURI.endsWith('index.jsp') ? 'active' : ''}">
+                                Cuộc hẹn
+                            </a>
                         </div>
                     </div>
-
-                    <a href="contact.jsp" class="nav-item nav-link">Liên hệ</a>
+                    <a href="contact.jsp" class="nav-item nav-link ${pageContext.request.requestURI.endsWith('contact.jsp') ? 'active' : ''}">Liên hệ</a>
                 </div>
+
                 <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
                         class="fa fa-search"></i></button>
 

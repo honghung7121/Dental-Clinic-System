@@ -214,13 +214,20 @@
 
                         <c:set var="activeLink" value="${sessionScope.activeLink}"></c:set>
                         <c:set var="option" value="${sessionScope.option}"></c:set>
-
+                        <c:set var="dentistappointmentLink" value="dentistappointmentLink"></c:set>
+                        <c:set var="viewpatientsofdentistLink" value="viewpatientsofdentistLink"></c:set>
+                        <c:if test="${activeLink eq dentistappointmentLink}">
+                            <c:set var="dentistappointmentLink" value="active"></c:set>
+                        </c:if>
+                        <c:if test="${activeLink eq viewpatientsofdentistLink}">
+                            <c:set var="viewpatientsofdentistLink" value="active"></c:set>
+                        </c:if>
                         <ul>       
                             <li class="menu-title">Main</li>
-                            <li class="active">
+                            <li class="${dentistappointmentLink}">
                                 <a  href="GetAppointmentController"><i class="ri-calendar-todo-fill"></i> <span>Lịch Hẹn</span></a>
                             </li>  
-                            <li>
+                            <li class="${viewpatientsofdentistLink}">
                                 <a  href="MainController?action=ViewTreatmentByCustomer&id=${sessionScope.User.getId()}"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>
                             </li>
                         </ul>
