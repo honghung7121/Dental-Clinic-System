@@ -48,7 +48,7 @@ public class EditDentistController extends HttpServlet {
             int status = Integer.parseInt(request.getParameter("editStatusDentist"));
             
             if (img != null && !img.isEmpty()) {
-                img = "image/" + img;
+                img = "img/bacsi/" + img;
             }
             
             DentistDAO dentistDAO = new DentistDAO();
