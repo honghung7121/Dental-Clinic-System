@@ -41,7 +41,7 @@ public class TreatmentCourseDetailController extends HttpServlet {
             User user = (User)session.getAttribute("User"); 
             TreatmentCourseDetailDAO sdao = new TreatmentCourseDetailDAO();
             ArrayList<TreatmentCourseDetail> slist = sdao.getTreatmentDetailByUserID(Integer.toString(user.getId()), "0");
-            ArrayList<TreatmentCourseDetail> hlist = sdao.getTreatmentDetailByUserID(Integer.toString(user.getId()), "1");
+            ArrayList<TreatmentCourseDetail> hlist = sdao.getTreatmentDetailByUserID(Integer.toString(user.getId()), "1"); 
             request.setAttribute("TreatmentDetailList", slist);
             request.setAttribute("HistoryList", hlist);
         } catch (Exception e) {

@@ -344,6 +344,10 @@
         <servlet-name>LoadAppointmentController</servlet-name>
         <servlet-class>Controllers.Appointment.LoadAppointmentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckDentistIsFree</servlet-name>
+        <servlet-class>Controllers.Dentist.CheckDentistIsFreeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -687,6 +691,10 @@
     <servlet-mapping>
         <servlet-name>LoadAppointmentController</servlet-name>
         <url-pattern>/LoadAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckDentistIsFree</servlet-name>
+        <url-pattern>/CheckDentistIsFree</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>

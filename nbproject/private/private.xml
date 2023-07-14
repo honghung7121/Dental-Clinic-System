@@ -3,19 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/project.xml</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/headerUser.jsp</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/genfiles.properties</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/project.properties</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/private/private.properties</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/private/private.xml</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/headerdentist.jsp</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/headerMarketing.jsp</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Appointment/GetAppointmentController.java</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Dentist/DentistController.java</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/nbproject/build-impl.xml</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/header.jsp</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/ViewTreatmentOfDentistController.java</file>
+            <file>file:/F:/Semester%205/SWP391/SWP391-SE1743/src/java/Controllers/Dentist/CheckDentistIsFreeController.java</file>
         </group>
     </open-files>
 </project-private>
