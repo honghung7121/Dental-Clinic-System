@@ -65,7 +65,6 @@ public class SignUpController extends HttpServlet {
 
                 // Khởi chạy luồng
                 thread.start();
-//                SendMail.sendEmail(email, "Đăng Kí Thành Công", content, "SignUp");
 
             } else {
                 response.getWriter().write("fail");

@@ -4,11 +4,16 @@
  */
 package Controllers.Feedback;
 
+import DAL.DentistDAO;
 import DAL.FeedbackDentistDAO;
 import DAL.FeedbackServiceDAO;
+import DAL.ServiceDAO;
+import DAL.TreatmentCourseDetailDAO;
+import Models.Dentist;
+import Models.Service;
 import Models.User;
+import Util.SendMail;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,9 +38,10 @@ public class AddFeedBackController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
+        try {
             HttpSession session = request.getSession();
-            User user = (User)session.getAttribute("User");
+            final User user = (User) session.getAttribute("User");
+            int treatmentCourseDetailID = Integer.parseInt(request.getParameter("treatmentCourseDetailID"));
             int dentistID = Integer.parseInt(request.getParameter("dentistID"));
             int serviceID = Integer.parseInt(request.getParameter("serviceID"));
             int dentistRate = Integer.parseInt(request.getParameter("dentistRate"));
@@ -44,12 +50,35 @@ public class AddFeedBackController extends HttpServlet {
             String serviceFeedback = request.getParameter("serviceFeedback");
             FeedbackDentistDAO feedbackDentistDAO = new FeedbackDentistDAO();
             FeedbackServiceDAO feedbackServiceDAO = new FeedbackServiceDAO();
+            DentistDAO dentistDAO = new DentistDAO();
+            Dentist dentist = dentistDAO.getDentistByID(Integer.toString(dentistID));
+            Service service = ServiceDAO.getServiceById(serviceID);
+            TreatmentCourseDetailDAO.UpdateStatusFeedBack(treatmentCourseDetailID);
             feedbackDentistDAO.addFeedBackDentist(user.getId(), dentistID, dentistRate, dentistFeedback);
             feedbackServiceDAO.addFeedBackService(user.getId(), serviceID, serviceRate, serviceFeedback);
-        }catch(Exception e){
+            final String content = "<!DOCTYPE html>\n"
+                    + "<html lang=\"en\">\n"
+                    + "<head>\n"
+                    + "</head>\n"
+                    + "<body>\n"
+                    + "    <h3 style=\"color: blue;\">CẢM ƠN BẠN ĐÃ GỬI FEEDBACK</h3>\n"
+                    + "    <div>Nha Sĩ:" + dentist.getFullName() + " - " + dentistRate + "&#9733;</div>\n"
+                    + "    <div>Dịch Vụ:" + service.getName() + " - " + serviceRate + "&#9733;</div>\n"
+                    + "    <h5 style=\"color: red;\">Nha Khoa chúng tôi xin chân thành cảm ơn những đánh giá của bạn. Chúng thật sự có ích"
+                    + " với chúng tôi trong việc cải thiện trải nghiệm khách hàng!</h5>\n"
+                    + "</body>\n"
+                    + "</html>";
+            Runnable myRunnable = new Runnable() {
+                public void run() {
+                    // Các công việc được thực thi trong luồng này
+                    SendMail.sendEmail(user.getEmail(), "Mail from Dental Clinic System", content, "Thanks Mail");
+                }
+            };
+            Thread thread = new Thread(myRunnable);
+            thread.start();
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             request.getRequestDispatcher("TreatmentCourseController").forward(request, response);
         }
     }
