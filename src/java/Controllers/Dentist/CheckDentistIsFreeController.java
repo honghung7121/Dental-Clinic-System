@@ -1,27 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Treatment;
+package Controllers.Dentist;
 
+import DAL.DentistDAO;
 import DAL.TreatmentCourseDetailDAO;
-import Models.TreatmentCourseDetail;
-import Models.User;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.sql.Date;
+import java.sql.Time;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class TreatmentCourseDetailController extends HttpServlet {
+@WebServlet(name = "CheckDentistIsFreeController", urlPatterns = { "/myservlet" })
+public class CheckDentistIsFreeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,19 +34,20 @@ public class TreatmentCourseDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            User user = (User)session.getAttribute("User"); 
-            TreatmentCourseDetailDAO sdao = new TreatmentCourseDetailDAO();
-            ArrayList<TreatmentCourseDetail> slist = sdao.getTreatmentDetailByUserID(Integer.toString(user.getId()), "0");
-            ArrayList<TreatmentCourseDetail> hlist = sdao.getTreatmentDetailByUserID(Integer.toString(user.getId()), "1"); 
-            request.setAttribute("TreatmentDetailList", slist);
-            request.setAttribute("HistoryList", hlist);
-        } catch (Exception e) {
+        try{
+            Date dateSelected = Date.valueOf(request.getParameter("dateSelected"));
+            Time timeSelected = Time.valueOf(request.getParameter("timeSelected"));
+            int treatmentCourseDetailID = Integer.parseInt(request.getParameter("treatmentCourseDetailID"));
+            int dentistID = TreatmentCourseDetailDAO.getDentistIDByTreatmentCourseID(treatmentCourseDetailID);
+            boolean isFree = DentistDAO.checkDentistIsFree(dateSelected, timeSelected, dentistID);
+            if(!isFree){
+                response.setStatus(HttpServletResponse.SC_OK);
+            }
+            else{
+                response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }
+        }catch(Exception e){
             e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher("profileUser.jsp").forward(request, response);
         }
     }
 
