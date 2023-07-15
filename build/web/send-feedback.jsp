@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
         <title>DentCare</title>
         <link href="img/favicon.ico" rel="icon">
         <style>
