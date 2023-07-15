@@ -239,12 +239,46 @@ public class TreatmentCourseDetailDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            if (stm != null) {
+                stm.close();
+            }
             if (con != null) {
                 con.close();
+            }
+        }
+    }
+
+    public static int getDentistIDByTreatmentCourseID(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select t.dentistID from\n"
+                        + "tblTreatmentCourse t join tblTreatmentCourseDetail td \n"
+                        + "on t.id = td.treatmentID\n"
+                        + "where td.id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, id);
+                rs = stm.executeQuery();
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(rs !=null){
+                rs.close();
             }
             if (stm != null) {
                 stm.close();
             }
+            if (con != null) {
+                con.close();
+            }
         }
+        return 0;
     }
 }

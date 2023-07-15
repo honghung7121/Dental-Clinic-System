@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,8 +36,10 @@ public class BillController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           ArrayList<Bill> list = UserDAO.getBill();
-               request.setAttribute("loadbill", list);
+            HttpSession session = request.getSession();
+            ArrayList<Bill> list = UserDAO.getBill();
+            session.setAttribute("activeLink", "billLink");
+            request.setAttribute("loadbill", list);
             request.getRequestDispatcher("bill.jsp").forward(request, response);
         }
     }

@@ -11,6 +11,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import Models.Dentist;
 import Util.Util;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 
 /**
  *
@@ -382,4 +388,50 @@ public class DentistDAO {
         return kq;
     }
 
+    public static boolean checkDentistIsFree(Date dateSelected, Time timeSelected, int dentistID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                Calendar calendar = Calendar.getInstance();
+                String sql1 = "select * from tblAppointment where dentistID = ? and appDate = ? and appTime between ? and ? and status = 0";
+                stm = con.prepareStatement(sql1);
+                stm.setInt(1, dentistID);
+                stm.setDate(2, dateSelected);
+                stm.setTime(3, timeSelected);
+                stm.setTime(4, new Time(timeSelected.toLocalTime().plusMinutes(30).toNanoOfDay() / 1_000_000));
+                rs = stm.executeQuery();
+                if (!rs.next()) {
+                    String sql2 = "select * from \n"
+                            + "tblTreatmentCourseDetail td join tblTreatmentCourse t\n"
+                            + "on td.treatmentID = t.id\n"
+                            + "where t.dentistID = ? and td.treatmentDate = ? and treatmentTime between ? and ? and status = 0";
+                    stm = con.prepareStatement(sql2);
+                    stm.setInt(1, dentistID);
+                    stm.setDate(2, dateSelected);
+                    stm.setTime(3, timeSelected);
+                    stm.setTime(4, new Time(timeSelected.toLocalTime().plusMinutes(30).toNanoOfDay() / 1_000_000));
+                    rs = stm.executeQuery();
+                    if(rs.next()){
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
 }

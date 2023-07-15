@@ -57,13 +57,15 @@
 
                             <div class="col-sm-6 col-md-3">
                                 <div class="form-group form-focus select-focus">
-                                    <label class="focus-label">Status</label>
+                                    <label class="focus-label"></label>
                                     <select class="floating" name="status">
-                                        <option value="byall">Select Status</option>
+                                        <option value="byall">Chọn trạng thái</option>
                                         <option value="bynot">Chưa Thánh Toán</option>
                                         <option value="bydone">Đã Thanh Toán</option>
                                     </select>
-                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">
+                                    <button type="submit" value="Search" name="action" class="btn btn-success float-lg-right">
+                                        <span>Tìm kiếm</span>
+                                    </button>                 
                                 </div>
                             </div>
                             <!--                                                        <a href="MainController?action=Search" class="btn btn-success float-lg-right" > Tìm Kiếm </a>                  -->
@@ -83,7 +85,7 @@
                                         <th>Ngày Tạo</th>
                                         <th>Mô tả</th>
                                         <th>Giá Tiền</th>
-                                        <th>Status</th>
+                                        <th>Trạng thái</th>
                                     </tr>
                                 </thead>
                                 <tbody>

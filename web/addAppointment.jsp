@@ -133,7 +133,4 @@
             }
         </script>
     </body>
-
-
-    <!-- add-doctor24:06-->
 </html>
