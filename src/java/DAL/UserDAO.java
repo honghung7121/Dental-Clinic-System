@@ -200,7 +200,7 @@ public class UserDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql = "select * from tblUser where fullName like ? and idRole!=5 and idRole!=2 and status = 1";
+                String sql = "select * from tblUser where fullName like ?  COLLATE SQL_Latin1_General_CP1_CI_AI and idRole!=5 and idRole!=2 and status = 1 ";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, "%" + name + "%");
                 rs = stm.executeQuery();
@@ -459,7 +459,7 @@ public class UserDAO {
             cn = Util.getConnection();
             if (cn != null) {
                 String sql = "select * from tblUser\n"
-                        + "where [fullName] like ? and idRole = 5";
+                        + "where [fullName] like ? COLLATE SQL_Latin1_General_CP1_CI_AI and idRole = 5";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, "%" + searchname + "%");
                 ResultSet rs = pst.executeQuery();

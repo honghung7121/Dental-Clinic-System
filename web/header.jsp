@@ -82,6 +82,7 @@
                 <c:set var="serviceLink" value="serviceLink"></c:set>
                 <c:set var="employeeLink" value="employeeLink"></c:set>
                 <c:set var="dsnv" value="dsnv"></c:set>
+                <c:set var="billLink" value="billLink"></c:set>
                 <c:set var="feedbackLink" value="feedbackLink"></c:set>
                 <c:set var="feedbackDentistLink" value="feedbackDentistLink"></c:set>
                 <c:set var="feedbackServiceLink" value="feedbackServiceLink"></c:set>
@@ -106,7 +107,11 @@
                         <c:set var="employeeLink3" value="#888888"></c:set>
                     </c:if>
                 </c:if>
-
+                
+                <c:if test="${activeLink eq billLink}">
+                    <c:set var="billLink" value="active"></c:set>
+                </c:if>
+                
                 <c:if test="${activeLink eq feedbackLink}">
                     <c:set var="feedbackLink" value="active"></c:set>
                     <c:if test="${option eq feedbackDentistLink}">
@@ -140,7 +145,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="submenu">
+                    <li class="submenu ${billLink}">
                         <a href="#"><i class="fa fa-money"></i> <span> Tài Khoản </span> <span class="menu-arrow"></span></a>
                         <ul style="display: none;">
                             <li><a href="#" onclick="submitForm('bill')">Hoá Đơn</a></li>
