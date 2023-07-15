@@ -236,8 +236,8 @@
                                                                     <c:forEach var="d" items="${requestScope.TreatmentDetailList}">
                                                                         <tr style="text-align: center">
                                                                             <td><c:out value="${d.getNameTreatment()}"></c:out></td>
-                                                                            <td><c:out value="${d.getTreatmentdate()}"></c:out></td>
-                                                                            <td><c:out value="${d.getTreatmenttime()}"></c:out></td>
+                                                                            <td id="treatmentDetailDate"><c:out value="${d.getTreatmentdate()}"></c:out></td>
+                                                                            <td id="treatmentDetailTime"><c:out value="${d.getTreatmenttime()}"></c:out></td>
                                                                             <td><c:out value="${d.getNameService()}"></c:out></td>
                                                                             <td><c:out value="${d.getDescription()}"></c:out></td>
                                                                             <c:if test="${d.isStatus()==true}">
@@ -258,7 +258,7 @@
                                                                                 </c:if>
                                                                                 <c:if test="${d.isStatus()==false}">
                                                                                 <td>
-                                                                                    <button onclick="changeAppointmentDate(${d.getId()})">
+                                                                                    <button onclick="setUpForm(${d.getId()})">
                                                                                         Thay đổi
                                                                                     </button>
                                                                                 </td>
@@ -344,38 +344,36 @@
         <div class="modal fade" id="createModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content" style="background: rgba(6, 163, 218, .7);">
-                    <form action="MainController" method="get">
-                        <div class="modal-header">
-                            <h4 class="modal-title" style="color: white;">Thông Tin</h4>
-                            <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="color: white;">Thông Tin</h4>
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group" id="dateSelection">
+                            <label style="color: white;">Ngày hẹn</label>
+                            <input name="txtDate" id="appointmentDate" type="date" class="form-control" required>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group" id="dateSelection">
-                                <label style="color: white;">Ngày hẹn</label>
-                                <input name="txtDate" id="appointmentDate" type="date" class="form-control" required>
-                            </div>
 
-                            <div class="form-group" id="timeSelection">
-                                <label style="color: white;">Thời gian hẹn</label>
-                                <select name="txtTime" id="appointmentTime" class="form-control" required>
-                                    <option value="" disabled selected>Chọn thời gian</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label style="color: white;">Ghi chú (nếu có)</label>
-                                <textarea id="myTextarea" name="txtNote" class="form-control" rows="3" maxlength="300"></textarea>
-                                <span id="charCount" style="font-size: 12px; color: white;"></span>
-                            </div>
+                        <div class="form-group" id="timeSelection">
+                            <label style="color: white;">Thời gian hẹn</label>
+                            <select name="txtTime" id="appointmentTime" class="form-control" required>
+                                <option value="" disabled selected>Chọn thời gian</option>
+                            </select>
                         </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-success" name="action" value="Create Appointment">Tạo Lịch Hẹn</button>
+                        <div class="form-group">
+                            <label style="color: white;">Ghi chú (nếu có)</label>
+                            <textarea id="myTextarea" name="txtNote" class="form-control" rows="3" maxlength="300"></textarea>
+                            <span id="charCount" style="font-size: 12px; color: white;"></span>
                         </div>
-                        <c:set var="user" value="${sessionScope.User}"></c:set>
-                        <input type="hidden" name="userid" value="${user.getId()}">
-                        <input type="hidden" name="useremail" value="${user.getEmail()}">
-                        <input type="hidden" name="username" value="${user.getFullName()}">
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" onclick="changeTreatmentCourseTime()" name="action" value="Create Appointment">Tạo Lịch Hẹn</button>
+                    </div>
+                    <c:set var="user" value="${sessionScope.User}"></c:set>
+                    <input type="hidden" name="userid" value="${user.getId()}">
+                    <input type="hidden" name="useremail" value="${user.getEmail()}">
+                    <input type="hidden" name="username" value="${user.getFullName()}">
                 </div>
             </div>
         </div>
@@ -409,59 +407,83 @@
         <script src="https://momentjs.com/"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
-                                                                                        function changeAppointmentDate(treatmentCourseDetailID) {
-                                                                                            var modal = new bootstrap.Modal(document.getElementById('createModal'));
-                                                                                            modal.show();
-                                                                                            document.getElementById('appointmentDate').addEventListener('blur', function () {
-                                                                                                var dateSelect = document.getElementById('appointmentDate').value;
-                                                                                                var today = moment().startOf('day').utcOffset(7);
-                                                                                                if (dateSelect < today.format("YYYY-MM-DD")) {
-                                                                                                    alert('Ngày không hợp lệ, vui lòng chọn một ngày khác.');
-                                                                                                } else {
-                                                                                                    var startTime, endTime;
+                                let treatmentID;
+                                var modal;
+                                function setUpForm(treatmentCourseDetailID) {
+                                    modal = new bootstrap.Modal(document.getElementById('createModal'));
+                                    treatmentID = treatmentCourseDetailID;
+                                    modal.show();
+                                    document.getElementById('appointmentDate').addEventListener('blur', function () {
+                                        var dateSelect = document.getElementById('appointmentDate').value;
+                                        var today = moment().startOf('day').utcOffset(7);
+                                        if (dateSelect < today.format("YYYY-MM-DD")) {
+                                            alert('Ngày không hợp lệ, vui lòng chọn một ngày khác.');
+                                        } else {
+                                            var startTime, endTime;
 
-                                                                                                    if (today.isoWeekday() === 0 || today.isoWeekday() === 6) {
-                                                                                                        startTime = 8;
-                                                                                                        endTime = 18;
-                                                                                                    } else {
-                                                                                                        startTime = 8;
-                                                                                                        endTime = 20;
-                                                                                                    }
-                                                                                                    var timeSelect = document.getElementById('appointmentTime');
-                                                                                                    for (let hour = startTime; hour <= endTime; hour++) {
-                                                                                                        for (let minute = 0; minute <= 30; minute += 30) {
-                                                                                                            let time = ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2) + ':' + ('00').slice(-2);
-                                                                                                            let option = document.createElement('option');
-                                                                                                            option.value = time;
-                                                                                                            option.innerText = time;
-                                                                                                            let formattedDate = today.toISOString().split('T')[0];
-                                                                                                            //console.log(formattedDate);
-                                                                                                            $.ajax({
-                                                                                                                url: '/SWP391-SE1743/myservlet',
-                                                                                                                method: 'POST',
-                                                                                                                data: {
-                                                                                                                    treatmentCourseDetailID: treatmentCourseDetailID,
-                                                                                                                    dateSelected: formattedDate,
-                                                                                                                    timeSelected: time
-                                                                                                                }
-                                                                                                            }).done(function (response, status, xhr) {
-                                                                                                                if (xhr.status === 200) {
-                                                                                                                    option.disabled = true;
-                                                                                                                    option.style.color = 'gray';
-                                                                                                                }
-                                                                                                            }).fail(function (xhr, status, error) {
-                                                                                                                console.error('Lỗi: ' + error);
-                                                                                                            });
-                                                                                                            timeSelect.appendChild(option);
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            });
-                                                                                            /*document.getElementById('appointmentTime').addEventListener('blur', function () {
-                                                                                             var timeSelect = document.getElementById('appointmentTime').value;
-                                                                                             console.log(timeSelect);
-                                                                                             });*/
-                                                                                        }
+                                            if (today.isoWeekday() === 0 || today.isoWeekday() === 6) {
+                                                startTime = 8;
+                                                endTime = 18;
+                                            } else {
+                                                startTime = 8;
+                                                endTime = 20;
+                                            }
+                                            var timeSelect = document.getElementById('appointmentTime');
+                                            for (let hour = startTime; hour <= endTime; hour++) {
+                                                for (let minute = 0; minute <= 30; minute += 30) {
+                                                    let time = ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2) + ':' + ('00').slice(-2);
+                                                    let option = document.createElement('option');
+                                                    option.value = time;
+                                                    option.innerText = time;
+                                                    $.ajax({
+                                                        url: '/SWP391-SE1743/myservlet',
+                                                        method: 'POST',
+                                                        data: {
+                                                            treatmentCourseDetailID: treatmentCourseDetailID,
+                                                            dateSelected: dateSelect,
+                                                            timeSelected: time
+                                                        }
+                                                    }).done(function (response, status, xhr) {
+                                                        if (xhr.status === 200) {
+                                                            option.disabled = true;
+                                                            option.style.color = 'gray';
+                                                        }
+                                                    }).fail(function (xhr, status, error) {
+                                                        console.error('Lỗi: ' + error);
+                                                    });
+                                                    timeSelect.appendChild(option);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                                function changeTreatmentCourseTime() {
+                                    let date = document.getElementById("appointmentDate");
+                                    let time = document.getElementById("appointmentTime");
+                                    console.log(date.value);
+                                    console.log(time.value);
+                                    if (date.value === '' || time.value === '') {
+                                        alert("Vui lòng chọn đủ ngày và thời gian");
+                                        return;
+                                    } else {
+                                        $.ajax({
+                                            url: '/SWP391-SE1743/ChangTimeTreatmentCourseDetailsController',
+                                            method: 'POST',
+                                            data: {
+                                                treatmentCourseDetailID: treatmentID,
+                                                dateSelected: date.value,
+                                                timeSelected: time.value
+                                            }
+                                        }).done(function () {
+                                            document.getElementById("treatmentDetailDate").innerHTML = date.value;
+                                            document.getElementById("treatmentDetailTime").innerHTML = time.value;
+                                            modal.hide();
+                                        }).fail(function (xhr, status, error) {
+                                            console.error('Lỗi: ' + error);
+                                        });
+                                    }
+                                }
+
         </script>
 
     </body>

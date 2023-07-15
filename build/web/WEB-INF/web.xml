@@ -348,6 +348,10 @@
         <servlet-name>CheckDentistIsFree</servlet-name>
         <servlet-class>Controllers.Dentist.CheckDentistIsFreeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangTimeTreatmentCourseDetailsController</servlet-name>
+        <servlet-class>Controllers.Treatment.ChangTimeTreatmentCourseDetailsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -695,6 +699,10 @@
     <servlet-mapping>
         <servlet-name>CheckDentistIsFree</servlet-name>
         <url-pattern>/CheckDentistIsFree</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangTimeTreatmentCourseDetailsController</servlet-name>
+        <url-pattern>/ChangTimeTreatmentCourseDetailsController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>
