@@ -395,7 +395,6 @@ public class DentistDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                Calendar calendar = Calendar.getInstance();
                 String sql1 = "select * from tblAppointment where dentistID = ? and appDate = ? and appTime between ? and ? and status = 0";
                 stm = con.prepareStatement(sql1);
                 stm.setInt(1, dentistID);
@@ -407,14 +406,14 @@ public class DentistDAO {
                     String sql2 = "select * from \n"
                             + "tblTreatmentCourseDetail td join tblTreatmentCourse t\n"
                             + "on td.treatmentID = t.id\n"
-                            + "where t.dentistID = ? and td.treatmentDate = ? and treatmentTime between ? and ? and status = 0";
+                            + "where t.dentistID = ? and td.treatmentDate = ? and treatmentTime between ? and ? and td.status = 0";
                     stm = con.prepareStatement(sql2);
                     stm.setInt(1, dentistID);
                     stm.setDate(2, dateSelected);
                     stm.setTime(3, timeSelected);
                     stm.setTime(4, new Time(timeSelected.toLocalTime().plusMinutes(30).toNanoOfDay() / 1_000_000));
                     rs = stm.executeQuery();
-                    if(rs.next()){
+                    if(!rs.next()){
                         return true;
                     }
                 }
