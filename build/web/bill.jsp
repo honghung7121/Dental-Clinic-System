@@ -13,8 +13,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-        <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/dataTables.bootstrap4.min.css">
@@ -57,13 +57,15 @@
 
                             <div class="col-sm-6 col-md-3">
                                 <div class="form-group form-focus select-focus">
-                                    <label class="focus-label">Status</label>
+                                    <label class="focus-label"></label>
                                     <select class="floating" name="status">
-                                        <option value="byall">Select Status</option>
+                                        <option value="byall">Chọn trạng thái</option>
                                         <option value="bynot">Chưa Thánh Toán</option>
                                         <option value="bydone">Đã Thanh Toán</option>
                                     </select>
-                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">
+                                    <button type="submit" value="Search" name="action" class="btn btn-success float-lg-right">
+                                        <span>Tìm kiếm</span>
+                                    </button>                 
                                 </div>
                             </div>
                             <!--                                                        <a href="MainController?action=Search" class="btn btn-success float-lg-right" > Tìm Kiếm </a>                  -->
@@ -83,7 +85,7 @@
                                         <th>Ngày Tạo</th>
                                         <th>Mô tả</th>
                                         <th>Giá Tiền</th>
-                                        <th>Status</th>
+                                        <th>Trạng thái</th>
                                     </tr>
                                 </thead>
                                 <tbody>

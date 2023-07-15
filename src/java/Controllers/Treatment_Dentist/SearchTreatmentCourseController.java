@@ -35,7 +35,8 @@ public class SearchTreatmentCourseController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String txtSearch = request.getParameter("txt");
-            ArrayList<TreatmentCourse> listTreatment = TreatmentCourseDAO.searchTreatmentCourseByNamePatient(txtSearch);
+            String idDentistTreatment = request.getParameter("idDentistTreatment");
+            ArrayList<TreatmentCourse> listTreatment = TreatmentCourseDAO.searchTreatmentCourseByNamePatient(idDentistTreatment,txtSearch);
 
             if (listTreatment != null && !listTreatment.isEmpty()) {
                 for (TreatmentCourse list : listTreatment) {

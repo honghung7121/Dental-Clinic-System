@@ -243,7 +243,7 @@ public class ServiceDAO {
         try {
             con = Util.getConnection();
             if (con != null) {
-                String sql = "select * from tblService where serviceName like ?";
+                String sql = "select * from tblService where serviceName like ? COLLATE SQL_Latin1_General_CP1_CI_AI";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, "%" + name + "%");
                 rs = stm.executeQuery();
