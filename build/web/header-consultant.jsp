@@ -13,7 +13,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-        <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -102,7 +103,7 @@
     <div class="main-wrapper">
         <div class="header">
             <div class="header-left">
-                <a href="index-2.html" class="logo">
+                <a href="#" class="logo">
                     <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>DentCare</span>
                 </a>
             </div>
@@ -120,7 +121,7 @@
                         <span>${sessionScope.User.getFullName()}</span>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="myprofile.jsp">Tài Khoản Của Tôi</a>
+                        <a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a>
                         <a class="dropdown-item" href="MainController?action=Logout">Đăng Xuất</a>
                     </div>
                 </li>

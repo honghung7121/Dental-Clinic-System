@@ -14,7 +14,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-        <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -228,7 +229,7 @@
                                         <li>
                                             <div class="contact-cont">
                                                 <div class="float-left user-img m-r-10">
-                                                    <a href="#" ><img src="img/bacsinga.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                                                    <a href="#" ><img src="img/bacsi/bs-nga.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
                                                 </div>
                                                 <div class="contact-info">
                                                     <span class="contact-name text-ellipsis">Trần Thị Mỹ Nga</span>
@@ -239,7 +240,7 @@
                                         <li>
                                             <div class="contact-cont">
                                                 <div class="float-left user-img m-r-10">
-                                                    <a href="#" ><img src="img/bacsitung.jpg" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
+                                                    <a href="#" ><img src="img/bacsi/bstung.jpg" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
                                                 </div>
                                                 <div class="contact-info">
                                                     <span class="contact-name text-ellipsis">Nguyễn Hiếu Tùng</span>
@@ -250,7 +251,7 @@
                                         <li>
                                             <div class="contact-cont">
                                                 <div class="float-left user-img m-r-10">
-                                                    <a href="#" ><img src="img/bacsikhanh.jpg" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                                    <a href="#" ><img src="img/bacsi/bs-khanh.jpg" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
                                                 </div>
                                                 <div class="contact-info">
                                                     <span class="contact-name text-ellipsis">Ngô Đồng Khanh</span>
@@ -261,7 +262,7 @@
                                         <li>
                                             <div class="contact-cont">
                                                 <div class="float-left user-img m-r-10">
-                                                    <a href="#" ><img src="img/bacsian.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                                                    <a href="#" ><img src="img/bacsi/bsvien.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
                                                 </div>
                                                 <div class="contact-info">
                                                     <span class="contact-name text-ellipsis">Trương Thị Hoài An</span>
@@ -272,7 +273,7 @@
                                         <li>
                                             <div class="contact-cont">
                                                 <div class="float-left user-img m-r-10">
-                                                    <a href="#"><img src="img/bacsihoa.jpg" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
+                                                    <a href="#"><img src="img/bacsi/bs-hoa.jpg" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
                                                 </div>
                                                 <div class="contact-info">
                                                     <span class="contact-name text-ellipsis">Trương Quang Hòa</span>
@@ -283,7 +284,7 @@
                                         <li>
                                             <div class="contact-cont">
                                                 <div class="float-left user-img m-r-10">
-                                                    <a href="#" ><img src="img/bacsithao.jpg" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                                    <a href="#" ><img src="img/bacsi/bs-thao.jpg" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
                                                 </div>
                                                 <div class="contact-info">
                                                     <span class="contact-name text-ellipsis">Nguyễn Thị Thảo </span>
