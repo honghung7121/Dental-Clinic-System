@@ -24,7 +24,6 @@ public class TreatmentCourseDetailDAO {
         ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
         Util dbu = new Util();
 
-
         String sql = "select td.id, nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid\n"
                 + "from tblTreatmentCourse tc\n"
                 + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
@@ -53,6 +52,92 @@ public class TreatmentCourseDetailDAO {
             System.out.println(e);
         }
         return list;
+    }
+
+    public static ArrayList<TreatmentCourseDetail> getInvoicesDetailByTreatmentID(String from) {
+        ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
+        Util dbu = new Util();
+
+        String sql = "SELECT tblTreatmentCourseDetail.id AS id, tblService.serviceName AS serviceName,tblTreatmentCourseDetail.description,tblTreatmentCourseDetail.status,tblTreatmentCourseDetail.statusPaid, tblService.price AS price\n"
+                + "FROM tblTreatmentCourseDetail, tblService, tblTreatmentCourse\n"
+                + "WHERE tblTreatmentCourseDetail.treatmentID = tblTreatmentCourse.id\n"
+                + "AND tblTreatmentCourseDetail.serviceID = tblService.id\n"
+                + "AND tblTreatmentCourseDetail.treatmentID = ? ORDER BY tblTreatmentCourseDetail.status DESC";
+        try {
+            Connection connection = dbu.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, from);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String servicename = rs.getString("serviceName");
+                String description = rs.getString("description");
+                boolean status = rs.getBoolean("status");
+                boolean statuspaid = rs.getBoolean("statusPaid");
+                float price = rs.getFloat("price");
+                TreatmentCourseDetail c = new TreatmentCourseDetail(id, servicename, description, status, statuspaid, price);
+                list.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public static boolean invoicesConfirm(String id, String treatmentID) {
+        boolean kq = false;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE dbo.tblTreatmentCourseDetail\n"
+                        + "SET statusPaid = 'true'\n"
+                        + "WHERE id = ?\n"
+                        + "\n"
+                        + "UPDATE dbo.tblTreatmentCourse\n"
+                        + "SET status = 'true'\n"
+                        + "WHERE id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, id);
+                pst.setString(2, treatmentID);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+    
+    public static String getMailPatientByTreatmentID(String idTreatment) {
+        Connection cn = null;
+        String mailPatient = "";
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT email\n" +
+"                        FROM tblTreatmentCourseDetail td, tblTreatmentCourse t, tblUser u\n" +
+"                        WHERE td.treatmentID = t.id AND t.userID = u.id AND td.treatmentID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, idTreatment);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    mailPatient = rs.getString("email");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mailPatient;
     }
 
     public static ArrayList<TreatmentCourseDetail> getTreatmentDetailByTreatmentID(String from) {
@@ -220,13 +305,17 @@ public class TreatmentCourseDetailDAO {
         }
         return idPatient;
     }
-
-    public static void main (String[] args){
-
-        ArrayList<TreatmentCourseDetail> list =getTreatmentDetailByUserID("36", "0");
-        for (TreatmentCourseDetail o : list) {
-            System.out.println(o);
-        }
-    }
     
+    
+
+    public static void main(String[] args) {
+
+//        ArrayList<TreatmentCourseDetail> list = getInvoicesDetailByTreatmentID("36");
+//        for (TreatmentCourseDetail o : list) {
+//            System.out.println(o);
+//        }
+        String check = getMailPatientByTreatmentID("1");
+        System.out.println(check);
+    }
+
 }
