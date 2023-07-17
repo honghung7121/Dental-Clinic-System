@@ -8,8 +8,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-        <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/dataTables.bootstrap4.min.css">
@@ -195,29 +195,29 @@
         <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
-                                                    function loadMoreFeedbackDentist() {
-                                                        var amount = document.getElementsByClassName("feedbackDentistList").length;
-                                                        var text = document.getElementsByName("txt")[0].value;
-                                                        var isSearch = document.getElementsByName("txt")[0].value !== ""; // Kiểm tra xem đã nhập từ khóa tìm kiếm hay chưa
-                                                        var searchBy = document.getElementsByName("searchby")[0].value;
-                                                        $.ajax({
-                                                            url: "/SWP391-SE1743/LoadMoreFeedbackDentistController",
-                                                            type: "get", //send it through get method
-                                                            data: {
-                                                                exits: amount,
-                                                                issearch: isSearch,
-                                                                txt: text,
-                                                                searchby: searchBy
-                                                            },
-                                                            success: function (data) {
-                                                                var row = document.getElementById("content");
-                                                                row.innerHTML += data;
-                                                            },
-                                                            error: function (xhr) {
-                                                                //Do Something to handle error
-                                                            }
-                                                        });
-                                                    }
+            function loadMoreFeedbackDentist() {
+                var amount = document.getElementsByClassName("feedbackDentistList").length;
+                var text = document.getElementsByName("txt")[0].value;
+                var isSearch = document.getElementsByName("txt")[0].value !== ""; // Kiểm tra xem đã nhập từ khóa tìm kiếm hay chưa
+                var searchBy = document.getElementsByName("searchby")[0].value;
+                $.ajax({
+                    url: "/SWP391-SE1743/LoadMoreFeedbackDentistController",
+                    type: "get", //send it through get method
+                    data: {
+                        exits: amount,
+                        issearch: isSearch,
+                        txt: text,
+                        searchby: searchBy
+                    },
+                    success: function (data) {
+                        var row = document.getElementById("content");
+                        row.innerHTML += data;
+                    },
+                    error: function (xhr) {
+                        //Do Something to handle error
+                    }
+                });
+            }
         </script>        
         <script>
 // Lắng nghe sự kiện click của nút "Delete" cho từng mục

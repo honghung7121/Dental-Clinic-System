@@ -105,7 +105,7 @@ public class TreatmentCourseDAO {
         return list;
     }
 
-    public static ArrayList<TreatmentCourse> searchTreatmentCourseByNamePatient(String namePatient) {
+    public static ArrayList<TreatmentCourse> searchTreatmentCourseByNamePatient(String idDentist, String namePatient) {
         ArrayList<TreatmentCourse> list = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
@@ -116,9 +116,10 @@ public class TreatmentCourseDAO {
                 String sql = "select tblTreatmentCourse.id as id, nameTreatment, customertable.fullName as customername, dentisttable.fullName as dentistname,tblTreatmentCourse.status as status\n"
                         + "from tblTreatmentCourse, (select id, fullName from tblUser) as dentisttable, (select id, fullName from tblUser) as customertable\n"
                         + "where tblTreatmentCourse.dentistID = dentisttable.id and tblTreatmentCourse.userID = customertable.id\n"
-                        + "AND customertable.fullName like ?";
+                        + "AND dentisttable.id = ? AND customertable.fullName like ? COLLATE SQL_Latin1_General_CP1_CI_AI";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, "%" + namePatient + "%");
+                stm.setString(1, idDentist);
+                stm.setString(2, "%" + namePatient + "%");
 
                 rs = stm.executeQuery();
                 while (rs.next()) {

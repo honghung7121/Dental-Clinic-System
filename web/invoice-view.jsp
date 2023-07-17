@@ -11,6 +11,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+<<<<<<< HEAD:web/invoice-view.jsp
         <title>DentCare - Dental Clinic Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
@@ -38,6 +39,11 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+=======
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
+>>>>>>> b4f73161d365cfef80ae4f963c2a3e3f94b03d94:web/invoiceView.jsp
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/dataTables.bootstrap4.min.css">

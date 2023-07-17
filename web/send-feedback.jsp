@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
         <title>DentCare</title>
         <link href="img/favicon.ico" rel="icon">
         <style>
@@ -152,6 +153,7 @@
                                 <button class="btn btn-primary submit-btn">Gửi</button>
                                 <input type="hidden" name="dentistID" value="${requestScope.Dentist.getId()}">
                                 <input type="hidden" name="serviceID" value="${requestScope.Service.getId()}">
+                                <input type="hidden" name="treatmentCourseDetailID" value="${requestScope.treatmentCourseDetailID}">
                             </div>
                         </form>
                     </div>

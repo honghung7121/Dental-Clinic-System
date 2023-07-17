@@ -10,7 +10,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>DentCare - Dental Clinic Website Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -54,6 +55,8 @@
     <body>
         <div class="main-wrapper">
             <jsp:include page="headerdentist.jsp"></jsp:include>
+            
+            <c:set var="idDentistTreatment" value="${sessionScope.idDentistTreatment}"></c:set>
                 <div class="page-wrapper">
                     <div class="content">
                         <div class="row">
@@ -122,50 +125,15 @@
         <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script>
-// Lắng nghe sự kiện click của nút "Delete" cho từng mục
-            document.querySelectorAll('.delete-schedule').forEach(function (item) {
-                item.addEventListener('click', function (event) {
-                    event.preventDefault();
-
-                    // Lưu trữ thẻ <tr> chứa thông tin phản hồi
-                    var feedbackRow = this.closest('tr');
-
-                    // Lấy giá trị ID từ phần tử <td> trong thẻ <tr>
-                    var feedbackId = feedbackRow.querySelector('td:first-child').textContent;
-
-                    // Hiển thị bảng thông báo xác nhận xóa
-                    var confirmation = confirm("Bạn có chắc chắn muốn xóa?");
-
-                    // Kiểm tra sự chấp nhận của người dùng
-                    if (confirmation) {
-                        // Gửi yêu cầu AJAX để xóa phần tử
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('GET', 'MainController?action=Delete%20Feedback%20Dentist&id=' + feedbackId);
-                        xhr.onload = function () {
-                            if (xhr.status === 200) {
-                                // Xóa phần tử khỏi giao diện
-                                feedbackRow.remove();
-                            } else {
-                                console.error('Đã xảy ra lỗi khi xóa phản hồi.');
-                            }
-                        };
-                        xhr.send();
-                    } else {
-                        // Xử lý khi người dùng không đồng ý xóa
-                        console.log('Hủy xóa');
-                        // Có thể thực hiện các hành động khác tại đây (ví dụ: tắt form)
-                    }
-                });
-            });
-        </script>  
+       
         <script>
             function searchByName(text) {
                 $.ajax({
                     url: '/SWP391-SE1743/MainController',
                     data: {
                         action: 'SearchTreatmentCourse',
-                        txt: text.value,
+                        idDentistTreatment: ${idDentistTreatment},
+                        txt: text.value
                     },
                     success: function (data) {
                         let row = document.getElementById("content");

@@ -11,8 +11,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-        <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
@@ -148,9 +148,6 @@
                             <li><a href="MainController?action=View Feedback Dentist" onclick="event.stopPropagation();" style="color: ${feedbackDentistLink}">Nha sĩ</a></li>
                             <li><a href="MainController?action=View Feedback Service" style="color: ${feedbackServiceLink}">Dịch vụ</a></li>
                         </ul>
-                    </li> 
-                    <li>
-                        <a href="settings.html"><i class="fa fa-cog"></i> <span>Cài Đặt</span></a>
                     </li>                        
                 </ul>
             </div>

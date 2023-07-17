@@ -16,7 +16,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>DentCare - Dental Clinic Website Template</title>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+        <title>DentCare</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
@@ -55,7 +56,7 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
-        <style>      
+        <style>
             .btnLink{
                 background: none;
                 border: none;
@@ -228,14 +229,15 @@
                                                                         <th style="text-align: center">Mô Tả</th>
                                                                         <th style="text-align: center">Trạng Thái</th>
                                                                         <th style="text-align: center">Thanh Toán</th>
+                                                                        <th style="text-align: center">Đổi thời gian</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody id="content">
                                                                     <c:forEach var="d" items="${requestScope.TreatmentDetailList}">
                                                                         <tr style="text-align: center">
                                                                             <td><c:out value="${d.getNameTreatment()}"></c:out></td>
-                                                                            <td><c:out value="${d.getTreatmentdate()}"></c:out></td>
-                                                                            <td><c:out value="${d.getTreatmenttime()}"></c:out></td>
+                                                                            <td id="treatmentDetailDate"><c:out value="${d.getTreatmentdate()}"></c:out></td>
+                                                                            <td id="treatmentDetailTime"><c:out value="${d.getTreatmenttime()}"></c:out></td>
                                                                             <td><c:out value="${d.getNameService()}"></c:out></td>
                                                                             <td><c:out value="${d.getDescription()}"></c:out></td>
                                                                             <c:if test="${d.isStatus()==true}">
@@ -254,6 +256,13 @@
                                                                                 <td><span style="width: 100px;
                                                                                           height: 40px;" class="custom-badge status-orange">Chưa Thanh Toán</span></td>
                                                                                 </c:if>
+                                                                                <c:if test="${d.isStatus()==false}">
+                                                                                <td>
+                                                                                    <button onclick="setUpForm(${d.getId()})">
+                                                                                        Thay đổi
+                                                                                    </button>
+                                                                                </td>
+                                                                            </c:if>
                                                                         </tr>
                                                                     </c:forEach>
                                                                 </tbody>               
@@ -308,10 +317,12 @@
                                                                                           height: 40px;" class="custom-badge status-orange">Chưa Thanh Toán</span></td>
                                                                                 </c:if>
                                                                             <td>
-                                                                                <form action="GetTreatmentCourseDataController" method="POST">
-                                                                                    <button type="submit">Đánh Giá</button>
-                                                                                    <input type="hidden" name="treatmentCourseDetailID" value="${d.getId()}">
-                                                                                </form>
+                                                                                <c:if test="${d.isStatusFeedBack() == false}">
+                                                                                    <form action="GetTreatmentCourseDataController" method="POST">
+                                                                                        <button type="submit">Đánh Giá</button>
+                                                                                        <input type="hidden" name="treatmentCourseDetailID" value="${d.getId()}">
+                                                                                    </form>
+                                                                                </c:if>
                                                                             </td>
                                                                         </tr>
                                                                     </c:forEach>
@@ -330,7 +341,42 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="createModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background: rgba(6, 163, 218, .7);">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="color: white;">Thông Tin</h4>
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group" id="dateSelection">
+                            <label style="color: white;">Ngày hẹn</label>
+                            <input name="txtDate" id="appointmentDate" type="date" class="form-control" required>
+                        </div>
 
+                        <div class="form-group" id="timeSelection">
+                            <label style="color: white;">Thời gian hẹn</label>
+                            <select name="txtTime" id="appointmentTime" class="form-control" required>
+                                <option value="" disabled selected>Chọn thời gian</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: white;">Ghi chú (nếu có)</label>
+                            <textarea id="myTextarea" name="txtNote" class="form-control" rows="3" maxlength="300"></textarea>
+                            <span id="charCount" style="font-size: 12px; color: white;"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" onclick="changeTreatmentCourseTime()" name="action" value="Create Appointment">Tạo Lịch Hẹn</button>
+                    </div>
+                    <c:set var="user" value="${sessionScope.User}"></c:set>
+                    <input type="hidden" name="userid" value="${user.getId()}">
+                    <input type="hidden" name="useremail" value="${user.getEmail()}">
+                    <input type="hidden" name="username" value="${user.getFullName()}">
+                </div>
+            </div>
+        </div>
 
 
         <!-- Newsletter Start -->
@@ -357,56 +403,86 @@
 
 
         <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-        <script src="lib/twentytwenty/jquery.event.move.js"></script>
-        <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
-
-        <!-- Template Javascript -->
-
-
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/Chart.bundle.js"></script>
-        <script src="assets/js/chart.js"></script>
-        <script src="assets/js/app.js"></script>
-
-        <script src="assets/js/title_sort.js"></script>                        
-
-        <script src="assets/js/jquery.dataTables.min.js"></script>
-        <script src="assets/js/dataTables.bootstrap4.min.js"></script>
-
-        <script src="assets/js/select2.min.js"></script>
-        <script src="assets/js/moment.min.js"></script>
-        <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="js/main.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script> 
+        <script src="https://momentjs.com/"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
-            function searchByName(text) {
-                $.ajax({
-                    url: '/SWP391-SE1743/MainController',
-                    data: {
-                        action: 'Search Service User By Name',
-                        name: text.value
-                    },
-                    success: function (data) {
-                        let row = document.getElementById("content");
-                        row.innerHTML = data;
-                    },
-                    error: function (error) {
-                        console("Fail");
-                    },
-                    type: 'GET'
-                });
-            }
+                                let treatmentID;
+                                var modal;
+                                function setUpForm(treatmentCourseDetailID) {
+                                    modal = new bootstrap.Modal(document.getElementById('createModal'));
+                                    treatmentID = treatmentCourseDetailID;
+                                    modal.show();
+                                    document.getElementById('appointmentDate').addEventListener('blur', function () {
+                                        var dateSelect = document.getElementById('appointmentDate').value;
+                                        var today = moment().startOf('day').utcOffset(7);
+                                        if (dateSelect < today.format("YYYY-MM-DD")) {
+                                            alert('Ngày không hợp lệ, vui lòng chọn một ngày khác.');
+                                        } else {
+                                            var startTime, endTime;
+
+                                            if (today.isoWeekday() === 0 || today.isoWeekday() === 6) {
+                                                startTime = 8;
+                                                endTime = 18;
+                                            } else {
+                                                startTime = 8;
+                                                endTime = 20;
+                                            }
+                                            var timeSelect = document.getElementById('appointmentTime');
+                                            for (let hour = startTime; hour <= endTime; hour++) {
+                                                for (let minute = 0; minute <= 30; minute += 30) {
+                                                    let time = ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2) + ':' + ('00').slice(-2);
+                                                    let option = document.createElement('option');
+                                                    option.value = time;
+                                                    option.innerText = time;
+                                                    $.ajax({
+                                                        url: '/SWP391-SE1743/myservlet',
+                                                        method: 'POST',
+                                                        data: {
+                                                            treatmentCourseDetailID: treatmentCourseDetailID,
+                                                            dateSelected: dateSelect,
+                                                            timeSelected: time
+                                                        }
+                                                    }).done(function (response, status, xhr) {
+                                                        if (xhr.status === 200) {
+                                                            option.disabled = true;
+                                                            option.style.color = 'gray';
+                                                        }
+                                                    }).fail(function (xhr, status, error) {
+                                                        console.error('Lỗi: ' + error);
+                                                    });
+                                                    timeSelect.appendChild(option);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                                function changeTreatmentCourseTime() {
+                                    let date = document.getElementById("appointmentDate");
+                                    let time = document.getElementById("appointmentTime");
+                                    console.log(date.value);
+                                    console.log(time.value);
+                                    if (date.value === '' || time.value === '') {
+                                        alert("Vui lòng chọn đủ ngày và thời gian");
+                                        return;
+                                    } else {
+                                        $.ajax({
+                                            url: '/SWP391-SE1743/ChangTimeTreatmentCourseDetailsController',
+                                            method: 'POST',
+                                            data: {
+                                                treatmentCourseDetailID: treatmentID,
+                                                dateSelected: date.value,
+                                                timeSelected: time.value
+                                            }
+                                        }).done(function () {
+                                            document.getElementById("treatmentDetailDate").innerHTML = date.value;
+                                            document.getElementById("treatmentDetailTime").innerHTML = time.value;
+                                            modal.hide();
+                                        }).fail(function (xhr, status, error) {
+                                            console.error('Lỗi: ' + error);
+                                        });
+                                    }
+                                }
 
         </script>
 

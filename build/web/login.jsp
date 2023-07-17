@@ -145,14 +145,12 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="index.jsp" class="nav-item nav-link">Trang Chủ</a>
-                    <a href="aboutus.jsp" class="nav-item nav-link active">Về Chúng Tôi</a>
+                    <a href="aboutus.jsp" class="nav-item nav-link">Về Chúng Tôi</a>
                     <a href="ServiceUserController" class="nav-item nav-link">Dịch Vụ</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Khác</a>
                         <div class="dropdown-menu m-0">
-                            <a href="price.html" class="dropdown-item">Bảng giá</a>
                             <a href="MainController?action=showDentist" class="dropdown-item">Nha sĩ của chúng tôi</a>
-                            <a href="testimonial.html" class="dropdown-item">Chứng thực</a>
                             <a href="index.jsp" class="dropdown-item">Cuộc hẹn</a>
                         </div>
                     </div>

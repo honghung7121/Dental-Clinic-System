@@ -4,12 +4,18 @@
  */
 package Controllers;
 
+import DAL.AppointmentDAO;
 import DAL.DentistDAO;
+import DAL.FeedbackServiceDAO;
 import DAL.TreatmentCourseDAO;
 import DAL.UserDAO;
+import Models.Appointment;
+import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
+@WebServlet("/dashboard")
 public class DashBoardController extends HttpServlet {
 
     /**
@@ -39,6 +46,24 @@ public class DashBoardController extends HttpServlet {
         try{
             TreatmentCourseDAO treatmentcourseDAO = new TreatmentCourseDAO();
             UserDAO userDAO = new UserDAO();
+            AppointmentDAO appointmentDAO = new AppointmentDAO();
+            ArrayList<Appointment> list = appointmentDAO.getAllAppointment();
+            ArrayList<Integer> listRate = FeedbackServiceDAO.getRates();
+            Date date = new java.sql.Date(123, 7, 20);
+            int month[] = new int[30];
+            for (Appointment appointment : list) {
+                if (date.getDate() > appointment.getDate().getDate()) {
+                    month[29 - (date.getDate() - appointment.getDate().getDate())]++;
+                }
+            }
+            Gson gson = new Gson();
+            String jsonData = gson.toJson(month);
+            session.setAttribute("appData", jsonData);
+            request.setAttribute("oneStar", listRate.get(0));
+            request.setAttribute("twoStar", listRate.get(1));
+            request.setAttribute("threeStar", listRate.get(2));
+            request.setAttribute("fourStar", listRate.get(3));
+            request.setAttribute("fiveStar", listRate.get(4));
             request.setAttribute("REVENUE", treatmentcourseDAO.getRevenue());
             request.setAttribute("PATIENT", userDAO.getAllNumberPatient());
             request.setAttribute("DENTIST", DentistDAO.getAllDentist().size());

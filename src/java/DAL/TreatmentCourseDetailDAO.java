@@ -9,9 +9,11 @@ import Models.TreatmentCourse;
 import Models.TreatmentCourseDetail;
 import Util.Util;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +26,7 @@ public class TreatmentCourseDetailDAO {
         ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
         Util dbu = new Util();
 
-        String sql = "select td.id, nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid\n"
+        String sql = "select td.id, nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid, statusFeedBack\n"
                 + "from tblTreatmentCourse tc\n"
                 + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
                 + "JOIN tblService ON td.serviceID = tblService.id\n"
@@ -45,7 +47,8 @@ public class TreatmentCourseDetailDAO {
                 String description = rs.getString("description");
                 boolean status = rs.getBoolean("status");
                 boolean statuspaid = rs.getBoolean("statusPaid");
-                TreatmentCourseDetail c = new TreatmentCourseDetail(id, nameTreatment, treatmentdate, treatmenttime, servicename, description, status, statuspaid);
+                boolean statusFeedBack = rs.getBoolean("statusFeedBack");
+                TreatmentCourseDetail c = new TreatmentCourseDetail(id, nameTreatment, treatmentdate, treatmenttime, servicename, description, status, statuspaid, statusFeedBack);
                 list.add(c);
             }
         } catch (Exception e) {
@@ -284,7 +287,7 @@ public class TreatmentCourseDetailDAO {
         return kq;
     }
 
-    public static int getIDPatientByTreatmentID(String idTreatment) {
+    public static int getIDPatientByTreatmentID(String idTreatment) throws SQLException {
         Connection cn = null;
         int idPatient = 0;
         try {
@@ -302,20 +305,95 @@ public class TreatmentCourseDetailDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                cn.close();
+            }
         }
         return idPatient;
     }
-    
-    
 
-    public static void main(String[] args) {
+    public static void UpdateStatusFeedBack(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "update tblTreatmentCourseDetail set statusFeedBack = 1 where id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, id);
+                stm.execute();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 
-//        ArrayList<TreatmentCourseDetail> list = getInvoicesDetailByTreatmentID("36");
-//        for (TreatmentCourseDetail o : list) {
-//            System.out.println(o);
-//        }
-        String check = getMailPatientByTreatmentID("1");
-        System.out.println(check);
+    public static int getDentistIDByTreatmentCourseID(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select t.dentistID from\n"
+                        + "tblTreatmentCourse t join tblTreatmentCourseDetail td \n"
+                        + "on t.id = td.treatmentID\n"
+                        + "where td.id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, id);
+                rs = stm.executeQuery();
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(rs !=null){
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return 0;
+    }
+    public static void changeTimeTreatmentCourse(int id, Date date, Time time) throws SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "update tblTreatmentCourseDetail set treatmentDate = ?, treatmentTime = ? where id =?";
+                stm = con.prepareStatement(sql);
+                stm.setDate(1, date);
+                stm.setTime(2, time);
+                stm.setInt(3, id);
+                stm.executeUpdate();
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 
 }
