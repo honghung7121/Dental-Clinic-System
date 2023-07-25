@@ -41,6 +41,7 @@ public class ViewTreatmentOfDentistController extends HttpServlet {
             TreatmentCourseDAO sdao = new TreatmentCourseDAO();
             ArrayList<TreatmentCourse> slist = sdao.getTreatmentByDentistID(id);
             request.setAttribute("TreatmentList", slist);
+            session.setAttribute("idDentistTreatment", id);
             session.setAttribute("activeLink", "viewpatientsofdentistLink");
             request.getRequestDispatcher("view-patients-of-dentist.jsp").forward(request, response);
         } catch (Exception e) {

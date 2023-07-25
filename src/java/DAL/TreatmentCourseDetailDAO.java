@@ -9,9 +9,11 @@ import Models.TreatmentCourse;
 import Models.TreatmentCourseDetail;
 import Util.Util;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -239,11 +241,71 @@ public class TreatmentCourseDetailDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            if (stm != null) {
+                stm.close();
+            }
             if (con != null) {
                 con.close();
             }
+        }
+    }
+
+    public static int getDentistIDByTreatmentCourseID(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "select t.dentistID from\n"
+                        + "tblTreatmentCourse t join tblTreatmentCourseDetail td \n"
+                        + "on t.id = td.treatmentID\n"
+                        + "where td.id = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, id);
+                rs = stm.executeQuery();
+                if(rs.next()){
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(rs !=null){
+                rs.close();
+            }
             if (stm != null) {
                 stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return 0;
+    }
+    public static void changeTimeTreatmentCourse(int id, Date date, Time time) throws SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                String sql = "update tblTreatmentCourseDetail set treatmentDate = ?, treatmentTime = ? where id =?";
+                stm = con.prepareStatement(sql);
+                stm.setDate(1, date);
+                stm.setTime(2, time);
+                stm.setInt(3, id);
+                stm.executeUpdate();
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
             }
         }
     }

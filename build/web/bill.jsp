@@ -13,7 +13,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
         <title>DentCare</title>
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -63,70 +62,68 @@
                                         <option value="bynot">Chưa Thánh Toán</option>
                                         <option value="bydone">Đã Thanh Toán</option>
                                     </select>
-                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">
-<!--                                        <a href="MainController?action=Search" type="submit" name="action" class="btn btn-success float-lg-right" > Tìm Kiếm </a>  -->
-    </div>
-</div>
-                                    
-                                    <!--                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">-->
-                                </div>
-                                </form>
-
-                            <fmt:setLocale value = "vi_VN"/>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped custom-table mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Số Hoá Đơn</th>
-                                                    <th>Bệnh Nhân</th>
-                                                    <th>Ngày Tạo</th>
-                                                    <th>Mô tả</th>
-                                                    <th>Giá Tiền</th>
-                                                    <th>Trạng Thái</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:if test="${sessionScope.Search!=null}">
-                                                    <c:set var="list" value="${sessionScope.Search}"></c:set>
-                                                </c:if>
-                                                <c:if test="${sessionScope.Search==null}">
-                                                    <c:set var="list" value="${requestScope.loadbill}"></c:set>
-                                                </c:if>
-
-                                                <c:forEach var="ac" items="${requestScope.loadbill}">
-                                                    <tr>
-                                                        <td><c:out value="${ac.getId()}"></c:out></td>
-                                                        <td><c:out value="${ac.getUsername() }"></c:out></td>
-
-                                                            <td><c:out value="${ac.getTreatmentDate() }"></c:out></td>
-                                                        <td><c:out value="${ac.getDescription() }"></c:out></td>
-                                                        <td><fmt:formatNumber value="${ac.getPrice()}" type = "currency"/></td>
-                                                        <td>
-                                                            <c:choose>
-                                                                <c:when test = "${ac.isStatus() ==  true}" ><span class="custom-badge status-green">Đã thanh toán</span></c:when>
-                                                                <c:otherwise><span class="custom-badge status-orange"">Chưa thanh toán</span></c:otherwise>
-                                                            </c:choose>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <!-- <a href="MainController?action=Search" type="submit" name="action" class="btn btn-success float-lg-right" > Tìm Kiếm </a>  -->
+                                    <button type="submit" value="Search" name="action" class="btn btn-success float-lg-right">
+                                        <span>Tìm kiếm</span>
                                 </div>
                             </div>
+
+                        </div>
+                    </form>
+
+                <fmt:setLocale value = "vi_VN"/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped custom-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Số Hoá Đơn</th>
+                                        <th>Bệnh Nhân</th>
+                                        <th>Ngày Tạo</th>
+                                        <th>Mô tả</th>
+                                        <th>Giá Tiền</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:if test="${sessionScope.Search!=null}">
+                                        <c:set var="list" value="${sessionScope.Search}"></c:set>
+                                    </c:if>
+                                    <c:if test="${sessionScope.Search==null}">
+                                        <c:set var="list" value="${requestScope.loadbill}"></c:set>
+                                    </c:if>
+
+                                    <c:forEach var="ac" items="${requestScope.loadbill}">
+                                        <tr>
+                                            <td><c:out value="${ac.getId()}"></c:out></td>
+                                            <td><c:out value="${ac.getUsername() }"></c:out></td>
+
+                                                <td><c:out value="${ac.getTreatmentDate() }"></c:out></td>
+                                            <td><c:out value="${ac.getDescription() }"></c:out></td>
+                                            <td><fmt:formatNumber value="${ac.getPrice()}" type = "currency"/></td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test = "${ac.isStatus() ==  true}" ><span class="custom-badge status-green">Đã thanh toán</span></c:when>
+                                                    <c:otherwise><span class="custom-badge status-orange"">Chưa thanh toán</span></c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <script src="assets/js/title_sort.js"></script>                        
+                </div>
+                <script src="assets/js/title_sort.js"></script>                        
 
-                    <script src="assets/js/jquery.dataTables.min.js"></script>
-                    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+                <script src="assets/js/jquery.dataTables.min.js"></script>
+                <script src="assets/js/dataTables.bootstrap4.min.js"></script>
 
-                    <script src="assets/js/select2.min.js"></script>
-                    <script src="assets/js/moment.min.js"></script>
-                    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                    </body>
-                    </html>
+                <script src="assets/js/select2.min.js"></script>
+                <script src="assets/js/moment.min.js"></script>
+                <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                </body>
+                </html>

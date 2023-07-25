@@ -60,7 +60,7 @@ public class FeedbackServiceDAO {
         }
         return list;
     }
-    
+
     public static ArrayList<FeedbackService> getNext5FeedbackService(int position) throws SQLException {
         ArrayList<FeedbackService> list = new ArrayList<>();
         Connection cn = null;
@@ -73,7 +73,7 @@ public class FeedbackServiceDAO {
                         + "from tblFeedBackService, tblService, tblUser\n"
                         + "where tblFeedBackService.userID = tblUser.id and tblFeedBackService.serviceID = tblService.id and tblFeedBackService.status = 1\n"
                         + "order by id offset ? rows\n"
-                        + "fetch next 5 rows only";                        
+                        + "fetch next 5 rows only";
                 pst = cn.prepareStatement(sql);
                 pst.setInt(1, position);
                 rs = pst.executeQuery();
@@ -122,7 +122,7 @@ public class FeedbackServiceDAO {
                     sql = sql + " tblService.serviceName like ? COLLATE SQL_Latin1_General_CP1_CI_AI\n";
                 }
                 sql += "order by id offset ? rows\n"
-                        + "fetch next 5 rows only";                    
+                        + "fetch next 5 rows only";
                 pst = cn.prepareStatement(sql);
                 pst.setString(1, "%" + keyword + "%");
                 pst.setInt(2, position);
@@ -153,7 +153,7 @@ public class FeedbackServiceDAO {
             }
         }
         return list;
-    }    
+    }
 
     public static ArrayList<FeedbackService> getFeedbackService(String keyword, String searchby) throws SQLException {
         ArrayList<FeedbackService> list = new ArrayList<>();
@@ -258,5 +258,39 @@ public class FeedbackServiceDAO {
                 cn.close();
             }
         }
+    }
+
+    public static ArrayList<Integer> getRates() throws SQLException {
+        ArrayList<Integer> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = Util.getConnection();
+            if (con != null) {
+                for (int i = 1; i <= 5; i++) {
+                    String sql = "select Count(*) as fivestars from tblFeedBackService where rate = ?";
+                    stm = con.prepareStatement(sql);
+                    stm.setInt(1, i);
+                    rs = stm.executeQuery();
+                    if (rs.next()) {
+                        list.add(rs.getInt(1));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
     }
 }

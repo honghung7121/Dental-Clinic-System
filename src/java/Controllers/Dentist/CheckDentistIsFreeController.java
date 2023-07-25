@@ -1,25 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Patient;
+package Controllers.Dentist;
 
-import DAL.UserDAO;
-import Models.User;
+import DAL.DentistDAO;
+import DAL.TreatmentCourseDetailDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.Time;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class ChangeProfileUser extends HttpServlet {
+@WebServlet(name = "CheckDentistIsFreeController", urlPatterns = { "/myservlet" })
+public class CheckDentistIsFreeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,37 +34,21 @@ public class ChangeProfileUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            int id = Integer.parseInt(request.getParameter("userId"));
-            String fullName = request.getParameter("txtfullname");
-            String phoneNumber = request.getParameter("txtphonenumber");
-            phoneNumber = phoneNumber.replace("[^0-9]", "");
-            String email = request.getParameter("txtemail");
-            String gender = request.getParameter("gender");
-
-            UserDAO dao = new UserDAO();
-            if (phoneNumber.length() != 10) {
-                request.setAttribute("report1", "Số điện thoại không hợp lệ!");
-                request.getRequestDispatcher("changeProfileUser.jsp").forward(request, response);
-                return;
-
-            } else {
-                dao.updateProfileUser(id, fullName, phoneNumber, email, gender);
-                response.sendRedirect("TreatmentCourseController");               
-//            request.getRequestDispatcher("profileUser.jsp").forward(request, response);
-                HttpSession session = request.getSession();
-
-                // Cập nhật thông tin người dùng trong phiên làm việc
-                User user = (User) session.getAttribute("User");
-                user.setFullName(fullName);
-                user.setPhoneNumber(phoneNumber);
-                user.setGender(gender);
+        try{
+            Date dateSelected = Date.valueOf(request.getParameter("dateSelected"));
+            Time timeSelected = Time.valueOf(request.getParameter("timeSelected"));
+            int treatmentCourseDetailID = Integer.parseInt(request.getParameter("treatmentCourseDetailID"));
+            int dentistID = TreatmentCourseDetailDAO.getDentistIDByTreatmentCourseID(treatmentCourseDetailID);
+            boolean isFree = DentistDAO.checkDentistIsFree(dateSelected, timeSelected, dentistID);
+            if(!isFree){
+                response.setStatus(HttpServletResponse.SC_OK);
             }
-
-        } catch (Exception e) {
+            else{
+                response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            }
+        }catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

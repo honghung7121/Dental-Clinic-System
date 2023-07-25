@@ -13,7 +13,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
         <title>DentCare</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,6 +22,17 @@
         <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .containere {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                width: 300px;
+            }
+        </style>
     </head>
 
     <body>
@@ -96,13 +106,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="chart-title">
-                                        <h4>Thống kê bệnh nhân</h4>
-                                        <div class="float-right">
-                                            <ul class="chat-user-total">
-                                                <li><i class="fa fa-circle current-users" aria-hidden="true"></i>ICU</li>
-                                                <li><i class="fa fa-circle old-users" aria-hidden="true"></i> OPD</li>
-                                            </ul>
-                                        </div>
+                                        <h4>Thống kê Số Sao</h4>
                                     </div>	
                                     <canvas id="bargraph"></canvas>
                                 </div>
@@ -348,6 +352,11 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    <div class="containere">
+                                        <div>
+                                            <canvas id="pie-chart"></canvas>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -356,117 +365,137 @@
                 </div>
             </div>
         </div>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    var ctx = document.getElementById('appointmentChart').getContext('2d');
-                    var chartOption = document.getElementById('chartOption');
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            new Chart(document.getElementById('pie-chart'), {
+                type: 'pie',
+                data: {
+                    labels: ["1★", "2★", "3★", "4★", "5★"],
+                    datasets: [{
+                            backgroundColor: ["#ff4545", "#ffa534",
+                                "#ffe234", "#b7dd29", "#57e32c"
+                            ],
+                            data: [${requestScope.oneStar}, ${requestScope.twoStar}, ${requestScope.threeStar}, ${requestScope.fourStar}, ${requestScope.fiveStar}]
+                        }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Pie Chart for admin panel'
+                    },
+                    responsive: true
+                }
+            });
+            document.addEventListener('DOMContentLoaded', function () {
+                var ctx = document.getElementById('appointmentChart').getContext('2d');
+                var chartOption = document.getElementById('chartOption');
 
-                    // Dữ liệu số lịch hẹn từ máy chủ hoặc cơ sở dữ liệu của bạn
-                    // Dưới đây là dữ liệu mẫu, bạn cần thay thế bằng dữ liệu thực tế
-                    var jsonData = '${appData}';
-                    var data = JSON.parse(jsonData);
-                    var data7Days = new Array();
-                    var data15Days = new Array();
-                    for (var i = 6; i >= 0; i--) {
-                        data7Days[i] = data[23 + i];
+                // Dữ liệu số lịch hẹn từ máy chủ hoặc cơ sở dữ liệu của bạn
+                // Dưới đây là dữ liệu mẫu, bạn cần thay thế bằng dữ liệu thực tế
+                var jsonData = '${appData}';
+                var data = JSON.parse(jsonData);
+                var data7Days = new Array();
+                var data15Days = new Array();
+                for (var i = 6; i >= 0; i--) {
+                    data7Days[i] = data[23 + i];
+                }
+                for (var i = 14; i >= 0; i--) {
+                    data15Days[i] = data[15 + i];
+                }
+                var data30Days = data;
+
+                // Biểu đồ ban đầu
+                var initialOption = chartOption.value;
+                var initialData = getDataByOption(initialOption);
+                var appointmentChart;
+                createChart(initialData);
+
+                // Xử lý sự kiện thay đổi combobox
+                chartOption.addEventListener('change', function () {
+                    var selectedOption = chartOption.value;
+                    var selectedData = getDataByOption(selectedOption);
+                    createChart(selectedData);
+                });
+
+                // Hàm lấy dữ liệu tương ứng với lựa chọn combobox
+                function getDataByOption(option) {
+                    if (option === '7Days') {
+                        return data7Days;
+                    } else if (option === '15Days') {
+                        return data15Days;
+                    } else if (option === '30Days') {
+                        return data30Days;
                     }
-                    for (var i = 14; i >= 0; i--) {
-                        data15Days[i] = data[15 + i];
-                    }                    
-                    var data30Days = data;
+                }
 
-                    // Biểu đồ ban đầu
-                    var initialOption = chartOption.value;
-                    var initialData = getDataByOption(initialOption);
-                    var appointmentChart;
-                    createChart(initialData);
-
-                    // Xử lý sự kiện thay đổi combobox
-                    chartOption.addEventListener('change', function () {
-                        var selectedOption = chartOption.value;
-                        var selectedData = getDataByOption(selectedOption);
-                        createChart(selectedData);
-                    });
-
-                    // Hàm lấy dữ liệu tương ứng với lựa chọn combobox
-                    function getDataByOption(option) {
-                        if (option === '7Days') {
-                            return data7Days;
-                        } else if (option === '15Days') {
-                            return data15Days;
-                        } else if (option === '30Days') {
-                            return data30Days;
-                        }
-                    }
-
-                    // Hàm tạo biểu đồ từ dữ liệu
-                    function createChart(data) {
-                        var chartConfig = {
-                            type: 'bar', // Loại biểu đồ cột
-                            data: {
-                                labels: getLabels(),
-                                datasets: [
-                                    {
-                                        label: 'Số lịch hẹn',
-                                        data: data,
-                                        backgroundColor: 'rgba(0, 123, 255, 0.3)',
-                                        borderColor: 'rgba(0, 123, 255, 1)',
-                                        borderWidth: 2
-                                    }
-                                ]
-                            },
-                            options: {
-                                responsive: true,
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
+                // Hàm tạo biểu đồ từ dữ liệu
+                function createChart(data) {
+                    var chartConfig = {
+                        type: 'bar', // Loại biểu đồ cột
+                        data: {
+                            labels: getLabels(),
+                            datasets: [
+                                {
+                                    label: 'Số lịch hẹn',
+                                    data: data,
+                                    backgroundColor: 'rgba(0, 123, 255, 0.3)',
+                                    borderColor: 'rgba(0, 123, 255, 1)',
+                                    borderWidth: 2
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
                                 }
                             }
-                        };
-
-                        // Cập nhật biểu đồ
-                        if (appointmentChart) {
-                            appointmentChart.destroy();
                         }
-                        appointmentChart = new Chart(ctx, chartConfig);
+                    };
+
+                    // Cập nhật biểu đồ
+                    if (appointmentChart) {
+                        appointmentChart.destroy();
                     }
+                    appointmentChart = new Chart(ctx, chartConfig);
+                }
 
-                    // Hàm trợ giúp để lấy nhãn cho trục x tương ứng với 7, 15 và 30 ngày gần đây
-                    function getLabels() {
-                        var labels = [];
+                // Hàm trợ giúp để lấy nhãn cho trục x tương ứng với 7, 15 và 30 ngày gần đây
+                function getLabels() {
+                    var labels = [];
 
-                        var currentDate = new Date();
-                        if (chartOption.value === "7Days") {
-                            for (var i = 6; i >= 0; i--) {
-                                var date = new Date(currentDate);
-                                date.setDate(date.getDate() - i);
-                                labels.push(formatDate(date));
-                            }
-                        } else if (chartOption.value === "15Days") {
-                            for (var i = 14; i >= 0; i--) {
-                                var date = new Date(currentDate);
-                                date.setDate(date.getDate() - i);
-                                labels.push(formatDate(date));
-                            }
-                        } else if (chartOption.value === "30Days") {
-                            for (var i = 29; i >= 0; i--) {
-                                var date = new Date(currentDate);
-                                date.setDate(date.getDate() - i);
-                                labels.push(formatDate(date));
-                            }
+                    var currentDate = new Date();
+                    if (chartOption.value === "7Days") {
+                        for (var i = 6; i >= 0; i--) {
+                            var date = new Date(currentDate);
+                            date.setDate(date.getDate() - i);
+                            labels.push(formatDate(date));
                         }
-                        return labels;
+                    } else if (chartOption.value === "15Days") {
+                        for (var i = 14; i >= 0; i--) {
+                            var date = new Date(currentDate);
+                            date.setDate(date.getDate() - i);
+                            labels.push(formatDate(date));
+                        }
+                    } else if (chartOption.value === "30Days") {
+                        for (var i = 29; i >= 0; i--) {
+                            var date = new Date(currentDate);
+                            date.setDate(date.getDate() - i);
+                            labels.push(formatDate(date));
+                        }
                     }
+                    return labels;
+                }
 
-                    // Hàm trợ giúp để định dạng ngày tháng
-                    function formatDate(date) {
-                        var day = date.getDate();
-                        var month = date.getMonth() + 1;
-                        var year = date.getFullYear();
-                        return day + '/' + month + '/' + year;
-                    }
-                });
+                // Hàm trợ giúp để định dạng ngày tháng
+                function formatDate(date) {
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    return day + '/' + month + '/' + year;
+                }
+            });
         </script>
     </body>
 </html>
