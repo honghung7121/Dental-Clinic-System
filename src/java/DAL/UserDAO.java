@@ -1004,6 +1004,7 @@ public class UserDAO {
                 pst.setString(1, idGg);
                 rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
+                    int id = rs.getInt("id");
                     String name = rs.getString("fullName");
                     String password = rs.getString("password");
                     String phoneNumber = rs.getString("phoneNumber");
@@ -1044,6 +1045,7 @@ public class UserDAO {
                 pst.setString(1, idFb);
                 rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
+                    int id = rs.getInt("id");
                     String name = rs.getString("fullName");
                     String password = rs.getString("password");
                     String phoneNumber = rs.getString("phoneNumber");
@@ -1052,7 +1054,7 @@ public class UserDAO {
                     String email = rs.getString("email");
                     String roll = rs.getString("Roll");
                     String gender = rs.getString("gender");
-                    user = new User(idRole, name, password, phoneNumber, idRole, status, email, roll, gender);
+                    user = new User(id, name, password, phoneNumber, idRole, status, email, roll, gender);
                 }
             }
         } catch (Exception e) {
@@ -1087,7 +1089,12 @@ public class UserDAO {
                     rawRoll = rs.getString("Roll");
                 }
                 int nextRoll = Integer.parseInt(rawRoll.substring(1)) + 1;
-                String Roll = "P" + nextRoll;
+                String Roll = "";
+                if (nextRoll < 100)
+                {
+                    if (nextRoll < 10) Roll = "00" + nextRoll;
+                    else Roll = "0" + nextRoll;
+                } else Roll = "P" + nextRoll;
                 sql = "insert into dbo.tblUser(fullName, email,phoneNumber,status,idRole,Roll,gender,idGoogle)\n"
                         + "                        values (?,?,?,?,?,?,?,?)";
                 pst = cn.prepareStatement(sql);
@@ -1134,7 +1141,12 @@ public class UserDAO {
                     rawRoll = rs.getString("Roll");
                 }
                 int nextRoll = Integer.parseInt(rawRoll.substring(1)) + 1;
-                String Roll = "P" + nextRoll;
+                String Roll = "";
+                if (nextRoll < 100)
+                {
+                    if (nextRoll < 10) Roll = "P00" + nextRoll;
+                    else Roll = "P0" + nextRoll;
+                } else Roll = "P" + nextRoll;
                 sql = "insert into dbo.tblUser(fullName, email,phoneNumber,status,idRole,Roll,gender,idFacebook)\n"
                         + "                        values (?,?,?,?,?,?,?,?)";
                 pst = cn.prepareStatement(sql);

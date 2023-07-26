@@ -58,8 +58,6 @@ public class InsertUserLoginByGoogleController extends HttpServlet {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         }
     }
