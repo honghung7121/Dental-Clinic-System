@@ -341,18 +341,6 @@
         <servlet-class>Controllers.Feedback.LoadMoreFeedbackServiceController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
-        <servlet-name>ViewTreatmentInvoicesOfDentistController</servlet-name>
-        <servlet-class>Controllers.Treatment_Dentist.ViewTreatmentInvoicesOfDentistController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InvoicesDetailOfDentistController</servlet-name>
-        <servlet-class>Controllers.Treatment_Dentist.InvoicesDetailOfDentistController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InvoicesConfirmController</servlet-name>
-        <servlet-class>Controllers.Treatment_Dentist.InvoicesConfirmController</servlet-class>
-=======
         <servlet-name>LoadAppointmentController</servlet-name>
         <servlet-class>Controllers.Appointment.LoadAppointmentController</servlet-class>
     </servlet>
@@ -363,7 +351,6 @@
     <servlet>
         <servlet-name>ChangTimeTreatmentCourseDetailsController</servlet-name>
         <servlet-class>Controllers.Treatment.ChangTimeTreatmentCourseDetailsController</servlet-class>
->>>>>>> b4f73161d365cfef80ae4f963c2a3e3f94b03d94
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -706,18 +693,6 @@
         <url-pattern>/LoadMoreFeedbackServiceController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
-        <servlet-name>ViewTreatmentInvoicesOfDentistController</servlet-name>
-        <url-pattern>/ViewTreatmentInvoicesOfDentistController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InvoicesDetailOfDentistController</servlet-name>
-        <url-pattern>/InvoicesDetailOfDentistController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InvoicesConfirmController</servlet-name>
-        <url-pattern>/InvoicesConfirmController</url-pattern>
-=======
         <servlet-name>LoadAppointmentController</servlet-name>
         <url-pattern>/LoadAppointmentController</url-pattern>
     </servlet-mapping>
@@ -728,7 +703,6 @@
     <servlet-mapping>
         <servlet-name>ChangTimeTreatmentCourseDetailsController</servlet-name>
         <url-pattern>/ChangTimeTreatmentCourseDetailsController</url-pattern>
->>>>>>> b4f73161d365cfef80ae4f963c2a3e3f94b03d94
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>
