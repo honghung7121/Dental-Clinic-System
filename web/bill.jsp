@@ -56,19 +56,17 @@
 
                             <div class="col-sm-6 col-md-3">
                                 <div class="form-group form-focus select-focus">
-                                    <label class="focus-label"></label>
                                     <select class="floating" name="status">
-                                        <option value="byall">Chọn trạng thái</option>
+                                        <option value="byall">Chọn Trạng Thái</option>
                                         <option value="bynot">Chưa Thánh Toán</option>
                                         <option value="bydone">Đã Thanh Toán</option>
                                     </select>
+                                    <!-- <a href="MainController?action=Search" type="submit" name="action" class="btn btn-success float-lg-right" > Tìm Kiếm </a>  -->
                                     <button type="submit" value="Search" name="action" class="btn btn-success float-lg-right">
                                         <span>Tìm kiếm</span>
-                                    </button>                 
                                 </div>
                             </div>
-                            <!--                                                        <a href="MainController?action=Search" class="btn btn-success float-lg-right" > Tìm Kiếm </a>                  -->
-                            <!--                                    <input class="btn btn-success float-lg-right" type="submit" value="Search" name="action">-->
+
                         </div>
                     </form>
 
@@ -84,7 +82,7 @@
                                         <th>Ngày Tạo</th>
                                         <th>Mô tả</th>
                                         <th>Giá Tiền</th>
-                                        <th>Trạng thái</th>
+                                        <th>Trạng Thái</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -117,16 +115,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-     <script src="assets/js/title_sort.js"></script>                        
+                <script src="assets/js/title_sort.js"></script>                        
 
-        <script src="assets/js/jquery.dataTables.min.js"></script>
-        <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+                <script src="assets/js/jquery.dataTables.min.js"></script>
+                <script src="assets/js/dataTables.bootstrap4.min.js"></script>
 
-        <script src="assets/js/select2.min.js"></script>
-        <script src="assets/js/moment.min.js"></script>
-        <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    </body>
-</html>
+                <script src="assets/js/select2.min.js"></script>
+                <script src="assets/js/moment.min.js"></script>
+                <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                </body>
+                </html>

@@ -128,7 +128,7 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="createStatusDentist" id="doctor_active" value="1" checked>
                                         <label class="form-check-label" for="doctor_active">
-                                            Đẫ kích hoạt
+                                            Đã kích hoạt
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline">

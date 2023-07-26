@@ -7,6 +7,7 @@ package Controllers.Treatment_Dentist;
 import DAL.ServiceDAO;
 import DAL.TreatmentCourseDetailDAO;
 import DAL.UserDAO;
+import Models.Service;
 import Models.TreatmentCourseDetail;
 import Models.User;
 import Util.SendMail;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import Models.Service;
+
 
 /**
  *
@@ -52,6 +54,7 @@ public class EditTreatmentDetailController extends HttpServlet {
             String StatusPaidDetail = request.getParameter("editStatusPaidDetail");
             final Service serviceNew = ServiceDAO.getServiceById(Integer.parseInt(ServiceDetail));
 
+
             TreatmentCourseDetail den = TreatmentCourseDetailDAO.getTreatmentDetailByID(idDetail);
             String denOld = den.getDescription();
             if (DescriptionDetail == null || DescriptionDetail.isEmpty()) {
@@ -78,6 +81,7 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "Dưới đây là thông tin chi tiết lịch hẹn khám của bạn:<br>"
                                 + "<br>"
                                 + "Khách hàng: " + patient.getFullName() + "<br>"
+                                + "Dịch vụ: " + serviceNew.getName() + "<br>"
                                 + "Ngày hẹn: " + formattedDate + "<br>"
                                 + "Thời gian: " + TimeDetail + "<br>"
                                 + "Dịch vụ: " + serviceNew.getName() + "<br>"
@@ -91,7 +95,7 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "<br>"
                                 + "Nếu bạn có bất kỳ câu hỏi hoặc yêu cầu bổ sung nào, xin vui lòng liên hệ với chúng tôi qua email hoặc số điện thoại dưới đây.<br>"
                                 + "<br>"
-                                + "Email: DentalClinic@gmail.com<br>"
+                                + "Email: dentalclinicbookingsystem@gmail.com<br>"
                                 + "Số điện thoại: +84 374 312 384<br>"
                                 + "<br>"
                                 + "Chúng tôi rất mong được gặp bạn và hỗ trợ bạn trong cuộc hẹn sắp tới. Xin vui lòng cho chúng tôi biết nếu có bất kỳ thay đổi nào trong lịch trình của bạn.<br>"
@@ -99,7 +103,7 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "Trân trọng,<br>"
                                 + "Nha Khoa DentCare", "Thông tin lịch hẹn");
                     }
-                };
+                };  
                 Thread thread = new Thread(myRunnable);
                 thread.start();
             }

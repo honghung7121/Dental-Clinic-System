@@ -49,7 +49,7 @@ public class ChangeProfileUser extends HttpServlet {
 
             } else {
                 dao.updateProfileUser(id, fullName, phoneNumber, email, gender);
-                response.sendRedirect("profileUser.jsp");
+                response.sendRedirect("TreatmentCourseController");               
 //            request.getRequestDispatcher("profileUser.jsp").forward(request, response);
                 HttpSession session = request.getSession();
 
