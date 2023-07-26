@@ -176,18 +176,12 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <c:set var="connectIdServices" value="" />
-                                                                    <c:forEach var="listD" items="${TreatmentDetailList}">
-                                                                        <c:set var="connectIdServices" value="${connectIdServices}${listD.id}," />
-                                                                    </c:forEach>
 
                                                                     <th></th>
-                                                                    <td class="text-right text-primary" ><a style="background-color: #009efb;" href="InvoicesConfirmController?idServices=${connectIdServices}&totalAmount=${totalAmount}" class="btn btn-primary">Xác Nhận Thanh Toán</a></td>
+                                                                    <td class="text-right text-primary" ><a style="background-color: #009efb;" href="InvoicesConfirmController?totalAmount=${totalAmount}" class="btn btn-primary">Xác Nhận Thanh Toán</a></td>
                                                                 </tr>
                                                             </tbody>
-
                                                         </table>
-
                                                     </div>
                                                 </div>
                                             </div>

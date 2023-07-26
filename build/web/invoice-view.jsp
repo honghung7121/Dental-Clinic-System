@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-<<<<<<< HEAD:build/web/invoice-view.jsp
+<<<<<<< HEAD:web/invoice-view.jsp
         <title>DentCare - Dental Clinic Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
@@ -43,7 +43,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
         <title>DentCare</title>
->>>>>>> b4f73161d365cfef80ae4f963c2a3e3f94b03d94:build/web/invoiceView.jsp
+>>>>>>> b4f73161d365cfef80ae4f963c2a3e3f94b03d94:web/invoiceView.jsp
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/dataTables.bootstrap4.min.css">
@@ -176,18 +176,12 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <c:set var="connectIdServices" value="" />
-                                                                    <c:forEach var="listD" items="${TreatmentDetailList}">
-                                                                        <c:set var="connectIdServices" value="${connectIdServices}${listD.id}," />
-                                                                    </c:forEach>
 
                                                                     <th></th>
-                                                                    <td class="text-right text-primary" ><a style="background-color: #009efb;" href="InvoicesConfirmController?idServices=${connectIdServices}&totalAmount=${totalAmount}" class="btn btn-primary">Xác Nhận Thanh Toán</a></td>
+                                                                    <td class="text-right text-primary" ><a style="background-color: #009efb;" href="InvoicesConfirmController?totalAmount=${totalAmount}" class="btn btn-primary">Xác Nhận Thanh Toán</a></td>
                                                                 </tr>
                                                             </tbody>
-
                                                         </table>
-
                                                     </div>
                                                 </div>
                                             </div>

@@ -87,7 +87,7 @@ public class TreatmentCourseDetailDAO {
         return list;
     }
 
-    public static boolean invoicesConfirm(String id, String treatmentID) {
+    public static boolean invoicesConfirm(String treatmentID) {
         boolean kq = false;
         Connection cn = null;
         try {
@@ -95,14 +95,9 @@ public class TreatmentCourseDetailDAO {
             if (cn != null) {
                 String sql = "UPDATE dbo.tblTreatmentCourseDetail\n"
                         + "SET statusPaid = 'true'\n"
-                        + "WHERE id = ?\n"
-                        + "\n"
-                        + "UPDATE dbo.tblTreatmentCourse\n"
-                        + "SET status = 'true'\n"
-                        + "WHERE id = ?";
+                        + "WHERE treatmentID = ?\n";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, id);
-                pst.setString(2, treatmentID);
+                pst.setString(1, treatmentID);
 
                 int rs = pst.executeUpdate();
                 kq = true;
@@ -120,16 +115,74 @@ public class TreatmentCourseDetailDAO {
         }
         return kq;
     }
-    
+
+    public static boolean invoicesUpdate(String id, String treatmentID) {
+        boolean kq = false;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE dbo.tblTreatmentCourse\n"
+                        + "SET status = 'true'\n"
+                        + "WHERE id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, id);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+
+    public static boolean invoicesCheck(String treatmentID) {
+        boolean kq = false;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT status\n"
+                        + "    FROM dbo.tblTreatmentCourseDetail\n"
+                        + "    WHERE tblTreatmentCourseDetail.status = 'false' and treatmentID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, treatmentID);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+
     public static String getMailPatientByTreatmentID(String idTreatment) {
         Connection cn = null;
         String mailPatient = "";
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "SELECT email\n" +
-"                        FROM tblTreatmentCourseDetail td, tblTreatmentCourse t, tblUser u\n" +
-"                        WHERE td.treatmentID = t.id AND t.userID = u.id AND td.treatmentID = ?";
+                String sql = "SELECT email\n"
+                        + "                        FROM tblTreatmentCourseDetail td, tblTreatmentCourse t, tblUser u\n"
+                        + "                        WHERE td.treatmentID = t.id AND t.userID = u.id AND td.treatmentID = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, idTreatment);
                 ResultSet rs = pst.executeQuery();
@@ -350,14 +403,14 @@ public class TreatmentCourseDetailDAO {
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, id);
                 rs = stm.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     return rs.getInt(1);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if(rs !=null){
+            if (rs != null) {
                 rs.close();
             }
             if (stm != null) {
@@ -369,7 +422,8 @@ public class TreatmentCourseDetailDAO {
         }
         return 0;
     }
-    public static void changeTimeTreatmentCourse(int id, Date date, Time time) throws SQLException{
+
+    public static void changeTimeTreatmentCourse(int id, Date date, Time time) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         try {
@@ -383,10 +437,9 @@ public class TreatmentCourseDetailDAO {
                 stm.executeUpdate();
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             if (stm != null) {
                 stm.close();
             }

@@ -39,7 +39,7 @@ public class InvoicesConfirmController extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            String connectIdServices = request.getParameter("idServices");
+
             String idTreatment = (String) session.getAttribute("idTreatment");
             String totalAmount = request.getParameter("totalAmount");
             // Parse the totalAmount as a double (assuming it's a numeric value)
@@ -51,13 +51,11 @@ public class InvoicesConfirmController extends HttpServlet {
             NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
             final String formattedAmount = currencyFormatter.format(amount);
             // Split the concatenated nameServices into separate values
-            String[] idServices = connectIdServices.split(",");
 
             // Process the individual nameService values
-            for (String idService : idServices) {
-                // Do something with each nameService value
-                boolean check = invoicesConfirm(idService, idTreatment);
-            }
+            // Do something with each nameService value
+            boolean check = invoicesConfirm(idTreatment);
+
             final String mail = getMailPatientByTreatmentID(idTreatment);
             Runnable myRunnable = new Runnable() {
                 public void run() {
