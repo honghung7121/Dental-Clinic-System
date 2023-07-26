@@ -28,6 +28,7 @@
 
         <c:if test="${sessionScope.User.getRoleID() != 1}"><c:redirect url="index.jsp"/></c:if>
         <jsp:include page="header.jsp"></jsp:include>
+
             <div class="page-wrapper">
                 <div class="content">
                     <div class="row">
