@@ -236,8 +236,8 @@
                                                                     <c:forEach var="d" items="${requestScope.TreatmentDetailList}">
                                                                         <tr style="text-align: center">
                                                                             <td><c:out value="${d.getNameTreatment()}"></c:out></td>
-                                                                            <td id="treatmentDetailDate"><c:out value="${d.getTreatmentdate()}"></c:out></td>
-                                                                            <td id="treatmentDetailTime"><c:out value="${d.getTreatmenttime()}"></c:out></td>
+                                                                            <td id="treatmentDetailDate" class="treatmentDate${d.getId()}"><c:out value="${d.getTreatmentdate()}"></c:out></td>
+                                                                            <td id="treatmentDetailTime" class="treatmentTime${d.getId()}"><c:out value="${d.getTreatmenttime()}"></c:out></td>
                                                                             <td><c:out value="${d.getNameService()}"></c:out></td>
                                                                             <td><c:out value="${d.getDescription()}"></c:out></td>
                                                                             <c:if test="${d.isStatus()==true}">
@@ -460,8 +460,6 @@
                                 function changeTreatmentCourseTime() {
                                     let date = document.getElementById("appointmentDate");
                                     let time = document.getElementById("appointmentTime");
-                                    console.log(date.value);
-                                    console.log(time.value);
                                     if (date.value === '' || time.value === '') {
                                         alert("Vui lòng chọn đủ ngày và thời gian");
                                         return;
@@ -475,8 +473,8 @@
                                                 timeSelected: time.value
                                             }
                                         }).done(function () {
-                                            document.getElementById("treatmentDetailDate").innerHTML = date.value;
-                                            document.getElementById("treatmentDetailTime").innerHTML = time.value;
+                                            document.querySelector(".treatmentDate" + treatmentID).innerHTML = date.value;
+                                            document.querySelector(".treatmentTime" + treatmentID).innerHTML = time.value;
                                             modal.hide();
                                         }).fail(function (xhr, status, error) {
                                             console.error('Lỗi: ' + error);

@@ -87,11 +87,10 @@
                                             <input class="form-control" type="text" id="treatmentName" required="">                                    
                                         </div>
                                     </div>
-
                                     <div class="col-sm-6">
                                         <div class="form-group" id="form-Roll">
                                             <strong><label>Mã Bệnh Nhân<span class="text-danger">*</span></label></strong>
-                                            <input class="form-control" value="${requestScope.Roll}" type="text" id="roll" required="">
+                                            <input class="form-control" value="${requestScope.Roll}" type="text" id="roll" disabled>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -124,7 +123,9 @@
                                 }
                                 let roll = document.getElementById("roll");
                                 let treatmentName = document.getElementById("treatmentName");
-                                console.log(roll.value);
+                                if(treatmentName.value.trim() === ''){
+                                    alert("Vui lòng nhập tên liệu trình!");
+                                }
                                 $.ajax({
                                     url: '/SWP391-SE1743/AddTreatmentCourseController',
                                     data: {
