@@ -108,10 +108,255 @@
                                     <div class="chart-title">
                                         <h4>Thống kê Số Sao</h4>
                                     </div>	
+                                    <canvas id="bargraph"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title d-inline-block">Cuộc hẹn sắp tới</h4> 
+<!--                                    <a href="appointments.html" class="btn btn-primary float-right">Xem tất cả</a>-->
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <thead >
+                                                <tr>
+                                                    <th>Tên bệnh nhân</th>
+                                                    <th>Tên bác sĩ</th>
+                                                    <th>Thời gian</th>
+                                                    <th class="text-right">Trạng thái</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="min-width: 200px;">
+                                                        <a class="avatar" href="#">B</a>
+                                                        <h2><a href="#"> Nguyễn Công Danh</a></h2>
+                                                    </td>                 
+                                                    <td>
+                                                        <h5 class="time-title p-0">Cuộc hẹn với</h5>
+                                                        <p>Dr. Nga</p>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="time-title p-0">Thời gian</h5>
+                                                        <p>9.00 AM</p>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <a href="#" class="btn btn-outline-primary take-btn">Chưa Hoàn Thành</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="min-width: 200px;">
+                                                        <a class="avatar" href="#">B</a>
+                                                        <h2><a href="#"> Kiều Quang Phúc </a></h2>
+                                                    </td>                 
+                                                    <td>
+                                                        <h5 class="time-title p-0">Cuộc hẹn với</h5>
+                                                        <p>Dr. Hòa</p>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="time-title p-0">Thời gian</h5>
+                                                        <p>2.00 PM</p>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <a href="#" class="btn btn-outline-primary take-btn">Chưa Hoàn Thành</a>
+                                                    </td>
+                                                </tr>
+                                               <tr>
+                                                    <td style="min-width: 200px;">
+                                                        <a class="avatar" href="#">B</a>
+                                                        <h2><a href="#"> Lưu Thành Đạt </a></h2>
+                                                    </td>                 
+                                                    <td>
+                                                        <h5 class="time-title p-0">Cuộc hẹn với</h5>
+                                                        <p>Dr. Hùng</p>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="time-title p-0">Thời gian</h5>
+                                                        <p>11.00 AM</p>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <a href="#" class="btn btn-outline-primary take-btn">Chưa Hoàn Thành</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="min-width: 200px;">
+                                                        <a class="avatar" href="#">B</a>
+                                                        <h2><a href="#"> Nguyễn Hoàng Anh </a></h2>
+                                                    </td>                 
+                                                    <td>
+                                                        <h5 class="time-title p-0">Cuộc hẹn với</h5>
+                                                        <p>Dr. Khanh</p>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="time-title p-0">Thời gian</h5>
+                                                        <p> 4.00 PM</p>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <a href="#" class="btn btn-outline-primary take-btn">Chưa Hoàn Thành</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="min-width: 200px;">
+                                                        <a class="avatar" href="#">B</a>
+                                                        <h2><a href="#"> Nguyễn Đăng Quang</a></h2>
+                                                    </td>                 
+                                                    <td>
+                                                        <h5 class="time-title p-0">Cuộc hẹn với</h5>
+                                                        <p>Dr. Thảo</p>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="time-title p-0">Thời gian</h5>
+                                                        <p>10.30 PM</p>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <a href="#" class="btn btn-outline-primary take-btn">Chưa Hoàn Thành</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+                            <div class="card member-panel">
+                                <div class="card-header bg-white">
+                                    <h4 class="card-title mb-0">Bác sĩ</h4>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="contact-list">
+                                        <li>
+                                            <div class="contact-cont">
+                                                <div class="float-left user-img m-r-10">
+                                                    <a href="#" ><img src="img/bacsi/bs-nga.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                                                </div>
+                                                <div class="contact-info">
+                                                    <span class="contact-name text-ellipsis">Trần Thị Mỹ Nga</span>
+                                                    
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="contact-cont">
+                                                <div class="float-left user-img m-r-10">
+                                                    <a href="#" ><img src="img/bacsi/bstung.jpg" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
+                                                </div>
+                                                <div class="contact-info">
+                                                    <span class="contact-name text-ellipsis">Nguyễn Hiếu Tùng</span>
+                                                    
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="contact-cont">
+                                                <div class="float-left user-img m-r-10">
+                                                    <a href="#" ><img src="img/bacsi/bs-khanh.jpg" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                                </div>
+                                                <div class="contact-info">
+                                                    <span class="contact-name text-ellipsis">Ngô Đồng Khanh</span>
+                                                    
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="contact-cont">
+                                                <div class="float-left user-img m-r-10">
+                                                    <a href="#" ><img src="img/bacsi/bsvien.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                                                </div>
+                                                <div class="contact-info">
+                                                    <span class="contact-name text-ellipsis">Trương Thị Hoài An</span>
+                                               
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="contact-cont">
+                                                <div class="float-left user-img m-r-10">
+                                                    <a href="#"><img src="img/bacsi/bs-hoa.jpg" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
+                                                </div>
+                                                <div class="contact-info">
+                                                    <span class="contact-name text-ellipsis">Trương Quang Hòa</span>
+                                                  
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="contact-cont">
+                                                <div class="float-left user-img m-r-10">
+                                                    <a href="#" ><img src="img/bacsi/bs-thao.jpg" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                                </div>
+                                                <div class="contact-info">
+                                                    <span class="contact-name text-ellipsis">Nguyễn Thị Thảo </span>
+                                                   
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer text-center bg-white">
+                                    <a href="MainController?action=dentist" class="text-muted">Xem tất cả bác sĩ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title d-inline-block">Bệnh nhân mới </h4> <a href="MainController?action=patient" class="btn btn-primary float-right">Xem tất cả</a>
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0 new-patient-table">                                          
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt=""> 
+                                                        <h2>Nguyễn Công Thành</h2>
+                                                    </td>
+                                                    <td>thanhhn57@gmail.com</td>
+                                                    <td>0362475760</td>
+                                                    <td><button class="btn btn-primary btn-primary-one float-right">Lấy tuỷ</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt=""> 
+                                                        <h2>Nguyễn Đinh Phú Thọ</h2>
+                                                    </td>
+                                                    <td>thopdn@gmail.com</td>
+                                                    <td>0979062062</td>
+                                                    <td><button class="btn btn-primary btn-primary-two float-right">Niềng răng</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt=""> 
+                                                        <h2>Nguyễn Hữu Ngọc Hải</h2>
+                                                    </td>
+                                                    <td>hainhn57@gmail.com</td>
+                                                    <td>0362564564</td>
+                                                    <td><button class="btn btn-primary btn-primary-three float-right">Nhổ răng</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img width="28" height="28" class="rounded-circle" src="assets/img/user.jpg" alt=""> 
+                                                        <h2>Trần Bình Nguyên</h2>
+                                                    </td>
+                                                    <td>nguyenbinh@gmail.com</td>
+                                                    <td>0256159158</td>
+                                                    <td><button class="btn btn-primary btn-primary-four float-right">Tẩy trắng</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     <div class="containere">
                                         <div>
                                             <canvas id="pie-chart"></canvas>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
