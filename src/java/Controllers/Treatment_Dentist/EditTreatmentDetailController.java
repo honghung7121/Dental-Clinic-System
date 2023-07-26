@@ -51,7 +51,6 @@ public class EditTreatmentDetailController extends HttpServlet {
             String DescriptionDetail = request.getParameter("editDescriptionDetail");
             String StatusDetail = request.getParameter("editStatusDetail");
             String StatusPaidDetail = request.getParameter("editStatusPaidDetail");
-            Service serviceNew = ServiceDAO.getServiceById(Integer.parseInt(ServiceDetail));
             
             TreatmentCourseDetail den = TreatmentCourseDetailDAO.getTreatmentDetailByID(idDetail);
             String denOld = den.getDescription();
@@ -66,13 +65,21 @@ public class EditTreatmentDetailController extends HttpServlet {
             LocalDate localDate = LocalDate.parse(DateDetail);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             final String formattedDate = localDate.format(formatter);
-                
+            final String description = DescriptionDetail;
             int idPatient = TreatmentCourseDetailDAO.getIDPatientByTreatmentID(idTreatment);
             final User patient = UserDAO.getPatient(idPatient);
+            final Service serviceNew = ServiceDAO.getServiceById(Integer.parseInt(ServiceDetail));
+            
             if (check) {
                 Runnable myRunnable = new Runnable() {
                     public void run() {
                         // Các công việc được thực thi trong luồng này
+//                        // Đường dẫn tới hình ảnh
+//                        String imagePath = "http://localhost:8080/SWP391-SE1743/img/anhquangcao.jpg";
+//
+//                        // Tạo thẻ <img> chứa đường dẫn hình ảnh
+//                        String imageTag = "<img src=\"" + imagePath + "\" alt=\"Ảnh quảng cáo\">";
+                        
                         SendMail.sendEmail(patient.getEmail(), "Mail from Dental Clinic System", "Chào anh/chị,<br>"
                                 + "<br>"
                                 + "Xin thông báo lịch hẹn khám của quý khách đã được THAY ĐỔI. Vui lòng đọc kĩ những thay đổi sau đây để anh/chị đến khám đúng lịch hẹn.<br>"
@@ -82,6 +89,7 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "Dịch vụ: " + serviceNew.getName() + "<br>"
                                 + "Ngày hẹn: " + formattedDate + "<br>"
                                 + "Thời gian: " + TimeDetail + "<br>"
+                                + "Ghi chú (nếu có): " + description + "<br>"
                                 + "Địa chỉ: Quận 9, Thành phố Hồ Chí Minh<br>"
                                 + "<br>"
                                 + "Chúng tôi rất mong được gặp bạn vào ngày hẹn trên. Để đảm bảo quá trình hẹn được diễn ra thuận lợi, vui lòng lưu ý các thông tin sau:<br>"
