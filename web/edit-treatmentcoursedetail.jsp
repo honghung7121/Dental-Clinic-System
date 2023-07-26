@@ -61,15 +61,28 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <strong><label>Ngày Hẹn<span class="text-danger">*</span></label></strong>
-                                            <input class="form-control" type="date" value="<%= treatmentdetail.getTreatmentdate()%>" name="editDateDetail">
+                                            <input class="form-control" type="date" value="<%= treatmentdetail.getTreatmentdate()%>" name="editDateDetail" id="editDateInput">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <strong><label>Giờ Hẹn <span class="text-danger">*</span></label></strong>
-                                            <input class="form-control" type="time" name="editTimeDetail" value="<%= treatmentdetail.getTreatmenttime()%>" required="">
+                                            
+                                            <select class="form-control" name="editTimeDetail" required="">
+                                                <option value="<%= treatmentdetail.getTreatmenttime()%>"><%= treatmentdetail.getTreatmenttime()%></option>
+                                                <%
+                                                for(int i = 8; i < 22; i++){
+                                                %>
+                                                    <option value="<%= i+":00" %>"><%= i%>:00:00</option>
+                                                    <option value="<%= i+":30" %>"><%= i%>:30:00</option>
+                                                <%
+                                                }
+                                                %>
+                                            </select>
                                         </div>
+                                        
+                                        
                                         <h6 style="color: red">${requestScope.reportEmail}</h6>
                                     </div>
                                     
@@ -136,6 +149,19 @@
 
             </div>
         </div>
-                                        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            // Hàm để lấy ngày hiện tại dưới dạng chuỗi 'YYYY-MM-DD'
+            function getCurrentDate() {
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0');
+                const day = String(today.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+            // Lấy phần tử input và đặt giá trị tối thiểu bằng ngày hiện tại
+            const editDateInput = document.getElementById('editDateInput');
+            editDateInput.min = getCurrentDate();
+        </script>                                
     </body>
 </html>
