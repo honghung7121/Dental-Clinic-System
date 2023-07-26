@@ -37,13 +37,15 @@ public class UserProfileController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-          String userID = request.getParameter("userID");
+            String userID = request.getParameter("userID");
             User user = new User();
             UserDAO userDAO = new UserDAO();
             user = userDAO.getUserByID(userID);
             request.setAttribute("userByID", user);
             request.getRequestDispatcher("changeProfileUser.jsp").forward(request, response);
-        }    }
+//            request.getRequestDispatcher("myprofile.jsp").forward(request, response);
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
