@@ -123,10 +123,10 @@ public class AppointmentDAO {
     int id;
     private String userName;
     private String dentistName;
-    private Date date;  
+    private Date date;
     private String description;
     private boolean status;
-  
+
     public boolean insertAppointment(String userID, String dentistID, Date date, String description, String status) {
 
         Connection cn = null;
@@ -253,7 +253,7 @@ public class AppointmentDAO {
                     pst.setBoolean(6, false);
                     pst.executeUpdate();
                     result = 1;
-                } else if (count == 1){
+                } else if (count == 1) {
                     // Đã tồn tại một bản ghi với userID, trả về false
                     result = 2;
                 }
@@ -284,9 +284,23 @@ public class AppointmentDAO {
             if (cn != null) {
                 Date date = Date.valueOf(stringdate);
                 Time time = Time.valueOf(stringtime);
-                String sql = "SELECT appDate, appTime, dentistID\n"
+                String sql = "SELECT *\n"
                         + "FROM tblAppointment\n"
                         + "WHERE appDate = ? AND appTime = ? AND dentistID = ?";
+                pst = cn.prepareStatement(sql);
+                pst.setDate(1, date);
+                pst.setTime(2, time);
+                pst.setInt(3, dentistid);
+                rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    result = true;
+                }
+
+                sql = "SELECT *\n"
+                        + "FROM (SELECT treatmentDate, treatmentTime, dentistID\n"
+                        + "FROM tblTreatmentCourseDetail as trc, tblTreatmentCourse as trcd\n"
+                        + "WHERE trc.treatmentID = trcd.id) as newtable\n"
+                        + "where newtable.treatmentDate = ? and newtable.treatmentTime = ? and newtable.dentistID = ?";
                 pst = cn.prepareStatement(sql);
                 pst.setDate(1, date);
                 pst.setTime(2, time);
@@ -310,7 +324,7 @@ public class AppointmentDAO {
                 cn.close();
             }
         }
-        return result; 
+        return result;
     }
 
     public static boolean isExistAppointment(int userid) throws SQLException {

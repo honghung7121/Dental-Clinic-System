@@ -4,6 +4,7 @@
  */
 package Controllers.Treatment_Dentist;
 
+import DAL.ServiceDAO;
 import DAL.TreatmentCourseDetailDAO;
 import DAL.UserDAO;
 import Models.TreatmentCourseDetail;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import Models.Service;
+
 
 /**
  *
@@ -40,7 +43,7 @@ public class EditTreatmentDetailController extends HttpServlet {
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String idTreatment =(String) session.getAttribute("idTreatment");
+            String idTreatment = (String) session.getAttribute("idTreatment");
             String idDetail = request.getParameter("idDetail");
             final String DateDetail = request.getParameter("editDateDetail");
             final String TimeDetail = request.getParameter("editTimeDetail");
@@ -48,21 +51,21 @@ public class EditTreatmentDetailController extends HttpServlet {
             String DescriptionDetail = request.getParameter("editDescriptionDetail");
             String StatusDetail = request.getParameter("editStatusDetail");
             String StatusPaidDetail = request.getParameter("editStatusPaidDetail");
-            
+            final Service serviceNew = ServiceDAO.getServiceById(Integer.parseInt(ServiceDetail));
             TreatmentCourseDetail den = TreatmentCourseDetailDAO.getTreatmentDetailByID(idDetail);
             String denOld = den.getDescription();
             if (DescriptionDetail == null || DescriptionDetail.isEmpty()) {
-                DescriptionDetail = denOld; 
+                DescriptionDetail = denOld;
             }
-            
+
             boolean check = TreatmentCourseDetailDAO.updateTreatmentDetail(idDetail, DateDetail, TimeDetail,
                     ServiceDetail, DescriptionDetail, StatusDetail, StatusPaidDetail);
-            
+
             //gui mail cho khach hang
             LocalDate localDate = LocalDate.parse(DateDetail);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             final String formattedDate = localDate.format(formatter);
-                
+
             int idPatient = TreatmentCourseDetailDAO.getIDPatientByTreatmentID(idTreatment);
             final User patient = UserDAO.getPatient(idPatient);
             if (check) {
@@ -73,10 +76,12 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "<br>"
                                 + "Xin thông báo lịch hẹn khám của quý khách đã được THAY ĐỔI. Vui lòng đọc kĩ những thay đổi sau đây để anh/chị đến khám đúng lịch hẹn.<br>"
                                 + "Dưới đây là thông tin chi tiết lịch hẹn khám của bạn:<br>"
-                                + "<br>" 
+                                + "<br>"
                                 + "Khách hàng: " + patient.getFullName() + "<br>"
+                                + "Dịch vụ: " + serviceNew.getName() + "<br>"
                                 + "Ngày hẹn: " + formattedDate + "<br>"
                                 + "Thời gian: " + TimeDetail + "<br>"
+                                + "Dịch vụ: " + serviceNew.getName() + "<br>"
                                 + "Địa chỉ: Quận 9, Thành phố Hồ Chí Minh<br>"
                                 + "<br>"
                                 + "Chúng tôi rất mong được gặp bạn vào ngày hẹn trên. Để đảm bảo quá trình hẹn được diễn ra thuận lợi, vui lòng lưu ý các thông tin sau:<br>"
@@ -87,7 +92,7 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "<br>"
                                 + "Nếu bạn có bất kỳ câu hỏi hoặc yêu cầu bổ sung nào, xin vui lòng liên hệ với chúng tôi qua email hoặc số điện thoại dưới đây.<br>"
                                 + "<br>"
-                                + "Email: DentalClinic@gmail.com<br>"
+                                + "Email: dentalclinicbookingsystem@gmail.com<br>"
                                 + "Số điện thoại: +84 374 312 384<br>"
                                 + "<br>"
                                 + "Chúng tôi rất mong được gặp bạn và hỗ trợ bạn trong cuộc hẹn sắp tới. Xin vui lòng cho chúng tôi biết nếu có bất kỳ thay đổi nào trong lịch trình của bạn.<br>"
@@ -95,7 +100,7 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "Trân trọng,<br>"
                                 + "Nha Khoa DentCare", "Thông tin lịch hẹn");
                     }
-                };
+                };  
                 Thread thread = new Thread(myRunnable);
                 thread.start();
             }

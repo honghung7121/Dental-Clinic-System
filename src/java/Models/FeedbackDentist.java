@@ -21,7 +21,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class FeedbackDentist implements Serializable{
+public class FeedbackDentist implements Serializable {
+
     private int id;
     private String namedentist;
     private String namecustomer;

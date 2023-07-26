@@ -407,56 +407,80 @@
         <script src="https://momentjs.com/"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
-                                let treatmentID;
-                                var modal;
-                                function setUpForm(treatmentCourseDetailID) {
-                                    modal = new bootstrap.Modal(document.getElementById('createModal'));
-                                    treatmentID = treatmentCourseDetailID;
-                                    modal.show();
-                                    document.getElementById('appointmentDate').addEventListener('blur', function () {
-                                        var dateSelect = document.getElementById('appointmentDate').value;
-                                        var today = moment().startOf('day').utcOffset(7);
-                                        if (dateSelect < today.format("YYYY-MM-DD")) {
-                                            alert('Ngày không hợp lệ, vui lòng chọn một ngày khác.');
-                                        } else {
-                                            var startTime, endTime;
+                            let treatmentID;
+                            var modal;
+                            function setUpForm(treatmentCourseDetailID) {
+                                modal = new bootstrap.Modal(document.getElementById('createModal'));
+                                treatmentID = treatmentCourseDetailID;
+                                modal.show();
+                                document.getElementById('appointmentDate').addEventListener('blur', function () {
+                                    var dateSelect = document.getElementById('appointmentDate').value;
+                                    var today = moment().startOf('day').utcOffset(7);
+                                    if (dateSelect < today.format("YYYY-MM-DD")) {
+                                        alert('Ngày không hợp lệ, vui lòng chọn một ngày khác.');
+                                    } else {
+                                        var startTime, endTime;
 
-                                            if (today.isoWeekday() === 0 || today.isoWeekday() === 6) {
-                                                startTime = 8;
-                                                endTime = 18;
-                                            } else {
-                                                startTime = 8;
-                                                endTime = 20;
-                                            }
-                                            var timeSelect = document.getElementById('appointmentTime');
-                                            for (let hour = startTime; hour <= endTime; hour++) {
-                                                for (let minute = 0; minute <= 30; minute += 30) {
-                                                    let time = ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2) + ':' + ('00').slice(-2);
-                                                    let option = document.createElement('option');
-                                                    option.value = time;
-                                                    option.innerText = time;
-                                                    $.ajax({
-                                                        url: '/SWP391-SE1743/myservlet',
-                                                        method: 'POST',
-                                                        data: {
-                                                            treatmentCourseDetailID: treatmentCourseDetailID,
-                                                            dateSelected: dateSelect,
-                                                            timeSelected: time
-                                                        }
-                                                    }).done(function (response, status, xhr) {
-                                                        if (xhr.status === 200) {
-                                                            option.disabled = true;
-                                                            option.style.color = 'gray';
-                                                        }
-                                                    }).fail(function (xhr, status, error) {
-                                                        console.error('Lỗi: ' + error);
-                                                    });
-                                                    timeSelect.appendChild(option);
-                                                }
+                                        if (today.isoWeekday() === 0 || today.isoWeekday() === 6) {
+                                            startTime = 8;
+                                            endTime = 18;
+                                        } else {
+                                            startTime = 8;
+                                            endTime = 20;
+                                        }
+                                        var timeSelect = document.getElementById('appointmentTime');
+                                        for (let hour = startTime; hour <= endTime; hour++) {
+                                            for (let minute = 0; minute <= 30; minute += 30) {
+                                                let time = ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2) + ':' + ('00').slice(-2);
+                                                let option = document.createElement('option');
+                                                option.value = time;
+                                                option.innerText = time;
+                                                $.ajax({
+                                                    url: '/SWP391-SE1743/myservlet',
+                                                    method: 'POST',
+                                                    data: {
+                                                        treatmentCourseDetailID: treatmentCourseDetailID,
+                                                        dateSelected: dateSelect,
+                                                        timeSelected: time
+                                                    }
+                                                }).done(function (response, status, xhr) {
+                                                    if (xhr.status === 200) {
+                                                        option.disabled = true;
+                                                        option.style.color = 'gray';
+                                                    }
+                                                }).fail(function (xhr, status, error) {
+                                                    console.error('Lỗi: ' + error);
+                                                });
+                                                timeSelect.appendChild(option);
                                             }
                                         }
+                                    }
+                                });
+                            }
+                            function changeTreatmentCourseTime() {
+                                let date = document.getElementById("appointmentDate");
+                                let time = document.getElementById("appointmentTime");
+                                if (date.value === '' || time.value === '') {
+                                    alert("Vui lòng chọn đủ ngày và thời gian");
+                                    return;
+                                } else {
+                                    $.ajax({
+                                        url: '/SWP391-SE1743/ChangTimeTreatmentCourseDetailsController',
+                                        method: 'POST',
+                                        data: {
+                                            treatmentCourseDetailID: treatmentID,
+                                            dateSelected: date.value,
+                                            timeSelected: time.value
+                                        }
+                                    }).done(function () {
+                                        document.querySelector(".treatmentDate" + treatmentID).innerHTML = date.value;
+                                        document.querySelector(".treatmentTime" + treatmentID).innerHTML = time.value;
+                                        modal.hide();
+                                    }).fail(function (xhr, status, error) {
+                                        console.error('Lỗi: ' + error);
                                     });
                                 }
+<<<<<<< HEAD
                                 function changeTreatmentCourseTime() {
                                     let date = document.getElementById("appointmentDate");
                                     let time = document.getElementById("appointmentTime");
@@ -481,6 +505,9 @@
                                         });
                                     }
                                 }
+=======
+                            }
+>>>>>>> c7a5914a0b5aa78456f8a6c3a3c85e348375d5e0
 
         </script>
 
