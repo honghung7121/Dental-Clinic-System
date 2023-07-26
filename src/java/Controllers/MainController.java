@@ -97,6 +97,8 @@ public class MainController extends HttpServlet {
     private final String SEARCHUSERSTATUS = "SearchUserStatus";
 
     private final String TREATMENTOFDENTIST = "ViewTreatmentOfDentistController";
+    private final String TREATMENTINVOICESOFDENTIST = "ViewTreatmentInvoicesOfDentistController";
+    private final String INVOICESDETAILOFDENTIST = "InvoicesDetailOfDentistController";
     private final String TREATMENTDETAILOFDENTIST = "ViewTreatmentDetailOfDentistController";
     private final String EDITTREATMENTDETAIL = "EditTreatmentDetailController";
     private final String ADDTREATMENTDETAIL = "AddTreatmentDetailController";
@@ -223,9 +225,13 @@ public class MainController extends HttpServlet {
                 url = SEARCHUSERSTATUS;
             } else if (action.equals("ViewTreatmentByCustomer")) {
                 url = TREATMENTOFDENTIST;
+            }else if (action.equals("ViewTreatmentInvoicesOfDentist")) {
+                url = TREATMENTINVOICESOFDENTIST;
             } else if (action.equals("ViewTreatmentDetailByCustomer")) {
                 url = TREATMENTDETAILOFDENTIST;
-            } else if (action.equals("editDetail")) {
+            }else if (action.equals("ViewInvoicesDetailByCustomer")) {
+                url = INVOICESDETAILOFDENTIST;
+            }  else if (action.equals("editDetail")) {
                 url = EDITTREATMENTDETAIL;
             } else if (action.equals("addDetail")) {
                 url = ADDTREATMENTDETAIL;
