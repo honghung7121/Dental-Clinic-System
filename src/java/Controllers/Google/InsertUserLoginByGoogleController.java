@@ -47,7 +47,7 @@ public class InsertUserLoginByGoogleController extends HttpServlet {
                 if (result) {
                     User user = UserDAO.getUserLoginByGoogle(idGg);
                     session.setAttribute("User", user);
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    response.sendRedirect("index.jsp");  
                 } else {
                     out.println("<html><body>");
                     out.println("<script>");

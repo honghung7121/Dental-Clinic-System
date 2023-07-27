@@ -8,11 +8,13 @@ import DAL.AppointmentDAO;
 import DAL.DentistDAO;
 import DAL.FeedbackServiceDAO;
 import DAL.TreatmentCourseDAO;
+import DAL.TreatmentCourseDetailDAO;
 import DAL.UserDAO;
 import Models.Appointment;
+import Models.TreatmentCourseDetail;
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,17 +45,27 @@ public class DashBoardController extends HttpServlet {
         String url = "";
         HttpSession session = request.getSession();
         session.setAttribute("activeLink", "dashboardLink");
-        try{
+        try {
             TreatmentCourseDAO treatmentcourseDAO = new TreatmentCourseDAO();
             UserDAO userDAO = new UserDAO();
             AppointmentDAO appointmentDAO = new AppointmentDAO();
             ArrayList<Appointment> list = appointmentDAO.getAllAppointment();
             ArrayList<Integer> listRate = FeedbackServiceDAO.getRates();
-            Date date = new java.sql.Date(123, 7, 20);
+            java.util.Date currentDate = new java.util.Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDate = sdf.format(currentDate);
+            java.sql.Date date = java.sql.Date.valueOf(formattedDate);
             int month[] = new int[30];
             for (Appointment appointment : list) {
-                if (date.getDate() > appointment.getDate().getDate()) {
+                if (date.getDate() > appointment.getDate().getDate() && date.getMonth() == appointment.getDate().getMonth()) {
                     month[29 - (date.getDate() - appointment.getDate().getDate())]++;
+                }
+            }
+            ArrayList<TreatmentCourseDetail> tcdList = TreatmentCourseDetailDAO.getAllTreatmentDetail();
+            for (TreatmentCourseDetail treatmentCourseDetail : tcdList) {
+                java.sql.Date treatmentDate = java.sql.Date.valueOf(treatmentCourseDetail.getTreatmentdate());
+                if (date.getDate() > treatmentDate.getDate() && date.getMonth() == treatmentDate.getMonth()) {
+                    month[29 - (date.getDate() - treatmentDate.getDate())]++;
                 }
             }
             Gson gson = new Gson();
@@ -68,9 +80,9 @@ public class DashBoardController extends HttpServlet {
             request.setAttribute("PATIENT", userDAO.getAllNumberPatient());
             request.setAttribute("DENTIST", DentistDAO.getAllDentist().size());
             url = "admin.jsp";
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

@@ -22,6 +22,37 @@ import java.util.ArrayList;
  */
 public class TreatmentCourseDetailDAO {
 
+    public static ArrayList<TreatmentCourseDetail> getAllTreatmentDetail() {
+        ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
+        Util dbu = new Util();
+
+        String sql = "select td.id, nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid, statusFeedBack\n"
+                + "from tblTreatmentCourse tc\n"
+                + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
+                + "JOIN tblService ON td.serviceID = tblService.id";
+        try {
+            Connection connection = dbu.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nameTreatment = rs.getString("nameTreatment");
+                String treatmentdate = rs.getString("treatmentDate");
+                String treatmenttime = rs.getString("treatmentTime");
+                String servicename = rs.getString("serviceName");
+                String description = rs.getString("description");
+                boolean status = rs.getBoolean("status");
+                boolean statuspaid = rs.getBoolean("statusPaid");
+                boolean statusFeedBack = rs.getBoolean("statusFeedBack");
+                TreatmentCourseDetail c = new TreatmentCourseDetail(id, nameTreatment, treatmentdate, treatmenttime, servicename, description, status, statuspaid, statusFeedBack);
+                list.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public static ArrayList<TreatmentCourseDetail> getTreatmentDetailByUserID(String from, String paid) {
         ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
         Util dbu = new Util();
