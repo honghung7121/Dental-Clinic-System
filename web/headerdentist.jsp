@@ -19,6 +19,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        
         <!--[if lt IE 9]>
                     <script src="assets/js/html5shiv.min.js"></script>
                     <script src="assets/js/respond.min.js"></script>
@@ -229,6 +230,9 @@
                             </li>  
                             <li class="${viewpatientsofdentistLink}">
                                 <a  href="MainController?action=ViewTreatmentByCustomer&id=${sessionScope.User.getId()}"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>
+                            </li>
+                            <li>
+                                <a  href="MainController?action=ViewTreatmentInvoicesOfDentist"><i class="fa fa-money"></i> <span>Hoá Đơn</span></a>
                             </li>
                         </ul>
                     </div>
