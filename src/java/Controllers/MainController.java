@@ -84,7 +84,7 @@ public class MainController extends HttpServlet {
     private final String CHANGEPASSWORDUSER = "changePasswordUser.jsp";
     private final String CHANGEPASSWORD = "ChangePasswordController";
     private final String CHANGEPROFILEUSER = "ChangeProfileUser";
-     private final String SAVEPROFILEUSER = "UserProfileController";
+    private final String SAVEPROFILEUSER = "UserProfileController";
 
     private final String CUSTOMER_DENTIST_PAGE = "customer-dentists.jsp";
     private final String CUSTOMER_SHOW_DENTIST = "ShowDentistController";

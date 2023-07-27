@@ -4,9 +4,12 @@
  */
 package Controllers.Treatment_Dentist;
 
+import DAL.DentistDAO;
 import DAL.ServiceDAO;
+import DAL.TreatmentCourseDAO;
 import DAL.TreatmentCourseDetailDAO;
 import DAL.UserDAO;
+import Models.Dentist;
 import Models.Service;
 import Models.User;
 import Util.SendMail;
@@ -48,6 +51,21 @@ public class AddTreatmentDetailController extends HttpServlet {
             String DescriptionDetail = request.getParameter("editDescriptionDetail");
             String StatusDetail = "0";
             String StatusPaidDetail = "0";
+            
+            TreatmentCourseDAO tmCourseDAO = new TreatmentCourseDAO();
+            int idDentist = tmCourseDAO.getDentistByTreatmentCourseID(Integer.parseInt(idTreatment));
+            DentistDAO dentistDAO = new DentistDAO();
+            final Dentist dentist = dentistDAO.getDentistByID(String.valueOf(idDentist));
+                
+            //check trung ngay
+            boolean checkDuplicate = TreatmentCourseDetailDAO.checkDuplicateDateTreatmentDetailOfDentist(idDentist, DateDetail, TimeDetail);
+            if(checkDuplicate){
+                //Quay lại trang trước và hiện thông báo lỗi
+                request.setAttribute("reportDuplicate", "Thời gian này Nhã sĩ " + dentist.getFullName() + " đã có lịch khám. Khách hàng vui lòng chọn lại thời gian khác. Xin cảm ơn!");
+                request.getRequestDispatcher("add-treatmentcoursedetail.jsp").forward(request, response);
+                return;
+            }
+            //end check
             
             boolean check = TreatmentCourseDetailDAO.insertTreatmentDetail(idTreatment, DateDetail, TimeDetail,
                     ServiceDetail, DescriptionDetail, StatusDetail, StatusPaidDetail);

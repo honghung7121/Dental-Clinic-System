@@ -88,6 +88,145 @@ public class TreatmentCourseDetailDAO {
         return list;
     }
 
+    public static ArrayList<TreatmentCourseDetail> getInvoicesDetailByTreatmentID(String from) {
+        ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
+        Util dbu = new Util();
+
+        String sql = "SELECT tblTreatmentCourseDetail.id AS id, tblService.serviceName AS serviceName,tblTreatmentCourseDetail.description,tblTreatmentCourseDetail.status,tblTreatmentCourseDetail.statusPaid, tblService.price AS price\n"
+                + "FROM tblTreatmentCourseDetail, tblService, tblTreatmentCourse\n"
+                + "WHERE tblTreatmentCourseDetail.treatmentID = tblTreatmentCourse.id\n"
+                + "AND tblTreatmentCourseDetail.serviceID = tblService.id\n"
+                + "AND tblTreatmentCourseDetail.treatmentID = ? ORDER BY tblTreatmentCourseDetail.status DESC";
+        try {
+            Connection connection = dbu.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, from);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String servicename = rs.getString("serviceName");
+                String description = rs.getString("description");
+                boolean status = rs.getBoolean("status");
+                boolean statuspaid = rs.getBoolean("statusPaid");
+                float price = rs.getFloat("price");
+                TreatmentCourseDetail c = new TreatmentCourseDetail(id, servicename, description, status, statuspaid, price);
+                list.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public static boolean invoicesConfirm(String treatmentID) {
+        boolean kq = false;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE dbo.tblTreatmentCourseDetail\n"
+                        + "SET statusPaid = 'true'\n"
+                        + "WHERE treatmentID = ?\n";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, treatmentID);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+
+    public static boolean invoicesUpdate(String id, String treatmentID) {
+        boolean kq = false;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE dbo.tblTreatmentCourse\n"
+                        + "SET status = 'true'\n"
+                        + "WHERE id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, id);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+
+    public static boolean invoicesCheck(String treatmentID) {
+        boolean kq = false;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT status\n"
+                        + "    FROM dbo.tblTreatmentCourseDetail\n"
+                        + "    WHERE tblTreatmentCourseDetail.status = 'false' and treatmentID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, treatmentID);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+
+    public static String getMailPatientByTreatmentID(String idTreatment) {
+        Connection cn = null;
+        String mailPatient = "";
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT email\n"
+                        + "                        FROM tblTreatmentCourseDetail td, tblTreatmentCourse t, tblUser u\n"
+                        + "                        WHERE td.treatmentID = t.id AND t.userID = u.id AND td.treatmentID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, idTreatment);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    mailPatient = rs.getString("email");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mailPatient;
+    }
+
     public static ArrayList<TreatmentCourseDetail> getTreatmentDetailByTreatmentID(String from) {
         ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
         Util dbu = new Util();
@@ -204,7 +343,8 @@ public class TreatmentCourseDetailDAO {
                         + "           ,status\n"
                         + "           ,statusPaid\n"
                         + "           ,treatmentTime)\n"
-                        + "     VALUES(?,?,?,?,?,?,?)";
+                        + "           ,statusFeedback)\n"
+                        + "     VALUES(?,?,?,?,?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, date);
                 pst.setString(2, treatmentID);
@@ -213,6 +353,7 @@ public class TreatmentCourseDetailDAO {
                 pst.setString(5, status);
                 pst.setString(6, statusPaid);
                 pst.setString(7, time);
+                pst.setString(8, "0");
 
                 int rs = pst.executeUpdate();
                 cn.close();
@@ -340,4 +481,43 @@ public class TreatmentCourseDetailDAO {
             }
         }
     }
+
+    public static boolean checkDuplicateDateTreatmentDetailOfDentist(int idDentist, String date, String time) {
+        Connection cn = null;
+        TreatmentCourseDetail c = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT td.id AS id, treatmentDate, treatmentTime, tblService.serviceName AS serviceName,td.description,td.status,td.statusPaid\n"
+                        + "FROM tblTreatmentCourse tc\n"
+                        + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
+                        + "JOIN tblService ON td.serviceID = tblService.id\n"
+                        + "WHERE tc.dentistID = ? AND td.treatmentDate = ? AND td.treatmentTime = ?\n"
+                        + "ORDER BY td.status DESC, treatmentDate ASC, treatmentTime ASC";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, idDentist);
+                pst.setString(2, date);
+                pst.setString(3, time);
+                
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    return true;
+                }  
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
+    }
+
 }
