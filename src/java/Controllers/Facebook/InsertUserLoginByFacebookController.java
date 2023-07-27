@@ -57,7 +57,7 @@ public class InsertUserLoginByFacebookController extends HttpServlet {
                         session.setAttribute("User", user);
                         String message = "Đăng nhập thành công.";
                         request.setAttribute("message", message);
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                        response.sendRedirect("index.jsp"); 
                     } else {
                         out.println("<html><body>");
                         out.println("<script>");

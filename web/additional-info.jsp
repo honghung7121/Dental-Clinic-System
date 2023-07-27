@@ -7,7 +7,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
     <head>
         <meta charset="UTF-8">
@@ -182,7 +182,7 @@
                         </script>
                     </c:if>
                     <c:if test="${loginByGg}">
-                        <form action="MainController" method="post">
+                        <form action="MainController" method="get">
                             <div class="group">
                                 <label class="label">Họ Và Tên</label>
                                 <input style="border-radius: 0" name="accountName" type="text" class="input" value="" required="">
