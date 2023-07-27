@@ -26,6 +26,7 @@ public class TreatmentCourseDetail {
     private String description;
     private boolean status;
     private boolean statusPaid;
+    private float price;
     private boolean statusFeedBack;
 
     public TreatmentCourseDetail(int id, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
@@ -61,4 +62,14 @@ public class TreatmentCourseDetail {
         this.status = status;
         this.statusPaid = statusPaid;
     }
+
+    public TreatmentCourseDetail(int id, String nameService, String description, boolean status, boolean statusPaid, float price) {
+        this.id = id;
+        this.nameService = nameService;
+        this.description = description;
+        this.status = status;
+        this.statusPaid = statusPaid;
+        this.price = price;
+    }
+    
 }
