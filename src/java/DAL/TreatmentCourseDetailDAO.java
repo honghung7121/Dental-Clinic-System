@@ -312,7 +312,8 @@ public class TreatmentCourseDetailDAO {
                         + "           ,status\n"
                         + "           ,statusPaid\n"
                         + "           ,treatmentTime)\n"
-                        + "     VALUES(?,?,?,?,?,?,?)";
+                        + "           ,statusFeedback)\n"
+                        + "     VALUES(?,?,?,?,?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, date);
                 pst.setString(2, treatmentID);
@@ -321,6 +322,7 @@ public class TreatmentCourseDetailDAO {
                 pst.setString(5, status);
                 pst.setString(6, statusPaid);
                 pst.setString(7, time);
+                pst.setString(8, "0");
 
                 int rs = pst.executeUpdate();
                 cn.close();
@@ -447,6 +449,44 @@ public class TreatmentCourseDetailDAO {
                 con.close();
             }
         }
+    }
+
+    public static boolean checkDuplicateDateTreatmentDetailOfDentist(int idDentist, String date, String time) {
+        Connection cn = null;
+        TreatmentCourseDetail c = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT td.id AS id, treatmentDate, treatmentTime, tblService.serviceName AS serviceName,td.description,td.status,td.statusPaid\n"
+                        + "FROM tblTreatmentCourse tc\n"
+                        + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
+                        + "JOIN tblService ON td.serviceID = tblService.id\n"
+                        + "WHERE tc.dentistID = ? AND td.treatmentDate = ? AND td.treatmentTime = ?\n"
+                        + "ORDER BY td.status DESC, treatmentDate ASC, treatmentTime ASC";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, idDentist);
+                pst.setString(2, date);
+                pst.setString(3, time);
+                
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    return true;
+                }  
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
     }
 
 }

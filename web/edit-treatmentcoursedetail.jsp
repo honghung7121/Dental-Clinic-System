@@ -26,10 +26,6 @@
         <link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <!--[if lt IE 9]>
-                    <script src="assets/js/html5shiv.min.js"></script>
-                    <script src="assets/js/respond.min.js"></script>
-            <![endif]-->
     </head>
 
     <body>
@@ -56,13 +52,14 @@
                                 
                                 <input type="hidden" name="idDetail" value="<%= treatmentdetail.getId()%>">
                                 <input type="hidden" name="editStatusPaidDetail" value="<%= treatmentdetail.isStatusPaid()%>">
-                                
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <strong><label>Ngày Hẹn<span class="text-danger">*</span></label></strong>
                                             <input class="form-control" type="date" value="<%= treatmentdetail.getTreatmentdate()%>" name="editDateDetail" id="editDateInput">
                                         </div>
+                                        
                                     </div>
 
                                     <div class="col-sm-6">
@@ -73,19 +70,23 @@
                                                 <option value="<%= treatmentdetail.getTreatmenttime()%>"><%= treatmentdetail.getTreatmenttime()%></option>
                                                 <%
                                                 for(int i = 8; i < 22; i++){
+                                                    if(i<10){
                                                 %>
-                                                    <option value="<%= i+":00" %>"><%= i%>:00:00</option>
-                                                    <option value="<%= i+":30" %>"><%= i%>:30:00</option>
+                                                        <option value="<%= "0"+i+":00" %>">0<%= i%>:00:00</option>
+                                                        <option value="<%= "0"+i+":30" %>">0<%= i%>:30:00</option>
+                                                <%    
+                                                    } else{
+                                                %>
+                                                        <option value="<%= i+":00" %>"><%= i%>:00:00</option>
+                                                        <option value="<%= i+":30" %>"><%= i%>:30:00</option>
                                                 <%
+                                                    }
                                                 }
                                                 %>
                                             </select>
                                         </div>
-                                        
-                                        
-                                        <h6 style="color: red">${requestScope.reportEmail}</h6>
                                     </div>
-                                    
+                                    <h5 style="color: red"> ${"    "}  ${requestScope.reportDuplicate}</h5>             
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <strong><label>Dịch Vụ</label></strong>
@@ -120,6 +121,24 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <strong><label class="display-block">Trạng Thái Khám</label></strong>
+                                            <%
+                                            if(treatmentdetail.isStatus()){
+                                            %>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="editStatusDetail" id="detail_active" value="1" checked>
+                                                <label class="form-check-label" for="detail_active">
+                                                    Đã hoàn thành
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="editStatusDetail" id="detail_inactive" value="0" >
+                                                <label class="form-check-label" for="detail_inactive">
+                                                    Chưa hoàn thành
+                                                </label>
+                                            </div>
+                                            <%
+                                            } else{
+                                             %>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="editStatusDetail" id="detail_active" value="1">
                                                 <label class="form-check-label" for="detail_active">
@@ -131,7 +150,11 @@
                                                 <label class="form-check-label" for="detail_inactive">
                                                     Chưa hoàn thành
                                                 </label>
-                                            </div>   
+                                            </div> 
+                                            <%   
+                                            }
+                                            %>
+                                              
                                         </div>
                                     </div>
                                      
@@ -149,6 +172,7 @@
 
             </div>
         </div>
+                  
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
             // Hàm để lấy ngày hiện tại dưới dạng chuỗi 'YYYY-MM-DD'
@@ -162,6 +186,7 @@
             // Lấy phần tử input và đặt giá trị tối thiểu bằng ngày hiện tại
             const editDateInput = document.getElementById('editDateInput');
             editDateInput.min = getCurrentDate();
-        </script>                                
+        </script>     
+
     </body>
 </html>

@@ -65,18 +65,28 @@
                                         <div class="form-group">
                                             <strong><label>Giờ Hẹn <span class="text-danger">*</span></label></strong>
                                             <select class="form-control" name="editTimeDetail" required="">
-                                                <option value="">-- Chọn giờ --</option>
+                                                <option value="" disabled>-- Chọn giờ --</option>
                                                 <%
-                                                for(int i = 8; i < 22; i++){
+                                                for(int i = 8; i < 22; i++){    
+                                                    if(i<10){
                                                 %>
-                                                    <option value="<%= i+"00" %>"><%= i%>:00</option>
-                                                    <option value="<%= i+"30" %>"><%= i%>:30</option>
+                                                        <option value="<%= "0" + i + ":00" %>">0<%= i%>:00:00</option>
+                                                        <option value="<%= "0" + i + ":30" %>">0<%= i%>:30:00</option>
+                                                <%    
+                                                    } else{
+                                                %>
+                                                        <option value="<%= i+":00" %>"><%= i%>:00:00</option>
+                                                        <option value="<%= i+":30" %>"><%= i%>:30:00</option>
                                                 <%
+                                                    }
                                                 }
                                                 %>
                                             </select>
                                         </div>
                                     </div>
+                                            
+                                    <h5 style="color: red"> ${"    "}  ${requestScope.reportDuplicate}</h5>     
+                                    
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <strong><label>Dịch Vụ</label></strong>
