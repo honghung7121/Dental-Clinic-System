@@ -147,7 +147,6 @@ public class TreatmentCourseDetailDAO {
         return kq;
     }
 
-
     public static boolean invoicesUpdate(String treatmentID) {
 
         boolean kq = false;
@@ -161,7 +160,6 @@ public class TreatmentCourseDetailDAO {
                 PreparedStatement pst = cn.prepareStatement(sql);
 
                 pst.setString(1, treatmentID);
-
 
                 int rs = pst.executeUpdate();
                 kq = true;
@@ -194,7 +192,6 @@ public class TreatmentCourseDetailDAO {
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, treatmentID);
 
-
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
                     check = rs.getBoolean("status");
@@ -217,38 +214,36 @@ public class TreatmentCourseDetailDAO {
     }
 
     public static boolean treatmentCheck(String treatmentID) {
-    boolean check = true; // Assume 'false' by default
+        boolean check = true; // Assume 'false' by default
 
-    Connection cn = null;
-    try {
-        cn = Util.getConnection();
-        if (cn != null) {
-            String sql = "SELECT statusPaid\n"
-                    + "FROM dbo.tblTreatmentCourseDetail\n"
-                    + "WHERE tblTreatmentCourseDetail.statusPaid = 'false' AND treatmentID = ?";
-            PreparedStatement pst = cn.prepareStatement(sql);
-            pst.setString(1, treatmentID);
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT statusPaid\n"
+                        + "FROM dbo.tblTreatmentCourseDetail\n"
+                        + "WHERE tblTreatmentCourseDetail.statusPaid = 'false' AND treatmentID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, treatmentID);
 
-            ResultSet rs = pst.executeQuery();
-            if (rs != null && rs.next()) {
-                check = rs.getBoolean("statusPaid");
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    check = rs.getBoolean("statusPaid");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        if (cn != null) {
-            try {
-                cn.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        return check;
     }
-    return check;
-}
-
-
 
     public static String getMailPatientByTreatmentID(String idTreatment) {
         Connection cn = null;
@@ -543,11 +538,11 @@ public class TreatmentCourseDetailDAO {
                 pst.setInt(1, idDentist);
                 pst.setString(2, date);
                 pst.setString(3, time);
-                
+
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
                     return true;
-                }  
+                }
             } else {
                 return false;
             }
@@ -565,5 +560,40 @@ public class TreatmentCourseDetailDAO {
         return false;
     }
 
+    //true --> Đã hoàn thành 1 liệu trình hoàn chỉnh
+    public static boolean checkCompleteTreatment(String idTreatment) {
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT td.id AS id, treatmentDate, treatmentTime, tblService.serviceName AS serviceName,td.description,td.status,td.statusPaid\n"
+                        + "FROM tblTreatmentCourse tc\n"
+                        + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
+                        + "JOIN tblService ON td.serviceID = tblService.id\n"
+                        + "WHERE td.treatmentID = ? AND (td.status = 'false' OR td.statusPaid = 'false')\n"
+                        + "ORDER BY td.status DESC, treatmentDate ASC, treatmentTime ASC";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, idTreatment);
+
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
+    }
 
 }

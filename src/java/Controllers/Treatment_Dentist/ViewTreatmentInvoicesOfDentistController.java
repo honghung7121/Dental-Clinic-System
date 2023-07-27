@@ -53,6 +53,7 @@ public class ViewTreatmentInvoicesOfDentistController extends HttpServlet {
             
             request.setAttribute("CheckPaid", idList);
             request.setAttribute("TreatmentList", slist);
+            session.setAttribute("activeLink", "billLink");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
