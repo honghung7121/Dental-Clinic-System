@@ -19,7 +19,6 @@
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        
         <!--[if lt IE 9]>
                     <script src="assets/js/html5shiv.min.js"></script>
                     <script src="assets/js/respond.min.js"></script>
@@ -212,7 +211,6 @@
             <div class="sidebar" id="sidebar">
                 <div class="sidebar-inner slimscroll">
                     <div id="sidebar-menu" class="sidebar-menu">
-
                         <c:set var="activeLink" value="${sessionScope.activeLink}"></c:set>
                         <c:set var="option" value="${sessionScope.option}"></c:set>
                         <c:set var="dentistappointmentLink" value="dentistappointmentLink"></c:set>

@@ -84,7 +84,7 @@ public class MainController extends HttpServlet {
     private final String CHANGEPASSWORDUSER = "changePasswordUser.jsp";
     private final String CHANGEPASSWORD = "ChangePasswordController";
     private final String CHANGEPROFILEUSER = "ChangeProfileUser";
-     private final String SAVEPROFILEUSER = "UserProfileController";
+    private final String SAVEPROFILEUSER = "UserProfileController";
 
     private final String CUSTOMER_DENTIST_PAGE = "customer-dentists.jsp";
     private final String CUSTOMER_SHOW_DENTIST = "ShowDentistController";
@@ -110,7 +110,7 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-     String url = "";
+        String url = "";
         try {
             String action = request.getParameter("action");
             if (action.equals("Login")) {
@@ -225,13 +225,13 @@ public class MainController extends HttpServlet {
                 url = SEARCHUSERSTATUS;
             } else if (action.equals("ViewTreatmentByCustomer")) {
                 url = TREATMENTOFDENTIST;
-            }else if (action.equals("ViewTreatmentInvoicesOfDentist")) {
+            } else if (action.equals("ViewTreatmentInvoicesOfDentist")) {
                 url = TREATMENTINVOICESOFDENTIST;
             } else if (action.equals("ViewTreatmentDetailByCustomer")) {
                 url = TREATMENTDETAILOFDENTIST;
-            }else if (action.equals("ViewInvoicesDetailByCustomer")) {
+            } else if (action.equals("ViewInvoicesDetailByCustomer")) {
                 url = INVOICESDETAILOFDENTIST;
-            }  else if (action.equals("editDetail")) {
+            } else if (action.equals("editDetail")) {
                 url = EDITTREATMENTDETAIL;
             } else if (action.equals("addDetail")) {
                 url = ADDTREATMENTDETAIL;
@@ -244,7 +244,7 @@ public class MainController extends HttpServlet {
 //            } else if (action.equals("changeProfileUser")) {
 //                url = CHANGEPROFILEUSER;
             } else if (action.equals("saveChangeProfileUser")) {
-                url = CHANGEPROFILEUSER ;
+                url = CHANGEPROFILEUSER;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -252,7 +252,6 @@ public class MainController extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

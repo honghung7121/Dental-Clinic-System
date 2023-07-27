@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/nbproject/ant-deploy.xml</file>
-            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/build.xml</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/InvoicesConfirmController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/ViewTreatmentInvoicesOfDentistController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/DAL/TreatmentCourseDetailDAO.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/invoice-view.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/invoices.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/DAL/TreatmentCourseDAO.java</file>
         </group>
     </open-files>
 </project-private>
