@@ -2,13 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controllers.Advisory;
+package Controllers.Appointment;
 
-import DAL.AdvisoryDAO;
-import Models.Advisory;
+import DAL.AppointmentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class GetAdvisoryController extends HttpServlet {
+public class UpdateAppointmentController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +30,12 @@ public class GetAdvisoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        try{
-            AdvisoryDAO dao = new AdvisoryDAO();
-            List<Advisory> list = dao.getAddvisory();
-            request.setAttribute("ADVISORY_LIST", list);
-            url = "consultant.jsp";
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        finally{
-            request.getRequestDispatcher(url).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            int id = Integer.parseInt(request.getParameter("id"));
+            String date = request.getParameter("date");
+            String time = request.getParameter("time");
+            AppointmentDAO.updateAppointment(id, date, time);
         }
     }
 

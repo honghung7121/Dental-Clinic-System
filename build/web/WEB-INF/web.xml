@@ -364,6 +364,14 @@
         <servlet-name>InvoicesConfirmController</servlet-name>
         <servlet-class>Controllers.Treatment_Dentist.InvoicesConfirmController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditDateTimeAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.EditDateTimeAppointmentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAppointmentController</servlet-name>
+        <servlet-class>Controllers.Appointment.UpdateAppointmentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -727,6 +735,14 @@
     <servlet-mapping>
         <servlet-name>InvoicesConfirmController</servlet-name>
         <url-pattern>/InvoicesConfirmController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDateTimeAppointmentController</servlet-name>
+        <url-pattern>/EditDateTimeAppointmentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAppointmentController</servlet-name>
+        <url-pattern>/UpdateAppointmentController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>

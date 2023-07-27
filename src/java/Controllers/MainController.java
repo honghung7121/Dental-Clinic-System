@@ -106,6 +106,10 @@ public class MainController extends HttpServlet {
 
     private final String INSERTUSERLOGINBYGOOGLE = "InsertUserLoginByGoogleController";
     private final String INSERTUSERLOGINBYFACEBOOK = "InsertUserLoginByFacebookController";
+    
+    private final String EDITDATETIMEAPPOINTMENT = "EditDateTimeAppointmentController";
+    private final String UPDATEAPPOINTMENT = "UpdateAppointmentController";
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -245,6 +249,10 @@ public class MainController extends HttpServlet {
 //                url = CHANGEPROFILEUSER;
             } else if (action.equals("saveChangeProfileUser")) {
                 url = CHANGEPROFILEUSER;
+            } else if (action.equals("EditDateTimeAppointment")) {
+                url = EDITDATETIMEAPPOINTMENT;
+            } else if (action.equals("UpdateAppointment")) {
+                url = UPDATEAPPOINTMENT;
             }
         } catch (Exception e) {
             e.printStackTrace();
