@@ -114,6 +114,12 @@ public class AddTreatmentDetailController extends HttpServlet {
                 Thread thread = new Thread(myRunnable);
                 thread.start();
             }
+            boolean checkComplete = TreatmentCourseDetailDAO.checkCompleteTreatment(idTreatment);
+            if(checkComplete){
+                TreatmentCourseDAO.UpdateStatusTreatment(idTreatment, 1);
+            } else {
+                TreatmentCourseDAO.UpdateStatusTreatment(idTreatment, 0);
+            }
             request.getRequestDispatcher("MainController?action=ViewTreatmentDetailByCustomer").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

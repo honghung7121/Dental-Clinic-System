@@ -65,8 +65,9 @@ public class EditTreatmentDetailController extends HttpServlet {
             int idDentist = tmCourseDAO.getDentistByTreatmentCourseID(Integer.parseInt(idTreatment));
             DentistDAO dentistDAO = new DentistDAO();
             final Dentist dentist = dentistDAO.getDentistByID(String.valueOf(idDentist));
-            
-            if(!den.getTreatmentdate().equals(DateDetail) || !den.getTreatmenttime().equals(TimeDetail.trim() +":00")){     
+            String a = den.getTreatmentdate();
+            String b = den.getTreatmenttime();
+            if(!den.getTreatmentdate().trim().equals(DateDetail.trim()) || !den.getTreatmenttime().trim().equals(TimeDetail.trim())){     
                 //check trung ngay
                 boolean checkDuplicate = TreatmentCourseDetailDAO.checkDuplicateDateTreatmentDetailOfDentist(idDentist, DateDetail, TimeDetail);
                 if(checkDuplicate){
@@ -142,6 +143,12 @@ public class EditTreatmentDetailController extends HttpServlet {
                 };  
                 Thread thread = new Thread(myRunnable);
                 thread.start();
+            }
+            boolean checkComplete = TreatmentCourseDetailDAO.checkCompleteTreatment(idTreatment);
+            if(checkComplete){
+                TreatmentCourseDAO.UpdateStatusTreatment(idTreatment, 1);
+            } else {
+                TreatmentCourseDAO.UpdateStatusTreatment(idTreatment, 0);
             }
             request.setAttribute("reportDuplicate",null);
             request.getRequestDispatcher("MainController?action=ViewTreatmentDetailByCustomer").forward(request, response);

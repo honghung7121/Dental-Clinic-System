@@ -70,10 +70,11 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-3 ">
-                                <a href="#" style="background-color: #28a745;" class="btn btn-success btn-block"> Search </a>
+<!--                                <a href="#" style="background-color: #28a745;" class="btn btn-success btn-block"> Search </a>-->
                             </div>
                         </div>
                     <c:set var="TreatmentList" value="${requestScope.TreatmentList}"></c:set>
+                    <c:set var="CheckPaid" value="${requestScope.CheckPaid}"></c:set>
                         <div class="row" style="text-align: center">
                             <div class="col-md-12">
 
@@ -89,22 +90,23 @@
                                             </tr>                                        
                                         </thead>
                                         <tbody id="content">
-                                        <c:forEach var="list" items="${TreatmentList}">
+                                        <c:forEach var="list" items="${TreatmentList}" varStatus="status">
                                             <tr>
                                                 <td>${list.getId()}</td>
                                                 <td>${list.getNamecustomer()}</td>
                                                 <td>${list.getNameTreatment()}</td>
-                                                <c:if test="${list.isStatus() == true}">
+                                                <c:if test="${CheckPaid[status.index] == true}">
                                                     <td style="color: red; font-weight: bold;">Đã Thanh Toán</td>
                                                 </c:if>
-                                                <c:if test="${list.isStatus() == false}">
+                                                <c:if test="${CheckPaid[status.index] == false}">
                                                     <td style="color: #35BA67; font-weight: bold;">Chưa Thanh Toán</td>
                                                 </c:if>
+
 <!--                                                    <td><a style=" background-color: #009efb;" href="MainController?action=ViewInvoicesDetailByCustomer&idTreatment=${list.getId()}&nameCus=${list.getNamecustomer()}" class="btn btn-primary">Chi tiết</a></td>-->
-                                                    <c:if test="${list.isStatus() == true}">
-                                                        <td style="padding: 30px;"></td>
+                                               <c:if test="${CheckPaid[status.index] == true}">
+                                                    <td style="padding: 30px;"></td>
                                                 </c:if>
-                                                <c:if test="${list.isStatus() == false}">
+                                                <c:if test="${CheckPaid[status.index] == false}">
                                                     <td><a style=" background-color: #009efb;" href="MainController?action=ViewInvoicesDetailByCustomer&idTreatment=${list.getId()}&nameCus=${list.getNamecustomer()}" class="btn btn-primary">Thanh Toán</a></td>
                                                 </c:if>
                                             </tr>

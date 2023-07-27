@@ -6,6 +6,7 @@
 package Controllers.Treatment_Dentist;
 
 import DAL.TreatmentCourseDAO;
+import DAL.TreatmentCourseDetailDAO;
 import Models.TreatmentCourse;
 import Models.User;
 import java.io.IOException;
@@ -41,9 +42,18 @@ public class ViewTreatmentInvoicesOfDentistController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             User user = (User) session.getAttribute("User");
             TreatmentCourseDAO sdao = new TreatmentCourseDAO();
+            TreatmentCourseDetailDAO dao = new TreatmentCourseDetailDAO();
             ArrayList<TreatmentCourse> slist = sdao.getTreatmentByDentistID(Integer.toString(user.getId()));
+            ArrayList<String> idList = new ArrayList<>();
+            for (TreatmentCourse treatment : slist) {
+                String idAsString = String.valueOf(treatment.getId());
+                String checkPaid = String.valueOf(dao.treatmentCheck(idAsString));
+                idList.add(checkPaid);
+            }
+            
+            request.setAttribute("CheckPaid", idList);
             request.setAttribute("TreatmentList", slist);
-
+            session.setAttribute("activeLink", "billLink");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

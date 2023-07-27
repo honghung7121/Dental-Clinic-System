@@ -2,15 +2,5 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/DAL/TreatmentCourseDetailDAO.java</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/add-treatmentcoursedetail.jsp</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/edit-treatmentcoursedetail.jsp</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/EditTreatmentDetailController.java</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/AddTreatmentDetailController.java</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/Models/TreatmentCourseDetail.java</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/src/java/DAL/DentistDAO.java</file>
-            <file>file:/D:/Semester%205/SWP391/Project_Dentist/Tri-Branch/SWP391-SE1743/web/view-treatmentcourse-of-dentist.jsp</file>
-        </group>
     </open-files>
 </project-private>

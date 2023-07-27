@@ -400,7 +400,8 @@ public class DentistDAO {
                 stm.setInt(1, dentistID);
                 stm.setDate(2, dateSelected);
                 stm.setTime(3, timeSelected);
-                stm.setTime(4, new Time(timeSelected.toLocalTime().plusMinutes(30).toNanoOfDay() / 1_000_000));
+                LocalTime newTime = timeSelected.toLocalTime().plusMinutes(30);
+                stm.setTime(4, Time.valueOf(newTime));
                 rs = stm.executeQuery();
                 if (!rs.next()) {
                     String sql2 = "select * from \n"
@@ -411,9 +412,10 @@ public class DentistDAO {
                     stm.setInt(1, dentistID);
                     stm.setDate(2, dateSelected);
                     stm.setTime(3, timeSelected);
-                    stm.setTime(4, new Time(timeSelected.toLocalTime().plusMinutes(30).toNanoOfDay() / 1_000_000));
+                    newTime = timeSelected.toLocalTime().plusMinutes(30);
+                    stm.setTime(4, Time.valueOf(newTime));
                     rs = stm.executeQuery();
-                    if(!rs.next()){
+                    if (!rs.next()) {
                         return true;
                     }
                 }

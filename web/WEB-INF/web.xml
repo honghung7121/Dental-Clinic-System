@@ -352,6 +352,18 @@
         <servlet-name>ChangTimeTreatmentCourseDetailsController</servlet-name>
         <servlet-class>Controllers.Treatment.ChangTimeTreatmentCourseDetailsController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewTreatmentInvoicesOfDentistController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.ViewTreatmentInvoicesOfDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InvoicesDetailOfDentistController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.InvoicesDetailOfDentistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InvoicesConfirmController</servlet-name>
+        <servlet-class>Controllers.Treatment_Dentist.InvoicesConfirmController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -703,6 +715,18 @@
     <servlet-mapping>
         <servlet-name>ChangTimeTreatmentCourseDetailsController</servlet-name>
         <url-pattern>/ChangTimeTreatmentCourseDetailsController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewTreatmentInvoicesOfDentistController</servlet-name>
+        <url-pattern>/ViewTreatmentInvoicesOfDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvoicesDetailOfDentistController</servlet-name>
+        <url-pattern>/InvoicesDetailOfDentistController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvoicesConfirmController</servlet-name>
+        <url-pattern>/InvoicesConfirmController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>

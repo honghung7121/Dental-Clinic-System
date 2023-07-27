@@ -36,7 +36,7 @@ public class AppointmentDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select id, appDate, appTime, userID, dentistID, description, status from tblAppointment where status = 'false'";
+                String sql = "select id, appDate, appTime, userID, dentistID, description, status from tblAppointment";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
                 if (rs != null) {

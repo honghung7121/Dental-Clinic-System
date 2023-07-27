@@ -231,4 +231,35 @@ public class TreatmentCourseDAO {
         }
         return serviceID;
     }
+    
+    public static boolean UpdateStatusTreatment(String idTreatment, int status) {
+        boolean kq = false;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "UPDATE dbo.tblTreatmentCourse\n"
+                        + "SET status = ?\n"
+                        + "WHERE id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, status);
+                pst.setString(2, idTreatment);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+    
 }
