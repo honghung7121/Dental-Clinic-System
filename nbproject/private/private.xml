@@ -3,6 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/InvoicesConfirmController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/Controllers/Treatment_Dentist/ViewTreatmentInvoicesOfDentistController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/DAL/TreatmentCourseDetailDAO.java</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/invoice-view.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/web/invoices.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/SWP391/Binh-Branch2-SWP391/SWP391-SE1743/src/java/DAL/TreatmentCourseDAO.java</file>
+=======
             <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/Facebook/LoginFacebookController.java</file>
             <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/admin.jsp</file>
             <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Models/TreatmentCourseDetail.java</file>
@@ -13,6 +21,7 @@
             <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/DAL/TreatmentCourseDetailDAO.java</file>
             <file>file:/D:/SWP391-SE1743/SWP391-SE1743/nbproject/build-impl.xml</file>
             <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/DashBoardController.java</file>
+>>>>>>> 1d76873e794e013f1dbc623b582195ccc5826b4f
         </group>
     </open-files>
 </project-private>

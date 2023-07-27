@@ -37,7 +37,7 @@ public class TreatmentCourseDetail {
         this.description = description;
         this.status = status;
         this.statusPaid = statusPaid;
-        
+
     }
 
     public TreatmentCourseDetail(int id, String nameTreatment, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid, boolean statusFeedBack) {
@@ -51,8 +51,7 @@ public class TreatmentCourseDetail {
         this.statusPaid = statusPaid;
         this.statusFeedBack = statusFeedBack;
     }
-    
-    
+
     public TreatmentCourseDetail(String nameTreatment, String treatmentdate, String treatmenttime, String nameService, String description, boolean status, boolean statusPaid) {
         this.nameTreatment = nameTreatment;
         this.treatmentdate = treatmentdate;
@@ -71,5 +70,5 @@ public class TreatmentCourseDetail {
         this.statusPaid = statusPaid;
         this.price = price;
     }
-    
+
 }

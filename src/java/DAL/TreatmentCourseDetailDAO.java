@@ -147,7 +147,9 @@ public class TreatmentCourseDetailDAO {
         return kq;
     }
 
-    public static boolean invoicesUpdate(String id, String treatmentID) {
+
+    public static boolean invoicesUpdate(String treatmentID) {
+
         boolean kq = false;
         Connection cn = null;
         try {
@@ -157,7 +159,9 @@ public class TreatmentCourseDetailDAO {
                         + "SET status = 'true'\n"
                         + "WHERE id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
-                pst.setString(1, id);
+
+                pst.setString(1, treatmentID);
+
 
                 int rs = pst.executeUpdate();
                 kq = true;
@@ -177,7 +181,9 @@ public class TreatmentCourseDetailDAO {
     }
 
     public static boolean invoicesCheck(String treatmentID) {
-        boolean kq = false;
+
+        boolean check = true;
+
         Connection cn = null;
         try {
             cn = Util.getConnection();
@@ -188,8 +194,12 @@ public class TreatmentCourseDetailDAO {
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, treatmentID);
 
-                int rs = pst.executeUpdate();
-                kq = true;
+
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    check = rs.getBoolean("status");
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -202,8 +212,43 @@ public class TreatmentCourseDetailDAO {
                 }
             }
         }
-        return kq;
+
+        return check;
     }
+
+    public static boolean treatmentCheck(String treatmentID) {
+    boolean check = true; // Assume 'false' by default
+
+    Connection cn = null;
+    try {
+        cn = Util.getConnection();
+        if (cn != null) {
+            String sql = "SELECT statusPaid\n"
+                    + "FROM dbo.tblTreatmentCourseDetail\n"
+                    + "WHERE tblTreatmentCourseDetail.statusPaid = 'false' AND treatmentID = ?";
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1, treatmentID);
+
+            ResultSet rs = pst.executeQuery();
+            if (rs != null && rs.next()) {
+                check = rs.getBoolean("statusPaid");
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        if (cn != null) {
+            try {
+                cn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    return check;
+}
+
+
 
     public static String getMailPatientByTreatmentID(String idTreatment) {
         Connection cn = null;
@@ -519,5 +564,6 @@ public class TreatmentCourseDetailDAO {
         }
         return false;
     }
+
 
 }

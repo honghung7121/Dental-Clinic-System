@@ -5,8 +5,9 @@
  */
 package Controllers.Treatment_Dentist;
 
-import static DAL.TreatmentCourseDetailDAO.getMailPatientByTreatmentID;
-import static DAL.TreatmentCourseDetailDAO.invoicesConfirm;
+
+import DAL.TreatmentCourseDAO;
+import DAL.TreatmentCourseDetailDAO;
 import Util.SendMail;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -51,12 +52,16 @@ public class InvoicesConfirmController extends HttpServlet {
             NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
             final String formattedAmount = currencyFormatter.format(amount);
             // Split the concatenated nameServices into separate values
-
+            
             // Process the individual nameService values
-            // Do something with each nameService value
-            boolean check = invoicesConfirm(idTreatment);
 
-            final String mail = getMailPatientByTreatmentID(idTreatment);
+            // Do something with each nameService value
+            boolean confirm = TreatmentCourseDetailDAO.invoicesConfirm(idTreatment);
+            boolean check = TreatmentCourseDetailDAO.invoicesCheck(idTreatment);
+            if (check) {
+                boolean update = TreatmentCourseDetailDAO.invoicesUpdate(idTreatment);
+            }
+            final String mail = TreatmentCourseDetailDAO.getMailPatientByTreatmentID(idTreatment);
             Runnable myRunnable = new Runnable() {
                 public void run() {
                     // Các công việc được thực thi trong luồng này

@@ -211,7 +211,6 @@
             <div class="sidebar" id="sidebar">
                 <div class="sidebar-inner slimscroll">
                     <div id="sidebar-menu" class="sidebar-menu">
-
                         <c:set var="activeLink" value="${sessionScope.activeLink}"></c:set>
                         <c:set var="option" value="${sessionScope.option}"></c:set>
                         <c:set var="dentistappointmentLink" value="dentistappointmentLink"></c:set>
@@ -229,6 +228,9 @@
                             </li>  
                             <li class="${viewpatientsofdentistLink}">
                                 <a  href="MainController?action=ViewTreatmentByCustomer&id=${sessionScope.User.getId()}"><i class="ri-empathize-fill"></i> <span>Bệnh Nhân</span></a>
+                            </li>
+                            <li>
+                                <a  href="MainController?action=ViewTreatmentInvoicesOfDentist"><i class="fa fa-money"></i> <span>Hoá Đơn</span></a>
                             </li>
                         </ul>
                     </div>
