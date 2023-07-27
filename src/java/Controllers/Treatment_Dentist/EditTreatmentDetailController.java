@@ -4,9 +4,12 @@
  */
 package Controllers.Treatment_Dentist;
 
+import DAL.DentistDAO;
 import DAL.ServiceDAO;
+import DAL.TreatmentCourseDAO;
 import DAL.TreatmentCourseDetailDAO;
 import DAL.UserDAO;
+import Models.Dentist;
 import Models.Service;
 import Models.TreatmentCourseDetail;
 import Models.User;
@@ -51,28 +54,60 @@ public class EditTreatmentDetailController extends HttpServlet {
             String DescriptionDetail = request.getParameter("editDescriptionDetail");
             String StatusDetail = request.getParameter("editStatusDetail");
             String StatusPaidDetail = request.getParameter("editStatusPaidDetail");
-            Service serviceNew = ServiceDAO.getServiceById(Integer.parseInt(ServiceDetail));
-            
+
             TreatmentCourseDetail den = TreatmentCourseDetailDAO.getTreatmentDetailByID(idDetail);
             String denOld = den.getDescription();
             if (DescriptionDetail == null || DescriptionDetail.isEmpty()) {
                 DescriptionDetail = denOld; 
             }
             
+            TreatmentCourseDAO tmCourseDAO = new TreatmentCourseDAO();
+            int idDentist = tmCourseDAO.getDentistByTreatmentCourseID(Integer.parseInt(idTreatment));
+            DentistDAO dentistDAO = new DentistDAO();
+            final Dentist dentist = dentistDAO.getDentistByID(String.valueOf(idDentist));
+            
+            if(!den.getTreatmentdate().equals(DateDetail) || !den.getTreatmenttime().equals(TimeDetail.trim() +":00")){     
+                //check trung ngay
+                boolean checkDuplicate = TreatmentCourseDetailDAO.checkDuplicateDateTreatmentDetailOfDentist(idDentist, DateDetail, TimeDetail);
+                if(checkDuplicate){
+                    //Quay lại trang trước và hiện thông báo lỗi
+                    request.setAttribute("reportDuplicate", "Thời gian này Nhã sĩ " + dentist.getFullName() + " đã có lịch khám. Khách hàng vui lòng chọn lại thời gian khác. Xin cảm ơn!");
+                    request.getRequestDispatcher("edit-treatmentcoursedetail.jsp?idDetail="+idDetail).forward(request, response);
+                    return;
+                }
+                //end check
+            }
+            
             boolean check = TreatmentCourseDetailDAO.updateTreatmentDetail(idDetail, DateDetail, TimeDetail,
                     ServiceDetail, DescriptionDetail, StatusDetail, StatusPaidDetail);
             
             //gui mail cho khach hang
+            String reportStatus ="";
+            if (StatusDetail.equals("1")) {
+                reportStatus = "Đã hoàn thành";
+            } else {
+                reportStatus = "Chưa hoàn thành";
+            }
+            
             LocalDate localDate = LocalDate.parse(DateDetail);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             final String formattedDate = localDate.format(formatter);
-                
+            final String description = DescriptionDetail;
+
             int idPatient = TreatmentCourseDetailDAO.getIDPatientByTreatmentID(idTreatment);
             final User patient = UserDAO.getPatient(idPatient);
+            final Service serviceNew = ServiceDAO.getServiceById(Integer.parseInt(ServiceDetail));
+            final String rpStatus = reportStatus;
             if (check) {
                 Runnable myRunnable = new Runnable() {
                     public void run() {
                         // Các công việc được thực thi trong luồng này
+//                        // Đường dẫn tới hình ảnh
+//                        String imagePath = "http://localhost:8080/SWP391-SE1743/img/anhquangcao.jpg";
+//
+//                        // Tạo thẻ <img> chứa đường dẫn hình ảnh
+//                        String imageTag = "<img src=\"" + imagePath + "\" alt=\"Ảnh quảng cáo\">";
+                        
                         SendMail.sendEmail(patient.getEmail(), "Mail from Dental Clinic System", "Chào anh/chị,<br>"
                                 + "<br>"
                                 + "Xin thông báo lịch hẹn khám của quý khách đã được THAY ĐỔI. Vui lòng đọc kĩ những thay đổi sau đây để anh/chị đến khám đúng lịch hẹn.<br>"
@@ -82,6 +117,10 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "Dịch vụ: " + serviceNew.getName() + "<br>"
                                 + "Ngày hẹn: " + formattedDate + "<br>"
                                 + "Thời gian: " + TimeDetail + "<br>"
+                                + "Ghi chú (nếu có): " + description + "<br>"
+                                + "Dịch vụ: " + serviceNew.getName() + "<br>"
+                                + "Nha sĩ: " + dentist.getFullName() + "<br>"
+                                + "Trạng thái: " + rpStatus + "<br>"
                                 + "Địa chỉ: Quận 9, Thành phố Hồ Chí Minh<br>"
                                 + "<br>"
                                 + "Chúng tôi rất mong được gặp bạn vào ngày hẹn trên. Để đảm bảo quá trình hẹn được diễn ra thuận lợi, vui lòng lưu ý các thông tin sau:<br>"
@@ -104,6 +143,7 @@ public class EditTreatmentDetailController extends HttpServlet {
                 Thread thread = new Thread(myRunnable);
                 thread.start();
             }
+            request.setAttribute("reportDuplicate",null);
             request.getRequestDispatcher("MainController?action=ViewTreatmentDetailByCustomer").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

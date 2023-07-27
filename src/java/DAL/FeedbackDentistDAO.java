@@ -71,7 +71,7 @@ public class FeedbackDentistDAO {
                 String sql = "select tblFeedBackDentist.id as id, dentisttable.fullName as dentistname, customertable.fullName as customername, tblFeedBackDentist.rate as rate, tblFeedBackDentist.cmt as comment\n"
                         + "from tblFeedBackDentist, (select id, fullName from tblUser where idRole = 2) as dentisttable, (select id, fullName from tblUser where idRole = 5) as customertable\n"
                         + "where tblFeedBackDentist.dentistID = dentisttable.id and tblFeedBackDentist.userID = customertable.id and tblFeedBackDentist.status = 1\n"
-                        + "order by tblFeedBackDentist.dentistID offset ? rows\n"
+                        + "order by id offset ? rows\n"
                         + "fetch next 5 rows only";
                 pst = cn.prepareStatement(sql);
                 pst.setInt(1, position);

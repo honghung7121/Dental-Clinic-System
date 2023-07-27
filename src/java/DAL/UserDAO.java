@@ -1013,7 +1013,7 @@ public class UserDAO {
                     String email = rs.getString("email");
                     String roll = rs.getString("Roll");
                     String gender = rs.getString("gender");
-                    user = new User(idRole, name, password, phoneNumber, idRole, status, email, roll, gender);
+                    user = new User(id, name, password, phoneNumber, idRole, status, email, roll, gender);
                 }
             }
         } catch (Exception e) {

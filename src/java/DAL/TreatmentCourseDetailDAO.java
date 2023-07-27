@@ -22,6 +22,37 @@ import java.util.ArrayList;
  */
 public class TreatmentCourseDetailDAO {
 
+    public static ArrayList<TreatmentCourseDetail> getAllTreatmentDetail() {
+        ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
+        Util dbu = new Util();
+
+        String sql = "select td.id, nameTreatment, treatmentDate,treatmentTime, serviceName, td.description,td.status, statusPaid, statusFeedBack\n"
+                + "from tblTreatmentCourse tc\n"
+                + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
+                + "JOIN tblService ON td.serviceID = tblService.id";
+        try {
+            Connection connection = dbu.getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nameTreatment = rs.getString("nameTreatment");
+                String treatmentdate = rs.getString("treatmentDate");
+                String treatmenttime = rs.getString("treatmentTime");
+                String servicename = rs.getString("serviceName");
+                String description = rs.getString("description");
+                boolean status = rs.getBoolean("status");
+                boolean statuspaid = rs.getBoolean("statusPaid");
+                boolean statusFeedBack = rs.getBoolean("statusFeedBack");
+                TreatmentCourseDetail c = new TreatmentCourseDetail(id, nameTreatment, treatmentdate, treatmenttime, servicename, description, status, statuspaid, statusFeedBack);
+                list.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public static ArrayList<TreatmentCourseDetail> getTreatmentDetailByUserID(String from, String paid) {
         ArrayList<TreatmentCourseDetail> list = new ArrayList<>();
         Util dbu = new Util();
@@ -116,7 +147,9 @@ public class TreatmentCourseDetailDAO {
         return kq;
     }
 
+
     public static boolean invoicesUpdate(String treatmentID) {
+
         boolean kq = false;
         Connection cn = null;
         try {
@@ -126,7 +159,9 @@ public class TreatmentCourseDetailDAO {
                         + "SET status = 'true'\n"
                         + "WHERE id = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
+
                 pst.setString(1, treatmentID);
+
 
                 int rs = pst.executeUpdate();
                 kq = true;
@@ -146,7 +181,9 @@ public class TreatmentCourseDetailDAO {
     }
 
     public static boolean invoicesCheck(String treatmentID) {
+
         boolean check = true;
+
         Connection cn = null;
         try {
             cn = Util.getConnection();
@@ -157,10 +194,12 @@ public class TreatmentCourseDetailDAO {
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, treatmentID);
 
+
                 ResultSet rs = pst.executeQuery();
                 if (rs != null && rs.next()) {
                     check = rs.getBoolean("status");
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,6 +212,7 @@ public class TreatmentCourseDetailDAO {
                 }
             }
         }
+
         return check;
     }
 
@@ -207,6 +247,7 @@ public class TreatmentCourseDetailDAO {
     }
     return check;
 }
+
 
 
     public static String getMailPatientByTreatmentID(String idTreatment) {
@@ -347,7 +388,8 @@ public class TreatmentCourseDetailDAO {
                         + "           ,status\n"
                         + "           ,statusPaid\n"
                         + "           ,treatmentTime)\n"
-                        + "     VALUES(?,?,?,?,?,?,?)";
+                        + "           ,statusFeedback)\n"
+                        + "     VALUES(?,?,?,?,?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, date);
                 pst.setString(2, treatmentID);
@@ -356,6 +398,7 @@ public class TreatmentCourseDetailDAO {
                 pst.setString(5, status);
                 pst.setString(6, statusPaid);
                 pst.setString(7, time);
+                pst.setString(8, "0");
 
                 int rs = pst.executeUpdate();
                 cn.close();
@@ -483,5 +526,44 @@ public class TreatmentCourseDetailDAO {
             }
         }
     }
+
+    public static boolean checkDuplicateDateTreatmentDetailOfDentist(int idDentist, String date, String time) {
+        Connection cn = null;
+        TreatmentCourseDetail c = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "SELECT td.id AS id, treatmentDate, treatmentTime, tblService.serviceName AS serviceName,td.description,td.status,td.statusPaid\n"
+                        + "FROM tblTreatmentCourse tc\n"
+                        + "JOIN tblTreatmentCourseDetail td on tc.id = td.treatmentID\n"
+                        + "JOIN tblService ON td.serviceID = tblService.id\n"
+                        + "WHERE tc.dentistID = ? AND td.treatmentDate = ? AND td.treatmentTime = ?\n"
+                        + "ORDER BY td.status DESC, treatmentDate ASC, treatmentTime ASC";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, idDentist);
+                pst.setString(2, date);
+                pst.setString(3, time);
+                
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                    return true;
+                }  
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
+    }
+
 
 }
