@@ -1,6 +1,15 @@
-# Dencare - Dental Clinic Booking System
-A webapp to schedule dental appointments online such as: book an appointment, create treatment course, manage dentist, patient....
-### Screenshots
+# Dencare - Dental Clinic WebApplication
+
+## Introduction
+This web application is designed to serve dental clinics, patients, customer consultants, and dentists. The goal of this website is to provide a comprehensive platform for efficient communication, appointment management, and seamless user experiences for all involved parties.
+
+## Feature
+- Admin: Dashboard, Feedback Management, Human Resource Management, Service Management
+- Patient: User Registration, Book Appointments, View Services, Follow-up TreatmentCourse
+- Customer Consultant: User Engagement
+- Dentist: Appointment Details, Medical Records
+  
+## Screenshots
 ![Home Page](   /screenshots/homepage.png)
 
 ![Login](https://github.com/honghung7121/Dental-Clinic-System/blob/main/screenshots/login.png)
