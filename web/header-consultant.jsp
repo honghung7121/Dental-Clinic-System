@@ -177,89 +177,14 @@
                     <ul>       
                         <li class="menu-title">Main</li>
                         <li class="active">
-                            <a  href="#"><i class="ri-customer-service-2-line"></i> <span>Danh Sách tư vấn</span></a>
-                        </li>                        
+                            <a  href="GetAdvisoryController"><i class="ri-customer-service-2-line"></i> <span>Danh Sách tư vấn</span></a>
+                        </li>   
+                        <li class="active">
+                            <a  href="MainController?action=searchAppointmentByDate"><i class="fa fa-calendar"></i> <span>Lịch Hẹn</span></a>
+                        </li>  
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="page-wrapper">
-            <div class="content">
-                <div class="row">
-                    <div class="col-sm-4 col-4">
-                        <h4 class="page-title">Danh Sách Tư Vấn</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-striped custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>Họ Và Tên</th>
-                                        <th >Số điện thoại</th>
-                                        <th>
-                                            <form action="SortDateAdvisoryController" method="POST">
-                                                <button class="btnLink" style="text-align: center">Ngày Đăng Kí</button>
-                                                <input type="hidden" name="sortBy" value="${requestScope.SORT_BY}">
-                                            </form>
-                                        </th>
-                                        <th>Mô Tả</th>
-                                        <th  style="text-align: center">Chỉnh Sửa</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="a" items="${ADVISORY_LIST}">
-                                        <tr id="${a.getId()}">
-                                            <td style="display: none">${a.getId()}</td>
-                                            <td>${a.getFullName()}</td>
-                                            <td style="font-weight: 500">0${a.getPhoneNumber()}</td>
-                                            <td>${a.getAdvisoryDate()}</td>
-                                            <td>${a.getDescription()}</td>
-                                            <td class="text-right">
-                                                <button class="button-4 completed-advisory" role="button">Hoàn Thành</button>
-                                                <input type="hidden" value="${a.getId()}">
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script>
-        document.querySelectorAll('.completed-advisory').forEach(function (item) {
-            item.addEventListener('click', function (event) {
-                event.preventDefault();
-                var advisoryRow = this.closest('tr');
-                var advisoryID = advisoryRow.querySelector('td:first-child').textContent;
-                var comfirmation = confirm("Bạn có chắc muốn hoàn thành chứ?");
-                if (comfirmation) {
-                    $.ajax({
-                        url: '/SWP391-SE1743/CompletedAdvisoryController',
-                        data: {
-                            action: 'Complete Advisory',
-                            id: advisoryID
-                        },
-                        success: function (data) {
-                            let advisory = document.getElementById(advisoryID);
-                            advisory.remove();
-                        },
-                        error: function (error) {
-                            console("Fail");
-                        },
-                        type: 'POST'
-                    });
-                }
-            });
-        });
-    </script>
-
 </body>
 </html>

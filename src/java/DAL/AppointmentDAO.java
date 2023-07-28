@@ -71,6 +71,84 @@ public class AppointmentDAO {
         return list;
     }
 
+    public Appointment getAppointmentById(int id) {
+        Connection cn = null;
+        ArrayList<Appointment> list = new ArrayList<>();
+        Appointment app = null;
+        User u = new User();
+        Dentist d = new Dentist();
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "select id, appDate, appTime, userID, dentistID, description, status \n"
+                        + "from tblAppointment\n"
+                        + "where id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, id);
+                ResultSet rs = pst.executeQuery();
+                if (rs != null && rs.next()) {
+                        int idApp = rs.getInt("id");
+                        Date appDate = rs.getDate("appDate");
+                        Time appTime = rs.getTime("appTime");
+                        int userIDApp = rs.getInt("userID");
+                        int dentistIDApp = rs.getInt("dentistID");
+                        String desciption = rs.getString("description");
+                        u = userDAO.getEmployeeById(userIDApp);
+                        d = dentistDAO.getDentistByID(String.valueOf(dentistIDApp));
+                        String userName = u.getFullName();
+                        String dentistName = d.getFullName();
+                        boolean statusApp = rs.getBoolean("status");
+                        app = new Appointment(idApp, userName, dentistName, appDate, appTime, desciption, statusApp);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return app;
+    }
+    
+    public static boolean updateAppointment(int id, String stringdate, String stringtime) {
+        Connection cn = null;
+        int kq = 0;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                Date date = Date.valueOf(stringdate);
+                Time time = Time.valueOf(stringtime);
+                String sql = "update dbo.tblAppointment\n"
+                        + "set appDate=?,appTime=?\n"
+                        + " where id = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setDate(1, date);
+                pst.setTime(2, time);
+                pst.setInt(3, id);
+                kq = pst.executeUpdate();
+                if (kq != 0) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
+    }    
+
     public ArrayList<Appointment> getAppointmentByDate(String from, String to) {
         Connection cn = null;
         ArrayList<Appointment> list = new ArrayList<>();

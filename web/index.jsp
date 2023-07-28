@@ -298,7 +298,7 @@
                             <c:set var="dentistlist" value="${DentistDAO.getAllDentist()}"></c:set>
                                 <div class="form-group">
                                     <label style="color: white;">Nha sĩ</label>
-                                    <select id="selectdentist" name="dentistid" class="form-select" aria-label="Default select example">
+                                    <select id="selectdentist" name="dentistid" class="form-select" aria-label="Default select example" required>
                                         <option selected>Lựa chọn nha sĩ</option>
                                     <c:forEach var="dentist" items="${dentistlist}">
                                         <option value="${dentist.id}">${dentist.fullName}</option>
