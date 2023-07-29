@@ -382,7 +382,7 @@ public class TreatmentCourseDetailDAO {
                         + "           ,description\n"
                         + "           ,status\n"
                         + "           ,statusPaid\n"
-                        + "           ,treatmentTime)\n"
+                        + "           ,treatmentTime\n"
                         + "           ,statusFeedback)\n"
                         + "     VALUES(?,?,?,?,?,?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql);

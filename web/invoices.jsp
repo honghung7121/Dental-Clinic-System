@@ -59,7 +59,7 @@
                         </div>
                         <div class="row filter-row ">
 
-                            <div class="col-sm-6 col-md-3 offset-md-6">
+<!--                            <div class="col-sm-6 col-md-3 offset-md-6">
                                 <div class="form-group form-focus select-focus">
                                     <label class="focus-label">Status</label>
                                     <select class="select floating">
@@ -68,7 +68,7 @@
                                         <option>Chưa Thanh Toán</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="col-sm-6 col-md-3 ">
 <!--                                <a href="#" style="background-color: #28a745;" class="btn btn-success btn-block"> Search </a>-->
                             </div>
@@ -120,16 +120,7 @@
             </div>
 
         </div>
-        <div class="sidebar-overlay" data-reff=""></div>
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.dataTables.min.js"></script>
-        <script src="assets/js/dataTables.bootstrap4.min.js"></script>
-        <script src="assets/js/select2.min.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/moment.min.js"></script>
-        <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="assets/js/app.js"></script>
+
+
     </body>
 </html>

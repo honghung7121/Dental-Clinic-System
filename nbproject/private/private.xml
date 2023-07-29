@@ -2,30 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/service-2.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/header-consultant.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/FeedbackDentist.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/headerMarketing.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/consultant.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/header.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/Service/editServiceController.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/Appointment/UpdateAppointmentController.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/nbproject/project.properties</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/Appointment/SearchAppointmentController.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/DAL/ServiceDAO.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/MainController.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/LoginController.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/DashBoardController.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/appointments.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/DAL/UserDAO.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/edit-service.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/index.jsp</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/Appointment/EditDateTimeAppointmentController.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/nbproject/private/private.xml</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/DAL/AppointmentDAO.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/src/java/Controllers/Service/updateServiceController.java</file>
-            <file>file:/D:/SWP391-SE1743/SWP391-SE1743/web/edit-appointment.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
