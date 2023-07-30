@@ -102,6 +102,7 @@ public class MainController extends HttpServlet {
     private final String TREATMENTDETAILOFDENTIST = "ViewTreatmentDetailOfDentistController";
     private final String EDITTREATMENTDETAIL = "EditTreatmentDetailController";
     private final String ADDTREATMENTDETAIL = "AddTreatmentDetailController";
+    private final String DELETETREATMENTCOURSE = "DeleteTreamentDetailController";
     private final String SEARCHTREATMENTCOURSE = "SearchTreatmentCourseController";
 
     private final String INSERTUSERLOGINBYGOOGLE = "InsertUserLoginByGoogleController";
@@ -253,7 +254,10 @@ public class MainController extends HttpServlet {
                 url = EDITDATETIMEAPPOINTMENT;
             } else if (action.equals("UpdateAppointment")) {
                 url = UPDATEAPPOINTMENT;
+            } else if (action.equals("DeleteTreatmentDetail")) {
+                url = DELETETREATMENTCOURSE;
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

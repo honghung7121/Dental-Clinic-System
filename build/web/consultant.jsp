@@ -119,7 +119,7 @@
                                         <td style="font-weight: 500">0${a.getPhoneNumber()}</td>
                                         <td>${a.getAdvisoryDate()}</td>
                                         <td>${a.getDescription()}</td>
-                                        <td class="text-right">
+                                        <td class="text-center">
                                             <button class="button-4 completed-advisory" role="button">Hoàn Thành</button>
                                             <input type="hidden" value="${a.getId()}">
                                         </td>

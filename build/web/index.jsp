@@ -86,7 +86,7 @@
                                         lượng tốt nhất</h1>
                                     <a href="#"
                                        class="open-modal-link btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Cuộc hẹn</a>
-                                    <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Liên hệ chúng
+                                    <a href="contact.jsp" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Liên hệ chúng
                                         tôi</a>
                                 </div>
                             </div>

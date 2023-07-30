@@ -78,10 +78,6 @@
                                         <div class="col-6 col-sm-6 m-b-20">
                                             <div class="invoice-details">
                                                 <h3 class="text-uppercase">Hoá Đơn #ID-${sessionScope.idTreatment}</h3>
-                                                <ul class="list-unstyled">
-                                                    <li>Ngày Trả: <span>13/6/2023</span></li>
-                                                    <li>Hạn Trả: <span>16/6/2023</span></li>
-                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -182,18 +178,13 @@
                                                                 <tr>
 
                                                                     <th></th>
-                                                                    <td class="text-right text-primary" ><a style="background-color: #009efb;" href="InvoicesConfirmController?totalAmount=${totalAmount}" class="btn btn-primary">Xác Nhận Thanh Toán</a></td>
+                                                                    <td class="text-right text-primary" ><a style="background-color: #009efb; color: #fff;" onclick="confirmPayment()" class="btn btn-primary">Xác Nhận Thanh Toán</a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="invoice-info">
-                                            <h5>Lời Dặn Của Bác Sĩ</h5>
-                                            <p class="text-muted"> -Hạn chế ăn đồ ăn cứng và phải vệ sinh răng miệng thường xuyên.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -210,5 +201,17 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.slimscroll.js"></script>
         <script src="assets/js/app.js"></script>
+        <script>
+                                                                            // Function to handle the confirmation alert
+                                                                            function confirmPayment() {
+                                                                                var isConfirmed = confirm("Bạn có chắc chắn muốn xác nhận thanh toán?");
+                                                                                if (isConfirmed) {
+                                                                                    // If the user confirms, proceed with payment confirmation
+                                                                                    window.location.href = "InvoicesConfirmController?totalAmount=${totalAmount}";
+                                                                                } else {
+                                                                                    // If the user cancels, do nothing
+                                                                                }
+                                                                            }
+        </script>
     </body>
 </html>

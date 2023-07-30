@@ -98,7 +98,7 @@
                     <div class="section-title bg-light rounded h-100 p-5">
                         <h5 class="position-relative d-inline-block text-primary text-uppercase">Nha sĩ của chúng tôi</h5>
                         <h1 class="display-6 mb-4">Gặp gỡ nha sĩ có kinh nghiệm và được chứng nhận của chúng tôi</h1>
-                        <a href="appointment.html" class="btn btn-primary py-3 px-5">Cuộc hẹn</a>
+                        <a href="index.jsp" class="btn btn-primary py-3 px-5">Cuộc hẹn</a>
                     </div>
                 </div>
                 <!-- end tạo cuộc hẹn -->

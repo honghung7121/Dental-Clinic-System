@@ -596,4 +596,34 @@ public class TreatmentCourseDetailDAO {
         return false;
     }
 
+    public static boolean deleteTreatmentDetalWhereStatusFalse(String idDetail) {
+
+        boolean kq = false;
+        Connection cn = null;
+        try {
+            cn = Util.getConnection();
+            if (cn != null) {
+                String sql = "DELETE FROM tblTreatmentCourseDetail\n"
+                        + "WHERE id = ? AND status = '0' AND statusPaid = '0'";
+                PreparedStatement pst = cn.prepareStatement(sql);
+
+                pst.setString(1, idDetail);
+
+                int rs = pst.executeUpdate();
+                kq = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return kq;
+    }
+
 }

@@ -5,7 +5,9 @@
  */
 package Models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,6 +15,8 @@ import lombok.ToString;
  *
  * @author Admin
  */
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
