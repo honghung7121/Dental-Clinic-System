@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,12 +33,14 @@ public class GetAdvisoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         String url = "";
         try{
             AdvisoryDAO dao = new AdvisoryDAO();
             List<Advisory> list = dao.getAddvisory();
             request.setAttribute("ADVISORY_LIST", list);
             url = "consultant.jsp";
+            session.setAttribute("activeLink", "dstvLink");
         }catch(Exception e){
             e.printStackTrace();
         }

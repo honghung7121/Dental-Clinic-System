@@ -131,55 +131,24 @@
                 <div id="sidebar-menu" class="sidebar-menu">
 
                     <c:set var="activeLink" value="${sessionScope.activeLink}"></c:set>
-                    <c:set var="option" value="${sessionScope.option}"></c:set>
 
-                    <c:set var="dashboardLink" value="dashboardLink"></c:set>
-                    <c:set var="dentistLink" value="dentistLink"></c:set>
-                    <c:set var="patientLink" value="patientLink"></c:set>
-                    <c:set var="serviceLink" value="serviceLink"></c:set>
-                    <c:set var="employeeLink" value="employeeLink"></c:set>
-                    <c:set var="dsnv" value="dsnv"></c:set>
-                    <c:set var="feedbackLink" value="feedbackLink"></c:set>
-                    <c:set var="feedbackDentistLink" value="feedbackDentistLink"></c:set>
-                    <c:set var="feedbackServiceLink" value="feedbackServiceLink"></c:set>
+                    <c:set var="dstvLink" value="dstvLink"></c:set>
+                    <c:set var="appointmentLink" value="appointmentLink"></c:set>
+      
 
-                    <c:if test="${activeLink eq dashboardLink}">
-                        <c:set var="dashboardLink" value="active"></c:set>
+                    <c:if test="${activeLink eq dstvLink}">
+                        <c:set var="dstvLink" value="active"></c:set>
                     </c:if>
-                    <c:if test="${activeLink eq dentistLink}">
-                        <c:set var="dentistLink" value="active"></c:set>
-                    </c:if>
-                    <c:if test="${activeLink eq patientLink}">
-                        <c:set var="patientLink" value="active"></c:set>
-                    </c:if>
-                    <c:if test="${activeLink eq serviceLink}">
-                        <c:set var="serviceLink" value="active"></c:set>
-                    </c:if>
-
-                    <c:if test="${activeLink eq employeeLink}">
-                        <c:set var="employeeLink" value="active"></c:set>
-                        <c:if test="${option eq dsnv}">
-                            <c:set var="employeeLink2" value="#888888"></c:set>
-                            <c:set var="employeeLink3" value="#888888"></c:set>
-                        </c:if>
-                    </c:if>
-
-                    <c:if test="${activeLink eq feedbackLink}">
-                        <c:set var="feedbackLink" value="active"></c:set>
-                        <c:if test="${option eq feedbackDentistLink}">
-                            <c:set var="feedbackServiceLink" value="#888888"></c:set>
-                        </c:if>
-                        <c:if test="${option eq feedbackServiceLink}">
-                            <c:set var="feedbackDentistLink" value="#888888"></c:set>
-                        </c:if>
+                    <c:if test="${activeLink eq appointmentLink}">
+                        <c:set var="appointmentLink" value="active"></c:set>
                     </c:if>
 
                     <ul>       
                         <li class="menu-title">Main</li>
-                        <li class="active">
+                        <li class="${dstvLink}">
                             <a  href="GetAdvisoryController"><i class="ri-customer-service-2-line"></i> <span>Danh Sách tư vấn</span></a>
                         </li>   
-                        <li class="active">
+                        <li class="${appointmentLink}">
                             <a  href="MainController?action=searchAppointmentByDate"><i class="fa fa-calendar"></i> <span>Lịch Hẹn</span></a>
                         </li>  
                     </ul>

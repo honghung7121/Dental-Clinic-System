@@ -151,11 +151,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Họ và Tên Bệnh Nhân</th>
+                                                    <th>Họ và Tên bệnh nhân</th>
                                                     <th>Bác sĩ</th>
-                                                    <th>Ngày Khám</th>
+                                                    <th>Ngày khám</th>
                                                     <th>Trạng thái</th>
-                                                    <th class="text-right">Action</th>
+                                                    <th class="text-right">Chỉnh sửa</th>
                                                 </tr>
                                             </thead>
 

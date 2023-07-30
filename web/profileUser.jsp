@@ -120,7 +120,6 @@
                                                     <div class="col-md-5">
                                                         <div class="profile-info-left">
                                                             <h3 class="user-name m-t-0 mb-0">${u.getFullName()}</h3>
-                                                        <div class="staff-id">ID Nhân Sự: ${u.getId()}</div>
                                                         <div class="staff-id">Mã Bệnh Nhân : ${u.getRoll()}</div>
 
                                                         <div class="staff-msg" style="display: flex; gap: 15px;">

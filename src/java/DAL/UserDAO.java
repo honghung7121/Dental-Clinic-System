@@ -1092,8 +1092,8 @@ public class UserDAO {
                 String Roll = "";
                 if (nextRoll < 100)
                 {
-                    if (nextRoll < 10) Roll = "00" + nextRoll;
-                    else Roll = "0" + nextRoll;
+                    if (nextRoll < 10) Roll = "P00" + nextRoll;
+                    else Roll = "P0" + nextRoll;
                 } else Roll = "P" + nextRoll;
                 sql = "insert into dbo.tblUser(fullName, email,phoneNumber,status,idRole,Roll,gender,idGoogle)\n"
                         + "                        values (?,?,?,?,?,?,?,?)";
