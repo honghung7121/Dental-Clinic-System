@@ -105,17 +105,20 @@
                                                     <td style="color: #35BA67; font-weight: bold;">Chưa hoàn thành</td>
                                                     <c:if test="${listD.statusPaid == true}">
                                                         <td style="color: red; font-weight: bold;">Đã thanh toán</td>
+                                                        <td><a href="edit-treatmentcoursedetail.jsp?idDetail=${listD.id}" style="color: black">Chỉnh sửa</a></td>   
                                                     </c:if>   
                                                     <c:if test="${listD.statusPaid == false}">
                                                         <td style="color: #35BA67; font-weight: bold;">Chưa thanh toán</td>
+                                                        <td><a href="edit-treatmentcoursedetail.jsp?idDetail=${listD.id}" style="color: black">Chỉnh sửa</a></td>   
+                                                        <td>
+                                                            <a style="color: black" href="#" onclick="confirmDelete('${listD.id}')">
+                                                                <i class="fa fa-trash-o m-r-5"></i> Xóa
+                                                            </a>
+                                                        </td>
                                                     </c:if>
-                                                    <td><a href="edit-treatmentcoursedetail.jsp?idDetail=${listD.id}" style="color: black">Chỉnh sửa</a></td>                    
+                                                                     
                                                 </c:if>
-                                                <td>
-                                                    <a style="color: black" href="#" onclick="confirmDelete('${listD.id}')">
-                                                        <i class="fa fa-trash-o m-r-5"></i> Xóa
-                                                    </a>
-                                                </td>
+                                                
                                             </tr>
                                         </c:forEach>                                       
                                     </tbody>
