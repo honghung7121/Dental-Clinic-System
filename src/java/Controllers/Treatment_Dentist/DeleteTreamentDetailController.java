@@ -5,31 +5,26 @@
 package Controllers.Treatment_Dentist;
 
 import DAL.DentistDAO;
-import DAL.ServiceDAO;
 import DAL.TreatmentCourseDAO;
 import DAL.TreatmentCourseDetailDAO;
 import DAL.UserDAO;
 import Models.Dentist;
-import Models.Service;
+import Models.TreatmentCourseDetail;
 import Models.User;
 import Util.SendMail;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 /**
  *
- * @author ADMIN
+ * @author Admin
  */
-public class AddTreatmentDetailController extends HttpServlet {
+public class DeleteTreamentDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,59 +42,42 @@ public class AddTreatmentDetailController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String idTreatment =(String) session.getAttribute("idTreatment");
-            final String DateDetail = request.getParameter("editDateDetail");
-            final String TimeDetail = request.getParameter("editTimeDetail");
-            String ServiceDetail = request.getParameter("editServiceDetail");
-            String DescriptionDetail = request.getParameter("editDescriptionDetail");
-            String StatusDetail = "0";
-            String StatusPaidDetail = "0";
+           
+            String idDetail = request.getParameter("idDetail");
+
             
-            User dentistNow =(User) session.getAttribute("User");
+            TreatmentCourseDAO tmCourseDAO = new TreatmentCourseDAO();
+            int idDentist = tmCourseDAO.getDentistByTreatmentCourseID(Integer.parseInt(idDetail));
             DentistDAO dentistDAO = new DentistDAO();
-            final Dentist dentist = dentistDAO.getDentistByID(String.valueOf(dentistNow.getId()));
-                
+            final Dentist dentist = dentistDAO.getDentistByID(String.valueOf(idDentist));
+            
+            final TreatmentCourseDetail tmDetail = TreatmentCourseDetailDAO.getTreatmentDetailByID(idDetail);
             //check trung ngay
-            boolean checkDuplicate = TreatmentCourseDetailDAO.checkDuplicateDateTreatmentDetailOfDentist(dentistNow.getId(), DateDetail, TimeDetail);
-            if(checkDuplicate){
+            boolean checkDelete = TreatmentCourseDetailDAO.deleteTreatmentDetalWhereStatusFalse(idDetail);
+            if(!checkDelete){
                 //Quay lại trang trước và hiện thông báo lỗi
-                request.setAttribute("reportDuplicate", "Thời gian này Nhã sĩ " + dentist.getFullName() + " đã có lịch khám. Khách hàng vui lòng chọn lại thời gian khác. Xin cảm ơn!");
-                request.getRequestDispatcher("add-treatmentcoursedetail.jsp").forward(request, response);
+                request.getRequestDispatcher("error.html").forward(request, response);
                 return;
             }
-            //end check
-            
-            boolean check = TreatmentCourseDetailDAO.insertTreatmentDetail(idTreatment, DateDetail, TimeDetail,
-                    ServiceDetail, DescriptionDetail, StatusDetail, StatusPaidDetail);
-            session.setAttribute("idTreatment", idTreatment);
-            
+            //end check          
+
             //gui mail cho khach hang
-            LocalDate localDate = LocalDate.parse(DateDetail);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            final String formattedDate = localDate.format(formatter);
-            ServiceDAO serDAO = new ServiceDAO();
-            final Service ser = serDAO.getServiceById(Integer.parseInt(ServiceDetail));
             int idPatient = TreatmentCourseDetailDAO.getIDPatientByTreatmentID(idTreatment);
             final User patient = UserDAO.getPatient(idPatient);
-            double amount = Double.parseDouble(String.valueOf(ser.getPrice()));
-            // Set the locale to Vietnamese (vi_VN)
-            Locale locale = new Locale("vi", "VN");
-            NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-            final String formattedAmount = currencyFormatter.format(amount);
-            if (check) {
+            if (checkDelete) {
                 Runnable myRunnable = new Runnable() {
                     public void run() {
                         // Các công việc được thực thi trong luồng này
                         SendMail.sendEmail(patient.getEmail(), "Mail from Dental Clinic System", "Chào anh/chị,<br>"
                                 + "<br>"
-                                + "Xin thông báo quý khách đã được tạo một lịch hẹn khám MỚI. Vui lòng đọc kĩ những thông tin sau đây để anh/chị đến khám đúng lịch hẹn.<br>"
-                                + "Dưới đây là thông tin chi tiết lịch hẹn khám của bạn:<br>"
+                                + "Xin thông báo quý khách đã được XÓA một lịch hẹn khám. Vui lòng đọc kĩ những thông tin sau đây để anh/chị đến khám đúng lịch hẹn.<br>"
+                                + "Dưới đây là thông tin chi tiết lịch hẹn khám đã bị XÓA của bạn:<br>"
                                 + "<br>" 
                                 + "Khách hàng: " + patient.getFullName() + "<br>"
-                                + "Dịch vụ: " + ser.getName() + "<br>"
-                                + "Ngày hẹn: " + formattedDate + "<br>"
-                                + "Thời gian: " + TimeDetail + "<br>" 
-                                + "Nha sĩ: " + dentistNow.getFullName() + "<br>" 
-                                + "Giá điều trị: " + formattedAmount + "<br>"
+                                + "Ngày khám: " + tmDetail.getTreatmentdate()+ "<br>"
+                                + "Giờ khám: " + tmDetail.getTreatmenttime()+ "<br>"
+                                + "Dịch vụ: " + tmDetail.getNameService()+ "<br>"
+                                + "Nha sĩ: " + dentist.getFullName() + "<br>"
                                 + "Địa chỉ: Quận 9, Thành phố Hồ Chí Minh<br>"
                                 + "<br>"
                                 + "Chúng tôi rất mong được gặp bạn vào ngày hẹn trên. Để đảm bảo quá trình hẹn được diễn ra thuận lợi, vui lòng lưu ý các thông tin sau:<br>"
@@ -121,12 +99,6 @@ public class AddTreatmentDetailController extends HttpServlet {
                 };
                 Thread thread = new Thread(myRunnable);
                 thread.start();
-            }
-            boolean checkComplete = TreatmentCourseDetailDAO.checkCompleteTreatment(idTreatment);
-            if(checkComplete){
-                TreatmentCourseDAO.UpdateStatusTreatment(idTreatment, 1);
-            } else {
-                TreatmentCourseDAO.UpdateStatusTreatment(idTreatment, 0);
             }
             request.getRequestDispatcher("MainController?action=ViewTreatmentDetailByCustomer").forward(request, response);
         } catch (Exception e) {

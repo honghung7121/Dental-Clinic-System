@@ -158,9 +158,9 @@ public class AppointmentDAO {
         try {
             cn = Util.getConnection();
             if (cn != null) {
-                String sql = "select id, appointmentDate, userID, dentistID, description, status from tblAppointment\n"
-                        + "WHERE (appointmentDate > ? OR appointmentDate = ?)\n"
-                        + "AND (appointmentDate < ? OR appointmentDate = ?)";
+                String sql = "select id, appDate, userID, dentistID, description, status from tblAppointment\n"
+                        + "WHERE (appDate > ? OR appDate = ?)\n"
+                        + "AND (appDate < ? OR appDate = ?)";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, from);
                 pst.setString(2, from);
@@ -176,7 +176,7 @@ public class AppointmentDAO {
                         d = dentistDAO.getDentistByID(String.valueOf(dentistIDApp));
                         String userName = u.getFullName();
                         String dentistName = d.getFullName();
-                        Date dateApp = rs.getDate("appointmentDate");
+                        Date dateApp = rs.getDate("appDate");
                         String descriptionApp = rs.getString("description");
                         boolean statusApp = rs.getBoolean("status");
                         app = new Appointment(idApp, userName, dentistName, dateApp, descriptionApp, statusApp);

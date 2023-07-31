@@ -80,6 +80,7 @@
                                             <th><a href="#">Trạng Thái Khám</a></th>
                                             <th><a href="#">Trạng Thái Thanh Toán</a></th>
                                             <th><a href="#">Chỉnh sửa</a></th>
+                                            <th><a href="#">Xóa</a></th>
                                         </tr>                                        
                                     </thead>
                                     <tbody id="content">
@@ -108,8 +109,13 @@
                                                     <c:if test="${listD.statusPaid == false}">
                                                         <td style="color: #35BA67; font-weight: bold;">Chưa thanh toán</td>
                                                     </c:if>
-                                                    <td><a href="edit-treatmentcoursedetail.jsp?idDetail=${listD.id}" style="color: black">Chỉnh sửa</a></td> 
+                                                    <td><a href="edit-treatmentcoursedetail.jsp?idDetail=${listD.id}" style="color: black">Chỉnh sửa</a></td>                    
                                                 </c:if>
+                                                <td>
+                                                    <a style="color: black" href="#" onclick="confirmDelete('${listD.id}')">
+                                                        <i class="fa fa-trash-o m-r-5"></i> Xóa
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </c:forEach>                                       
                                     </tbody>
@@ -120,9 +126,27 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            
-            
+                </div> 
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>                          
+        <script>
+            // Hàm xử lý sự kiện khi nhấp vào tùy chọn "Xóa"
+            function confirmDelete(detailID) {
+                // Hiển thị hộp thoại xác nhận
+                var result = confirm("Bạn có muốn xóa ngày hẹn này không?");
+
+                // Nếu người dùng chọn "OK" trong hộp thoại xác nhận
+                if (result) {
+                    // Chuyển hướng tới trang xóa nhân viên
+                    window.location.href = "MainController?action=DeleteTreatmentDetail&idDetail=" + detailID;
+                } else {
+                    // Xử lý khi người dùng không đồng ý xóa
+                    console.log('Hủy xóa');
+                    // Có thể thực hiện các hành động khác tại đây (ví dụ: tắt form)
+                }
+            }
+
+        </script>                      
+        
     </body>
 </html>

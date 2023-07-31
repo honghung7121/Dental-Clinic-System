@@ -62,7 +62,7 @@ public class EditTreatmentDetailController extends HttpServlet {
             }
             
             TreatmentCourseDAO tmCourseDAO = new TreatmentCourseDAO();
-            int idDentist = tmCourseDAO.getDentistByTreatmentCourseID(Integer.parseInt(idTreatment));
+            int idDentist = tmCourseDAO.getDentistByTreatmentCourseID(Integer.parseInt(idDetail));
             DentistDAO dentistDAO = new DentistDAO();
             final Dentist dentist = dentistDAO.getDentistByID(String.valueOf(idDentist));
             String a = den.getTreatmentdate();
@@ -117,10 +117,9 @@ public class EditTreatmentDetailController extends HttpServlet {
                                 + "Khách hàng: " + patient.getFullName() + "<br>"
                                 + "Dịch vụ: " + serviceNew.getName() + "<br>"
                                 + "Ngày hẹn: " + formattedDate + "<br>"
-                                + "Thời gian: " + TimeDetail + "<br>"
-                                + "Ghi chú (nếu có): " + description + "<br>"
-                                + "Dịch vụ: " + serviceNew.getName() + "<br>"
+                                + "Thời gian: " + TimeDetail + "<br>"         
                                 + "Nha sĩ: " + dentist.getFullName() + "<br>"
+                                + "Ghi chú (nếu có): " + description + "<br>"
                                 + "Trạng thái: " + rpStatus + "<br>"
                                 + "Địa chỉ: Quận 9, Thành phố Hồ Chí Minh<br>"
                                 + "<br>"

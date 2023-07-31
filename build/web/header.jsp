@@ -39,7 +39,7 @@
     <c:set var="u" value="${sessionScope.User}"></c:set>
         <div class="header">
             <div class="header-left">
-                <a href="admin.jsp" class="logo">
+                <a href="/SWP391-SE1743/dashboard" class="logo">
                     <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>DentCare</span>
                 </a>
             </div>
@@ -57,6 +57,7 @@
                         <span>${sessionScope.User.getFullName()}</span>
                 </a>
                 <div class="dropdown-menu">
+                    
                     <c:choose>                  
                         <c:when test = "${u.getRoleID() ==  5}" ><a class="dropdown-item" href="profileUser.jsp">Tài Khoản</a></c:when>
                         <c:otherwise><a class="dropdown-item" href="myprofile.jsp">Tài Khoản</a></c:otherwise>

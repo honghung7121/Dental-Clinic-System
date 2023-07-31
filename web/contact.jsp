@@ -177,7 +177,6 @@
                     <div class="content">
                         Cảm ơn quý khách đã đăng kí tư vấn. Chúng tôi sẽ liên lạc cho quý khách trong thời gian sớm nhất. 
                     </div>
-                    <a href="#">Xem thêm dịch vụ</a>
                 </div>
             </div>
             <!-- Newsletter End -->
